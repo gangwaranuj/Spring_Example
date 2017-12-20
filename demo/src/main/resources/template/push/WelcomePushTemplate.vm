@@ -1,0 +1,4 @@
+{
+"message": "Welcome to WorkMarket! You now have access to a worldwide worker pool and tools to manage your labor from end to end. Start routing work now!",
+"action": "${baseurl}/assignments/add}"
+}

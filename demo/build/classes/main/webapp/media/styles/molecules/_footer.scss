@@ -1,0 +1,62 @@
+$site-footer-font-size: 0.7rem;
+
+.push {
+	height: $site-footer-height;
+}
+
+.site-footer {
+	font-size: $site-footer-font-size;
+	height: $site-footer-height;
+	position: relative;
+	background: url("images/app/footer-global.jpg") left top #E9E9E9;
+	border-bottom: 1px solid #e0e1e1;
+	border-top: 1px solid #e0e1e1;
+	text-align: center;
+	padding: 1em 0;
+	box-sizing: border-box;;
+
+	.container, .container-fluid {
+		padding: 0 1rem;
+	}
+
+	.site-footer--links {
+		display: inline-block;
+		margin: 0;
+		padding: 1em 0;
+		overflow: hidden;
+		list-style-type: none;
+
+		li {
+			float: left;
+			margin-right: 1em;
+			line-height: 1;
+		}
+	}
+
+	.copyright {
+		clear: both;
+		color: $grey;
+	}
+
+	a {
+		@include clean-link;
+		color: #086ed9;
+	}
+
+	.logo-square {
+		display: block;
+		float: left;
+		margin-right: 1em;
+
+		img {
+			width: 1.5em;
+			height: 1.5em;
+		}
+	}
+
+	.logo-work-market {
+		height: 2em;
+		width: 10em;
+		margin: -0.5em 1em -0.5em 0;
+	}
+}

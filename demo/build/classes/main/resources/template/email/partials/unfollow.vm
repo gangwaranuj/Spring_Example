@@ -1,0 +1,9 @@
+<tr valign="top">
+	<td>
+		<div style="padding: 0px 10px; color: #aaa; font-size: 11px; line-height: 14px; font-family: Helvetica Neue, Arial, sans-serif;">
+			<p>
+				You are receiving this email because you follow this assignment. <a href="${baseurl}/unfollow/${template.encryptedWorkFollowId}" style="color:#888;">Unfollow</a>
+			</p>
+		</div>
+	</td>
+</tr>

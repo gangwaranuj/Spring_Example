@@ -1,0 +1,43 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #333333; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">${template.companyName}</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 20px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				${template.companyName} invited you to take the following test(s):
+			</p>
+			
+			<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f9f9f9; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+				<thead>
+					<tr>
+						<th>Test Name</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				#foreach( $assessment in ${template.assessments} )
+					<tr>
+					<td width="70%"><a href="${baseurl}/lms/view/details/${assessment.id}">${assessment.name}</a></td>
+					<td>
+
+						<table cellspacing="0" cellpadding="0" border="0">
+						<tbody>
+						<tr>
+						<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+						<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/lms/view/details/${assessment.id}">Take Test</a>
+
+						</td>
+						</tr>
+						</tbody>
+						</table>
+					</td>
+					</tr>
+				#end
+				</tbody>
+			</table>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

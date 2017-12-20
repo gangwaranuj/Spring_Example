@@ -1,0 +1,145 @@
+.help-page {
+	min-height: 460px;
+	height: 100%;
+	position: relative;
+	padding-bottom: 2em;
+	.help-slides-container {
+		overflow: hidden;
+		position: relative;
+		height: 100%;
+		max-width: 650px;
+		margin: auto;
+	}
+
+	.grid {
+		width: 100%;
+	}
+
+	h1 {
+		font-family: @bold-font;
+		margin: 0.7em 0 0.5em;
+	}
+
+	h3 {
+		font-size: @large-font-size;
+		font-family: @bold-font;
+		color:@dark-gray;
+		margin: .5em;
+	}
+	p {
+		color:@dark-gray;
+	}
+	.help-instructions {
+		padding: 1em;
+		p {
+			text-align: left;
+		}
+		.accepting-link {
+			color: @orange;
+			text-decoration: underline;
+		}
+	}
+
+	.help-circle {
+		background: @light-gray;
+		.border-radius(50%);
+		width: 1.5em;
+		height: 1.5em;
+		margin: 0 auto .5em;
+		padding: .5em;
+		.question-icon {
+			display: block;
+			margin: 0 auto;
+			height: 1.5em;
+			width: 1.5em;
+			path, circle {
+				fill: @orange;
+			}
+		}
+	}
+
+	ul {
+		margin: 0 auto;
+		text-align: center;
+		padding-left: 0;
+		list-style: none;
+		li {
+			margin: 2em 0;
+			a {
+				color:@orange;
+				span {
+					font-family: @bold-font;
+				}
+			}
+			.show {
+				border-radius: 0;
+				padding:0;
+				display: inline-block;
+				margin:0;
+			}
+		}
+	}
+	textarea {
+		border: 2px solid @medium-gray;
+		&:focus {
+			border: 2px solid @orange;
+		}
+	}
+	.availability {
+		margin: 0 auto;
+		width: 14em;
+		background-color: @light-gray;
+		padding: .5em;
+		border-radius: 3px;
+		color: @dark-gray;
+		small {
+			display: block;
+			text-align: left;
+			margin: 0 0 0 1em;
+			font-family: @bold-font;
+		}
+	}
+
+	#contactUs {
+		span {
+			background: @orange;
+			color: white;
+			padding: .3em;
+			.border-radius(@base-border-radius);
+			display: inline-block;
+		}
+	}
+
+	.help-slides-container {
+		position: relative;
+		margin-bottom: 1em;
+
+		.slides {
+			position: absolute;
+			.transitions(all 1s ease);
+			.transform(translateX(150%));
+
+			&.active-slide {
+				.transform(translateX(0%));
+			}
+		}
+	}
+}
+
+.help-link-container {
+	text-align: center;
+	margin: 2em;
+	a {
+		color: rgba(247, 150, 29, 0.5);
+		font-size: 1.3em;
+	}
+}
+
+.go-back-one-slide {
+	display: block;
+	margin: 0.5em 0 0 1em;
+	font-size: 1em;
+	text-align: left;
+	color: @dark-gray;
+	text-decoration: none;
+}

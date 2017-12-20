@@ -1,0 +1,29 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+	Talent Pool: <a href="${baseurl}/groups/${template.userGroupExpiration.userGroup.id}">${template.userGroupExpiration.userGroup.name}</a>
+</h1>
+
+<p style="margin: 20px 0px">
+<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f9f9f9; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+	<tbody>
+		<tr>
+			<th>User</th>
+			<th>Requirement</th>
+			<th>Expiration Date</th>
+		</tr>
+		#foreach($userExpiration in ${template.userGroupExpiration.userExpirations})
+			#foreach($criterion in ${userExpiration.criteria})
+			<tr>
+				<td><nobr>${userExpiration.user.firstName} ${userExpiration.user.lastName}: <a href="${baseurl}/profile/${userExpiration.user.userNumber}#qualifications">${userExpiration.user.userNumber}</a></nobr></td>
+				<td>${criterion.typeName}: ${criterion.name}
+					#if ($criterion.expired)
+						<strong> (expired)</strong>
+					#end
+				</td>
+				<td>$date.format('MM/dd/yyyy', ${criterion.expirationDate})
+			</tr>
+			#end
+		#end
+	</tbody>
+</table>
+
+#parse("template/email/partials/do-not-reply.vm")

@@ -1,0 +1,220 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd" version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>wm-fn</short-name>
+	<uri>http://www.workmarket.com/taglib/functions</uri>
+
+	<!-- Collections -->
+	<function>
+		<description>Join elements of a java.util.Collection into a string.</description>
+		<name>join</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>java.lang.String join(java.util.Collection, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>Join elements of a java.util.Collection into a human-readable string.</description>
+		<name>joinHuman</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>java.lang.String joinHuman(java.util.Collection, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>Join a specific property of elements in a java.util.Collection into a string.</description>
+		<name>joinProperty</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>java.lang.String join(java.util.Collection, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>Join a specific property of elements in a java.util.Collection into a human-readable string.</description>
+		<name>joinPropertyHuman</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>java.lang.String joinHuman(java.util.Collection, java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>Check whether the collection contains the provided object.</description>
+		<name>contains</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>boolean containsObject(java.util.Collection,java.lang.Object)</function-signature>
+	</function>
+
+	<function>
+		<description>Count items in a collection.</description>
+		<name>collectionSize</name>
+		<function-class>com.workmarket.utility.CollectionUtilities</function-class>
+		<function-signature>int collectionSize(java.util.Collection)</function-signature>
+	</function>
+
+	<!-- Strings -->
+	<function>
+		<description>Evaluate condition, return 'yes' if true and 'no' if false.</description>
+		<name>toYesNo</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String toYesNo(java.lang.Boolean)</function-signature>
+	</function>
+
+	<function>
+		<name>defaultString</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String defaultString(java.lang.String,java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>strip</name>
+		<function-class>org.apache.commons.lang3.StringUtils</function-class>
+		<function-signature>java.lang.String strip(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>stripUriProtocol</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String stripUriProtocol(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>stripTrailingSlashes</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String stripTrailingSlashes(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>fullName</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String fullName(java.lang.String,java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>encrypteId</name>
+		<function-class>com.workmarket.utility.EncryptionUtilities</function-class>
+		<function-signature>java.lang.String encryptLong(java.lang.Long)</function-signature>
+	</function>
+
+	<function>
+		<name>urlEncode</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String urlEncode(java.lang.String,java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>maskDigits</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String maskDigits(java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<!-- Booleans -->
+	<function>
+		<description>Evaluate condition and return corresponding true/false string.</description>
+		<name>boolean</name>
+		<function-class>org.apache.commons.lang.BooleanUtils</function-class>
+		<function-signature>java.lang.String toString(boolean, java.lang.String, java.lang.String)</function-signature>
+	</function>
+
+	<!-- Numbers -->
+	<function>
+		<description>If number is null, it will return 0</description>
+		<name>nVal</name>
+		<function-class>com.workmarket.utility.NumberUtilities</function-class>
+		<function-signature>java.lang.Integer getNullSafe(java.lang.Integer)</function-signature>
+	</function>
+
+	<function>
+		<description>If the value is 0, it will return '-'. Otherwise return value * 100</description>
+		<name>scoreCardValueDisplay</name>
+		<function-class>com.workmarket.utility.AnalyticsUtilities</function-class>
+		<function-signature>java.lang.String scoreCardValueDisplay(java.lang.Double)</function-signature>
+	</function>
+
+	<!-- Tags -->
+	<function>
+		<name>instanceOf</name>
+		<function-class>com.workmarket.utility.TagUtilities</function-class>
+		<function-signature>boolean instanceOf(java.lang.Object, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>hasProperty</name>
+		<function-class>com.workmarket.utility.TagUtilities</function-class>
+		<function-signature>boolean hasProperty(java.lang.Object, java.lang.String)</function-signature>
+	</function>
+
+	<!-- Ratings -->
+	<function>
+		<name>ratingStars</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>java.lang.String getStars(double)</function-signature>
+	</function>
+
+	<function>
+		<name>ratingLevels</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>java.lang.String getLevels(int)</function-signature>
+	</function>
+
+	<function>
+		<name>ratingCode</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>java.lang.String getRatingCode(int)(int)</function-signature>
+	</function>
+
+	<function>
+		<name>convertRatingNumberToNumeric</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>int convertRatingNumberToNumeric(double)</function-signature>
+	</function>
+
+	<function>
+		<name>ratingValueFromShort</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>java.lang.String getRatingValueFromShort(java.lang.Short)</function-signature>
+	</function>
+
+	<function>
+		<name>translateDeliverableTypeToName</name>
+		<function-class>com.workmarket.domains.model.asset.type.WorkAssetAssociationType</function-class>
+		<function-signature>java.lang.String translateDeliverableTypeToName(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>getEmbeddedMapFromAddress</name>
+		<function-class>com.workmarket.utility.GeoUtilities</function-class>
+		<function-signature>java.lang.String getEmbeddedMapFromAddress(java.lang.Integer, java.lang.Integer, java.lang.Boolean, java.lang.String, java.lang.Integer, java.lang.Boolean)</function-signature>
+	</function>
+
+	<function>
+		<name>getStaticMapImageUrlFromAddress</name>
+		<function-class>com.workmarket.utility.GeoUtilities</function-class>
+		<function-signature>java.lang.String getStaticMapImageUrlFromAddress(java.lang.Integer, java.lang.Integer, java.lang.String, java.lang.Boolean, java.lang.Integer, java.lang.Integer)</function-signature>
+	</function>
+
+	<function>
+		<name>getMapUrlFromAddress</name>
+		<function-class>com.workmarket.utility.GeoUtilities</function-class>
+		<function-signature>java.lang.String getMapUrlFromAddress(java.lang.String)</function-signature>
+	</function>
+
+	<!-- Mobile -->
+	<function>
+		<name>getMobileDatePicker</name>
+		<function-class>com.workmarket.web.helpers.MobileHelper</function-class>
+		<function-signature>java.lang.String getMobileDatePicker(java.lang.String,java.lang.String,java.lang.String,java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>getMobileTimePicker</name>
+		<function-class>com.workmarket.web.helpers.MobileHelper</function-class>
+		<function-signature>java.lang.String getMobileTimePicker(java.lang.String,java.lang.String,java.lang.String,java.lang.Integer)</function-signature>
+	</function>
+	<function>
+		<name>getCurrentYear</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>int getCurrentYear()</function-signature>
+	</function>
+
+	<function>
+		<description>check if 2 dates are on the same day</description>
+		<name>isSameDay</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>boolean isSameDay(java.util.Calendar, java.util.Calendar)</function-signature>
+	</function>
+</taglib>

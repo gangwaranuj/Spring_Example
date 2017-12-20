@@ -1,0 +1,32 @@
+<label class="assignment-creation--label -required" for="basics-title">Title</label>
+<div class="assignment-creation--field">
+	<input id="basics-title" type="text" name="title" />
+	<small>Please use descriptive titles. The first 70 characters of the title are highlighted to identify the portion that will be publicly viewable by anyone considering this assignment.</small>
+</div>
+
+<label class="assignment-creation--label -required" for="basics-industryId">Category</label>
+<div class="assignment-creation--field">
+	<select id="basics-industryId" class="wm-select" name="industryId"></select>
+</div>
+
+<label class="assignment-creation--label -required" for="basics-description">Description</label>
+<div class="assignment-creation--field">
+	<textarea id="basics-description" name="description"></textarea>
+	<small>The description field is publicly viewable. Please use this field for a high level overview of the assignment details.</small>
+</div>
+
+<label class="assignment-creation--label" for="basics-instructions">Special Instructions</label>
+<div class="assignment-creation--field">
+	<textarea id="basics-instructions" name="instructions"></textarea>
+	{{> ../../../funcs/templates/checkbox classList="assignment-creation--instructions-privacy" name="private_instructions" text="Only show to the assigned worker. Instructions will not be displayed to invited workers." }}
+</div>
+
+<label class="assignment-creation--label -required" for="basics-owner">Owner</label>
+<div class="assignment-creation--field">
+	<select id="basics-owner" class="wm-select" name="owner"></select>
+</div>
+
+<label class="assignment-creation--label -required" for="basics-contact">Support Contact</label>
+<div class="assignment-creation--field">
+	<select id="basics-contact" class="wm-select" name="contact"></select>
+</div>

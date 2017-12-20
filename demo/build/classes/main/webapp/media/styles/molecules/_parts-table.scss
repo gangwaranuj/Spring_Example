@@ -1,0 +1,328 @@
+///////////////////////////////////////
+// Parts and Logistics Table Styles //
+/////////////////////////////////////
+
+._partsRoot_ {
+	text-align: left;
+	padding: 0 1em;
+	overflow: hidden;
+
+	// Removes HTML5 number input arrows
+	input[type=number]::-webkit-inner-spin-button,
+	input[type=number]::-webkit-outer-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	&.parts-table {
+		width: 100%;
+	}
+
+	& > div {
+		margin: 3em 0 0;
+		overflow: hidden;
+
+		&:empty {
+			margin: 0;
+		}
+	}
+
+	.-active-worker-exists,
+	.-is-company,
+	&.-is-company {
+		.wm-icon-trash {
+			display: block;
+		}
+	}
+
+	.parts-table--part-information {
+		padding-bottom: 1em;
+		overflow: hidden;
+
+		.icon-truck {
+			float: left;
+			height: 3.5em;
+			width: 3.5em;
+		}
+
+		h5 {
+			text-align: left;
+			float: left;
+			margin: 1em 0.5em;
+			color: $grey;
+			font-size: 1.3em;
+			font-weight: 300;
+		}
+	}
+
+	table { width: 100%; }
+
+	thead {
+		border-bottom: 1px solid $light-grey;
+
+		th {
+			background-color: $white;
+			border-top: none;
+		}
+	}
+
+	tbody {
+		.-status {
+			position: relative;
+		}
+
+		.wm-icon-trash {
+			display: none;
+			position: absolute;
+			color: $light-grey;
+			content: "";
+			margin-top: .5em;
+			font-size: 1.3em;
+			right: 0.5em;
+			top: 0;
+			bottom: 0;
+			cursor: pointer;
+			opacity: 0;
+			transition: opacity .3s linear;
+			background-color: lighten($light-grey, 25%);
+
+			&:hover {
+				color: $red;
+			}
+		}
+
+		tr {
+			transition: background-color .3s linear;
+		}
+
+		tr:hover {
+			background-color: lighten($light-grey, 25%);
+
+			.wm-icon-trash {
+				opacity: 1;
+			}
+		}
+
+		.partValue, .parts-table--total-price {
+			text-align: right;
+			padding-right: 3em;
+		}
+	}
+
+	td, th {
+		padding: .5em;
+		&:last-of-type {
+			position: relative;
+		}
+	}
+
+	tfoot td {
+		border-bottom: none;
+		text-align: right;
+		padding-right: 3em;
+	}
+}
+
+.parts-table--tracking-status {
+	color: $green;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+.parts-table--address {
+	color: $charcoal-grey;
+	text-align: left;
+	clear: both;
+	padding-left: 4em;
+	float: left;
+	display: inline-block;
+}
+
+.parts-table--part-creation {
+	width: 50%;
+	float: right;
+	overflow: hidden;
+	display: none;
+	position: relative;
+
+	[class^="parts-table--"]:not([class$="hidden-dollar-sign"]) {
+		margin: .3em auto;
+		width: 100%;
+		box-sizing: border-box;
+		height: 2em;
+	}
+}
+
+.parts-table--part-information {
+	width: 50%;
+	float: left;
+	overflow: hidden;
+	position: relative;
+}
+
+#partsReturn .-active-worker-exists .parts-table--part-creation,
+.-is-company .parts-table--part-creation {
+	display: block;
+}
+
+#partsSent .-is-supplied-by-worker .parts-table--part-creation {
+	display: none;
+}
+
+.parts-table--hidden-dollar-sign {
+	float: left;
+	position: absolute;
+	left: -2em;
+	margin: 0.6em;
+	color: $grey;
+	transition: all .1s linear;
+	opacity: 0;
+
+//	.parts-table--item-price:not(.parts-table--item-price:empty) + & { TODO: fix (gina)
+//		left: 0;
+//		opacity: 1;
+//	}
+}
+
+.parts-table--item-price {
+	width: 50%;
+	float: left;
+
+//	&:not(.parts-table--item-price:empty) { TODO: fix (gina)
+//		padding-left: 1.6em;
+//	}
+}
+
+.parts-table--add {
+	text-transform: uppercase;
+	width: 100%;
+	margin-top: .3em;
+	padding: 0.6em 1em;
+
+	&:enabled {
+		@include button-base;
+	}
+}
+
+// STYLES FOR ASSIGNMENT CREATION
+#assignment-parts-logistics ._partsRoot_ {
+	.wm-icon-trash {
+		margin-top: .8em;
+	}
+}
+
+// ICONS
+
+.parts-table {
+	.icon-fedex {
+		height: 3em;
+		width: 3em;
+		margin: -1.2em 0;
+		display: none;
+	}
+
+	.-fedex .icon-fedex {
+		display: block;
+	}
+
+	.icon-ups {
+		height: 2.2em;
+		width: 2.2em;
+		margin: -0.8em 0;
+		display: none;
+	}
+
+	.-ups .icon-ups {
+		display: block;
+	}
+
+	.icon-usps {
+		height: 2.6em;
+		width: 2.6em;
+		margin: -1em 0;
+		display: none;
+	}
+
+	.-usps .icon-usps {
+		display: block;
+	}
+
+	.icon-dhl {
+		height: 3.2em;
+		width: 3.2em;
+		margin: -1.2em 0;
+		display: none;
+	}
+
+	.-dhl .icon-dhl {
+		display: block;
+	}
+
+	.icon-truck {
+		height: 2.8em;
+		width: 2.8em;
+		margin-left: -.5em;
+		display: none;
+		position: absolute;
+		margin-top: -1.3em;
+
+
+		line {
+			display: none;
+		}
+	}
+
+	.-untracked .icon-truck {
+		display: block;
+	}
+
+	.-detecting-provider .wm-spinner {
+		display: block;
+	}
+
+	.-detecting-provider .icon-truck {
+		display: none;
+	}
+
+	.wm-spinner {
+		display: none;
+	}
+}
+
+$parts-pending: #b5366f; // lighten(mix($fedex-purple, $red), 10%)
+$parts-not-shipped: #e68229; // mix($red, $orange)
+$parts-in-transit: #3296bc;
+$parts-delivered: #5eb65f; // $green
+$parts-unrecognized: #acca43; // mix($yellow, $green)
+$parts-not-available: #787878; // grayscale($red)
+
+.parts-table--tracking-status {
+	&.-pending {
+		color: $parts-pending;
+	}
+	&.-not-shipped {
+		color: $parts-not-shipped;
+	}
+	&.-in-transit {
+		color: $parts-in-transit;
+	}
+	&.-delivered {
+		color: $parts-delivered;
+	}
+	&.-unrecognized {
+		color: $parts-unrecognized;
+	}
+	&.-not-available {
+		color: $parts-not-available;
+	}
+}
+
+#partsSent .icon-truck {
+	.-is-return { display: none; }
+	.-is-sent { display: block; }
+}
+
+#partsReturn .icon-truck {
+	.-is-return { display: none; }
+	.-is-sent { display: block; }
+}

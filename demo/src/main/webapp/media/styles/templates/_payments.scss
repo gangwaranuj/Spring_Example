@@ -1,0 +1,105 @@
+body.payment {
+	// Utils
+	%show-help-block {
+		&.expanded {
+			.help-block {
+				display: block;
+			}
+		}
+	}
+
+	#invoices-table {
+		.help-block {
+			display: none;
+			overflow: hidden;
+
+			[class*="span"] {
+				min-height: inherit;
+			}
+		}
+		.bundle {
+			@extend %show-help-block;
+
+			&.expanded {
+				.bundle-details {
+					tr:not(.bundle-row) {
+						display: table-row;
+					}
+				}
+			}
+			&:not(.expanded) {
+				.bundle-details {
+					tr {
+						&:first-child {
+							td {
+								border-bottom: none;
+							}
+						}
+					}
+				}
+			}
+			.bundle-details {
+				padding: 0;
+
+				.table {
+					margin: 0;
+
+					td {
+						border-top: none;
+					}
+				}
+				tr {
+					&:not(.bundle-row) {
+						display: none;
+					}
+					&:first-child {
+						td {
+							border-top: none;
+						}
+					}
+					&:last-child {
+						td {
+							border-bottom: none;
+						}
+					}
+				}
+				.invoice-check {
+					display: none;
+				}
+				.wm-icon-lock-circle {
+					&:before {
+						margin-right: 0.3em;
+					}
+				}
+			}
+		}
+		.invoice {
+			@extend %show-help-block;
+		}
+		.invoice-actions {
+			margin: 0;
+			overflow: hidden;
+
+			li {
+				float: left;
+				margin: 0;
+				padding-right: 1.5em;
+
+				a {
+					display: block;
+					line-height: 1;
+				}
+			}
+		}
+	}
+
+	.-disabled {
+		text-decoration: none;
+		color: inherit;
+		cursor: default;
+	}
+}
+
+.paid-via-fastfunds {
+	color: $green;
+}

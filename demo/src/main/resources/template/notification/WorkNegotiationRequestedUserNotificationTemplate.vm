@@ -1,0 +1,7 @@
+#if (${template.negotiation.scheduleNegotiation} && ${template.negotiation.priceNegotiation})
+<a href="/assignments/details/${template.work.workNumber}#resources">${template.negotiation.requestedBy.fullName} offered an alternate date and price for assignment: ${template.workTitle}</a>
+#elseif (${template.negotiation.scheduleNegotiation})
+<a href="/assignments/details/${template.work.workNumber}#resources">${template.negotiation.requestedBy.fullName} offered an alternate date for assignment: ${template.workTitle}</a>
+#elseif (${template.negotiation.priceNegotiation})
+<a href="/assignments/details/${template.work.workNumber}#resources">${template.negotiation.requestedBy.fullName} offered an alternate price for assignment: ${template.workTitle}</a>
+#end

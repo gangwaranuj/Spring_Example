@@ -1,0 +1,382 @@
+<div class="profile-card">
+	<div class="profile-card--photo" data-userNumber="{{number}}">
+		<div class="profile-card--avatar open-user-profile-popup" data-type="{{resourceType}}" data-number="{{number}}">
+			{{#if avatar_uri}}
+				{{> ../../funcs/templates/avatar src=avatar_uri }}
+			{{else}}
+				{{#if avatar_asset_uri}}
+					{{> ../../funcs/templates/avatar src=avatar_asset_uri}}
+				{{else}}
+					{{> ../../funcs/templates/avatar hash=number }}
+				{{/if}}
+			{{/if}}
+		</div>
+
+		{{#unless disableBulkActions}}
+			{{#[../../helpers/eq] assignment.status 'sent'}}
+				{{> ../../funcs/templates/checkbox name="workerNumber" value=number }}
+			{{/[../../helpers/eq]}}
+		{{/unless}}
+
+		{{#if distance}}
+			{{[../../helpers/round] distance}} miles
+		{{/if}}
+
+		<div class="status">
+			{{#unless assignment.isDispatcher}}
+				{{#unless assignment.disablePriceNegotiation}}
+					{{#if negotiation.is_best_price}}
+						<span class="wm-status-label best">BEST PRICE</span>
+					{{/if}}
+				{{/unless}}
+			{{/unless}}
+			{{#if new_user}}
+				<span class="wm-status-label new tooltipped tooltipped-n" aria-label="Worker is new to the marketplace">NEW</span>
+			{{/if}}
+			{{#if negotiation }}
+				{{#unless negotiation.is_expired}}
+					<span class="wm-status-label applied">APPLIED</span>
+				{{/unless}}
+			{{else}}
+				{{#if targeted}}
+					<span class="wm-status-label invited">INVITED</span>
+				{{else}}
+					<span class="wm-status-label">WORK FEED</span>
+				{{/if}}
+				{{#if assign_to_first_to_accept}}
+					<span class="wm-status-label invited">AUTO ASSIGN
+					{{#unless assignment.isIndividualBundledAssignment}}
+						{{#unless assignment.isDispatcher}}
+							<a href="/assignments/{{assignment.workNumber}}/{{resourceType}}/{{number}}/removeautoassign" title="Remove Auto Assign" class="remove" data-behavior="remove-auto"> x</a>
+						{{/unless}}
+					{{/unless}}
+					</span>
+				{{/if}}
+			{{/if}}
+			{{#if declined}}
+				<span class="wm-status-label declined">DECLINED</span>
+			{{/if}}
+
+			{{#[../../helpers/eq] status 'unassigned'}}
+				<span class="wm-status-label unassigned">UNASSIGNED</span>
+			{{/[../../helpers/eq]}}
+
+			{{#[../../helpers/eq] status 'active'}}
+				<span class="wm-status-label member tooltipped tooltipped-n" aria-label="Active Worker">ACTIVE</span>
+			{{/[../../helpers/eq]}}
+
+			{{#[../../helpers/eq] status 'declined'}}
+				<span class="wm-status-label declined tooltipped tooltipped-n" aria-label="Worker declined your assignment">DECLINED</span>
+			{{/[../../helpers/eq]}}
+
+			{{#if blocked}}
+				<span class="wm-status-label declined">BLOCKED</span>
+			{{/if}}
+
+			{{#if schedule_conflict}}
+				<span class="wm-status-label declined tooltipped tooltipped-n" aria-label="Worker has a schedule conflict">CONFLICT</span>
+			{{/if}}
+
+			{{#if latest_negotiation_declined}}
+				<span class="wm-status-label declined tooltipped tooltipped-n" aria-label="You declined a previous counter offer">OFFER DECLINED</span>
+			{{/if}}
+
+			{{#if latest_negotiation_expired}}
+				<span class="wm-status-label declined tooltipped tooltipped-n" aria-label="The worker's counter offer has expired">OFFER EXPIRED</span>
+			{{/if}}
+
+			{{#if latest_negotiation_pending}}
+				<span class="wm-status-label pending tooltipped tooltipped-n" aria-label="An open offer is ready for review">OFFER OPEN</span>
+			{{/if}}
+
+			{{#if question_pending}}
+				<span class="wm-status-label pending">Question</span>
+			{{/if}}
+
+			{{#each labels}}
+				{{#unless this.ignored}}
+					<span class="wm-status-label danger tooltipped tooltipped-n" aria-label="{{this.description}}">{{this.code}}
+						{{#unless ../assignment.isDispatcher}}
+							<a href="/assignments/{{../assignment.workNumber}}/resources/{{../number}}/labels/{{this.encryptedId}}/remove" title="{{this.description}}" class="remove" data-behavior="remove-label"> x</a>
+						{{/unless}}
+					</span>
+				{{/unless}}
+			{{/each}}
+		</div>
+	</div>
+	<div class="profile-card--details">
+		<h2 class="profile-card--header">
+			<a href="/profile/{{number}}" class="profile-card--name open-user-profile-popup" data-type="{{resourceType}}" data-number="{{number}}">{{name}}</a>
+			{{#[../../helpers/eq] lane 0}}
+				<span class="tooltipped tooltipped-n" aria-label="Employee">E</span>
+			{{/[../../helpers/eq]}}
+			{{#[../../helpers/eq] lane 1}}
+				<span class="tooltipped tooltipped-n" aria-label="Employee">E</span>
+			{{/[../../helpers/eq]}}
+			{{#[../../helpers/eq] lane 2}}
+				<span class="tooltipped tooltipped-n" aria-label="Invited Contractor">C</span>
+			{{/[../../helpers/eq]}}
+			{{#[../../helpers/eq] lane 3}}
+				<span class="profile-card--badge tooltipped tooltipped-n" aria-label="Third Party Contractor">3</span>
+			{{/[../../helpers/eq]}}
+			<small>ID: {{number}}</small>
+			{{#unless disableBulkActions}}
+				{{#unless assignment.isIndividualBundledAssignment}}
+					{{#unless assignment.isParentBundle }}
+						{{#[../../helpers/eq] assignment.status 'sent'}}
+							{{#if assignment.isDeputy}}
+								<small>
+									<a href="/profile/{{number}}" data-usernumber="_{{number}}" class="worker-link">(actions)</a>
+								</small>
+							{{/if}}
+						{{/[../../helpers/eq]}}
+					{{/unless}}
+				{{/unless}}
+			{{/unless}}
+		</h2>
+		{{> ../../funcs/templates/score-card classlist="profile-card--score-card" showrecent=true values=scoreCardData.values nameIdentifier=number isDispatch=assignment.isDispatcher }}
+		<ul class="profile-card--address">
+			{{#[../../helpers/eq] resourceType 'vendors'}}
+				{{#if publicWorkers}}
+					<li>Team size: {{publicWorkers}}</li>
+				{{/if}}
+				<li>Member since: {{created_on}}</li>
+			{{else}}
+				<li>{{company_name}}</li>
+			{{/[../../helpers/eq]}}
+			<li>{{address}}</li>
+			{{#if work_phone}}<li>W: {{work_phone}}</li>{{/if}}
+			{{#if mobile_phone}}<li>M: {{mobile_phone}}</li>{{/if}}
+			<li><a href="mailto:{{email}}">{{email}}</a></li>
+		</ul>
+		<ul class="profile-card--secondary">
+			{{#if background_check}}
+				<li>
+					<span class="passed"><i class="wm-icon-checkmark"></i> PASSED</span>
+					<small>{{background_check_date}}</small>
+				</li>
+			{{/if}}
+			{{#if background_check_failed}}
+				<li>
+					<span class="failed"><i class="wm-icon-x"></i> ALERT</span>
+					<small>{{background_check_date}}</small>
+				</li>
+			{{/if}}
+			{{#if drug_test}}
+				<li>
+					<span class="passed"><i class="wm-icon-pill"></i> PASSED</span>
+					<small>{{drug_test_date}}</small>
+				</li>
+			{{/if}}
+			{{#if drug_test_failed}}
+				<li>
+					<span class="failed"><i class="wm-icon-pill"></i> FAILED</span>
+					<small>{{drug_test_date}}</small>
+				</li>
+			{{/if}}
+		</ul>
+
+		{{#if dispatcher}}
+			<dl class="iconed-dl profile-card--dispatcher-details">
+				<dt>{{> ../../funcs/templates/icon name='team-agent' }}</dt>
+				<dd>
+					<ul class="profile-card--secondary">
+						<li><strong>{{dispatcher.firstName}} {{dispatcher.lastName}}</strong></li>
+						{{#if dispatcher.workPhone}}<li>W: {{dispatcher.workPhone}}</li>{{/if}}
+						{{#if dispatcher.mobilePhone}}<li>M: {{dispatcher.mobilePhone}}</li>{{/if}}
+						{{#if dispatcher.email}}<li><a href="mailto:{{dispatcher.email}}">{{dispatcher.email}}</a></li>{{/if}}
+					</ul>
+				</dd>
+			</dl>
+		{{/if}}
+
+		{{#if eligibility.criteria }}
+			<h2 class="profile-card--header">
+				Assignment Eligibility Requirements
+			</h2>
+			<ul class="profile-card--eligibility">
+				{{#each eligibility.criteria}}
+					<li>
+						<span class="{{#if this.met}}passed{{else}}failed{{/if}} pull-left">
+							<i class="wm-icon{{#if this.met}}-checkmark{{else}}-x{{/if}}"></i>
+						</span>
+						<span class="profile-card--eligibility-item">{{this.name}}</span>
+					</li>
+				{{/each}}
+			</ul>
+		{{/if}}
+	</div>
+
+	<div>
+		{{#if negotiation}}
+			<div class="page-header">
+
+				<h5>
+					{{#unless negotiation.is_expired}}
+						{{#if negotiation.is_price_negotiation}}
+							<strong>Status:</strong> Counteroffered
+						{{else }}
+							{{#if negotiation.is_schedule_negotiation}}
+								<strong>Status:</strong> Counteroffered
+							{{else}}
+								<strong>Status:</strong> Applied
+							{{/if}}
+						{{/if}}
+					{{else}}
+						<strong>Status:</strong> Offer expired
+					{{/unless}}
+					{{#[../../helpers/eq] negotiation.approval_status 2}}
+						{{#if assignment.isDispatcher}}
+							<span class="label label-important tooltipped tooltipped-n" aria-label="Your application was declined">Offer Declined</span>
+						{{else}}
+							<span class="label label-important tooltipped tooltipped-n" aria-label="You declined this application">Offer Declined</span>
+						{{/if}}
+					{{/[../../helpers/eq]}}
+				</h5>
+			</div>
+			<div>
+				{{#if negotiation.is_expired}}
+					<p>This application <strong>expired</strong> on {{negotiation.expires_on}}.</p>
+				{{/if}}
+
+				{{#if negotiation.expires_on}}
+					<p>This application <strong>expires</strong> on {{negotiation.expires_on}}.</p>
+				{{/if}}
+
+				{{#if negotiation.note}}
+					<div>
+						<h5><strong>Message from {{name}}:</strong></h5>
+						<p>{{negotiation.note}}</p>
+					</div>
+				{{/if}}
+
+				{{#if negotiation.is_schedule_negotiation}}
+					<div>
+						<h5><strong>Proposed Date / Time:</strong></h5>
+						<p>{{negotiation.schedule}}</p>
+					</div>
+				{{/if}}
+
+				{{#if negotiation.is_price_negotiation}}
+					<div>
+						<h5><strong>Proposed Price:</strong></h5>
+						<table class="pricing-summary">
+							<tbody>
+								{{#[../../helpers/eq] negotiation.pricing.id 1}}
+									<tr>
+										<td class="normal">Flat price</td>
+										<td>{{[../../helpers/formatCurrency] negotiation.pricing.flat_price}}</td>
+									</tr>
+								{{/[../../helpers/eq]}}
+								{{#[../../helpers/eq] negotiation.pricing.id 2}}
+									<tr>
+										<td class="normal">Price per hour (up to {{negotiation.pricing.max_number_of_hours}} hours)</td>
+										<td>{{[../../helpers/formatCurrency] negotiation.pricing.per_hour_price}}</td>
+									</tr>
+								{{/[../../helpers/eq]}}
+								{{#[../../helpers/eq] negotiation.pricing.id 3}}
+									<tr>
+										<td class="normal">Price per unit (up to {{negotiation.pricing.max_number_of_units}} units)</td>
+										<td>${{negotiation.pricing.per_unit_price}}</td>
+									</tr>
+								{{/[../../helpers/eq]}}
+								{{#[../../helpers/eq] negotiation.pricing.id 4}}
+									<tr>
+										<td class="normal">Price per hour (up to {{negotiation.pricing.initial_number_of_hours}} hours)</td>
+										<td>{{[../../helpers/formatCurrency] negotiation.pricing.initial_per_hour_price}}</td>
+									</tr>
+									<tr>
+										<td class="normal">Price per additional hour (up to {{negotiation.pricing.max_blended_number_of_hours}} hours)</td>
+										<td>{{[../../helpers/formatCurrency] negotiation.pricing.additional_per_hour_price}}</td>
+									</tr>
+								{{/[../../helpers/eq]}}
+
+								{{#if negotiation.pricing.additional_expenses}}
+									<tr>
+										<td class="normal">Additional Expenses</td>
+										<td>{{[../../helpers/formatCurrency] negotiation.pricing.additional_expenses}}</td>
+									</tr>
+								{{/if}}
+
+								<tr class="subtotal">
+									<td>Worker Max Earnings</td>
+									<td>{{[../../helpers/formatCurrency] negotiation.pricing.spend_limit}}</td>
+								</tr>
+								{{#if assignment.isAdmin}}
+									{{#[../../helpers/eq] assignment.accountPricingType.code 'transactional'}}
+										<tr>
+											<td>Transaction Fee</td>
+											<td>+ {{[../../helpers/formatCurrency] negotiation.pricing.fee}}</td>
+										</tr>
+									{{/[../../helpers/eq]}}
+
+									<tr class="total">
+										<td>Assignment Value</td>
+										<td>
+											<strong>{{[../../helpers/formatCurrency] negotiation.pricing.total_cost}}</strong>
+										</td>
+									</tr>
+								{{/if}}
+							</tbody>
+						</table>
+					</div>
+				{{/if}}
+			</div>
+			{{#unless is_expired}}
+				<span class="pull-right">Updated: {{negotiation.requested_on_date}}</span>
+			{{/unless}}
+			{{#[../../helpers/eq] status 'declined'}}
+				<small class="text-right">Status: Worker Declined</small>
+			{{/[../../helpers/eq]}}
+		{{/if}}
+	</div>
+
+	<div class="profile-card--shade">
+		<div class="profile-card--view-profile wm-icon-eye open-user-profile-popup" data-dispatch="{{assignment.isDispatcher}}" data-type="{{resourceType}}" data-number="{{number}}">View Profile</div>
+		{{#if assignment.isBuyerAuthorizedToApproveCounter}}
+			{{#unless assignment.isIndividualBundledAssignment}}
+				{{#unless negotiation.is_expired}}
+					{{#if has_negotiation}}
+						{{#[../../helpers/negotiationOpen] status negotiation.approval_status}}
+							{{#[../../helpers/unlessApplicationAccepted] negotiation.approval_status}}
+								{{#if assignmentIsNotActive }}
+									<div class="profile-card--actions">
+										<form action="/assignments/accept_negotiation/{{assignment.workNumber}}">
+											<input type="hidden" name="id" value="{{negotiation.encrypted_id}}"/>
+											<button rel="prompt_decline_negotiation" data-negotiation-id="{{negotiation.encrypted_id}}" class="decline-negotation button">Decline</button>
+											<button type="submit" class="accept-negotiation button -primary" {{#if blocked}}disabled{{/if}}>Accept</button>
+										</form>
+									</div>
+								{{/if}}
+							{{/[../../helpers/unlessApplicationAccepted]}}
+						{{/[../../helpers/negotiationOpen]}}
+					{{/if}}
+				{{/unless}}
+			{{/unless}}
+		{{/if}}
+
+		{{#unless assignment.isIndividualBundledAssignment}}
+			{{#if assignment.isDispatcher}}
+				<div class="profile-card--actions">
+					<div class="dispatcher-actions">
+						{{#if negotiation}}
+							{{#[../../helpers/negotiationOpen] status negotiation.approval_status}}
+								<button class="-cancel-application button -primary" data-work-id="{{assignment.workNumber}}" data-worker-id="{{number}}" data-id="{{negotiation.encrypted_id}}">Cancel</button>
+							{{else}}
+								<button class="-send-application button -primary" data-work-id="{{assignment.workNumber}}" data-id="{{number}}"{{#unless eligibility.eligible }} disabled{{/unless}}>Apply</button>
+							{{/[../../helpers/negotiationOpen]}}
+						{{else}}
+							{{#unless assignment.assignToFirstResource}}
+								<button class="-send-application button -primary" data-work-id="{{assignment.workNumber}}" data-id="{{number}}"{{#unless eligibility.eligible }} disabled{{/unless}}>Apply</button>
+							{{/unless}}
+						{{/if}}
+
+						{{#if assignment.assignToFirstResource}}
+							<button class="-accept-invitation button -primary" data-work-id="{{assignment.workNumber}}" data-id="{{number}}"{{#unless eligibility.eligible }} disabled{{/unless}}>Accept</button>
+						{{/if}}
+					</div>
+				</div>
+			{{/if}}
+		{{/unless}}
+	</div>
+</div>

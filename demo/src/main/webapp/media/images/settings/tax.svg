@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 19.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.0" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 500" enable-background="new 0 0 500 500" xml:space="preserve">
+<g>
+	<circle fill="#95D9F1" cx="250" cy="250" r="200"/>
+	<g>
+		<g>
+			<rect x="165.4" y="229.7" fill="#FFFFFF" width="18.8" height="78.5"/>
+			<rect x="171.7" y="236" fill="#CCCBCA" width="6.3" height="66"/>
+		</g>
+		<g>
+			<rect x="203" y="229.7" fill="#FFFFFF" width="18.8" height="78.5"/>
+			<rect x="209.3" y="236" fill="#CCCBCA" width="6.3" height="66"/>
+		</g>
+		<g>
+			<rect x="315.8" y="229.7" fill="#FFFFFF" width="18.8" height="78.5"/>
+			<rect x="322.1" y="236" fill="#CCCBCA" width="6.3" height="66"/>
+		</g>
+		<g>
+			<rect x="278.2" y="229.7" fill="#FFFFFF" width="18.8" height="78.5"/>
+			<rect x="284.5" y="236" fill="#CCCBCA" width="6.3" height="66"/>
+		</g>
+		<g>
+			<rect x="240.6" y="229.7" fill="#FFFFFF" width="18.8" height="78.5"/>
+			<rect x="246.9" y="236" fill="#CCCBCA" width="6.3" height="66"/>
+		</g>
+		<path fill="#CCCBCA" d="M347.1,314.5v6.3H152.9v-6.3c0-3.3,2.5-5.9,5.6-6.2h183C344.7,308.6,347.1,311.2,347.1,314.5z"/>
+		<path fill="#FFFFFF" d="M359.7,327v6.3H140.3V327c0-3.5,2.8-6.3,6.3-6.3h206.8C356.9,320.7,359.7,323.6,359.7,327z"/>
+		<path fill="#CCCBCA" d="M347.1,223.4c0,3.5-2.8,6.3-6.2,6.3H159.1c-3.5,0-6.3-2.8-6.3-6.3c0-3.5,2.8-6.3,6.3-6.3h181.8
+			C344.3,217.2,347.1,220,347.1,223.4z"/>
+		<path fill="#FFFFFF" d="M255.5,138c-1.4-1.4-3.3-2.3-5.5-2.3c-2.1,0-4.1,0.9-5.5,2.3l-79.1,79.1h169.2L255.5,138z"/>
+		<polygon fill="#CCCBCA" points="250,150.3 304.4,204.6 195.7,204.6 		"/>
+		<path fill="#FFFFFF" d="M250,196.3c-6.9,0-12.5-5.6-12.5-12.5c0-6.9,5.6-12.5,12.5-12.5c6.9,0,12.5,5.6,12.5,12.5
+			C262.5,190.6,256.9,196.3,250,196.3z M250,177.5c-3.5,0-6.3,2.8-6.3,6.3c0,3.5,2.8,6.3,6.3,6.3c3.5,0,6.3-2.8,6.3-6.3
+			C256.3,180.3,253.5,177.5,250,177.5z"/>
+	</g>
+</g>
+</svg>

@@ -1,0 +1,1 @@
+<a data-ajax="false" href="${baseurl}/assignments/details/${template.work.workNumber}">${template.resource.firstName} ${template.resource.lastName} has checked in to the assignment: ${template.workTitle}</a>

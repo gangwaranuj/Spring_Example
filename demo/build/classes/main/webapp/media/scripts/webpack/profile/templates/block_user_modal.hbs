@@ -1,0 +1,20 @@
+<div class="wm-modal" data-modal>
+	{{#each this.slides}}
+		<div id="{{this.id}}" class="wm-modal--slide {{#if this.isActive}}-active{{/if}}">
+			<div class="wm-modal--toolbar">
+				<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+				<h1 class="wm-modal--header">
+					<span class="wm-modal--title">{{{this.title}}}</span>
+				</h1>
+			</div>
+			<div class="wm-modal--content">
+				<p>
+					This worker will not be able to take on work for your company and will be removed from all of your talent pools. Are you sure you want to block this worker?
+				</p>
+			</div>
+			<div class="wm-modal--footer">
+				<button class="button -primary profile--block-user pull-right">Block Worker</button>
+			</div>
+		</div>
+	{{/each}}
+</div>

@@ -1,0 +1,118 @@
+$score-card: (
+	padding: 0.5em,
+	details-color: $grey,
+	table-header-padding: 0.2em,
+	toggle-spacing: 0.25em
+);
+
+.score-card {
+	// If the score card has the `-company` modifier, show all the "company" data
+	// and hide the "all" data
+	&.-company .-all { display: none; }
+	// By default the "company" data is hidden
+	&:not(.-company) .-company { display: none; }
+
+	.toggle {
+		float: left;
+		margin-right: map-get($score-card, toggle-spacing);
+		width: calc(50% - #{map-get($score-card, toggle-spacing) / 2});
+
+		&:last-of-type {
+			margin-right: 0;
+		}
+	}
+
+	&--title {
+		@include heading-title;
+		font-size: 1.2em;
+		padding-left: map-get($score-card, padding);
+		padding-right: map-get($score-card, padding);
+
+		&::after {
+			content: attr(data-score-all);
+			float: right;
+			color: $orange;
+
+			.score-card.-company & {
+				content: attr(data-score-company);
+			}
+		}
+	}
+
+	&--details {
+		@include clearfix;
+		color: map-get($score-card, details-color);
+		// font-size: 0.95em;
+
+		.score-card:not(.-recent) & {
+			padding: 0 map-get($score-card, padding);
+		}
+
+		.progress-bar {
+			margin-bottom: 0.5em;
+		}
+	}
+
+	&--metrics {
+		display: block;
+		margin-bottom: 0.5rem;
+		margin-right: 0.5rem;
+
+		.score-card.-condensed & ~ & {
+			display: none;
+		}
+		&::after {
+			content: attr(data-score);
+			float: right;
+			color: map-get($score-card, details-color);
+		}
+		&:last-child {
+			margin-bottom: 0;
+		}
+		span {
+			color: map-get($score-card, details-color);
+		}
+	}
+
+	&--overall {
+		display: none;
+
+		.score-card.-condensed & {
+			display: block;
+
+			& ~ .completion-bar {
+				display: none;
+			}
+		}
+		.completion-bar--name,
+		.completion-bar--value {
+			display: none;
+		}
+	}
+
+	&--table {
+		@include new-tables;
+		clear: both;
+
+		thead {
+			background-color: $grey;
+			color: $white;
+
+			th {
+				padding: map-get($score-card, table-header-padding) 0;
+			}
+		}
+		tbody {
+			tr {
+				&:first-child {
+					td { padding-top: 0.5em; }
+				}
+			}
+		}
+		td {
+			padding: 0.3em 0;
+
+			& + td { text-align: left; }
+		}
+	}
+}

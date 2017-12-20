@@ -1,0 +1,22 @@
+.dropdown-container {
+	position: absolute;
+	right: 0;
+	top: 100%;
+}
+
+.dropdown-menu {
+	display: none;
+	font-size: 1rem;
+	border-radius: 6px;
+	box-shadow: 0 0 1em -0.2em $light-grey;
+
+	.open > .dropdown-container > & {
+		display: block;
+	}
+}
+
+.dropdown-menu--header {
+	.text-right {
+		float: right;
+	}
+}

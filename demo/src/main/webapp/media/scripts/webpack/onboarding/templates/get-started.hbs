@@ -1,0 +1,38 @@
+<h2>Great! You are now ready to search and apply for assignments.</h2>
+
+<p>A few tips before you get started:</p>
+<ul>
+	{{#if this.isMobile}}
+		<li>
+			Complete your banking information so you can withdraw your funds
+		</li>
+		<li>
+			Complete your tax information so you can get get paid for assignments
+		</li>
+		<li>
+			Add additional skills to your profile to become eligible for more assignments
+		</li>
+	{{/if}}
+	{{#unless this.isMobile}}
+		<li>
+			<a href="#" data-url="/funds/accounts" data-slide="finish" data-track="Done/Finish">Complete your banking information</a> so you can withdraw your funds
+		</li>
+		<li>
+			<a href="#" data-url="/account/tax" data-slide="finish" data-track="Done/Finish">Complete your tax information</a> so you can get get paid for assignments
+		</li>
+		<li>
+			<a href="#" data-url="/profile-edit/skills" data-slide="finish" data-track="Done/Finish">Add additional skills to your profile</a> to become eligible for more assignments
+		</li>
+	{{/unless}}
+</ul>
+
+<div class="wm-modal--footer">
+	<button class="button -back" data-slide="prev" data-track="Done/Back">Back</button>
+	{{#if this.isMobile}}
+		<button class="button -continue" data-url="/mobile" data-slide="finish" data-track="Done/Finish">Get Started</button>
+	{{/if}}
+	{{#unless this.isMobile}}
+		<button class="button -continue" data-url="/profile" data-slide="finish" data-track="Done/Finish">Get Started</button>
+	{{/unless}}
+	{{> ../../funcs/templates/spinner}}
+</div>

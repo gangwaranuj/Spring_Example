@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/payments/ledger">Your withdrawal request to transfer $number.currency($math.abs(${template.transaction.amount})) dollars from your WorkMarket account to your WorkMarket Visa Card was received and will be processed shortly.</a>

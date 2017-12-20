@@ -1,0 +1,15 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Test Results Available</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+    <p style="margin: 20px 0px 20px 0px">
+        Hello ${toUser.firstName},<br/>
+        <br/>
+        We've detected a change to the ${template.fieldName} information tied to your WorkMarket account.
+        If you made this change, you can ignore this email.
+        If you did not make this change, please log in, view your account details and contact support immediately.
+    </p>
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

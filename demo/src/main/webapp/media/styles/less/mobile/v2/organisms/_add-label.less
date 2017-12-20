@@ -1,0 +1,54 @@
+.add-label-page {
+	height: 100%;
+	.nav h1 {
+		float: left;
+	}
+	h2{
+		text-align: left;
+	}
+	select {
+		.border-radius(@base-border-radius);
+		& + .select-down-arrow-icon {
+			float: right;
+			position: relative;
+			margin: -2.5em 1em 0 0;
+			pointer-events:all;
+		}
+	}
+	.inner-tag {
+		.half {
+			color: @orange;
+			float: left;
+			.box-sizing (border-box);
+			&:first-child {
+				clear: both;
+				padding-right: 0.15em;
+			}
+			&:last-child {
+				padding-left: 0.15em;
+			}
+		}
+		input {
+			padding: 0.3em;
+			font-size: @small-font-size;
+			margin-bottom: @medium-space;
+		}
+	}
+	.header-label {
+		display: block;
+	}
+	.nine-tenths {
+		width: 90%;
+		float: right;
+		.box-sizing (border-box);
+		margin-top: @small-space;
+	}
+	input[type='radio'], label {
+		margin-bottom: @small-space;
+	}
+	.radio {
+		clear: both;
+		float: left;
+		width: 10%;
+	}
+}

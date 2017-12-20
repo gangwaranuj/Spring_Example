@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">${template.negotiation.requestedBy.fullName} requested a bonus for assignment: ${template.workTitle}</a>

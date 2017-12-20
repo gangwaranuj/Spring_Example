@@ -1,0 +1,106 @@
+$settings-switch: (
+	element-size: $small-element-height,
+	border-width: $base-border-width,
+	toggle: (
+		speed: 0.1s
+	),
+	label: (
+		width: 2.1em,
+		padding: 0.3em,
+		on-color: $green,
+		off-color: $grey
+	)
+);
+
+%settings-switch-label {
+	display: block;
+	color: $white;
+	transition: map-fetch($settings-switch, toggle, speed) all linear;
+	overflow: hidden;
+}
+
+@function settings-switch-toggle-width() {
+	$total-height: map-get($settings-switch, element-size);
+	$spacing-height: map-get($settings-switch, border-width);
+	$content-height: calc(#{$total-height} - #{$spacing-height * 2});
+	$content-width: $content-height;
+	@return $content-width;
+}
+
+@mixin settings-switch-label($status) {
+	$isOn: $status == On;
+
+	@extend %settings-switch-label;
+	content: if($isOn, attr(data-on), attr(data-off));
+	float: if($isOn, left, right);
+	width: if($isOn, 0, map-fetch($settings-switch, label, width));
+	text-align: if($isOn, left, right);
+	direction: if($isOn, ltr, rtl);
+}
+
+@mixin settings-switch-toggle-slider($status) {
+	$isOn: $status == On;
+
+	margin-right: if($isOn, #{map-fetch($settings-switch, label, padding) * -1}, 0);
+	margin-left: if($isOn, 0, #{map-fetch($settings-switch, label, padding) * -1});
+}
+
+.settings-switch {
+	@include reset-element;
+	display: inline-block;
+	margin-bottom: $base-element-bottom-spacing;
+	line-height: 1;
+
+	[type="checkbox"] {
+		display: none;
+
+		&:checked + .settings-switch--skin {
+			color: map-fetch($settings-switch, label, on-color);
+
+			&::before {
+				width: map-fetch($settings-switch, label, width);
+			}
+			&::after {
+				width: 0;
+			}
+
+			.settings-switch--slider {
+				@include settings-switch-toggle-slider(On);
+			}
+		}
+	}
+
+	&--skin {
+		border-radius: $base-border-radius;
+		color: map-fetch($settings-switch, label, off-color);
+		border: map-get($settings-switch, border-width) solid currentColor;
+		background-color: currentColor;
+		overflow: hidden;
+		text-transform: uppercase;
+		position: relative;
+		display: flex;
+		align-items: center;
+		padding: 0 map-fetch($settings-switch, label, padding);
+
+		&::before {
+			@include settings-switch-label(On);
+		}
+		&::after {
+			@include settings-switch-label(Off);
+		}
+	}
+	&--slider {
+		@include settings-switch-toggle-slider(Off);
+		display: block;
+		width: settings-switch-toggle-width();
+		background-color: $white;
+		border-radius: #{$base-border-radius - 1};
+		position: relative;
+
+		&::before {
+			display: block;
+			content: "";
+			padding-top: $aspect-radio-1-1;
+		}
+	}
+}

@@ -1,0 +1,21 @@
+<div class="well">
+	<p>
+		{{#unless this.isMasquerading}}<a href="/payments/statements/pay" id="pay-statement-outlet" class="button">Pay Statement</a>{{/unless}}
+		<a href="/payments/statements/print" id="print-statement-outlet" class="button">Print</a>
+	</p>
+
+	<h5>Statement ID</h5>
+	<p>{{this.statementNumber}}</p>
+
+	<h5>Due Date</h5>
+	<p>{{[../../helpers/formattedDate] this.statementDueDate}}</p>
+
+	<h5>Total Balance</h5>
+	<p>{{[../../helpers/formatCurrency] this.statementBalance}}</p>
+
+	<h5>Total Paid</h5>
+	<p>{{[../../helpers/formatCurrency] this.totalPaid}}</p>
+
+	<h5>Remaining Balance</h5>
+	<p>{{[../../helpers/formatCurrency] this.remainingBalance}}</p>
+</div>

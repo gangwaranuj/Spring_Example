@@ -1,0 +1,87 @@
+.page-assignment-bundle {
+	.tab-pane {
+		&.-active {
+			display: block;
+		}
+	}
+	.assignment-workers {
+		@include new-form-inputs;
+		@include new-form-textarea;
+		@include new-unordered-lists;
+		@include reset-box-sizing;
+		@include new-typography;
+		&--toolbar {
+		    display: flex;
+   			justify-content: space-between;
+		}
+		&--sort-container {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1em;
+		}
+		&--sort-type,
+		&--sort-dir,
+		&--filter-number {
+			&.selectize-control {
+				margin-left: 0.5em;
+				margin-bottom: 0;
+			}
+			input[type="text"] {
+				display: none;
+			}
+		}
+		&--filter-number {
+			width: 5em;
+		}
+		&--sort-type {
+			width: span(4);
+			flex-grow: 2;
+		}
+		&--sort-dir {
+			width: 4.2em;
+		}
+
+		.limit-container {
+			display: flex;
+			align-items: center;
+			margin-right: 1em;
+		}
+		&--sort-options {
+			float: left;
+		}
+		&--talent-filter {
+			display: inline-block;
+			float: right;
+			position: relative;
+			padding-right: 10px;
+		}
+		&--feed {
+			clear: both;
+		}
+		.vendor-count, .worker-count {
+			position: absolute;
+			background: $orange;
+			height: 18px;
+			min-width: 16px;
+			padding: 0 3px 0 2px;
+			text-align: center;
+			top: -8px;
+			z-index: 50;
+			border-radius: 10px;
+			color: $white;
+			font-size: 10px;
+		}
+		.vendor-count {
+			left: 89%;
+		}
+		.worker-count {
+			left:34%;
+		}
+	}
+	.routing-option.public-marketplace {
+		display: none;
+	}
+	.routing-option.first-accept {
+		display: none;
+	}
+}

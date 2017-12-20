@@ -1,0 +1,4 @@
+{
+"message": "Your subscription contract with WorkMarket has been canceled as of today",
+"action": "${baseurl}/mmw/subscription"
+}

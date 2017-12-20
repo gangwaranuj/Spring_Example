@@ -1,0 +1,9 @@
+.input-append,
+.input-prepend {
+	font-size: inherit !important;
+	.add-on {
+		height: 2em !important;
+		padding: 0.2em 0.5em !important;
+		box-sizing: border-box;
+	}
+}

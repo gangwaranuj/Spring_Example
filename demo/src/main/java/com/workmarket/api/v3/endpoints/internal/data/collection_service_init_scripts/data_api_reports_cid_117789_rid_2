@@ -1,0 +1,113 @@
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/namespace/create \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{ "namespace": "data.api.reports.cid.117789" }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/collection/create \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "display_name": "WorkMarket Graded User Test Results",
+    "metadata": {
+      "data": [{
+        "key": "id",
+        "value": 2
+      },
+      {
+        "key": "description",
+        "value": ""
+      },
+      {
+        "key": "type",
+        "value": "basic"
+      }]
+    }
+   }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/namespace/collection/add \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "namespace": "data.api.reports.cid.117789",
+    "collection_uuid": "cff2d2f6-c61e-41c2-ab5a-bc771771"
+    }
+  }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/collection/items/add \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "collection_uuid": "a11e3086-791a-4125-aaf6-30596afd",
+    "items": [{
+        "external_id": 1,
+        "object_type": "source",
+        "metadata": {
+            "data": [{
+              "key": "service",
+              "value": "com.workmarket.service.business.AssessmentServiceImpl"
+            },
+            {
+              "key": "callable",
+              "value": "findLatestAssessmentUserAttempts"
+            },
+            {
+              "key": "callableParameterTypes",
+              "value": "[\"java.lang.Long\", \"com.workmarket.dto.AssessmentUserPagination\"]"
+            },
+            {
+              "key": "callableInputConverter",
+              "value": "reportRequestToParameterListForFindLatestAssessmentUserAttempts"
+            },
+            {
+              "key": "callableOutputConverter",
+              "value": "assessmentUserPaginationToApiReportData"
+            },
+            {
+              "key": "callableOutputConverterParameterTypes",
+              "value": "[\"com.workmarket.dto.AssessmentUserPagination\"]"
+            },
+            {
+              "key": "filterFieldWhiteList",
+              "value": "[\"test_id\", \"user_id\"]"
+            },
+            {
+              "key": "filterFieldRequired",
+              "value": "[\"test_id\"]"
+            }]
+        }
+    },
+    {
+        "external_id": 2,
+        "object_type": "schema",
+        "metadata": {
+            "data": [{
+              "key": "test_id",
+              "value": "int"
+            },
+            {
+              "key": "user_id",
+              "value": "string"
+             },
+            {
+              "key": "score",
+              "value": "double"
+            },
+            {
+              "key": "pass",
+              "value": "boolean"
+            },
+            {
+              "key": "completed_date",
+              "value": "datetime"
+            }]
+        }
+    }]
+}'

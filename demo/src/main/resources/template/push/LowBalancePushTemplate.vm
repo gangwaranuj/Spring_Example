@@ -1,0 +1,4 @@
+{
+"message": "Your account balance is low",
+"action": "${baseurl}/funds/add"
+}

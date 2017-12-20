@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		@page {
+			margin: 10em 4em 18em 4em;
+
+		@top-center {content: element(header);}
+		@bottom-center {content: element(footer);}
+			}
+
+		body { font-family: sans-serif; font-size: 10pt; margin: 0 0.1em 2em; }
+
+		header { position: running(header); }
+
+		footer { font-family: sans-serif; font-size: 8pt; font-style: italic; position: running(footer); }
+
+		table.info { width: 250px; margin: 10px; border-collapse: collapse; }
+
+		table.info td:last-child { text-align: right; }
+
+		table.info tr:last-child td { border-top: 1px solid; margin-top: 5px; }
+	</style>
+</head>
+
+<body>
+<header>
+	<img src="${logoURL}"/>
+	<h2> Earnings Report for ${template.earningReport.taxYear}</h2>
+	<hr/>
+</header>
+
+<strong>Name:</strong> ${template.earningReport.fullName.toUpperCase()}<br/>
+<strong>DBA Name:</strong> #if ($template.earningReport.businessNameFlag) ${template.earningReport.businessName.toUpperCase()}#end<br/>
+<strong>Tax Type:</strong> ${template.earningReport.formattedTaxType}<br/>
+<strong>Address:</strong> ${template.earningReport.address.toUpperCase()}, ${template.earningReport.city.toUpperCase()}, ${template.earningReport.state.toUpperCase()}, ${template.earningReport.postalCode}
+<br/>
+<strong>Country:</strong> ${template.earningReport.country.toUpperCase()}<br/>
+<strong>Tax Identification Number:</strong> ${template.earningReport.taxNumber}<br/><br/>
+
+<div style="margin-bottom: 5px">
+	<h3>Earnings Information</h3>
+	<h4>Earning Paid Through Resource Enterprise Services LLC</h4>
+	<p style="font-size: 10px;position:relative;top:-10px;"><em>If more than $600 in net earnings you will receive a 1099-MISC from RES.</em></p>
+	<table class="info">
+		<tr>
+			<td>Total Paid Assignments:</td>
+			<td>${template.earningReport.formattedVorEarning}</td>
+		</tr>
+		<tr>
+			<td>Courtesy Payments:</td>
+			<td>${template.earningReport.formattedMarketingPayments}</td>
+		</tr>
+		<tr>
+			<td>Assignment Reversals:</td>
+			<td>${template.earningReport.formattedPaymentReversals}</td>
+		</tr>
+		<tr>
+			<td>Expenses:</td>
+			<td>${template.earningReport.formattedVorExpenses}</td>
+		</tr>
+		<tr>
+			<td><strong>Net Earnings:</strong></td>
+			<td>$${template.earningReport.formattedVorNetEarnings}</td>
+		</tr>
+	</table>
+	<h4>Earnings Paid Through Companies On WorkMarket Platform</h4>
+	<p style="font-size: 10px;position:relative;top:-10px;"><em>You may receive a 1099-MISC directly from these companies.</em></p>
+	<table class="info">
+		<tr>
+			<td>Total Paid Assignments:</td>
+			<td>${template.earningReport.formattedNonVorEarning}</td>
+		</tr>
+		<tr>
+			<td>Expenses:</td>
+			<td>${template.earningReport.formattedNonVorExpenses}</td>
+		</tr>
+		<tr>
+			<td><strong>Net Earnings:</strong></td>
+			<td>$${template.earningReport.formattedNonVorNetEarnings}</td>
+		</tr>
+	</table>
+	<small><a target="_blank" href="https://www.workmarket.com/mmw/taxes/download_earning_detail_report_data/${template.earningReport.taxYear}">Download a detailed report here</a></small>
+</div>
+<div style="border-top: 1px dotted black; font-size:12px;">
+	<p>Thank you for using the WorkMarket Platform for the past year. Our main goal for this year is to help you earn even more money.<br/>
+		<br/>
+		The best way to earn more business is to:
+	<ul>
+		<li><a target="_blank" href="https://www.workmarket.com/profile-edit/insurance">Add</a> your insurance coverages</li>
+		<li><a target="_blank" href="https://www.workmarket.com/profile-edit/photo">Upload</a> a professional profile photo</li>
+		<li><a target="_blank" href="https://www.workmarket.com/screening/bkgrnd">Complete</a> your background check and drug test</li>
+	</ul>
+	</p>
+</div>
+<footer>
+	The data in this report may be required to be reported to your domestic taxing authority depending on your local
+	tax laws. Please note this data may be already submitted by the entity that sent you assignments as part of their
+	tax filings.
+	<br/><br/>
+	WorkMarket, Inc., or any of subsidiary thereof, does not advise on any personal or business tax requirements or
+	issues. Use of any information from WorkMarket or any other web site referred to is for general information only
+	and does not represent personal tax advice either express or implied. You are encouraged to seek professional
+	tax advice for personal or business tax questions.
+</footer>
+</body>
+</html>

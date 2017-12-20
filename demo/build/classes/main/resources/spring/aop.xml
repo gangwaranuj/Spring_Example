@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="REQUIRED" rollback-for="Exception"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<tx:advice id="readOnlyTxAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="*" propagation="SUPPORTS" read-only="true"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<aop:config proxy-target-class="false">
+
+		<!-- pointcuts -->
+		<aop:pointcut id="businessServiceMethods" expression=
+			"execution(* com.workmarket.service.business.*Service.*(..))
+			or execution(* com.workmarket.domains.*.service.*Service.*(..))"/>
+		<aop:pointcut id="analyticsServiceMethods" expression=
+			"execution(* com.workmarket.service.analytics.*Service.*(..))
+			or execution(* com.workmarket.service.summary.*Service.*(..))"
+			/>
+		<aop:pointcut id="infraServiceMethods" expression="execution(* com.workmarket.service.infra.*Service.*(..))"/>
+		<aop:pointcut id="vaultMigrationMethods" expression="execution(* com.workmarket.vault.services.*MigrationService.*(..))"/>
+		<aop:pointcut id="webServiceMethods" expression="execution(* com.workmarket.service.web.*Service.*(..))"/>
+		<aop:pointcut id="daoMethods" expression=
+			"execution(* com.workmarket.dao.*DAO.*(..))
+			or execution(* com.workmarket.domains.*.dao.*DAO.*(..))
+			or execution(* com.workmarket.api.internal.dao.*DAO.*(..))"/>
+		<aop:pointcut id="daoLayer" expression=
+			"within(com.workmarket.dao..*)
+			or within(com.workmarket.domains.*.dao..*)
+			or within(com.workmarket.api.internal.dao..*)"/>
+		<aop:pointcut id="eventRouter" expression="execution(* com.workmarket.service.infra.event.*EventRouter.*(..))"/>
+		<aop:pointcut id="workResourceSearchService" expression="execution(* com.workmarket.service.search.user.WorkResourceSearchService.searchAssignmentWorkers(..))
+			or execution(* com.workmarket.service.search.user.GroupResourceSearchService.searchPeople(..))"/>
+
+		<aop:pointcut id="userGroupServiceMethods" expression="(execution(* com.workmarket.service.business.UserGroupService.*(..))
+			or execution(* com.workmarket.service.network.NetworkService.*(..)))
+			and @annotation(updateUserGroup)"/>
+		<aop:pointcut id="txProfilingServices" expression=
+			"execution(* com.workmarket.service.business.*Service.*(..))
+			or execution(* com.workmarket.domains.*.service.*Service.*(..))
+			or within(com.workmarket.thrift.work..*)
+			or execution(* com.workmarket.api..*Controller.*(..))"
+			/>
+
+		<!-- read and write -->
+		<!-- Execution of any method under com.workmarket.service.business or any method defined by the FacadeService interface -->
+		<aop:pointcut id="transactionalBusinessServices" expression=
+			"execution(* com.workmarket.service.business.*.*(..))
+			or execution(* com.workmarket.service.decisionflow.*.*(..))
+			or execution(* com.workmarket.service.admin.*.*(..))
+			or execution(* com.workmarket.service.option.*.*(..))
+			or execution(* com.workmarket.service.business.account.*.*(..))
+			or execution(* com.workmarket.api.internal.service.*.*(..))
+			or execution(* com.workmarket.service.business.queue..*.*(..))
+			or execution(* com.workmarket.service.business.requirementsets..*.*(..))
+			or execution(* com.workmarket.service.web.ProfileFacadeService.*(..))
+			or execution(* com.workmarket.service.business.tax.*Service.*(..))
+			or execution(* com.workmarket.service.business.tax.report.*Service.*(..))
+			or execution(* com.workmarket.service.business.rating.*Service.*(..))
+			or execution(* com.workmarket.service.business.asset.*AssetBundlerService.*(..))
+			or execution(* com.workmarket.service.business.asset.*AssetUploaderService.*(..))
+			or execution(* com.workmarket.service.business.event.*EventFactory.*(..))
+			or execution(* com.workmarket.service.business.integration.*Service.*(..))
+			or execution(* com.workmarket.service.business.requirementsets.*Service.*(..))
+			or execution(* com.workmarket.service.business.external.*Service.*(..))
+			or execution(* com.workmarket.domains.forums.service.*Service.*(..))
+			or execution(* com.workmarket.service.business.integration.hooks.autotask.*Service.*(..))
+			or execution(* com.workmarket.service.business.integration.hooks.webhook.*.*(..))
+			or execution(* com.workmarket.service.business.integration.hooks.sugar.*.*(..))
+			or execution(* com.workmarket.service.business.integration.event.*Service.*(..))
+			or execution(* com.workmarket.service.business.integration.hooks.*Service.*(..))
+			or execution(* com.workmarket.service.business.integration.mbo.*.*(..))
+			or execution(* com.workmarket.domains.*.service.*.*(..))
+			or execution(* com.workmarket.domains.search.*.indexer.service.*Indexer.*(..))
+			or execution(* com.workmarket.domains.work.service.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.actions.*WorkListFetcherService.*(..))
+			or execution(* com.workmarket.domains.work.service.actions.*WorkEventAuthService.*(..))
+			or execution(* com.workmarket.domains.work.service.audit.*WorkAuditService.*(..))
+			or execution(* com.workmarket.domains.work.service.dashboard.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.follow.*WorkFollowService.*(..))
+			or execution(* com.workmarket.domains.work.service.project.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.route.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.state.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.part.*Service.*(..))
+			or execution(* com.workmarket.domains.work.service.workresource.*Service.*(..))
+			or execution(* com.workmarket.service.network.*Service.*(..))
+			or execution(* com.workmarket.service.statsd.*Service.*(..))
+			or execution(* com.workmarket.common.template.*Factory.*(..))
+			or execution(* com.workmarket.vault.services.*MigrationService.*(..))
+			or execution(* com.workmarket.domains.search.worker.*Hydrator.*(..))
+			or within(com.workmarket.domains.work.service.resource..*)
+			or within(com.workmarket.domains.groups.service.association..*)
+			or within(com.workmarket.service.search.cart..*)
+			or within(com.workmarket.service.business.upload.transactional..*)
+			or within(com.workmarket.service.infra.event.transactional..*)
+			or within(com.workmarket.service.tracking..*)"
+		/>
+
+		<aop:pointcut id="transactionalWorkQueueServices" expression=
+			"execution(* com.workmarket.service.infra.*WorkUpload.*(..))
+			or execution(* com.workmarket.service.infra.*WorkEventQueueService.*(..))"
+			/>
+
+		<aop:pointcut id="transactionalRealtimeMethods" expression="execution(* com.workmarket.service.realtime.*RealtimeTransactedService.*(..))"/>
+
+		<aop:pointcut id="transactionalInfraServices" expression=
+			"execution(* com.workmarket.service.infra.business.*Service.*(..))
+			or execution(* com.workmarket.service.infra.notification.*NotificationValidator.*(..))
+			or execution(* com.workmarket.service.infra.voice.*.*(..))"
+			/>
+
+		<!-- any service within com.workmarket.thrift.service.transactional or sub-packages -->
+		<aop:pointcut id="transactionalThriftMigratedServices" expression="execution(* com.workmarket.service.thrift.transactional..*.*(..))"/>
+
+		<!-- read only -->
+		<aop:pointcut id="searchServices" expression=
+		"execution(* com.workmarket.service.search.*.*(..))
+		or execution(* com.workmarket.data.solr.indexer.work.WorkIndexer.*(..))
+		or execution(* com.workmarket.domains.search.group.indexer.service.GroupIndexer.*(..))"
+			/>
+		<aop:pointcut id="searchCacheMethods" expression="within(com.workmarket.search.cache..*)"/>
+		<aop:pointcut id="realtimeReadOnlyMethods" expression="execution(* com.workmarket.service.realtime.*RealtimeService.*(..))"/>
+		<aop:pointcut id="reportServices" expression="within(com.workmarket.service.report..*)"/>
+		<aop:pointcut id="accountingSummary" expression="within(com.workmarket.service.business.account.summary..*)"/>
+		<aop:pointcut id="workResponseBuilder" expression="execution(* com.workmarket.service.thrift.*WorkResponseBuilder.*(..))"/>
+		<aop:pointcut id="paymentSummaryService" expression="execution(* com.workmarket.service.business.pay.PaymentSummaryService.*(..))"/>
+		<aop:pointcut id="workValidator" expression="within(com.workmarket.domains.work.service.validator..*)"/>
+
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalBusinessServices"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalWorkQueueServices"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalRealtimeMethods"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalInfraServices"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="transactionalThriftMigratedServices"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="analyticsServiceMethods"/>
+
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="searchServices"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="searchCacheMethods"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="realtimeReadOnlyMethods"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="reportServices"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="accountingSummary"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="workResponseBuilder"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="workValidator"/>
+		<aop:advisor advice-ref="readOnlyTxAdvice" pointcut-ref="paymentSummaryService"/>
+
+		<!-- method execution profiling -->
+		<aop:aspect id="serviceAndAPIProfiling" ref="methodInterceptor">
+			<aop:around method="logProfile" pointcut-ref="txProfilingServices"/>
+		</aop:aspect>
+
+		<!-- exception logging advice -->
+		<aop:aspect id="exceptionLoggingAdvice" ref="exceptionLogger">
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="businessServiceMethods"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="infraServiceMethods"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="vaultMigrationMethods"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="webServiceMethods"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="daoMethods"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="txProfilingServices"/>
+			<aop:after-throwing method="logStack" throwing="stack" pointcut-ref="analyticsServiceMethods"/>
+		</aop:aspect>
+
+		<!-- update user group search index advice -->
+		<aop:aspect id="updateUserGroupAfterAdvice" ref="updateUserGroupSearchIndex">
+			<aop:after pointcut-ref="userGroupServiceMethods" method="reindexGroup"/>
+		</aop:aspect>
+
+		<aop:aspect id="interceptor" ref="daoInterceptor">
+			<aop:around pointcut-ref="daoLayer" method="logQueryTimes"/>
+		</aop:aspect>
+
+		<aop:aspect id="eventRouterInterceptor" ref="eventRouterInterceptor">
+			<aop:around pointcut-ref="eventRouter" method="log"/>
+		</aop:aspect>
+
+		<aop:aspect id="eventRouterQueueInterceptor" ref="eventRouterQueueInterceptor">
+			<aop:around pointcut-ref="eventRouter" method="onSendEventAround"/>
+		</aop:aspect>
+
+		<!-- disable PeopleSearchLog
+		<aop:aspect id="workResourceSearchInterceptor" ref="workResourceSearchInterceptor">
+			<aop:around pointcut-ref="workResourceSearchService" method="logSearch"/>
+		</aop:aspect>
+		-->
+
+	</aop:config>
+
+	<bean id="exceptionLogger" class="com.workmarket.logging.ExceptionLogger">
+		<property name="order" value="2"/>
+	</bean>
+
+	<bean id="analyticsLogAspect" class="com.workmarket.logging.AnalyticsLogger"/>
+	<bean id="securableAspect" class="com.workmarket.vault.aop.SecurableAspect"/>
+	<bean id="vaultableAspect" class="com.workmarket.vault.aop.VaultableAspect"/>
+	<bean id="updateUserGroupSearchIndex" class="com.workmarket.service.infra.index.UserGroupIndexUpdate"/>
+	<bean id="daoInterceptor" class="com.workmarket.service.infra.interceptor.DAOInterceptor"/>
+	<bean id="eventRouterInterceptor" class="com.workmarket.service.infra.interceptor.EventRouterInterceptor"/>
+	<bean id="eventRouterQueueInterceptor" class="com.workmarket.service.infra.interceptor.EventRouterQueueInterceptor"/>
+	<bean id="workResourceSearchInterceptor" class="com.workmarket.service.infra.interceptor.WorkerSearchInterceptor"/>
+	<bean id="methodInterceptor" class="com.workmarket.service.infra.interceptor.MethodInterceptor"/>
+
+	<bean name="accountRegisterReconciliationEmailNotifications" class="java.lang.String">
+		<constructor-arg value="${account.register.reconciliation.emails}"/>
+	</bean>
+
+	<bean id="profiler" class="com.workmarket.service.infra.interceptor.TransactionProfiler">
+		<property name="order" value="1"/>
+	</bean>
+
+</beans>

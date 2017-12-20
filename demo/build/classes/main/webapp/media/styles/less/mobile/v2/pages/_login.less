@@ -1,0 +1,118 @@
+.login-page {
+	@green: #5bb75b;
+	@dark-green: #428442;
+
+	font-family: @default-font;
+	.login-header {
+		height: 4em;
+		&:after {
+			height: 1em;
+			width: 1em;
+			display: block;
+			.transform(rotate(45deg));
+			content: "";
+			margin: -0.5em 2em;
+			float: left;
+		}
+	}
+
+	.header {
+		background: white;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		padding: .5em;
+		z-index: 1;
+
+		.work-wave-icon-recent {
+			margin-left: 0.1em;
+			width: 11em;
+		}
+
+		.nav-logo {
+			display: inline-block;
+			margin: -2.2em 5em 1em;
+			width: 7em;
+			height: 1em;
+		}
+	}
+
+	.orange {
+		color: @orange;
+	}
+	h3 {
+		text-align: center;
+	}
+	a {
+		color: @orange;
+		text-decoration: none;
+		font-size: 14px;
+	}
+	input {
+		margin: .5em auto;
+	}
+	.error {
+		.border-radius(5px);
+		border-color: transparent;
+		padding: .5em;
+		color: @gray;
+	}
+	.nav-logo {
+		width: 100%;
+		height: 1.8em;
+	}
+	hr {
+		border: 0;
+		height: 0;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+		clear: both;
+	}
+	.checkbox-remember {
+		display: inline-block;
+		margin:0.4em 0.5em 0.5em 0;
+	}
+	#rememberMe {
+		display: inline;
+		width: 1em;
+		float: left;
+	}
+	.unit .whole:last-child {
+		padding-right: 1em;
+		a {
+			padding: 0 .5em;
+		}
+	}
+	.forgot {
+		color: whitesmoke;
+		text-decoration: none;
+		font-size: .8em;
+		border-bottom: 1px dotted whitesmoke;
+		float: left;
+		margin: 0 0 1em;
+	}
+
+	input, textarea, button {
+		outline: none;
+		&:focus {
+			outline: none;
+		}
+	}
+
+	.call-to-action-button {
+		text-align: center;
+		background: @green;
+		box-shadow: 0px 2px 0px 1px @dark-green;
+		padding: 0.5em .5em 0.3em .5em;
+		color: white !important;
+		.border-radius(@base-border-radius);
+		font-family: @light-font;
+		display: block;
+		&:active {
+			.box-shadow(none);
+			.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+		}
+		margin: 0.3em 0 2em;
+	}
+}

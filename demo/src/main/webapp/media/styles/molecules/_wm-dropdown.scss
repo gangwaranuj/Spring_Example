@@ -1,0 +1,29 @@
+.wm-dropdown {
+	position: relative;
+
+	&--content {
+		display: none;
+		position: absolute;
+		min-width: 15em;
+		background-color: $white;
+		border-radius: $base-border-radius;
+		border: 1px solid $light-grey;
+
+		.wm-dropdown:hover & {
+			display: block;
+		}
+
+		&::before, &::after {
+			position: absolute;
+			right: 1em;
+		}
+		&::before {
+			@include triangle(up, $light-grey, 0.5em);
+			bottom: calc(100% + 1px);
+		}
+		&::after {
+			@include triangle(up, $white, 0.5em);
+			bottom: 100%;
+		}
+	}
+}

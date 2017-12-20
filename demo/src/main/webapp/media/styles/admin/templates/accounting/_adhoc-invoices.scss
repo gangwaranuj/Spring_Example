@@ -1,0 +1,12 @@
+#adhoc_invoice_form {
+	#invoiceLineItems {
+		.line_item {
+			margin-bottom: 1em;
+		}
+		input[type="text"] {
+			width: 100%;
+			box-sizing: border-box;
+			height: inherit;
+		}
+	}
+}

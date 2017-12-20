@@ -1,0 +1,4 @@
+{
+"message": "A expense reimbursement has been added to assignment: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

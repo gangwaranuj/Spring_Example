@@ -1,0 +1,8 @@
+{{#if shouldShowMDL}}
+	<li
+		class="mdl-menu__item {{#if divider}}mdl-menu__item--full-bleed-divider{{/if}}"
+		{{#if disabled}}disabled{{/if}}
+	>{{{text}}}</li>
+{{else}}
+	<option value="{{value}}">{{{text}}}</option>
+{{/if}}

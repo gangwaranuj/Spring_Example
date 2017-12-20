@@ -1,0 +1,77 @@
+<div class="assignment-workers--toolbar">
+	<div class="assignment-workers--sort-container">
+		{{#if showSort}}
+			Sort by
+			<select name="sortColumn" class="wm-select assignment-workers--sort-type">
+				<option value="NEGOTIATION_TOTAL_COST">Assignment Value</option>
+				<option value="NEGOTIATION_SCHEDULE_FROM">Start Time</option>
+				<option value="NEGOTIATION_CREATED_ON" selected="selected">Applied Time</option>
+				<option value="AVG_RATING">Rating</option>
+				<option value="DISTANCE" data-data='{ "default-direction": "ASC" }'>Distance</option>
+			</select>
+
+			<select name="sortDirection" class="wm-select assignment-workers--sort-dir">
+				<option value="ASC">&#9650;</option>
+				<option value="DESC" selected="selected">&#9660;</option>
+			</select>
+		{{/if}}
+	</div>
+	<div class="assignment-workers--page-size-container">
+		<select name="pageSize" class="wm-select assignment-workers--page-size">
+			<option value="50" selected>50 Per Page</option>
+			<option value="1000">Show All</option>
+		</select>
+	</div>
+	{{#if hasInvitedAtLeastOneVendor}}
+		{{#unless isDispatcher}}
+			<div class="assignment-workers--talent-filter">
+				{{> ../../../funcs/templates/filter  name="workers" classlist="show-workers" text="Workers" isChecked="true" }}
+				{{> ../../../funcs/templates/filter  name="vendors" classlist="show-vendors" text="Vendors" }}
+				<div class="vendor-count"></div>
+				<div class="worker-count"></div>
+			</div>
+		{{/unless}}
+	{{/if}}
+</div>
+<div class="assignment-workers--feed"></div>
+{{> ../../../funcs/templates/pagination min="1" max="10" }}
+{{#if showActions}}
+	<div class="wm-action-container">
+		{{#if showAssignButton}}
+			<button href="/assignments/assign/{{work.workNumber}}" class="button assign_action">Assign to Employee</button>
+		{{/if}}
+		{{#if isSent}}
+			<a href="/assignments/resend_resource_invitation/{{work.workNumber}}" class="resend_invite button">Resend</a>
+				{{#unless work.workNotifyAvailable}}
+					{{> ../../../funcs/templates/button tooltip="None of the workers have opted to receive notifications." disabled="true" text="Work Notify"}}
+				{{/unless}}
+				{{#unless work.workNotifyAllowed}}
+					{{> ../../../funcs/templates/button tooltip="Notifying workers is limited to once per hour." disabled="true" text="Work Notify"}}
+				{{/unless}}
+				{{#if work.workNotifyAvailable}}
+					{{#if work.workNotifyAllowed}}
+						{{> ../../../funcs/templates/button classlist="work-notify" text="Work Notify<sup>&trade;</sup"}}
+					{{/if}}
+				{{/if}}
+		{{/if}}
+		<a href="/assignments/contact/{{work.workNumber}}" class="button js-workers-invite-more-workers">Invite More Workers</a>
+	</div>
+{{/if}}
+{{#unless showBundleActions}}
+	{{#if isDispatcher}}
+		<div class="wm-action-container">
+			{{> ../../../funcs/templates/button classlist="vendor-decline" text="Decline" }}
+			<a href="/assignments/contact/{{work.workNumber}}" class="button -add">Add Candidates</a>
+		</div>
+	{{/if}}
+{{/unless}}
+{{#if showBundleActions}}
+	<div class="form-actions">
+		This assignment is part of a bundle called: "{{bundleTitle}}".
+		{{#if isDispatcher}}
+			You can click <a href="/assignments/view_bundle/{{bundleId}}">here</a> to see this bundle.
+		{{else}}
+			You can click <a href="/assignments/view_bundle/{{bundleId}}">here</a> to invite more workers to this bundle.
+		{{/if}}
+	</div>
+{{/if}}

@@ -1,0 +1,22 @@
+<div class="wm-modal" data-modal>
+	{{#each this.slides}}
+		<div id="{{this.id}}" class="wm-modal--slide {{#if this.isActive}}-active{{/if}}">
+			<div class="wm-modal--toolbar">
+				<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+				<h1 class="wm-modal--header">
+					<span class="wm-modal--title">{{{this.title}}}</span>
+				</h1>
+			</div>
+			<div class="wm-modal--content">
+				<p>
+					Thank you for choosing to report a concern, we love to hear from you. Please briefly describe your concern below — we’ll review and take action immediately.
+				</p>
+
+				<textarea name="content" id="concern_content" rows="5"></textarea>
+			</div>
+			<div class="wm-modal--footer">
+				<button class="button -primary profile--report-concern pull-right">Submit</button>
+			</div>
+		</div>
+	{{/each}}
+</div>

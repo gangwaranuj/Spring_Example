@@ -1,0 +1,9 @@
+<form class="form-inline transaction-fee-plan-config">
+	Default Transaction Fee
+	<select id="percentage" name="percentage" class="span3">
+		<option value="{{this.defaultWorkFeePercentage}}">WM Default ({{this.defaultWorkFeePercentage}})
+			{{#each availablePercentages}}
+		<option value="{{this}}">{{this}}
+			{{/each}}
+	</select> %
+</form>

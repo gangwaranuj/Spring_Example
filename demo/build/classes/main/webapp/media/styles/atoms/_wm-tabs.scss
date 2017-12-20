@@ -1,0 +1,98 @@
+////////////////
+// Tab Styles //
+////////////////
+
+$tab: (
+	element-height: 2.25em,
+	color: $orange,
+	border-radius: $base-border-radius,
+	border-width: 1px,
+	border-style: solid,
+	spacing: 0.4em,
+	default: (
+		background-color: $off-white,
+		color: $charcoal-grey,
+		border-color: $light-grey
+	),
+	active: (
+		background-color: rgba($orange, 0.68),
+		color: $white,
+		border-color: $orange
+	)
+);
+
+$tabs-border-bottom: map-get($tab, border-width) map-get($tab, border-style) map-fetch($tab, default, border-color);
+
+@mixin tab-color($state: default) {
+	background-color: map-fetch($tab, $state, background-color);
+	color: map-fetch($tab, $state, color);
+	border-color: map-fetch($tab, $state, border-color);
+}
+
+.wm-tabs {
+	display: flex;
+	margin: 0;
+	border-bottom: $tabs-border-bottom;
+	
+	a {
+		text-decoration: none;
+	}
+
+	&::after {
+		display: inline-flex;
+		border-bottom: $tabs-border-bottom;
+		margin-left: map-get($tab, spacing);
+	}
+}
+
+.wm-tab {
+	@include reset-element;
+	@include tab-color;
+	border-radius: map-get($tab, border-radius) map-get($tab, border-radius) 0 0;
+	display: inline-flex;
+	cursor: pointer;
+	border-style: map-get($tab, border-style);
+	border-width: 0 0 map-get($tab, border-width) 0;
+	flex-grow: 1;
+	flex-basis: 100%;
+	margin-bottom: - map-get($tab, border-width);
+	justify-content: center;
+	padding: 0.4em;
+
+	&::before {
+		margin-right: 0.5em;
+	}
+
+	&.-active {
+		@include tab-color(active);
+
+		&::after {
+			background-color: $white;
+			color: $grey;
+		}
+	}
+
+	& + & {
+		margin-left: map-get($tab, spacing);
+	}
+
+	&--content {
+		display: none;
+		padding: 1em;
+		background-color: $white;
+		border-radius: 0 0 $base-border-radius $base-border-radius;
+
+		&.-active {
+			display: block;
+		}
+	}
+
+	a {
+		color: inherit;
+
+		&:hover {
+			@include clean-link;
+			color: inherit;
+		}
+	}
+}

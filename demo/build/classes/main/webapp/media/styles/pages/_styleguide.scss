@@ -1,0 +1,245 @@
+.page-styleguide {
+	@include scaffolding;
+	@include typography;
+	@include new-form-inputs;
+	@include new-form-textarea;
+
+	header {
+		font-size: 2em;
+		padding: 3em 1em 1em;
+		text-align: center;
+	}
+	nav {
+		position: fixed;
+		width: 100%;
+		padding: 1em;
+		background-color: $white;
+		border-bottom: $default-border;
+		z-index: $nav-index;
+	}
+	.nav-drawer {
+		@include span(2);
+		position: fixed;
+		background-color: $white;
+		height: 100%;
+		left: 0;
+		top: 0;
+		padding: 4em 0 $site-footer-height;
+		border-right: $default-border;
+		overflow: auto;
+		margin: 0;
+
+		a {
+			font-size: 0.8em;
+			display: block;
+			padding: 0.5em 1em;
+			color: $grey;
+			border-bottom: $default-border;
+
+			&:hover {
+				background-color: $off-white;
+			}
+		}
+		li:first-of-type a {
+			border-top: $default-border;
+		}
+	}
+	.main-content {
+		@include span(isolate 8 at 4);
+	}
+	.element {
+		border-radius: $base-border-radius;
+		@include clearfix;
+		box-shadow: $default-box-shadow;
+		margin-bottom: 2em;
+		padding: 1em 1em 0;
+		background-color: $white;
+
+		&--heading {
+			border-bottom: 2px solid $orange;
+			padding-bottom: 0.2em;
+			margin-bottom: 1em;
+		}
+		&--subheading {
+			font-size: 1em;
+			font-weight: bold;
+		}
+	}
+	.demo {
+		@include clearfix;
+		margin-bottom: 1em;
+
+		&.color-box {
+			width: calc(100% / 3);
+			display: block;
+			float: left;
+			min-height: 15em;
+			text-align: center;
+			color: $white;
+			padding: 1em 1em 0;
+
+			&:not(:last-of-type) {
+				margin-bottom: 0;
+			}
+			&.-dark-grey {
+				background-color: $dark-grey;
+			}
+			&.-charcoal-grey {
+				background-color: $charcoal-grey;
+			}
+			&.-grey {
+				background-color: $grey;
+			}
+			&.-light-grey {
+				background-color: $light-grey;
+			}
+			&.-off-white {
+				background-color: $off-white;
+			}
+			&.-white {
+				background-color: $white;
+			}
+			&.-blue {
+				background-color: $blue;
+			}
+			&.-light-blue {
+				background-color: $light-blue;
+			}
+			&.-green {
+				background-color: $green;
+			}
+			&.-light-green{
+				background-color: $light-green;
+			}
+			&.-orange {
+				background-color: $orange;
+			}
+			&.-red {
+				background-color: $red;
+			}
+			&.-purple {
+				background-color: $purple;
+			}
+			&.-white,
+			&.-off-white {
+				color: $dark-grey;
+			}
+		}
+		.icon {
+			float: left;
+			padding: 0.5em;
+			text-align: center;
+
+			svg {
+				font-size: 2em;
+			}
+		}
+	}
+	.source {
+		margin-bottom: 1em;
+		font-size: 0.9em;
+		line-height: 1.3em;
+		padding: 1em;
+		white-space: normal;
+		&.preformat {
+			white-space: pre;
+		}
+	}
+	.note, .warning {
+		font-family: $body-font;
+		border-radius: $base-border-radius;
+		margin-bottom: 1em;
+		padding: 0.6em;
+		color: $white;
+	}
+	.note {
+		background-color: $blue;
+	}
+	.warning {
+		background-color: #cc0;
+	}
+
+	// Demo specific styling
+	#avatars .wm-avatar {
+		float: left;
+		margin-right: 0.5em;
+	}
+	#form-elements {
+		.mdl-textfield {
+			display: block;
+		}
+	}
+	#form-elements-radio .wm-radio,
+	#form-elements-checkbox .wm-checkbox,
+	#buttons .button {
+		margin-bottom: $base-element-bottom-spacing;
+	}
+	#form-elements-select .wm-select {
+		@include span(3);
+	}
+	#logos-icons {
+		i {
+			@include span(3);
+			margin-bottom: 0.5em;
+
+			&:nth-child(4n) {
+				@include omega;
+			}
+			&::before {
+				float: left;
+			}
+			&::after {
+				content: attr(class);
+				font-size: 0.8em;
+				padding-left: 0.5em;
+			}
+		}
+		.logo-work-market {
+			margin-bottom: 1em;
+		}
+	}
+	#white-logo {
+		background-color: #111111;
+		padding: 0.5em 0.5em 0;
+		display: inline-block;
+	}
+	#grid {
+		.demo {
+			@include container;
+			padding-left: 1em;
+			padding-right: 1em;
+			text-align: center;
+			color: $white;
+		}
+		.grid-sidebar {
+			@include span(2);
+			height: 7em;
+			background-color: $charcoal-grey;
+		}
+		.grid-header {
+			@include span(10 omega);
+			height: 2em;
+			background-color: $grey;
+			margin-bottom: 1em;
+		}
+		.grid-column-1 {
+			@include span(6);
+			height: 4em;
+			background-color: $light-grey;
+		}
+		.grid-column-2 {
+			@include span(4 omega);
+			height: 4em;
+			background-color: $light-grey;
+		}
+	}
+
+	// Legacy overrides
+	#outer-container {
+		padding-top: 0;
+
+		.main.container-fluid {
+			padding: 0;
+		}
+	}
+}

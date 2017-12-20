@@ -1,0 +1,10 @@
+{
+"message": #if (${template.negotiation.scheduleNegotiation} && ${template.negotiation.priceNegotiation})
+				"${template.negotiation.requestedBy.fullName} offered an alternate date and price for assignment: ${template.workTitle}"
+			#elseif (${template.negotiation.scheduleNegotiation})
+				"${template.negotiation.requestedBy.fullName} offered an alternate date for assignment: ${template.workTitle}"
+			#elseif (${template.negotiation.priceNegotiation})
+				"${template.negotiation.requestedBy.fullName} offered an alternate price for assignment: ${template.workTitle}"
+			#end,
+"action": "${baseurl}/assignments/details/${template.work.workNumber}#resources"
+}

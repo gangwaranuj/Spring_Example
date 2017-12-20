@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Confirmation required: ${template.workTitle}</a>

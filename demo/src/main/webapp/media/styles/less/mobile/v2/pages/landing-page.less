@@ -1,0 +1,189 @@
+.landing-page {
+
+	@super-light-gray: #e1e1e1;
+	@light-gray: #b3b3b3;
+	@gray: #7c8184;
+	@dark-gray: #737779;
+
+	@sky-blue: #add8f2;
+	@green: #5bb75b;
+	@dark-green: #428442;
+	@orange: #f7961d;
+	@dark-orange: #DA9137;
+
+	.header {
+		background: white;
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		padding: .5em;
+		z-index: 1;
+
+		.work-wave-icon-recent {
+			margin-left: 0.1em;
+			width: 11em;
+		}
+
+		#login {
+			padding: 0.15em;
+			display: inline-block;
+			margin-right: 0.3em;
+			float: right;
+			background: @orange;
+			font-size: 1.2em;
+			box-shadow: 0px 2px 0px 1px @dark-orange;
+			color: white;
+			width: 5em;
+			.border-radius(@base-border-radius);
+			font-family: @light-font;
+			&:active {
+				.box-shadow(none);
+				.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+			}
+		}
+		.nav-logo {
+			display: inline-block;
+			margin: -2.2em 5em 1em;
+		}
+	}
+
+	.image {
+		position: relative;
+		background: url(images/backgrounds/marketplace_wm.jpg) no-repeat center center fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+		height: 27em;
+	}
+
+	.white-modal {
+		background-color: rgba(255,255,255,.7);
+		position: absolute;
+		top: 100px;
+		right: 30px;
+		left: 30px;
+		padding: .5em;
+		font-family: @default-font;
+		.border-radius(@base-border-radius);
+		text-align: center;
+		font-size: 1.3em;
+	}
+
+	.links {
+		text-align: center;
+		margin: 3em auto 1em;
+		a {
+			color: @orange;
+			font-size: 1em;
+			text-align: center;
+			text-decoration: none;
+			padding: 0 1em;
+			font-family: @light-font;
+			&:visited {
+				color: @sky-blue;
+			}
+			&:hover, &:focus {
+				color: @sky-blue;
+			}
+		}
+	}
+
+	.bars {
+		position: relative;
+		margin: -3.8em auto 0;
+		height: 5em;
+		.bar {
+			float: right;
+			background: white;
+			width: 0.6em;
+			.border-radius(1px);
+		}
+		.one {
+			height: 4em;
+			margin-right: .5em;
+		}
+		.two {
+			height: 3em;
+			margin-right: .5em;
+			margin-top: 1em;
+		}
+		.three {
+			height: 2em;
+			margin-right: .5em;
+			margin-top: 2em;
+		}
+		.four {
+			height: 1em;
+			margin-right: .5em;
+			margin-top: 3em;
+		}
+	}
+
+	small {
+		display: block;
+		color: #7c8184;
+		text-align: center;
+		margin-top: 1em;
+		.orange-text {
+			color:@orange;
+		}
+	}
+
+	.app-links {
+		height: 5em;
+		text-align: center;
+		margin: -11em 0 6em 0;
+		position: relative;
+		a {
+			width: 2em;
+			padding: 2em;
+			#android-icon, #apple-icon {
+				height: 5em;
+				width: 3.5em;
+				display: inline;
+				pointer-events: all;
+
+			}
+		}
+		p {
+			color: white;
+			font-size: 1.1em;
+			max-width: 13em;
+			padding: 0.5em;
+			margin: 0 auto;
+			text-align: center;
+		}
+	}
+
+	.call-to-action-button {
+		text-align: center;
+		background: @green;
+		box-shadow: 0px 2px 0px 1px @dark-green;
+		padding: 0.5em .5em 0.3em .5em;
+		color: white !important;
+		.border-radius(@base-border-radius);
+		font-family: @light-font;
+		display: block;
+		&:active {
+			.box-shadow(none);
+			.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+		}
+		margin: 0.3em 0 2em;
+	}
+
+
+	.learn-more {
+		text-align: center;
+		margin: 0.5em 0 2em;
+		a {
+			color: @blue;
+		}
+	}
+
+	.signup-button-container {
+		padding: 0 1em;
+	}
+
+}

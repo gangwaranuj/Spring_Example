@@ -1,0 +1,4 @@
+{
+"message": "Counteroffer extended: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

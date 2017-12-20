@@ -1,0 +1,50 @@
+.search-controls {
+	position: relative;
+	margin-bottom: $base-element-bottom-spacing;
+	transform: translateZ(0); // layer creation hack, kicks animations to GPU for Safari
+	will-change: transform;   // layer creation hack, kicks animations to GPU
+	width: 100%;
+	transition: none !important; // transition from the left nav is being applied to the search cart
+	background-color: $white;
+	left: 0;
+	z-index: 1;
+
+	&.-fixed {
+		box-shadow: 0 1px 6px rgba($dark-grey, 0.48);
+		z-index: 10;
+		padding: 1em 0;
+		margin-bottom: 0;
+		position: fixed;
+		top: $site-header-height;
+
+		.wm-checkbox {
+			margin-left: calc(#{span(3 wide)} + 1em);
+		}
+		.search_sorting {
+			margin-right: 1em;
+		}
+	}
+
+	&--content {
+		@include container;
+		display: flex;
+		align-items: center;
+	}
+
+	.wm-checkbox {
+		flex-grow: 1;
+		margin-bottom: 0;
+		width: inherit;
+	}
+	.wm-pagination {
+		display: none;
+	}
+	.selection_count {
+		cursor: pointer;
+		color: $blue;
+		font-size: 0.75em;
+	}
+	.search_sorting {
+		margin-bottom: 0;
+	}
+}

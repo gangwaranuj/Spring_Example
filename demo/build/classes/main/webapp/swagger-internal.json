@@ -1,0 +1,217 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Workmarket Internal APIs",
+    "version" : "v2",
+    "title" : "Swagger spec for Work Market Internal API",
+    "contact" : {
+      "name" : "Work Market API Team",
+      "email" : "api@workmarket.com"
+    },
+    "license" : {
+      "name" : "NOT FOR PUBLIC CONSUMPTION - ALL RIGHTS RESERVED"
+    }
+  },
+  "host" : "www.workmarket.com",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "register"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/api/v2.api" : {
+      "get" : {
+        "tags" : [ "register" ],
+        "summary" : "Get some information about this internal API",
+        "description" : "",
+        "operationId" : "internalEndpointsInfo",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV2Response"
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/leaderboard.api" : {
+      "get" : {
+        "tags" : [ "register" ],
+        "summary" : "View the leaderboard",
+        "description" : "",
+        "operationId" : "getLeaderboard",
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ApiV2Response"
+            }
+          }
+        }
+      }
+    },
+    "/api/v2/register.api" : {
+      "get" : {
+        "tags" : [ "register" ],
+        "summary" : "Register a user",
+        "description" : "",
+        "operationId" : "registerUser",
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/UserRegistration"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "object",
+              "properties" : {
+                "meta" : {
+                  "$ref" : "#/definitions/meta"
+                },
+                "pagination" : {
+                  "type" : "object"
+                },
+                "results" : {
+                  "type" : "array",
+                  "items" : {
+                    "$ref" : "#/definitions/UserRegistration"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "ApiV2Response" : {
+      "type" : "object",
+      "properties" : {
+        "meta" : {
+          "description" : "Details about this response",
+          "readOnly" : true,
+          "$ref" : "#/definitions/meta"
+        },
+        "results" : {
+          "description" : "List of results",
+          "readOnly" : true,
+          "$ref" : "#/definitions/__GenericList__"
+        },
+        "pagination" : {
+          "type" : "object",
+          "description" : "Pagination details (optional)",
+          "readOnly" : true
+        }
+      }
+    },
+    "UserRegistration" : {
+      "type" : "object",
+      "properties" : {
+        "userId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "userNumber" : {
+          "type" : "string"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "password" : {
+          "type" : "string"
+        },
+        "firstName" : {
+          "type" : "string"
+        },
+        "lastName" : {
+          "type" : "string"
+        },
+        "address" : {
+          "type" : "string"
+        },
+        "city" : {
+          "type" : "string"
+        },
+        "stateCode" : {
+          "type" : "string"
+        },
+        "postalCode" : {
+          "type" : "string"
+        },
+        "isoCountryCode" : {
+          "type" : "string"
+        },
+        "returnPassword" : {
+          "type" : "boolean"
+        },
+        "autoConfirmEmail" : {
+          "type" : "boolean"
+        },
+        "sendConfirmEmail" : {
+          "type" : "boolean"
+        },
+        "onboardCompleted" : {
+          "type" : "boolean"
+        },
+        "phoneNumber" : {
+          "type" : "string"
+        },
+        "countryCallingCode" : {
+          "type" : "string"
+        },
+        "resumeUrl" : {
+          "type" : "string"
+        },
+        "warpRequisitionId" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "state" : {
+          "type" : "string"
+        },
+        "country" : {
+          "type" : "string"
+        },
+        "address1" : {
+          "type" : "string"
+        }
+      }
+    },
+    "meta" : {
+      "type" : "object",
+      "properties" : {
+        "statusCode" : {
+          "type" : "integer",
+          "format" : "int32",
+          "description" : "HTTP status code of this response"
+        },
+        "responseTime" : {
+          "type" : "number",
+          "format" : "double",
+          "description" : "Server response time in seconds"
+        },
+        "clientRequestId" : {
+          "type" : "string",
+          "description" : "Unique id provided by client"
+        },
+        "timestamp" : {
+          "type" : "integer",
+          "format" : "int64",
+          "description" : "Request start time in seconds from epoch"
+        },
+        "requestId" : {
+          "type" : "string",
+          "description" : "UUID of this request"
+        }
+      },
+      "description" : "Metadata about this request"
+    }
+  }
+}

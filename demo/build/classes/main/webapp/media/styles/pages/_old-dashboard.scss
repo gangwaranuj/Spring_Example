@@ -1,0 +1,111 @@
+.dashboard {
+	@include scaffolding;
+	@include new-form-inputs;
+
+	.container {
+		min-width: 60em;
+	}
+	.assignments-sidebar {
+		@include span(3);
+	}
+	.assignments-content {
+		@include span(9 omega);
+
+		.alert {
+			clear: both;
+		}
+	}
+	.assignments-results {
+		clear: both;
+	}
+	.assignments-results-meta {
+		.wm-pagination {
+			float: right;
+		}
+	}
+	.assignments-date-ranges {
+		input {
+			@include span(7);
+		}
+		.ui-datepicker-trigger {
+			width: 1.5em;
+			margin: 0.2em;
+		}
+	}
+	.assignments-date-range {
+		@include span(12 omega);
+	}
+	.dashboard-actions {
+		display: inline-block;
+	}
+	.dashboard-sort {
+		@include clearfix;
+		float: right;
+		margin-bottom: 1em;
+
+		select {
+			margin-bottom: 0;
+		}
+	}
+
+	.page-header {
+		padding: 0.5em 0;
+		h1, h2 {
+			float: left;
+			margin: 0;
+		}
+		.dashboard-quick-actions {
+			float: right;
+			button, a {
+				margin-right: 0.25em;
+			}
+		}
+	}
+	.gear-dropdown.selectize-control {
+		top: 1.75em;
+	}
+	#calendar {
+		.fc-view {
+			overflow: visible;
+
+			.popover {
+				max-width: 500px;
+
+				.popover-content {
+
+					td {
+						padding: 0.5em;
+					}
+				}
+			}
+		}
+		.fc-header {
+			@include clearfix;
+			position: relative;
+		}
+		.fc-header-left {
+			float: left;
+		}
+		.fc-header-center {
+			position: absolute;
+			width: 100%;
+			left: 0;
+			z-index: -1;
+		}
+		.fc-header-right {
+			float: right;
+		}
+		.popover {
+			background-color: #f4f4f4;
+		}
+
+		.fc-event-skin.custom {
+			background-color: $grey;
+
+			.fc-event-skin {
+				border-color: $light-grey;
+				background-color: $light-grey !important;
+			}
+		}
+	}
+}

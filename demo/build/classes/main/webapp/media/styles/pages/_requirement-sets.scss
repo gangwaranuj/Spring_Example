@@ -1,0 +1,42 @@
+.page-requirement-sets {
+	//-- Legacy --
+	// Remove when we are globally using the new UI
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-form-textarea;
+	@include new-typography;
+	//-- END Legacy --
+
+	.row_wide_sidebar_left {
+		min-width: 1000px
+	}
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+		li { padding-bottom: 0.3em; }
+	}
+
+	.content {
+		@include span(9 omega);
+		margin-bottom: 2em;
+		border-radius: 4px;
+		.-primary { margin-top: -0.3em; }
+		.button { font-size: 80%; }
+	}
+
+	.requirement-set-title-form {
+		.title {
+			width: 50%;
+			display: inline;
+		}
+		.checkbox {
+			float: none;
+			display: inline;
+		}
+		.button {
+			margin-top: -1em;
+		}
+	}
+}

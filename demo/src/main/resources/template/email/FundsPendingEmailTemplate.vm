@@ -1,0 +1,32 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Funds Pending</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p>
+				We are processing your request to deposit ${number.currency($template.transaction.amount)} into your WorkMarket account. To check the status of your deposit, please visit the Payment Center.
+			</p>
+
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/payments/ledger" target="_blank">View Payment Center</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+			<p>
+				For more information on adding funds, <a href="https://workmarket.zendesk.com/hc/en-us/articles/210052757-How-do-I-fund-my-Work-Market-account" target="_blank">see our help article.</a><br/>
+				<br/>
+				Sincerely,<br/>
+				WorkMarket
+			</p>
+            #parse("template/email/partials/buyer-footer.vm")
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

@@ -1,0 +1,23 @@
+<div class="wm-search-filter--insurance">
+	<h2 class="sidebar-card--title">Insurances</h2>
+	{{> slider title="Errors and Omissions" name="slider" id="errorsAndOmissionsCoverage" value="0" min="0" max="3000000" step="300" units="$" unitsPosition="first" }}
+	<input type="hidden" name="errorsAndOmissionsCoverage"/>
+	{{> slider title="General Liability" name="slider" id="generalLiabilityCoverage" value="0" min="0" max="10000000" step="100000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="generalLiabilityCoverage"/>
+	{{> slider title="Workers Compensation" name="slider" id="workersCompCoverage" value="0" min="0" max="2000000" step="1000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="workersCompCoverage"/>
+	{{> slider title="Automobile" name="slider" id="automobileCoverage" value="0" min="0" max="2000000" step="1000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="automobileCoverage"/>
+	{{> slider title="Contractors Insurance" name="slider" id="contractorsCoverage" value="0" min="0" max="2000000" step="1000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="contractorsCoverage"/>
+	{{> slider title="Commercial General Liability" name="slider" id="commercialGeneralLiabilityCoverage" value="0" min="0" max="2000000" step="1000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="commercialGeneralLiabilityCoverage"/>
+	{{> slider title="Business Liability" name="slider" id="businessLiabilityCoverage" value="0" min="0" max="2000000" step="1000" units="$" unitsPosition="first" }}
+	<input type="hidden" name="businessLiabilityCoverage"/>
+	<hr/>
+	{{> button text="Close" classlist="close-advanced-facet"}}
+	{{> button text="Apply" classlist="apply-insurance -primary"}}
+	<div id="verifications">
+		<ul class="filter_items inputs-list"></ul>
+	</div>
+</div>

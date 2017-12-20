@@ -1,0 +1,59 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #333; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">${template.work.company.effectiveName}</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 20px 0px">
+		Hello ${toUser.firstName},<br/>
+		<br/>
+		${template.work.company.effectiveName} made changes to the assignment, <strong>${template.workTitle}</strong> (${template.work.workNumber}).<br/>
+		<br/>
+
+		<ul>
+			#if($showPricing && $template.pricingUpdated)
+				<li>Price updated to: <strong>${template.price}</strong></li>
+			#end
+
+			#if($template.scheduleUpdated)
+				<li>Schedule updated to: <strong>${template.date}</strong></li>
+			#end
+
+			#if($template.locationUpdated)
+				<li>Location updated to: <strong>${template.address} (${template.distanceInMilesToWork} miles)</strong> </li>
+			#end
+
+			#if($template.infoUpdated)
+				<li>Details (e.g. title and description)</li>
+			#end
+
+			#if($template.contactUpdated)
+				<li>Contact information</li>
+			#end
+
+			#if($template.otherUpdated)
+				<li>And other changes.</li>
+			#end
+		</ul>
+
+		#foreach($field in ${template.customFields})
+			<strong>$field.workCustomField.name:</strong> $field.value<br/>
+		#end
+	</p>
+
+	<p style="margin: 20px 0px">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+				<tr>
+					<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+						<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/details/${template.work.workNumber}">View Assignment</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</p>
+</div>
+
+#parse("template/email/partials/do-not-reply.vm")
+
+#if (${template.encryptedWorkFollowId})
+	#parse("template/email/partials/unfollow.vm")
+#end

@@ -1,0 +1,48 @@
+<p class="terms">
+<h4>Payment Instructions</h4>
+<strong>Terms:</strong> Payment must be received and posted by the individual due dates shown above.<br />
+Invoices may be paid via credit card, wire transfer, direct deposit, or check.
+</p>
+
+<h5>Send wire transfer to the following:</h5>
+<table class="small">
+    <tr><th>Beneficiary Name</th><td>WorkMarket, Inc.</td></tr>
+    <tr><th>Beneficiary Account</th><td>9983235230</td></tr>
+    <tr><th>Beneficiary Address</th><td>240 West 37th Street, 10th Floor, New York, NY 10018</td></tr>
+    <tr><th>Beneficiary Phone #</th><td>(646) 588-4641</td></tr>
+    <tr><th>Beneficiary Bank Name</th><td>Citibank, N.A.</td></tr>
+    <tr><th>Beneficiary Bank City and State</th><td>787 Seventh Avenue, New York, NY 10019</td></tr>
+    <tr><th>ABA or Swift Code</th><td>021 0000 89 or CITIUS33</td></tr>
+</table>
+
+<h5>Send checks to the following address:</h5>
+<p class="small">WorkMarket, Inc.<br/>
+    Attn: ID ${template.invoice.company.id}<br/>
+    Reference: Lockbox #7875<br/>
+    PO Box 7247<br/>
+    Philadelphia, PA 19170-7875</p>
+<p><small>Please note that check processing may take up to 10 days.</small></p>
+
+<h5>For overnight sending only:</h5>
+<p class="small">
+    First Data/Remitco<br/>
+    Attn: WorkMarket/LBX # 7875<br/>
+    Ref: ID ${template.invoice.company.id}<br/>
+    400 White Clay Center Drive<br/>
+    Newark, DE 19711
+</p>
+<p><small>
+    Please include ID ${template.invoice.company.id} on the memo line of your check. Note that check processing may take up to 10 days.
+</small></p>
+
+<footer>
+    <div class="comments">Comments: WorkMarket ID ${template.invoice.company.id}</div>
+    <div class="thanks">Thank you for choosing WorkMarket. We appreciate your business!</div>
+    <div style="width: 100%;">
+        <br/><strong style="font-size: 11pt;">WorkMarket, Inc.</strong>
+        www.workmarket.com
+        info@workmarket.com
+        T: 212-229-WORK
+        F: 212-647-WORK
+    </div>
+</footer>

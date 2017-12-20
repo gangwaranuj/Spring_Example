@@ -1,0 +1,195 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TaxFormModal /> :: Rendering :: renders corrects 1`] = `
+<div>
+  <WMModal
+    actions={
+      Array [
+        <WMFlatButton
+          label="Go Back"
+          onClick={[Function]}
+          secondary={true}
+      />,
+        <WMFlatButton
+          disabled={false}
+          label="Initiate Account Linking"
+          onClick={[Function]}
+          primary={true}
+      />,
+      ]
+    }
+    autoDetectWindowHeight={true}
+    autoScrollBodyContent={true}
+    bodyStyle={
+      Object {
+        "height": "850px",
+        "maxWidth": "864px",
+        "padding": "0",
+        "width": "864px",
+      }
+    }
+    contentStyle={
+      Object {
+        "height": "850px",
+        "maxWidth": "864px",
+        "padding": "0",
+        "width": "864px",
+      }
+    }
+    modal={true}
+    open={true}
+    style={
+      Object {
+        "height": "850px",
+        "margin": "-3em auto 0",
+      }
+    }
+  >
+    <div
+      style={
+        Object {
+          "background": "url(/media/cache/images/tmp/w9-bg.png)",
+          "height": "785px",
+          "position": "relative",
+          "width": "864px",
+        }
+      }
+    >
+      <div
+        id="taxFormName"
+        style={
+          Object {
+            "color": "#005094",
+            "left": "50px",
+            "position": "absolute",
+            "top": "97px",
+          }
+        }
+      >
+        Cowboys Cowboy Boot Emporium
+      </div>
+      <div
+        id="taxFormDba"
+        style={
+          Object {
+            "color": "#005094",
+            "left": "50px",
+            "position": "absolute",
+            "top": "134px",
+          }
+        }
+      >
+        Guy Fieris American Bar & Grille
+      </div>
+      <div
+        id="taxFormEntity"
+        style={
+          Object {
+            "color": "#005094",
+            "left": "219px",
+            "position": "absolute",
+            "top": "171px",
+          }
+        }
+      >
+        <WMFontIcon
+          className="material-icons"
+          color="#CCC"
+          id="settings__taxCodeCheck"
+          style={
+            Object {
+              "color": "#005094",
+              "fontSize": "23px",
+            }
+          }
+        >
+          check
+        </WMFontIcon>
+      </div>
+      <div
+        id="taxFormAddress"
+        style={
+          Object {
+            "color": "#005094",
+            "left": "46px",
+            "position": "absolute",
+            "top": "284px",
+          }
+        }
+      >
+        123 Anyplace Street
+      </div>
+      <div
+        id="taxFormAddressTwo"
+        style={
+          Object {
+            "color": "#005094",
+            "left": "46px",
+            "position": "absolute",
+            "top": "322px",
+          }
+        }
+      >
+        Corsicana, TX 75110
+      </div>
+      <div
+        id="taxFormEid"
+        style={
+          Object {
+            "color": "#005094",
+            "fontSize": "36px",
+            "left": "610px",
+            "letterSpacing": "3px",
+            "position": "absolute",
+            "top": "492px",
+          }
+        }
+      >
+        23-2349911
+      </div>
+      <WMTextField
+        data-component-identifier="settings__taxSignature"
+        id="tax-signature"
+        inputStyle={
+          Object {
+            "border": "2px solid rgb(247, 150, 29)",
+            "height": "26px",
+          }
+        }
+        onChange={[Function]}
+        style={
+          Object {
+            "bottom": "-13px",
+            "color": "#005094",
+            "left": "151px",
+            "position": "absolute",
+          }
+        }
+        underlineShow={false}
+        value="Cowboy McClure"
+      />
+      <WMTextField
+        data-component-identifier="settings__taxSignatureDateString"
+        id="tax-signatureDateString"
+        inputStyle={
+          Object {
+            "border": "2px solid rgb(247, 150, 29)",
+            "height": "26px",
+          }
+        }
+        onChange={[Function]}
+        style={
+          Object {
+            "bottom": "-13px",
+            "color": "#005094",
+            "left": "590px",
+            "position": "absolute",
+          }
+        }
+        underlineShow={false}
+        value="10/17/1989"
+      />
+    </div>
+  </WMModal>
+</div>
+`;

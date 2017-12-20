@@ -1,0 +1,31 @@
+{{#unless this.isUserBanned}}
+	<div class="forums-add-reply-box" id="commentReplyBox{{this.id}}">
+		<h4 class="forums-leave-comment">Leave a Reply<span id="commentClose{{this.id}}" class="user-post-reply-close-btn">
+			<svg version="1.0"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 16 16" xml:space="preserve">
+				<g>
+					<g>
+						<g>
+							<path fill="#4C5355" d="M10.288,8l3.522-3.522c0.253-0.253,0.253-0.662,0-0.915L12.437,2.19c-0.253-0.253-0.662-0.253-0.915,0
+								L8,5.712L4.478,2.19c-0.253-0.253-0.662-0.253-0.915,0L2.19,3.562c-0.253,0.253-0.253,0.663,0,0.915L5.712,8L2.19,11.522
+								c-0.253,0.253-0.253,0.662,0,0.915l1.373,1.373c0.253,0.253,0.662,0.253,0.915,0L8,10.288l3.522,3.522
+								c0.253,0.253,0.662,0.253,0.915,0l1.373-1.373c0.253-0.253,0.253-0.663,0-0.915L10.288,8z"/>
+						</g>
+					</g>
+				</g>
+			</svg>
+
+			</span>
+		</h4>
+		<form id="forum_post_reply_{{this.id}}" name="form" class="forum_post_reply_reply_form" action="/forums/post/reply" method="POST">
+
+			<textarea id="comment" name="comment" class="input-block-level" rows="5"></textarea>
+			<input id="parentId" name="parentId" value="{{this.id}}" type="hidden">
+			<input id="rootId" name="rootId" value="{{this.rootId}}" type="hidden">
+			<input id="categoryId" name="categoryId" value="{{this.categoryId}}" type="hidden">
+			{{#unless this.isInternal}}
+				<span class="post-char-countdown" data-post-id="{{this.id}}" />
+			{{/unless}}
+			<button type="submit" class="button">Add Reply</button>
+		</form>
+	</div>
+{{/unless}}

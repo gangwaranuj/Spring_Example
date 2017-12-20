@@ -1,0 +1,4 @@
+{
+"message": "Requirements were changed for the talent pool: ${template.userGroupName} and your membership is pending your review",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

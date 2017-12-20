@@ -1,0 +1,45 @@
+<div id="create-bundle-container">
+	<p>Bundles allow you to group multiple assignments together. Upon acceptance, all assignments in the bundle are assigned to the same worker.</p>
+
+	<form id="bundle_form" class="form-horizontal">
+		<div class="control-group">
+			<div class="control-label">I want to:</div>
+			<div class="controls">
+				<label class="radio">
+					<input type="radio" name="bundle_radio" value="new" checked> Create a new bundle
+				</label>
+				<label class="radio">
+					<input type="radio" name="bundle_radio" value="existing"> Add to an existing bundle
+				</label>
+			</div>
+		</div>
+		<div id="bundle_new" class="control-group">
+			<div class="control-label">
+				<label class="required">Bundle Name</label>
+			</div>
+			<div class="controls">
+				<input type="text" name="title">
+			</div>
+			<br/>
+			<div class="control-label">
+				<label class="required">Bundle Description</label>
+			</div>
+			<div class="controls">
+				<textarea rows="9" name="description"></textarea>
+			</div>
+		</div>
+		<div id="bundle_existing" class="dn control-group">
+			<div class="control-label">
+				<label class="required">Select a Bundle Title:</label>
+			</div>
+			<div class="input controls">
+				<select data-placeholder="Choose an existing bundle..." name="id" id="bundle_select"></select>
+			</div>
+		</div>
+		<p/>
+		<div class="wm-action-container">
+			<button data-modal-close class="button">Cancel</button>
+			<button type="submit" class="button" id="submit_create_bundle">Create New Bundle</button>
+		</div>
+	</form>
+</div>

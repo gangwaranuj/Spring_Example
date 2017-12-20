@@ -1,0 +1,133 @@
+{{#if isCompany}}
+	<div class="assignment-messages--filters">
+		{{#if activeWorker}}
+			<span class="tooltipped tooltipped-n" aria-label="These messages are visible to {{activeWorker.fullName}}.">
+				{{#[../../../helpers/eq] activeFilter 'privileged-messages'}}
+					{{> ../../../funcs/templates/filter name="messaging-filter" value="privileged-messages" classlist="wm-icon-add-user-circle" text=activeWorker.fullName isChecked=true}}
+				{{else}}
+					{{> ../../../funcs/templates/filter name="messaging-filter" value="privileged-messages" classlist="wm-icon-add-user-circle" text=activeWorker.fullName}}
+				{{/[../../../helpers/eq]}}
+			</span>
+		{{else}}
+			<span class="tooltipped tooltipped-n" aria-label="These messages are visible to all applied workers.">
+				{{#[../../../helpers/eq] activeFilter 'public-messages'}}
+					{{> ../../../funcs/templates/filter name="messaging-filter" value="public-messages" classlist="wm-icon-globe-circle" text="Public" isChecked=true}}
+				{{else}}
+					{{> ../../../funcs/templates/filter name="messaging-filter" value="public-messages" classlist="wm-icon-globe-circle" text="Public"}}
+				{{/[../../../helpers/eq]}}
+			</span>
+		{{/if}}
+		<span class="tooltipped tooltipped-n" aria-label="These messages are visible to your company.">
+			{{#[../../../helpers/eq] activeFilter 'private-messages'}}
+				{{> ../../../funcs/templates/filter name="messaging-filter" value="private-messages" classlist="wm-icon-lock-circle" text="Private" isChecked=true}}
+			{{else}}
+				{{> ../../../funcs/templates/filter name="messaging-filter" value="private-messages" classlist="wm-icon-lock-circle" text="Private"}}
+			{{/[../../../helpers/eq]}}
+		</span>
+		{{#[../../../helpers/eq] activeFilter 'questions'}}
+			{{> ../../../funcs/templates/filter name="messaging-filter" value="questions" text="Q&A" isChecked=true}}
+		{{else}}
+			{{> ../../../funcs/templates/filter name="messaging-filter" value="questions" text="Q&A"}}
+		{{/[../../../helpers/eq]}}
+		{{#[../../../helpers/eq] activeFilter 'all'}}
+			{{> ../../../funcs/templates/filter name="messaging-filter" value="all" text="All" isChecked=true}}
+		{{else}}
+			{{> ../../../funcs/templates/filter name="messaging-filter" value="all" text="All"}}
+		{{/[../../../helpers/eq]}}
+	</div>
+{{/if}}
+<div class="assignment-messages--feed">
+	{{#each messages}}
+		{{#if this.isQuestion}}
+			<div class="question-pair">
+				<h4>
+					{{#if this.responses.length}}
+						Q&amp;A
+					{{else}}
+						{{#if this.creator.isCurrentUser}}
+							Your question has been sent
+						{{else}}
+							Question
+						{{/if}}
+					{{/if}}
+				</h4>
+				{{> ../../../funcs/templates/message message=this}}
+				{{#if ../canAnswerQuestion}}
+					{{#unless this.responses}}
+						<button class="button -primary question-pair--answer-button">Answer</button>
+					{{/unless}}
+				{{/if}}
+				{{#if this.responses}}
+					{{#each this.responses}}
+						{{> ../../../funcs/templates/message message=this}}
+					{{/each}}
+				{{/if}}
+			</div>
+		{{else}}
+			<div class="message-thread">
+				{{> ../../../funcs/templates/message message=this }}
+			</div>
+		{{/if}}
+	{{/each}}
+	{{#unless this.messages}}
+		{{#[../../../helpers/eq] this.activeFilter 'questions'}}
+			{{#if this.canAskQuestion}}
+				<div class="assignment-messages--empty -large">Start your conversation with the company.</div>
+			{{else}}
+				<div class="assignment-messages--empty">There are currently no questions to display.</div>
+			{{/if}}
+		{{else}}
+			{{#if this.isActiveWorker}}
+				{{#if this.canSendMessage}}
+					<div class="assignment-messages--empty -large">Start your conversation with the company.</div>
+				{{else}}
+					{{#if this.canAskQuestion}}
+						<div class="assignment-messages--empty -large">Have a question about the assignment, ask below.</div>
+					{{/if}}
+				{{/if}}
+			{{else}}
+				{{#if this.canSendMessage}}
+					{{#[../../../helpers/eq] this.activeFilter 'privileged-messages'}}
+						{{#if this.activeWorker}}
+							{{#with this.activeWorker}}
+								<div class="assignment-messages--empty -large">Start your conversation with<br>
+									{{#[../../../helpers/eq] thumbnail ''}}
+										{{> ../../../funcs/templates/avatar hash=id}}
+									{{else}}
+										{{> ../../../funcs/templates/avatar src=thumbnail}}
+									{{/[../../../helpers/eq]}}
+									{{fullName}}
+								</div>
+							{{/with}}
+						{{/if}}
+					{{else}}
+						{{#[../../../helpers/eq] this.activeFilter 'public-messages'}}
+							<div class="assignment-messages--empty -large">Start your conversation with the applied workers.</div>
+						{{else}}
+							{{#[../../../helpers/eq] this.activeFilter 'private-messages'}}
+								<div class="assignment-messages--empty -large">Start a private, internal company chat about this assignment.</div>
+							{{else}}
+								<div class="assignment-messages--empty">There are currently no messages to display.</div>
+							{{/[../../../helpers/eq]}}
+						{{/[../../../helpers/eq]}}
+					{{/[../../../helpers/eq]}}
+				{{else}}
+					<div class="assignment-messages--empty">There are currently no messages to display.</div>
+				{{/if}}
+			{{/if}}
+		{{/[../../../helpers/eq]}}
+	{{/unless}}
+</div>
+<div class="assignment-messages--message-prompt {{#if canAskQuestion}}-active{{/if}}">
+	<textarea name="new-question-content" class="assignment-messages--new-question-content" placeholder="Type your question here&hellip;" rows="1"></textarea>
+	<button class="button -primary assignment-messages--send-question">Ask Question</button>
+</div>
+<div class="assignment-messages--message-prompt {{#if canSendMessage}}-active{{/if}}">
+	<textarea name="new-message-content" class="assignment-messages--new-message-content" placeholder="Write message here&hellip;" rows="1"></textarea>
+	{{#[../../../helpers/eq] activeFilter 'all'}}
+		{{#if isCompany}}
+			{{> ../../../funcs/templates/checkbox name="private" value="private" text="Label as Private"}}
+		{{/if}}
+	{{/[../../../helpers/eq]}}
+	<button class="button -primary assignment-messages--send-message">Send</button>
+</div>

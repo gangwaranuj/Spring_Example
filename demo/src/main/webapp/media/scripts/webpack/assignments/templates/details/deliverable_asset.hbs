@@ -1,0 +1,71 @@
+<div class="deliverable-asset-thumbnail">
+	<span class="modal-opener">
+		{{#if this.isImage}}
+			<div class="thumbnail-background" data-position="{{this.asset.attributes.position}}" data-uri="{{this.asset.attributes.uri}}" style="background-image: url({{this.asset.attributes.uri}});"></div>
+		{{/if}}
+		{{#unless this.isImage}}
+		<div class="-{{this.asset.attributes.type}}-instance deliverableIcon">
+			<svg version="1.1"  class="deliverables-live-icon icon-position file-type-icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 29 29" enable-background="new 0 0 29 29" xml:space="preserve">
+					<g>
+						<path fill="#949899" d="M16.744,1C18.264,1,23,6.097,23,7.733v12.433C23,21.729,21.729,23,20.166,23H3.835
+								C2.272,23,1,21.729,1,20.166V3.834C1,2.271,2.272,1,3.835,1H16.744 M16.744,0H3.835C1.721,0,0,1.72,0,3.834v16.331
+								C0,22.28,1.721,24,3.835,24h16.331C22.281,24,24,22.28,24,20.166V7.733C24,5.565,18.779,0,16.744,0L16.744,0z"/>
+						<g opacity="0.3">
+							<path d="M16.318,0.687v3.96c0,2.047,1.66,3.707,3.707,3.707H23.5"/>
+							<path d="M23.5,8.541h-3.476c-2.147,0-3.894-1.747-3.894-3.894V0.688h0.375v3.959c0,1.94,1.579,3.519,3.519,3.519H23.5V8.541z"/>
+						</g>
+						<path fill="#FFFFFF" d="M16.818,0.187v3.96c0,2.047,1.66,3.707,3.707,3.707H24"/>
+						<path fill="#4C5355" d="M24,8.041h-3.476c-2.147,0-3.894-1.747-3.894-3.894V0.188h0.375v3.959c0,1.94,1.579,3.519,3.519,3.519
+									H24V8.041z"/>
+						<text fill="#4C5355" font-weight="600" font-family="Open Sans" {{{this.extensionSize}}}>{{this.upperExtension}}</text>
+					</g>
+				</svg>
+		</div>
+		{{/unless}}
+	</span>
+	<div class="updatedState">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+			<polygon fill="#198FCE" points="62.6,64 0,1.4 31.2,1.4 62.6,32.8 "/>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 19.3148 10.6369)" fill="#FFFFFF" font-family="'Helvetica'" font-size="12">Updated</text>
+		</svg>
+	</div>
+	<div class="rejectedState">
+		<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve">
+			<polygon fill="#DF4343" points="0,1.4 62.6,64 62.6,32.8 31.2,1.4 "/>
+			<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 20.0145 11.784)" fill="#FFFFFF" font-family="'Helvetica'" font-size="12">Rejected</text>
+		</svg>
+	</div>
+</div>
+<div class="options">
+	{{#if this.isPermission}}
+		<a href="/asset/download/{{this.asset.attributes.uuid}}">
+			<svg class="deliverable-download" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 32 24" enable-background="new 0 0 32 24" xml:space="preserve">
+				<path d="M29.167 24H2.833C1.269 24 0 22.7 0 21.2V2.8C0 1.3 1.3 0 2.8 0h26.333C30.731 0 32 1.3 32 2.8 v18.4C32 22.7 30.7 24 29.2 24z" class="background"/>
+				<path d="M18.025 16l-1.373 1.362c-0.261 0.259-0.608 0.402-0.977 0.4 c-0.369 0-0.716-0.143-0.976-0.401L13.323 16H8v3.528h16V16H18.025z M22.553 18.646h-2.465c-0.3 0-0.543-0.582-0.543-0.882 c0-0.3 0.243-0.882 0.543-0.882h2.465c0.3 0 0.5 0.6 0.5 0.882C23.095 18.1 22.9 18.6 22.6 18.646z" class="foreground"/>
+				<path d="M18.331 3h-5.582c-0.423 0-0.766 0.34-0.766 0.759v4.047l-1.677-0.002c-0.854 0-1.145 0.478-1.231 0.7 C8.99 8.7 8.9 9.2 9.5 9.835l5.048 5.002c0.276 0.3 0.6 0.4 1 0.425c0.391 0 0.759-0.151 1.035-0.426 l5.044-5.002c0.603-0.597 0.468-1.14 0.382-1.346c-0.086-0.206-0.378-0.684-1.231-0.684l-1.676 0.002V3.759 C19.096 3.3 18.8 3 18.3 3L18.331 3z" class="foreground"/>
+			</svg>
+		</a>
+		{{#if this.activeOrComplete}}
+		<svg class="remove" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 32 24" enable-background="new 0 0 32 24" xml:space="preserve">
+			<path d="M29.167 24H2.833C1.269 24 0 22.7 0 21.2V2.8C0 1.3 1.3 0 2.8 0h26.333C30.731 0 32 1.3 32 2.8 v18.4C32 22.7 30.7 24 29.2 24z" class="background"/>
+			<polygon points="19,4 19,3 14,3 14,4 10,4 10,6 23,6 23,4" class="foreground"/>
+			<polygon points="11.1,7 12.1,19 20.7,19 21.7,7" class="foreground"/>
+		</svg>
+		{{#if this.isAdmin}}
+			<svg class="rejection-button" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 32 24" enable-background="new 0 0 32 24" xml:space="preserve">
+				<path class="background" d="M29.2,24H2.8C1.3,24,0,22.7,0,21.2V2.8C0,1.3,1.3,0,2.8,0h26.3C30.7,0,32,1.3,32,2.8v18.4 C32,22.7,30.7,24,29.2,24z"/>
+				<path class="foreground" d="M22.4,7.3L23,6.7c0.5-0.5,0.5-1.2,0-1.7c-0.5-0.5-1.2-0.5-1.7,0l-0.6,0.6c-1.3-1-3-1.6-4.7-1.6 c-4.4,0-8,3.6-8,8c0,1.8,0.6,3.4,1.6,4.7L9,17.3c-0.5,0.5-0.5,1.2,0,1.7c0.2,0.2,0.5,0.4,0.8,0.4c0.3,0,0.6-0.1,0.8-0.4l0.6-0.6 c1.3,1,3,1.6,4.7,1.6c4.4,0,8-3.6,8-8C24,10.2,23.4,8.6,22.4,7.3z M10.4,12c0-3.1,2.5-5.6,5.6-5.6c1.1,0,2.1,0.3,3,0.9L11.3,15 C10.7,14.1,10.4,13.1,10.4,12z M16,17.6c-1.1,0-2.1-0.3-3-0.9L20.7,9c0.6,0.9,0.9,1.9,0.9,3C21.6,15.1,19.1,17.6,16,17.6z"/>
+			</svg>
+		{{/if}}
+		{{/if}}
+	{{/if}}
+	{{#unless this.isPermission}}
+		<a class="asset-name" href="/asset/download/{{this.asset.attributes.uuid}}">
+			<svg class="deliverable-download" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.0" x="0px" y="0px" viewBox="0 0 32 24" enable-background="new 0 0 32 24" xml:space="preserve">
+				<path d="M29.167 24H2.833C1.269 24 0 22.7 0 21.2V2.8C0 1.3 1.3 0 2.8 0h26.333C30.731 0 32 1.3 32 2.8 v18.4C32 22.7 30.7 24 29.2 24z" class="background"/>
+				<path d="M18.025 16l-1.373 1.362c-0.261 0.259-0.608 0.402-0.977 0.4 c-0.369 0-0.716-0.143-0.976-0.401L13.323 16H8v3.528h16V16H18.025z M22.553 18.646h-2.465c-0.3 0-0.543-0.582-0.543-0.882 c0-0.3 0.243-0.882 0.543-0.882h2.465c0.3 0 0.5 0.6 0.5 0.882C23.095 18.1 22.9 18.6 22.6 18.646z" class="foreground"/>
+				<path d="M18.331 3h-5.582c-0.423 0-0.766 0.34-0.766 0.759v4.047l-1.677-0.002c-0.854 0-1.145 0.478-1.231 0.7 C8.99 8.7 8.9 9.2 9.5 9.835l5.048 5.002c0.276 0.3 0.6 0.4 1 0.425c0.391 0 0.759-0.151 1.035-0.426 l5.044-5.002c0.603-0.597 0.468-1.14 0.382-1.346c-0.086-0.206-0.378-0.684-1.231-0.684l-1.676 0.002V3.759 C19.096 3.3 18.8 3 18.3 3L18.331 3z" class="foreground"/>
+			</svg>
+		</a>
+	{{/unless}}
+</div>

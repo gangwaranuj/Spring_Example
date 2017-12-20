@@ -1,0 +1,9 @@
+<div>
+	<strong><a href="/campaigns/details/{{this.meta.id}}">{{this.data}}</a></strong>
+	<br/>
+	<small>
+	<a data-id="{{this.meta.id}}" data-action="toggle">{{#if this.meta.active}}Deactivate{{else}}Activate{{/if}}</a> /
+		<a href="/campaigns/{{this.meta.id}}/edit">Edit</a> /
+		<a data-id="{{this.meta.id}}" data-action="delete">Delete</a>
+	</small>
+</div>

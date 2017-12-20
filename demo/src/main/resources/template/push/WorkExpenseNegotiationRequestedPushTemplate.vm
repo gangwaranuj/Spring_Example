@@ -1,0 +1,4 @@
+{
+"message": "${template.negotiation.requestedBy.fullName} requested an Expense Reimbursement for assignment: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

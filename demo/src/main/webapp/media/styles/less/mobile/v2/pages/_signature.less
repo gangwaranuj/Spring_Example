@@ -1,0 +1,75 @@
+.signature-page {
+	height: 100%;
+
+	.nav h1 {
+		float: left;
+	}
+
+	.important {
+		padding-bottom: 2em;
+	}
+
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+		padding: 0 @small-space;
+		.grid:first-child {
+			padding-top: @medium-space;
+		}
+	}
+
+	input, textarea {
+		margin-bottom: 1em;
+	}
+
+	.signature-line {
+		font-size: @small-font-size;
+		padding: 1em 0;
+	}
+
+	.summary-of-work {
+		color: @orange;
+		.summary-of-work-subtext {
+			color: @dark-gray;
+			font-size: 0.4em;
+		}
+	}
+
+	.show {
+		padding: 0;
+		margin: 0em 0em 1em 0em;
+	}
+
+	.signature-pad {
+		padding-top: 0.5em;
+		height: 100%;
+		label {
+			color: @dark-gray;
+			font-size: @small-font-size;
+		}
+	}
+
+	#signature-canvas {
+		min-height: 170px;
+		width: 100%;
+		background: white;
+		border: 1px solid lightgray;
+		.border-radius(5px);
+		background-image: url('images/sign-here.png');
+
+		// want some spacing here so user doesn't press button while signing
+		margin-bottom: 2em;
+	}
+
+	.clear {
+		.cancel-button;
+		width: 40%;
+		float: left;
+	}
+
+	.save {
+		.default-button;
+		width: 40%;
+		float: right;
+	}
+}

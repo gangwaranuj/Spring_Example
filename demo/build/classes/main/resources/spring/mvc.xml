@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+			               http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			               http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>classpath:/i18n/messages</value>
+				<value>classpath:/i18n/languages</value>
+			</list>
+		</property>
+		<property name="defaultEncoding" value="UTF-8"/>
+		<property name="fileEncodings" value="UTF-8" />
+		<property name="cacheSeconds" value="0" /> <!-- change for production -->
+	</bean>
+
+	<bean id="handlerMapping" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"  />
+	<bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"  />
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"  />
+
+	<mvc:resources mapping="/favicon.ico" location="/favicon.ico"/>
+	<mvc:resources mapping="/crossdomain.xml" location="/crossdomain.xml"/>
+	<mvc:resources mapping="/robots.txt" location="/robots.txt"/>
+	<mvc:resources mapping="/config/**" location="/config/" />
+	<mvc:resources mapping="/media/images/**" location="/media/images/" />
+	<mvc:resources mapping="/media/styles/**" location="/media/styles/" />
+	<mvc:resources mapping="/media/scripts/**" location="/media/scripts/" />
+	<mvc:resources mapping="/media/**" location="/media/" />
+	<mvc:resources mapping="/media/fonts/**" location="/media/fonts/" />
+	<mvc:resources mapping="/download/**" location="/download/" />
+
+	<mvc:interceptors>
+		<!-- Mobile Resolver and Preference -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="org.springframework.mobile.device.DeviceResolverHandlerInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="org.springframework.mobile.device.site.SitePreferenceHandlerInterceptor"/>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.workmarket.service.business.integration.mbo.IncompleteMBOProfileInterceptor">
+				<property name="excludedPaths">
+					<array>
+						<value>/mbo/completeprofile</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:interceptor>
+		<!--
+		 * API Controller Interceptor
+		 * Wraps API requests based on their path
+		 * Excluded Paths list here exempts paths from authentication
+		-->
+		<mvc:interceptor>
+			<!-- TODO API - Paths - move excludedPaths to Gateway layer -->
+			<mvc:mapping path="/api/**"/>
+			<mvc:mapping path="/employer/v2/**"/>
+			<mvc:mapping path="/worker/v2/**"/>
+			<mvc:mapping path="/admin/v2/**"/>
+			<mvc:mapping path="/v1/**"/>
+			<mvc:mapping path="/v2/**"/>
+			<mvc:mapping path="/v3/**"/>
+			<mvc:mapping path="/featureEntitlements/**"/>
+
+			<bean class="com.workmarket.api.ApiBaseInterceptor">
+				<property name="requireSSL" value="${api.v1.requireSSL}"/>
+				<property name="excludedPaths">
+					<array>
+						<value>/api/v1/authorization</value>
+						<value>/v1/employer/authorization</value>
+						<value>/v2/worker/create-account</value>
+						<value>/worker/v2/create-account</value>
+						<value>/v2/employer/create-account</value>
+						<value>/v2/confirm_account</value>
+						<!-- TODO: current prod impl requires auth, per docs it shouldn't
+						<value>/api/v1/assignments/labels/list</value>
+						-->
+						<value>/api/v1/constants/dress_codes</value>
+						<value>/api/v1/constants/industries</value>
+						<value>/api/v1/constants/location_types</value>
+						<value>/api/v1/constants/substatuses</value>
+						<value>/v2/resend_confirmation_email</value>
+						<value>/employer/v2/settings/profile/public</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:interceptor>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.workmarket.web.interceptors.TilesInterceptor">
+				<property name="excludedPaths">
+					<array>
+						<value>/media</value>
+						<value>/api/v1</value>
+						<value>/mobile</value>
+						<value>/v2</value>
+						<value>/worker/v2</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:interceptor>
+		<!-- MBO SSO incomplete profile interceptor -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.workmarket.service.business.integration.mbo.IncompleteMBOProfileInterceptor">
+				<property name="excludedPaths">
+					<array>
+						<value>/mbo/completeprofile</value>
+					</array>
+				</property>
+			</bean>
+		</mvc:interceptor>
+		<!-- CSRF -->
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.workmarket.web.interceptors.CSRFInterceptor"/>
+		</mvc:interceptor>
+
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="com.workmarket.web.interceptors.OnboardingInterceptor"/>
+		</mvc:interceptor>
+	</mvc:interceptors>
+
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="0"/>
+		<property name="contentNegotiationManager">
+			<bean class="org.springframework.web.accept.ContentNegotiationManager">
+				<constructor-arg>
+					<list>
+						<bean class="org.springframework.web.accept.HeaderContentNegotiationStrategy"/>
+						<bean class="org.springframework.web.accept.FixedContentNegotiationStrategy">
+							<constructor-arg value="text/html"/>
+						</bean>
+					</list>
+				</constructor-arg>
+			</bean>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+					<property name="extractValueFromSingleKeyModel" value="true"/>
+					<property name="modelKeys">
+						<set>
+							<value>successful</value>
+							<value>response</value>
+							<value>errors</value>
+							<value>messages</value>
+						</set>
+					</property>
+				</bean>
+			</list>
+		</property>
+		<property name="viewResolvers">
+			<list>
+				<bean class="com.workmarket.web.resolvers.CustomTilesViewResolver">
+					<property name="order" value="1"/>
+				</bean>
+				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+					<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+					<property name="prefix" value="/WEB-INF/views/"/>
+					<property name="suffix" value=".jsp"/>
+					<property name="order" value="2"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions">
+			<list>
+				<value>/WEB-INF/tiles/templates.xml</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean"/>
+
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="50000000"/>
+	</bean>
+	<aop:aspectj-autoproxy/>
+
+	<bean id="sessionRegistry"
+				class="org.springframework.security.core.session.SessionRegistryImpl" />
+</beans>

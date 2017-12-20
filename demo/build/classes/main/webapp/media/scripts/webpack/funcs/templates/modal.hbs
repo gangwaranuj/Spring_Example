@@ -1,0 +1,105 @@
+{{#if shouldShowMDL}}
+	<dialog class="mdl-dialog">
+		{{#if title}}
+			<div class="mdl-dialog__title">{{title}}</div>
+		{{/if}}
+		<div class="mdl-dialog__content">{{{content}}}</div>
+		<div class="mdl-dialog__actions">
+			{{#each controls}}
+				{{#if close}}
+					{{> button classList=classlist shouldShowMDL=../shouldShowMDL attributes="data-modal-close"}}
+				{{else}}
+					{{> button classList=classlist shouldShowMDL=../shouldShowMDL}}
+				{{/if}}
+			{{else}}
+				{{> button text="Close" attributes="data-modal-close"}}
+			{{/each}}
+		</div>
+	</dialog>
+{{else}}
+	<div class="wm-modal {{classList}}" data-modal>
+		{{#if intro}}
+			<div id="{{intro.id}}" class="wm-modal--slide {{#if intro.isActive}}-active{{/if}}">
+				<div class="wm-modal--toolbar {{#if intro.fixedScroll}}-shadow{{/if}}">
+					{{#if showCloseIcon}}
+						<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+					{{/if}}
+					<h1 class="wm-modal--header">
+						<span class="wm-modal--title">{{intro.title}}</span>
+					</h1>
+				</div>
+				<div class="wm-modal--viewport {{#if intro.fixedScroll}}-fixed-scroll{{/if}} {{#if fullHeight}}-full-height{{/if}}">
+					<div class="wm-modal--content{{#if slide.fixedScroll}} -fixed-scroll{{/if}}">{{{intro.content}}}</div>
+				</div>
+				{{#if intro.controls}}
+					<div class="wm-modal--controls">
+						{{#each intro.controls}}
+							<button class="wm-modal--control {{classList}} {{#if primary}}-primary{{/if}} {{#if ../fixedScroll}}-shadow{{/if}}" {{#if forward}}data-modal-slide="next" {{/if}}{{#if back}}data-modal-slide="prev"{{/if}}{{#if close}}data-modal-close{{/if}}>
+								{{#if close}}
+									<i class="wm-icon-x"></i>
+								{{/if}}
+								{{{text}}}
+								{{#if primary}}
+									<i class="{{#if primaryIcon}}{{ primaryIcon }}{{else}}wm-icon-right-arrow{{/if}}"></i>
+								{{/if}}
+							</button>
+						{{/each}}
+					</div>
+				{{/if}}
+			</div>
+		{{/if}}
+		{{#each slides as |slide index|}}
+			<div id="{{slide.id}}" class="wm-modal--slide {{#if slide.isActive}}-active{{/if}} {{#if ../sidebar}}-sidebar{{/if}} {{#if ../fullHeight}}-full-height{{/if}}">
+				<div class="wm-modal--toolbar {{#if slide.fixedScroll}}-shadow{{/if}}">
+					{{#if showCloseIcon}}
+						<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+					{{/if}}
+					<h1 class="wm-modal--header">
+						<span class="wm-modal--title">{{{slide.title}}}</span>
+					</h1>
+				</div>
+				{{#if slide.fixedMessage}}
+					{{{slide.fixedMessage}}}
+				{{/if}}
+				<div class="wm-modal--viewport {{#if slide.fixedScroll}}-fixed-scroll{{/if}} {{#if ../fullHeight}}-full-height{{/if}}">
+					{{#if ../showProgress}}
+						{{#[../../helpers/gt] ../slides.length 1}}
+							<div class="wm-progress-indicator">
+								{{#each ../slides as |value step|}}
+									{{#[../../helpers/eq] step index}}
+										{{> progress-indicator title=value.title status="active" }}
+									{{else}}
+										{{> progress-indicator title=value.title }}
+									{{/[../../helpers/eq]}}
+								{{/each}}
+							</div>
+						{{/[../../helpers/gt]}}
+					{{/if}}
+					<div class="wm-modal--content{{#if slide.fixedScroll}} -fixed-scroll{{/if}}">
+						{{{slide.content}}}
+					</div>
+				</div>
+				{{#if slide.controls}}
+					<div class="wm-modal--controls {{#if ../fixedScroll}}-shadow{{/if}}">
+						{{#each slide.controls}}
+							<button class="wm-modal--control {{classList}} {{#if primary}}-primary{{/if}}" {{#if forward}}data-modal-slide="next" {{/if}}{{#if back}}data-modal-slide="prev"{{/if}}{{#if close}}data-modal-close{{/if}}>
+								{{#if close}}
+									{{#unless primary}}
+										<i class="wm-icon-x"></i>
+									{{/unless}}
+								{{/if}}
+								{{{text}}}
+								{{#if primary}}
+									<i class="{{#if primaryIcon}}{{ primaryIcon }}{{else}}wm-icon-right-arrow{{/if}}"></i>
+								{{/if}}
+								{{#if asynchronous}}
+									{{> spinner }}
+								{{/if}}
+							</button>
+						{{/each}}
+					</div>
+				{{/if}}
+			</div>
+		{{/each}}
+	</div>
+{{/if}}

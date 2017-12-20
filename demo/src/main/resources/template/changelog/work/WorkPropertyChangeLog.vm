@@ -1,0 +1,39 @@
+${template.actorFullName} updated
+
+#if(${template.propertyName} == 'scheduleFrom' || ${template.propertyName} == 'schedule' || ${template.propertyName} == 'scheduleThrough')
+	the scheduled time.
+#elseif(${template.propertyName} == 'pricingStrategy')
+	the assignment pricing information.
+#elseif(${template.propertyName} == 'location')
+	the assignment location.
+#elseif(${template.propertyName} == 'address')
+	the assignment location.
+#elseif(${template.propertyName} == 'description')
+	the assignment description.
+#elseif(${template.propertyName} == 'title')
+	the assignment title to "${template.newValue}".
+#elseif(${template.propertyName} == 'instructions')
+	the assignment instructions.
+#elseif(${template.propertyName} == 'contactName' || ${template.propertyName} == 'contactPhone' || ${template.propertyName} == 'contactEmail')
+	the assignment contact information.
+#elseif(${template.propertyName} == 'project')
+	the project.
+#elseif(${template.propertyName} == 'desiredSkills')
+	the skills.
+#elseif(${template.propertyName} == 'resolution')
+	the assignment resolution.
+#elseif(${template.propertyName} == 'resourceConfirmationHours')
+	the required confirmation time.
+#elseif(${template.propertyName} == 'resourceConfirmation')
+	the confirmation requirement.
+#elseif(${template.propertyName} == 'clientCompany')
+	the client information.
+#elseif(${template.propertyName} == 'serviceClientContact')
+	the client contact information.
+#elseif(${template.propertyName} == 'secondaryServiceClientContact')
+	the secondary client contact information.
+#elseif(${template.propertyName} == 'requireTimetracking')
+	the time tracking requirement.
+#elseif(${template.propertyName} == 'paymentTermsDays')
+	the payment terms from ${template.oldValue} to ${template.newValue} days.
+#end

@@ -1,0 +1,82 @@
+.clearfix:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.topbar.left-nav, .app-nav {
+	&.open ~ #outer-container {
+		&, .-fixed {
+			margin-left: $nav-width;
+		}
+		.-fixed {
+			width: calc(100% - #{$nav-width});
+		}
+	}
+	& ~ #outer-container {
+		padding: 0 3.5em;
+
+		&, .-fixed {
+			@include transition(margin-left #{$nav-transition-duration} #{$nav-transition-easing});
+		}
+		.-fixed {
+			width: 100%;
+			padding-left: 3.5em;
+			padding-right: 3.5em;
+		}
+		.main.container, .main.container-fluid {
+			padding-top: 5.5em;
+		}
+		.main.container-fluid {
+			position: relative;
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+	& ~ .footer {
+		.container {
+			margin-right: 1em;
+		}
+	}
+	.admin {
+		margin-top: 0;
+	}
+}
+
+.sidebar {
+	margin-left: 20px;
+}
+
+@media print {
+	a[href]:after { content: none; }
+	.topbar.left-nav, .app-nav { display: none; }
+}
+
+//overriding vendor jquery.joyride
+//located at /webapp/media/styles/jquery/joyride/joyride-2.0.3.css
+.joyride-tip-guide {
+	z-index: 99999 !important;
+	.joyride-content-wrapper {
+		padding:2em !important;
+		p, h4 {
+			padding: .5em;
+		}
+		a {
+			margin: .5em;
+			border-bottom: 0px;
+		}
+		.joyride-anchor {
+			color: #08c;
+		}
+		.joyride-primary-button {
+			margin-bottom: 1.5em;
+		}
+	}
+}
+
+.action-input {
+	.text, [type="text"] {
+		padding-top: 0.49em !important;
+		padding-bottom: 0.49em !important;
+	}
+}

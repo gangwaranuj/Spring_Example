@@ -1,0 +1,124 @@
+<div>
+	<small>
+		<span class="text-left">
+			{{worker.company_name}}, {{worker.address}}
+			{{#if worker.distance}}
+				({{worker.distance}} mi)
+			{{/if}}<br/>
+			{{#if worker.work_phone}}
+				W: {{worker.work_phone}}<br/>
+			{{/if}}
+			{{#if worker.mobile_phone}}
+				M: {{worker.mobile_phone}}<br/>
+			{{/if}}
+			{{#if worker.email}}
+				E: <a href="mailto:{{worker.email}}">{{worker.email}}</a>
+			{{/if}}
+		</span>
+
+		<span class="text-right">
+			Sent on: {{worker.sent_on}}<br/>
+			{{#if worker.num_ratings}}
+				<span class="star-rating static {{worker.rating}}" title="Rating"></span>
+				({{worker.num_ratings}})
+			{{/if}}
+		</span>
+	</small>
+</div>
+
+<hr />
+
+<ul id="action-tabs" class="wm-tabs">
+	<li class="wm-tab -active" data-content="#tab-accept" id="action-tab-accept">Accept</li>
+	<li class="wm-tab" data-content="#tab-decline" id="action-tab-decline">Decline</li>
+	<li class="wm-tab" data-content="#tab-question" id="action-tab-question">Ask Question</li>
+	<li class="wm-tab" data-content="#tab-addnote" id="action-tab-addnote">Add Note</li>
+</ul>
+
+<div id="tab-accept" class="-active wm-tab--content">
+	<form action="/assignments/accept_work_on_behalf/{{assignment.work_number}}" method="post" class="accept_work_form form-stacked">
+		<input type="hidden" name="workerNumber" value="{{worker.user_number}}" />
+		<div>
+			<label class="required">Note</label>
+			<div class="input">
+				<textarea name="note" class="span8"></textarea>
+			</div>
+		</div>
+		<div class="wm-action-container">
+			<button type="submit" class="button -primary">Submit</button>
+		</div>
+	</form>
+</div>
+<div id="tab-decline" class="wm-tab--content">
+	<form action="/assignments/decline_work_on_behalf/{{assignment.work_number}}" method="post" class="decline_work_form form-stacked">
+		<input type="hidden" name="workerNumber" value="{{worker.user_number}}" />
+		<div>
+			<label class="required">Action Code</label>
+			<div class="input">
+				<select name="action_code" class="span8">
+					<option value="0">Spend Limit too Low</option>
+					<option value="1">Scope is not clear</option>
+					<option value="2">Not qualified</option>
+					<option value="3">Lack needed tools</option>
+					<option value="4">Location too far</option>
+					<option value="5">Unavailable</option>
+					<option value="6">Severe Weather</option>
+					<option value="7">Client Reputation</option>
+					<option value="9">Other</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<label class="required">Note</label>
+			<div class="input">
+				<textarea name="note" class="span8"></textarea>
+			</div>
+		</div>
+		<div class="wm-action-container">
+			<button type="submit" class="button -primary">Submit</button>
+		</div>
+	</form>
+</div>
+<div id="tab-question" class="wm-tab--content">
+	<form action="/assignments/ask_question_on_behalf/{{assignment.work_number}}" method="post" class="ask_question_form form-stacked">
+		<input type="hidden" name="workerNumber" value="{{worker.user_number}}" />
+		<input type="hidden" name="assignmentNumber" value="{{assignment.work_number}}" />
+		<div>
+			<label class="required">Question</label>
+			<div class="input">
+				<textarea name="question" class="span8"></textarea>
+			</div>
+		</div>
+		<div class="wm-action-container">
+			<button type="submit" class="button -primary">Submit</button>
+		</div>
+	</form>
+</div>
+<div id="tab-addnote" class="wm-tab--content">
+	<form action="/assignments/add_note_on_behalf/{{assignment.work_number}}" method="post" class="add_note_form form-stacked">
+		<input type="hidden" name="workerNumber" value="{{worker.user_number}}" />
+		<input type="hidden" name="assignmentNumber" value="{{assignment.work_number}}" />
+		<div>
+			<label class="required">Action Code</label>
+			<div class="input">
+				<select name="action_code" class="span8">
+					<option value="0">Interested - will look at it</option>
+					<option value="1">Needs to check schedule</option>
+					<option value="2">Phone Number Not valid</option>
+					<option value="3">Looking into Additional Resource</option>
+					<option value="4">Left message</option>
+					<option value="5">Other</option>
+				</select>
+			</div>
+		</div>
+		<div>
+			<label class="required">Note</label>
+			<div class="input">
+				<textarea name="note" class="span8"></textarea>
+			</div>
+		</div>
+		<div class="wm-action-container">
+			<button type="submit" class="button -primary">Submit</button>
+		</div>
+	</form>
+</div>

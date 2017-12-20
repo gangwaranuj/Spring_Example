@@ -1,0 +1,103 @@
+$alert: (
+	padding: 2em 3em 2em 2em,
+	z-index: $alert-index,
+	horizontal-spacing: 50px,
+	left-border-width: 60px,
+	close: (
+		spacing: 1em,
+		color: $light-grey
+	),
+	success: (
+		color: $success-color
+	),
+	notice: (
+		color: $notice-color
+	),
+	warning: (
+		color: $warning-color
+	),
+	danger: (
+		color: $danger-color
+	)
+);
+
+@mixin alert($state: notice) {
+	$color: map-fetch($alert, $state, color);
+	color: $color;
+}
+
+@mixin alert-icon-base {
+	position: absolute;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+.wm-alert {
+	@include alert;
+	position: relative;
+	padding: map-get($alert, padding);
+	border-radius: $base-border-radius;
+	border: 2px solid currentColor;
+	border-left: map-get($alert, left-border-width) solid;
+	box-shadow: 0 0 2px currentColor;
+	background-color: $white;
+
+	// overrides $.notify javascript
+	&.-notify {
+		width: 325px;
+		z-index: map-get($alert, z-index) !important;
+	}
+	&.-alert {
+		display: block !important;
+		top: 0 !important;
+		margin-bottom: $base-element-bottom-spacing !important;
+	}
+	&.-success {
+		@include alert(success);
+	}
+	&.-notice {
+		@include alert(notice);
+	}
+	&.-warning {
+		@include alert(warning);
+	}
+	&.-danger {
+		@include alert(danger);
+	}
+
+	&--text::before {
+		@include alert-icon-base;
+		left: #{map-get($alert, left-border-width) / -2};
+		color: $white;
+		font-size: 1.5em;
+
+		.wm-alert.-danger & {
+			@include icon(exclamation-sign);
+		}
+		.wm-alert.-notice & {
+			@include icon(information-filled);
+		}
+		.wm-alert.-warning & {
+			@include icon(exclamation-sign);
+		}
+		.wm-alert.-success & {
+			@include icon(checkmark-circle);
+		}
+	}
+
+	.wm-icon-x {
+		@include alert-icon-base;
+		right: map-fetch($alert, close, spacing);
+		color: map-fetch($alert, close, color);
+		cursor: pointer;
+	}
+
+	.button {
+		font-size: $small-element-size;
+		margin-top: 1.5em;
+
+		&:empty {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,8 @@
+<div class="employee">
+	<div class="{{#if icon}}{{ icon }}{{/if}} employee--name">
+		{{ fullName }}
+		{{#unless hideId}}
+			, ID: {{ id }}
+		{{/unless}}
+	</div>
+</div>

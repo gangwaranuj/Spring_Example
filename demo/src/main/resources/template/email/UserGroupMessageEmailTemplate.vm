@@ -1,0 +1,23 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Message from ${template.userGroup.company.effectiveName}</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p>
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				${template.userGroup.company.effectiveName} sent a message to members of the Talent Pool <em>${template.userGroupName}</em>:<br/>
+				<br/>
+			</p>
+
+			<p style="margin: 20px;padding:20px;background-color: #f5f5f5;">
+				#set( $rawMessage = $display.br($escape.html($template.message)) )
+				<em>Subject: ${template.title}</em>
+				<br/>
+				<br/>
+				<em>${rawMessage}</em>
+			</p>
+
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

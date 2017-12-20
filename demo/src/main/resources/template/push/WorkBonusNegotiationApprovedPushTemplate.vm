@@ -1,0 +1,4 @@
+{
+"message": "Bonus request for assignment: ${template.workTitle} has been approved",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

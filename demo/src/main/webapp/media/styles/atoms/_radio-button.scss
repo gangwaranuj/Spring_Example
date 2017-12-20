@@ -1,0 +1,37 @@
+.radio-button {
+	overflow: hidden;
+	margin-bottom: 0.5em;
+
+	input {
+		display: none;
+	}
+
+	&--skin {
+		display: block;
+		float: left;
+		width: 1em;
+		height: 1em;
+		margin: 0 auto;
+		border: 2px solid $dark-grey;
+		@include circle;
+		position: relative;
+		cursor: pointer;
+
+		&:after {
+			opacity: 0;
+			content: "";
+			display: block;
+			position: absolute;
+			background-color: $green;
+			font-size: 0.5em;
+			@include circle;
+			width: 1em;
+			height: 1em;
+			margin: 0.3em;
+
+			input:checked + & {
+				opacity: 1;
+			}
+		}
+	}
+}

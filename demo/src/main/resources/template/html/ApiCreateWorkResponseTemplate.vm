@@ -1,0 +1,16 @@
+#if ($hasErrors)
+	<h3 style="color: red">Error: assignment creation failed.</h3>
+	<ul>
+		#foreach ($error in $apiResponse.meta.errors)
+			<li><span style="color: red">$error.message</span></li>
+		#end
+	</ul>
+#else
+	<h3>Assignment creation successful</h3>
+	<p>
+		View assignment <a href="$apiResponse.response.requestURL/assignments/details/$apiResponse.response.id">here</a>
+	</p>
+	<p>
+		Edit assignment <a href="$apiResponse.response.requestURL/assignments/edit/$apiResponse.response.id">here</a>
+	</p>
+#end

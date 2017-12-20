@@ -1,0 +1,301 @@
+import React from 'react';
+import { Map } from 'immutable';
+import PropTypes from 'prop-types';
+import Radium from 'radium';
+import {
+	commonStyles,
+	WMAutocompleteChips,
+	WMCheckbox,
+	WMFormRow,
+	WMMenuItem,
+	WMFontIcon,
+	WMPaper,
+	WMSubHeader,
+	WMRadioButton,
+	WMRadioButtonGroup,
+	WMRaisedButton,
+	WMSelectField,
+	WMSelectFieldChips,
+	WMStackedMenuItem,
+	WMTextField
+} from '@workmarket/front-end-components';
+import ManageStyles from '../../styles/manage';
+
+const { baseColors } = commonStyles.colors;
+
+const TalentPoolCreateForm = ({
+	onFetchSkill,
+	onChangeField,
+	onChangeSkillsField,
+	onRemoveSkillsField,
+	onSubmitTalentPoolForm,
+	onCloseDrawer,
+	onRemoveOrgUnit,
+	talentPoolFormData,
+	enableOrgStructures,
+	defaultOrgUnitUuid,
+}) => {
+	const industryElements = talentPoolFormData.get('industries').toArray()
+		.map(industryMap => (
+			<WMMenuItem
+				key={ industryMap.get('id') }
+				value={ industryMap.get('id') }
+				primaryText={ industryMap.get('name') }
+			/>
+	));
+
+	let availableOrgUnits = null;
+	let orgUnitElements = null;
+	let orgUnitChips = null;
+	if (enableOrgStructures) {
+		availableOrgUnits = talentPoolFormData.get('orgUnits');
+
+		orgUnitElements = availableOrgUnits
+			.map(orgUnitMap => {
+				const orgUnitUuid = orgUnitMap.get('uuid');
+				const pathDelimiter = ' > ';
+				const orgUnitPath = orgUnitMap.get('paths');
+				const menuItemSecondaryText = orgUnitPath && orgUnitPath.size ?
+					orgUnitPath.join(pathDelimiter).concat(pathDelimiter) : null;
+				return <WMStackedMenuItem
+					disabled={ orgUnitUuid === defaultOrgUnitUuid }
+					key={ orgUnitUuid }
+					value={ orgUnitUuid }
+					primaryText={ orgUnitMap.get('name') }
+					secondaryText={ menuItemSecondaryText }
+				/>
+			});
+
+		orgUnitChips = talentPoolFormData.get('orgUnitUuids')
+			.map(orgUnitId => {
+				const orgUnit = availableOrgUnits.find(it => it.get('uuid') === orgUnitId);
+				return orgUnit ? {
+					id: orgUnit.get('uuid'),
+					label: orgUnit.get('name'),
+					value: orgUnit.get('uuid'),
+					meta: orgUnit.get('uuid'),
+					isSticky: orgUnit.get('uuid') === defaultOrgUnitUuid
+				} : null;
+			}).filter(Boolean);
+	}
+
+	const ownerElements = talentPoolFormData.get('owners').toArray().map(owner => (
+		<WMMenuItem key={ owner[0] } value={ owner[0] } primaryText={ owner[1] } />
+	));
+	return (
+		<div style={ ManageStyles.drawerContainer }>
+			<div style={ ManageStyles.drawerCreateHeader } >
+				<WMSubHeader
+					inset={ false }
+				>
+					<h2 style={ { float: 'left', color: baseColors.white, position: 'absolute', bottom: '17%' } }>
+						Create Talent Pool
+					</h2>
+					<div
+						style={ { float: 'right', cursor: 'pointer', paddingTop: '0.5em' } }
+						onClick={ () => onCloseDrawer() }
+					>
+						<WMFontIcon
+							id="talent-pool-drawer-close"
+							className="material-icons"
+							style={ { margin: '0.75em' } }
+							color={ baseColors.white }
+						>
+							&#xE14C;
+						</WMFontIcon>
+					</div>
+					<div style={ { clear: 'both' } } />
+				</WMSubHeader>
+			</div>
+
+			<div style={ ManageStyles.drawerCreateBody }>
+				<WMPaper
+					style={ { padding: '1em' } }
+				>
+					<form>
+						<WMFormRow
+							labelText="Name"
+							id="name"
+							required
+						>
+							<WMTextField
+								name="name"
+								fullWidth
+								onChange={ (event, value) => onChangeField('name', value) }
+							/>
+						</WMFormRow>
+
+						{ talentPoolFormData.get('openMembership') === 'false' ? null :
+						<WMFormRow
+							labelText="Industry"
+							id="industry"
+							required
+						>
+							<WMSelectField
+								onChange={ (event, index, value) => onChangeField('industryId', value) }
+								fullWidth
+								name="industry"
+								value={ talentPoolFormData.get('industryId') }
+							>
+								{ industryElements }
+							</WMSelectField>
+						</WMFormRow>
+						}
+
+						{ enableOrgStructures &&
+						<WMFormRow
+							labelText="Org Units"
+							id="orgunits"
+							required
+						>
+							<WMSelectFieldChips
+								chips={ orgUnitChips }
+								fullWidth
+								name="orgunits"
+								onChange={ (event, index, value) => onChangeField('orgUnitUuids', value) }
+								onRemoveChip={ onRemoveOrgUnit }
+							>
+								{ orgUnitElements }
+							</WMSelectFieldChips>
+						</WMFormRow>
+						}
+
+						<WMFormRow
+							labelText="Skills"
+							id="skills"
+						>
+							<WMAutocompleteChips
+								chips={ talentPoolFormData.get('skills') }
+								chipLabelKey={ 'name' }
+								chipMetaKey={ 'id' }
+								dataSource={ talentPoolFormData.get('suggestedSkills').toJS() }
+								dataSourceConfig={ { text: 'name', value: 'id' } }
+								hintText="Type Skill..."
+								name="skills"
+								onUpdateInput={ event => onFetchSkill(event) }
+								onAddChip={ value => onChangeSkillsField(value) }
+								onRemoveChip={ metaKey => onRemoveSkillsField(metaKey) }
+								readOnly={ talentPoolFormData.get('autoGenerated') || talentPoolFormData.get('readOnly') }
+								style={ { color: 'blue', flex: '1' } }
+							/>
+						</WMFormRow>
+
+						<WMFormRow
+							labelText="Owner"
+							id="owner"
+							required
+						>
+							<WMSelectField
+								onChange={ (event, index, value) => onChangeField('groupOwner', value) }
+								fullWidth
+								name="owner"
+								value={ talentPoolFormData.get('groupOwner') }
+							>
+								{ ownerElements }
+							</WMSelectField>
+						</WMFormRow>
+
+						<WMFormRow
+							labelText="Description"
+							id="description"
+							required
+						>
+							<WMTextField
+								name="description"
+								fullWidth
+								multiLine
+								onChange={ (event, value) => onChangeField('description', value) }
+								style={ { marginBottom: '1em' } }
+							/>
+						</WMFormRow>
+
+						<WMFormRow
+							labelText="Type"
+							id="type"
+							required
+						>
+							<WMRadioButtonGroup
+								name="openMembership"
+								onChange={ (event, value) => onChangeField('openMembership', value) }
+								valueSelected={ talentPoolFormData.get('openMembership') }
+							>
+								<WMRadioButton
+									name="openMembership"
+									label="Visible to workers (public)"
+									value="true"
+								/>
+
+								<WMRadioButton
+									name="openMembership"
+									label="Only visible to my company (private)"
+									value="false"
+									style={ { marginBottom: '1em' } }
+								/>
+							</WMRadioButtonGroup>
+						</WMFormRow>
+
+						{ talentPoolFormData.get('openMembership') === 'false' ? null :
+						<WMFormRow
+							labelText="Public Options"
+							id="public-options"
+						>
+							<div>
+								<WMCheckbox
+									name="requiresApproval"
+									id="requiresApproval"
+									label="Review Applicants Manually"
+									onCheck={ (event, value) => onChangeField('requiresApproval', value) }
+									checked={ talentPoolFormData.get('requiresApproval') }
+									disabled={ talentPoolFormData.get('openMembership') === 'false' }
+								/>
+								<WMCheckbox
+									name="searchable"
+									id="searchable"
+									label="Allow workers to discover Talent Pool in marketplace"
+									onCheck={ (event, value) => onChangeField('searchable', value) }
+									checked={ talentPoolFormData.get('searchable') }
+									style={ { marginBottom: '1em' } }
+									disabled={ talentPoolFormData.get('openMembership') === 'false' }
+								/>
+							</div>
+						</WMFormRow>
+						}
+
+						<div style={ { flexDirection: 'row-reverse', display: 'flex' } }>
+							<WMRaisedButton
+								label="Create Talent Pool"
+								style={ { margin: '1em 0 0 1em' } }
+								backgroundColor={ baseColors.green }
+								labelColor={ baseColors.white }
+								id="saveTalentPool"
+								onClick={ () => { onSubmitTalentPoolForm(talentPoolFormData.toObject()); } }
+							/>
+
+							<WMRaisedButton
+								label="Cancel"
+								style={ { marginTop: '1em' } }
+								labelColor={ baseColors.blue }
+								onClick={ () => onCloseDrawer() }
+								id="cancelTalentPoolCreate"
+							/>
+						</div>
+					</form>
+				</WMPaper>
+			</div>
+		</div>
+	);
+};
+export default Radium(TalentPoolCreateForm);
+
+TalentPoolCreateForm.propTypes = {
+	onFetchSkill: PropTypes.func.isRequired,
+	onChangeField: PropTypes.func.isRequired,
+	onChangeSkillsField: PropTypes.func.isRequired,
+	onRemoveSkillsField: PropTypes.func.isRequired,
+	onSubmitTalentPoolForm: PropTypes.func.isRequired,
+	onCloseDrawer: PropTypes.func.isRequired,
+	onRemoveOrgUnit: PropTypes.func,
+	talentPoolFormData: PropTypes.instanceOf(Map).isRequired,
+	enableOrgStructures: PropTypes.bool,
+	defaultOrgUnitUuid: PropTypes.string
+};

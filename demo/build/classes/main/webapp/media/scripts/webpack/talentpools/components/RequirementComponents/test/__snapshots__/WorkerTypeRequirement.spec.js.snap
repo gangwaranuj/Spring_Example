@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WorkerTypeRequirement /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMFormRow
+  id="requirements-workerType"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <WMSelectField
+      fullWidth={true}
+      hintText="Select a worker type"
+      name="workerType"
+      onChange={[Function]}
+      valid={true}
+      value={null}
+    >
+      <WMMenuItem
+        primaryText="Employee"
+        value={1}
+      />
+      <WMMenuItem
+        primaryText="Contractor"
+        value={2}
+      />
+    </WMSelectField>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        disabled={true}
+        label="Add this requirement"
+        onClick={[Function]}
+        secondary={true}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </div>
+</WMFormRow>
+`;

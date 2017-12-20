@@ -1,0 +1,66 @@
+$good-scorecard: $green;
+$neutral-scorecard: $blue;
+$bad-scorecard: $red;
+
+.scorecard {
+	font-family: $body-font;
+	margin: 1.4em;
+	.member-since {
+		float:right;
+		color: darken($light-grey, 15%);
+		font-size: 85%;
+		font-style: italic;
+	}
+	ul {
+		list-style: none;
+		margin: 0;
+		li {
+			display: inline-block;
+			padding: 0.5em 1em 0.5em 0.7em;
+			background: $white;
+			margin-left: -4px;
+			color: $charcoal-grey;
+			a {
+				color: #429ecb; //TODO: This is the new blue, we don't have old styles here yet.
+				&:hover {
+					color: #429ecb;
+					font-style: italic;
+					text-decoration: none;
+				}
+			}
+			.label {
+				vertical-align: top;
+				text-rendering: geometricPrecision;
+				text-align: center;
+				font-weight: bold;
+				font-size: .9em;
+				-webkit-font-smoothing: antialiased;
+				-webkit-text-stroke: $white 0.3px;
+				&.-detail-page{
+					width:90px;
+				}
+				&.-good {
+					background-color: $good-scorecard;
+				}
+				&.-neutral {
+					background-color: $neutral-scorecard;
+					color: $white;
+					text-shadow: none;
+					-webkit-text-stroke: initial;
+				}
+				&.-bad {
+					background-color: $bad-scorecard;
+				}
+			}
+		}
+		li:first-child {
+			border-top-left-radius: 3px;
+			border-bottom-left-radius: 3px;
+			margin-right: 5px;
+		}
+		li:last-child {
+			border-top-right-radius: 3px;
+			border-bottom-right-radius: 3px;
+		}
+	}
+}

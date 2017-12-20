@@ -1,0 +1,9 @@
+.wm-action-container {
+	border-radius: $base-border-radius;
+	margin: 1em 0;
+	padding: 1em;
+	border: $default-border;
+	text-align: right;
+	background-color: $off-white;
+	.button { margin: -0.25em 0.1em 0; }
+}

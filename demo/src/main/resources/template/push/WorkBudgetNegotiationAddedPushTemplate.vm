@@ -1,0 +1,4 @@
+{
+"message": "The budget for assignment: ${template.workTitle} has been increased",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

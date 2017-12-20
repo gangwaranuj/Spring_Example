@@ -1,0 +1,1 @@
+<a class="error-upload" data-message="${template.errorMessages}">There were errors in your upload request. Click here for details.</a>

@@ -1,0 +1,40 @@
+// Remove the "Powered by Google" trademark
+.pac-container::after { display: none; }
+
+.pac-item-selected {
+	color: #111111;
+
+	span { color: black; }
+
+	.pac-icon-marker {
+		width: 18px;
+		height: 22px;
+		opacity: 1;
+		margin-right: 7px;
+		display: inline-block;
+		background: url("images/public/pin.svg") no-repeat !important;
+		background-size: 20px;
+	}
+}
+
+.hdpi .pac-icon,
+.pac-icon {
+	width: 1.5em;
+	height: 1.5em;
+	opacity: 0.4;
+	background: url("images/public/pin_gray.svg") no-repeat center;
+	background-size: contain;
+
+	.pac-item-selected & {
+		display: none;
+		opacity: 1;
+		background: url("images/public/pin.svg") no-repeat center;
+		background-size: contain;
+	}
+}
+
+// For ensuring google's autocomplete places dropdown is placed in front of its
+// colorbox
+.pac-container {
+	z-index: $google-autocomplete-z-index;
+}

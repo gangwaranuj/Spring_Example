@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		@page {
+			margin: 18em 4em 10em 4em;
+
+		@top-center {content: element(header);}
+		@bottom-center {content: element(footer);}
+			}
+
+		body { font-family: sans-serif; font-size: 10pt; margin: 0 0.1em 2em; }
+
+		header { position: running(header); }
+
+		footer { position: running(footer); }
+
+		img { align: center; }
+	</style>
+</head>
+<body>
+
+<header>
+	<img src="${template.sterlingLogoUrl}"></img>
+</header>
+
+	#foreach($evidenceReport in $template.evidenceReports)
+	<h3>$date.get('MM/dd/yyyy')</h3>
+
+	<h3>${evidenceReport.firstName} ${evidenceReport.lastName}</h3>
+
+	<br/><br/>
+
+	<p>
+		This letter is to certify that ${evidenceReport.firstName} ${evidenceReport.lastName} has successfully passed
+		the national criminal background check conducted by STERLING BACKCHECK, INC. </p>
+
+	<p>The background check was completed on $date.format("MM/dd/yyyy",${evidenceReport.responseDate}) and no adverse information was found.</p>
+
+	<p>If you would like further details regarding the scope of the check conducted, please contact ${evidenceReport.firstName} ${evidenceReport.lastName}.</p><br/><br/>
+
+	<p>THANK YOU,</p>
+
+	<p>STERLING BACKCHECK, INC</p>
+	#end
+</body>
+</html>

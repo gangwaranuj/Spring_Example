@@ -1,0 +1,8 @@
+Work still available:
+${template.work.title} - 
+${template.address} (${template.distanceInMilesToWork} miles) - 
+${template.date} -
+#if ($showPrice)
+${template.price} -
+#end
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

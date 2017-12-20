@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/groups/${template.userGroup.id}#messages">${template.userGroup.company.effectiveName} sent a message to members of talent pool <em>${template.userGroupName}</em></a>

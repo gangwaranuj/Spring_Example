@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+        <![CDATA[
+		    Hello ${toUser.firstName}, this is WorkMarket calling about your upcoming assignment.
+		    Please visit ${baseurl} to confirm assignment ID ${template.work.workNumber}.
+		    Thanks and Good bye.
+        ]]>
+	</Say>
+</Response>

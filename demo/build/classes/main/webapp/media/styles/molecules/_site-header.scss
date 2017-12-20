@@ -1,0 +1,419 @@
+// Variables
+$header-darken-transition-duration: 0.4s;
+
+// Helpers
+%header-side-right-text {
+	font-size: 0.8em;
+	margin: 1.6em 0.5em 0;
+	float: right;
+}
+
+@mixin header-side-right {
+	float: right;
+	position: relative;
+
+	&:hover .dropdown-menu { display: block; }
+
+	.dropdown-container {
+		position: absolute;
+		right: 0;
+		top: 100%;
+		padding-top: 2em;
+		margin-top: -1.5em;
+	}
+	.dropdown-menu {
+		font-size: 1rem;
+		display: none;
+		position: static;
+		background-color: $dark-grey;
+		padding: 0;
+		overflow: hidden;
+		max-width: none;
+
+		li {
+			font-size: 0.8em;
+			border-top: 1px solid darken($grey, 10%);
+			border-bottom: 1px solid lighten(#111111, 20%);
+			overflow: hidden;
+
+			&:first-child { border-top: none; }
+			&:last-child { border-bottom: none; }
+			&.dropdown-menu--header,
+			&.dropdown-menu--footer {
+				padding: 0.5em 1em;
+
+				a {
+					padding: 0;
+
+					&:hover { text-decoration: underline; }
+				}
+			}
+			&:not(.dropdown-menu--header):not(.dropdown-menu--footer) {
+				a {
+					text-decoration: none;
+
+					&:hover {
+						text-decoration: none;
+						background-color: $grey;
+						background-image: none;
+					}
+				}
+			}
+			a {
+				&:hover, &:focus {
+					background-color: inherit;	// legacy
+					background-image: none;		// legacy
+
+					[class^="icon-"], [class*=" icon-"] {
+						background-image: none;		// legacy
+					}
+				}
+			}
+		}
+		a {
+			color: $white;
+			clear: none;
+			padding: 0.5em 1em;
+			white-space: normal;
+			@include transform(translateZ(1px));
+		}
+		.meta {
+			float: right;
+			margin: -1.7em 1em 0 0;
+			@include transform(translateZ(-1px));
+		}
+	}
+	.triangle {
+		content: '';
+		display: block;
+		width: 0;
+		height: 0;
+		border-left: 0.4rem solid transparent;
+		border-right: 0.4rem solid transparent;
+		border-top: 0.4rem solid $dark-grey;
+		margin: 0.7em auto 0;
+		opacity: 0.7;
+	}
+}
+
+.site-header {
+	@include reset-box-sizing;
+	font-size: 1rem;
+	line-height: 1;
+	position: fixed;
+	z-index: $header-index;
+	top: 0;
+	background-color: $dark-grey;
+	color: $grey;
+	width: 100%;
+	min-width: 960px;
+	height: $site-header-height;
+	-webkit-font-smoothing: antialiased;
+	@include transform(translateZ(0));
+
+	& > * { @include transition(opacity $header-darken-transition-duration); }
+
+	.search {
+		float: left;
+		font-size: 0.8em;
+		margin: 0.6em 0 0 2em;
+		width: 20em;
+
+		&::before {
+			@include icon(search);
+		}
+		&--input[type="text"] {
+			padding: 0 0 0 2.2em;
+			line-height: 1.5;
+
+			@include placeholder {
+				font-size: 1em;
+			}
+
+			&:focus {
+				background-color: $white;
+			}
+		}
+
+		@media only screen and (max-width: 75em) {
+			margin-left: 0;
+			width: 15em;
+		}
+	}
+	.company-logo {
+		width: 6em;
+		height: 5em;
+		background-color: $white;
+		border: 1px solid #e3e3e3;
+		border-radius: $base-border-radius;
+		background-clip: padding-box;
+	}
+	.site-header--home {
+		color: inherit;
+		display: block;
+		text-decoration: none;
+	}
+
+	// Quarks
+	// Should be put into quarks directory, but we need to scope this
+	// until we have the entire site redesigned
+	a {
+		&:focus {
+			outline: none;
+		}
+	}
+
+	&--uploader {
+		@extend %header-side-right-text;
+		color: $white;
+
+		.upload_progress_label {
+			float: left;
+			@media only screen and (max-width: 90em) {
+				display: none;
+			}
+		}
+
+		.progress {
+			float: right;
+			width: 5em;
+			margin-top: -6px;
+		}
+	}
+	&--contact {
+		@extend %header-side-right-text;
+		margin-top: 1.25em;
+		@include header-side-right;
+
+		> .dropdown-container {
+			right: -6em;
+		}
+		.wm-icon-headset {
+			color: $light-grey;
+			font-size: 1.25em;
+		}
+		.highlight {
+			color: $white;
+		}
+		.triangle {
+			margin-top: 1em;
+		}
+	}
+	&--profile-prompt {
+		@extend %header-side-right-text;
+		margin-top: 1.25em;
+	}
+	&--home {
+		font-size: 1.49em;
+		float: left;
+		width: 1em;
+		height: 1em;
+		margin: .364em 1em 0;
+		color: $white;
+
+		&:hover,
+		&:focus,
+		&.active {
+			color: $orange;
+			text-decoration: none;
+		}
+	}
+	&--find-work {
+		@extend %header-side-right-text;
+		color: $white;
+
+		&:hover { color: $orange; }
+	}
+	&--profile {
+		@include header-side-right;
+		margin: 0.6em 2em -1em 0;
+
+		.triangle { margin-top: 0.2em; }
+		.persona-toggle-container { padding: 0.5em 0; }
+		.persona-toggle {
+			i { display: inline-block; }
+			&.active { color: $orange; }
+		}
+	}
+	&--profile-image {
+		margin-top: -0.2em;
+		border: 1px solid $white;
+		border-radius: $base-border-radius;
+		background-clip: padding-box;
+		color: #111111;
+		overflow: hidden;
+
+		.-worker & { @include circle; }
+
+		.wm-avatar {
+			font-size: 3em;
+		}
+
+		.wm-icon-user {
+			&::before { background-color: #D4D4DC; }
+		}
+	}
+	&--feedback {
+		@extend %header-side-right-text;
+
+		img { display: block; }
+	}
+	&--notifications {
+		@include header-side-right;
+		fill: $white;
+		margin: 0.8em 1em 0;
+
+		font-size: 1rem;
+
+		> .dropdown-container {
+			right: -8.0em;
+		}
+		.icon-bullhorn {
+			float: left;
+			margin: -0.3em -0.3em;
+			width: 1.8em;
+			height: 1.8em;
+		}
+		.icon-bullhorn--handle {
+			fill: $light-grey;
+		}
+		.icon-bullhorn--border {
+			fill: $dark-grey;
+		}
+		.dropdown-menu {
+			min-width: 20em;
+
+			#notification_status {
+				margin-left: 5px;
+			}
+			li:not(.dropdown-menu--header):not(.dropdown-menu--footer) {
+				&:hover {
+					background-color: $grey;
+				}
+			}
+			a {
+				padding-bottom: 2em;
+			}
+			[class*="span"] {
+				min-height: 0;
+			}
+		}
+		.count {
+			float: left;
+		}
+		.number {
+			font-size: 0.9em;
+			line-height: 1;
+			padding: 0.3em 0.5em;
+			background-color: $green;
+			color: $white;
+			font-weight: bold;
+			border-radius: $base-border-radius;
+			background-clip: padding-box;
+		}
+		.triangle {
+			clear: both;
+		}
+		.no-notifications {
+			text-align: center;
+		}
+		.wm-spinner {
+			display: block;
+			margin: 1em auto;
+		}
+	}
+	&--breadcrumb {
+		color: $white;
+		left: 33%;
+		margin: 1em 0 0;
+		position: absolute;
+		text-align: center;
+		width: 33%;
+		z-index: -1;
+
+		a {
+			display: inline-block;
+			color: $orange !important;
+		}
+
+		@media only screen and (max-width: 75em) {
+			left: 25%;
+		}
+	}
+	&--company-name {
+		color: $white;
+		float: left;
+		margin: .8em 0 0;
+		max-width: 10em;
+		overflow: hidden;
+		padding-bottom: 0.1em; // overflow will cut off hanging letters
+		text-overflow: ellipsis;
+		text-transform: capitalize;
+		white-space: nowrap;
+
+		@media only screen and (max-width: 75em) {
+			display: none;
+		}
+	}
+	&--funds {
+		@extend %header-side-right-text;
+		position: relative;
+		margin: 1.5em 2em;
+
+		.wm-icon-payments {
+			display: block;
+			position: absolute;
+			border: 1px solid $green;
+			@include circle;
+			padding: 1px;
+			box-shadow: 0 0 1px 0 #111111;
+			background-color: $dark-grey;
+			width: 1em;
+			height: 1em;
+
+			&::before { font-size: 0.7em; }
+			&:first-child {
+				left: -1.5em;
+				top: 0;
+				color: $light-grey;
+			}
+			& + .wm-icon-payments {
+				left: -1em;
+				top: -0.8em;
+				color: $white;
+			}
+		}
+		#available-funds {
+			color: $light-grey;
+			text-decoration: none;
+		}
+	}
+}
+
+#navbar .nav .dropdown-menu {
+	@include nice-webkit-text;
+
+	.perform-work-toggle { overflow: hidden; }
+	.wm-icon-checkmark,
+	.wm-icon-user {
+		display: none;
+		color: $orange;
+		height: 1em;
+		width: 1em;
+	}
+	.wm-icon-assignments { display: inline-block; }
+	.active {
+		color: $orange;
+
+		&:hover,
+		&:active {
+			color: lighten($orange, 15%);
+
+			.wm-icon-checkmark,
+			.wm-icon-user { color: lighten($orange, 15%); }
+		}
+
+		.wm-icon-checkmark,
+		.wm-icon-user { display: inline-block; }
+	}
+}

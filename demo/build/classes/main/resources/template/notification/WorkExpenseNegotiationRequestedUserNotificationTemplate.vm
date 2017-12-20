@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">${template.negotiation.requestedBy.fullName} requested an Expense Reimbursement for assignment: ${template.workTitle}</a>

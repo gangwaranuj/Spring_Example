@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DrugTestRequirement /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMFormRow
+  id="requirement__drugtest"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "row-reverse",
+      }
+    }
+  >
+    <WMRaisedButton
+      label="Add this requirement"
+      onClick={[Function]}
+      secondary={true}
+      style={
+        Object {
+          "margin": "1em 0 0 1em",
+        }
+      }
+    />
+  </div>
+</WMFormRow>
+`;

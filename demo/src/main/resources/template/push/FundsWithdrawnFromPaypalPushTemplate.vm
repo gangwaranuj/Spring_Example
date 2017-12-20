@@ -1,0 +1,4 @@
+{
+"message": "Funds withdrawn from your account to your Paypal account: ${number.currency($template.transaction.amount)}",
+"action": ""
+}

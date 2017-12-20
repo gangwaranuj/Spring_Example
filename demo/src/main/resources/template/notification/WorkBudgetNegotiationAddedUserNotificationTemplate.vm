@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">The budget for assignment: ${template.workTitle} has been increased</a>

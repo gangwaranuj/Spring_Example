@@ -1,0 +1,17 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve">
+<g>
+	<g>
+		<circle fill="#FFFFFF" cx="11.5" cy="13.5" r="10.5"/>
+	</g>
+	<g opacity="0.5">
+		<path fill="#CB3639" d="M11.5,4c5.2,0,9.5,4.3,9.5,9.5S16.7,23,11.5,23S2,18.7,2,13.5S6.3,4,11.5,4 M11.5,3C5.7,3,1,7.7,1,13.5
+			S5.7,24,11.5,24S22,19.3,22,13.5S17.3,3,11.5,3L11.5,3z"/>
+	</g>
+	
+		<line fill="none" stroke="#CB3639" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="8.5" y1="16.5" x2="14.5" y2="10.5"/>
+	
+		<line fill="none" stroke="#CB3639" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" x1="14.5" y1="16.5" x2="8.5" y2="10.5"/>
+</g>
+<g id="guide" opacity="0.5"></g>
+</svg>

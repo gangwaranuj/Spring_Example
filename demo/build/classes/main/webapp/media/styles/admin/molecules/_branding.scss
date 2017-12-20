@@ -1,0 +1,105 @@
+.branding {
+	width: 60%;
+	min-width: 640px;
+	padding: 30px;
+	margin: 2em 0em 2em 26em;
+	border: 2px solid $orange;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	font-family: 'Open Sans';
+	background-color: $white;
+
+	img {
+		width: 200px;
+		margin-bottom: 1em;
+	}
+
+	h3 {
+		color: $orange;
+	}
+
+	li {
+		font-size: 1.3em;
+		line-height: 1.2em;
+	}
+
+	p {
+		color: $grey;
+		font-size: 1.3em;
+		line-height: 1.2em;
+	}
+
+	ul {
+		color: $grey;
+	}
+}
+
+
+.text {
+	display: inline-block;
+}
+
+.orange-top {
+	background-color: $orange;
+	width: 60%;
+	padding: 30px;
+	margin: 2em 0em 2em 26em;
+	min-width: 640px;
+	border: 2px solid $white;
+	border-radius: 6px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	font-family: 'Open Sans';
+
+	img {
+		width: 200px;
+		margin-bottom: 1em;
+		padding-top: 3px;
+	}
+
+	h3 {
+		color: $white;
+		font-size: 2.3em;
+		padding-bottom: 10px;
+		display: block;
+	}
+
+	p {
+		color: $white;
+		font-size: 1.7em;
+		line-height: 1.2em;
+	}
+
+	h2 {
+		color: $white;
+		display: inline-block;
+		vertical-align: top;
+		font-style: italic;
+		float: right;
+		font-size: 2em;
+		padding-right: 1em;
+	}
+}
+
+.new-relic-container {
+	margin-left: 7.5em;
+	width: 65%;
+	border: 2px solid $orange;
+	-webkit-border-radius: 6px;
+}
+
+.freeze-sidebar {
+	position: absolute;
+	margin-left: 2em;
+	margin-top: 1em;
+}
+
+.branding-image {
+	background-size: cover;
+	background-position: center center;
+	background-image: url('images/backgrounds/marketplace_wm.jpg');
+	background-repeat: no-repeat;
+	margin: -2em -2em -8em;
+	padding: 4em;
+}

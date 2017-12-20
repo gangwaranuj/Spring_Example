@@ -1,0 +1,13 @@
+.page-dashboard-map {
+	@include scaffolding;
+	@include new-form-textarea;
+	@include new-form-inputs;
+
+	.map-canvas {
+		margin: 4em;
+		padding: 0;
+		height: 35em;
+		width: 90%;
+		img { max-width: none; }
+	}
+}

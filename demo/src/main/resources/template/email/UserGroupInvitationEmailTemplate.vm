@@ -1,0 +1,45 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Talent Pool Invitation: ${template.userGroupName}</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				#if($template.vendorInvitation)
+					#set($target = "your company")
+				#else
+					#set($target = "you")
+				#end
+				#if($template.userGroup.requiresApproval)
+					#set($action = "apply to")
+				#else
+					#set($action = "join")
+				#end
+				${template.userGroup.company.effectiveName} has invited ${target} to ${action} the talent pool:<br/>
+				<br/>
+				<strong>${template.userGroupName}</strong><br/>
+				#set( $rawDescription = $display.br($template.userGroup.description) )
+				${rawDescription}
+			</p>
+			
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/groups/${template.userGroup.id}?login=$escape.url(${toUser.email})">View Talent Pool</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+
+			<p style="margin: 20px 0px 20px 0px">
+				<a href="${baseurl}/user/blockclient?user=${toUser.encryptedId}&client=${template.companyNumber}">Click here to stop receiving requests from ${template.userGroup.company.effectiveName}</a>. This includes assignments, talent pool and test invitations.
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

@@ -1,0 +1,31 @@
+%vendor-search-icons {
+	display: inline-block;
+	font-size: 0.8em;
+	margin-right: 0.5em;
+}
+
+.vendor-search-status {
+	.alert {
+		@include container;
+		padding: 1em 1em;
+	}
+	.wm-icon-x::before {
+		@extend %vendor-search-icons;
+		color: $red;
+	}
+	.wm-icon-checkmark::before {
+		@extend %vendor-search-icons;
+		color: $green;
+	}
+
+	&--requirements {
+		margin-left: 0;
+		margin-bottom: 1em;
+	}
+	&--list {
+		@include omega;
+	}
+	&--remove {
+		@include omega;
+	}
+}

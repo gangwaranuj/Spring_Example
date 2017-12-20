@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">A bonus has been added to assignment: ${template.workTitle}</a>

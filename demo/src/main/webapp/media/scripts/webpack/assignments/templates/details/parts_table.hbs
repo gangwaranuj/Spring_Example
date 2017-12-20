@@ -1,0 +1,43 @@
+<table class="parts-table {{#if this.isNotDraftOrSent}}-active-worker-exists{{/if}} {{#if this.isOwnerOrAdmin}}-is-company{{/if}}">
+	<thead>
+		<tr>
+			<th>Part Name</th>
+			<th>Tracking Number</th>
+			<th>Provider</th>
+			<th>Part Value</th>
+			<th>Status</th>
+		</tr>
+	</thead>
+	<tbody>
+	{{#each this.parts}}
+		<tr data-id="{{this.uuid}}">
+			<td class="tooltipped tooltipped-n" aria-label="{{this.name}}">{{this.displayName}}</td>
+			<td>
+				<a class="tooltipped tooltipped-n parts-table--tracking-label {{#[../../../helpers/eq] this.shippingProvider 'OTHER'}}-untracked{{/[../../../helpers/eq]}}"
+				   aria-label="{{#[../../../helpers/eq] this.shippingProvider 'OTHER'}}{{else}}View package on {{part.shippingProvider}} website{{/[../../../helpers/eq]}}"
+				   href="{{this.providerUrl}}" target="_blank">{{this.trackingNumber}}
+				</a>
+			</td>
+			<td class="_provider_ {{#if this.hasProviderIcon}}-{{[../../../helpers/lowerAndReplace] this.shippingProvider '_'}}{{/if}}{{#unless this.hasProviderIcon}}-untracked{{/unless}}">
+				{{> ../../../funcs/templates/icon name='fedex' active='true'}}
+				{{> ../../../funcs/templates/icon name='dhl' active='true'}}
+				{{> ../../../funcs/templates/icon name='usps' active='true'}}
+				{{> ../../../funcs/templates/icon name='ups' active='true'}}
+				{{> ../../../funcs/templates/icon name='truck'}}
+			</td>
+			 <td class="partValue">${{[../../../helpers/roundCurrency] this.partValue}}</td>
+			<td class="-status">
+				<span class="parts-table--tracking-status -{{[../../../helpers/lowerAndReplace] this.trackingStatus '-'}}">
+					{{[../../../helpers/lowerAndReplace] this.trackingStatus ' '}}
+				</span>
+				<i class="wm-icon-trash _remove_"></i>
+			</td>
+		</tr>
+	{{/each}}
+	</tbody>
+	<tfoot>
+	<tr class="parts-table--total-price">
+		<td colspan="4">Total: ${{this.totalPrice}}</td>
+	</tr>
+	</tfoot>
+</table>

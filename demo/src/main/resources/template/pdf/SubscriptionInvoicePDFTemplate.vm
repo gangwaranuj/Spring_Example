@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	#parse("template/email/partials/invoice-head.vm")
+<body>
+
+<header>
+	<table width="100%" style="padding-top:20px;">
+		<tr>
+			<td width="50%"><img src="${logoURL}"/></td>
+			<td width="50%" style="text-align: right;">
+				<div>
+					<h3>Bill to: ${template.invoice.company.effectiveName}</h3>
+						#set( $rawAddress = ${template.companyFormattedAddress} )
+						<br/>${rawAddress}
+				</div>
+			</td>
+		</tr>
+	</table>
+
+	<h3 style="color:#000000;">
+		#if(${template.invoice.subscriptionInvoiceType.code} == 'cancellation')
+			Cancellation
+		#end
+		#if(${template.invoice.subscriptionInvoiceType.code} == 'incremental')
+			Incremental
+		#end
+		Subscription Invoice
+		#if(${template.invoice.subscriptionInvoiceType.code} != 'cancellation')
+			for ${template.paymentPeriodFromDate} to ${template.paymentPeriodThroughDate}
+		#end
+	</h3>
+</header>
+
+<br/>
+<br/>
+<hr/>
+<table class="header">
+	<tr>
+		<th>Issue Date:</th>
+		<td>$date.format('MM/dd/yyyy', ${template.invoice.createdOn})</td>
+	</tr>
+	<tr>
+		<th>Due Date:</th>
+		<td>$date.format('MM/dd/yyyy', ${template.invoice.dueDate})</td>
+	</tr>
+	<tr>
+		<th>Invoice Number:</th>
+		<td>${template.invoice.invoiceNumber}</td>
+	</tr>
+	<tr>
+		<th>Amount Due:</th>
+		<td>$number.currency(${template.invoice.balance})</td>
+	</tr>
+
+	#if($template.invoice.clientRefId)
+		<tr>
+			<th>Client Ref ID:</th>
+			<td>${template.invoice.clientRefId}</td>
+		</tr>
+	#end
+
+</table>
+<hr/>
+
+<h4 style="padding:10px 0px 5px 0px">Invoice Details</h4>
+	#if(${template.invoice.subscriptionInvoiceType.code} == 'cancellation')
+	<p>Your subscription was cancelled on ${template.cancellationDate}</p>
+	#end
+	#if(${template.invoice.subscriptionInvoiceType.code} == 'incremental')
+	<!-- Your annual throughput on WorkMarket reached $xxxx dollars on MM/DD/YYYY. This amount exceeded your current subscription throughput range of $xxxx to $xxxx. As a result, your subscription's cost per period have increased from $xxxx to $xxxxx.<br/> -->
+	#end
+
+<table class="invoices">
+	<thead>
+	<tr>
+		<th>Description</th>
+		<th>Amount</th>
+	</tr>
+	</thead>
+	<tbody>
+		#foreach($lineItem in ${template.invoice.invoiceLineItems})
+		<tr>
+			<td>$lineItem.description</td>
+			<td>$number.currency($lineItem.amount)</td>
+		</tr>
+		#end
+
+		<!-- render credit memo part within the invoice -->
+		#if(${isCreditMemoIssuedForUnpaidInvoice})
+			<tr>
+				<td>${creditMemo.description}</td>
+                <td>-$number.currency(${creditMemo.balance})</td>
+			</tr>
+		#end
+	<tr>
+		<td><h3>Total</h3></td>
+        #if(${isCreditMemoIssuedForUnpaidInvoice})
+			<td><h3>$number.currency($math.sub(${creditMemo.balance}, ${template.invoice.balance}))</h3></td>
+		#else
+            <td><h3>$number.currency(${template.invoice.balance})</h3></td>
+		#end
+	</tr>
+	</tbody>
+</table>
+
+	#parse("template/email/partials/invoice-footer.vm")
+
+</body>
+</html>

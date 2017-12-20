@@ -1,0 +1,5 @@
+{
+"message": "Reschedule request for assignment: ${template.work.title} approved on your behalf by ${template.negotiation.requestedBy.fullName}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}
+

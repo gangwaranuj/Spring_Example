@@ -1,0 +1,44 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Welcome to WorkMarket</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+	<p style="margin: 10px 0px 0px 0px">
+		Hello ${toUser.firstName},<br/>
+	</p>
+
+	<p>Welcome to WorkMarket! We're excited to have you on the platform.</p>
+
+	<div style="font-weight: bold; font-size: 13px; border-bottom: 1px solid #ededed; background-color: #ffffff; padding: 4px 0;">Ready to send assignments? Here are a few steps to get started:  </div>
+
+	<ul style=" margin-left:-20px;">
+		<li><span style="font-weight: bold;">Build your Workforce</span>:
+			<a href="${baseurl}/invitations/send" style="text-decoration: none">Invite your existing contract workers</a> or <a href="${baseurl}/search" style="text-decoration: none">find new freelance workers</a> already part of our marketplace.</li><br/>
+
+		<li><span style="font-weight: bold;">Customize WorkMarket for your Business</span>:
+			<a href="${baseurl}/settings" style="text-decoration: none">Configure your settings</a> to create new templates, set up custom fields, and configure your assignment settings to meet your business needs.</li><br/>
+
+		<li><span style="font-weight: bold;">Fund your Account</span>:
+			<a href="${baseurl}/funds/add" style="text-decoration: none">Add funds</a> to send work now or link a <a href="${baseurl}/funds/accounts/new" style="text-decoration: none">bank account</a> and <a href="${baseurl}/settings/manage/paymenterms" style="text-decoration: none">set up payment terms</a>.</li>
+	</ul>
+
+	<p style="margin: 20px 0px">
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tbody>
+		<tr>
+			<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/">Log in to WorkMarket</a>
+
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</p>
+
+	<p style="font-size:11px; color: #717A82">
+		For general inquiries or to request support with your account, please visit our <a href="https://workmarket.zendesk.com/hc/en-us">help center</a> or call our support team at 212-229-WORK (9675).
+	</p>
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

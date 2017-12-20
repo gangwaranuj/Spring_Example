@@ -1,0 +1,17 @@
+@import "../utils/mixins/misc";
+
+@font-face {
+	font-family: "workmarket-custom";
+	src: url("WorkMarket-WebFont.eot");
+	src: url("WorkMarket-WebFont.woff") format("woff"),
+	url("WorkMarket-WebFont.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+$icons-custom: (
+	wm: '\e62a',
+	wm-filled: '\e62b'
+);
+
+@include wm-icon-iterator("workmarket-custom", $icons-custom);

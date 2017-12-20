@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">A expense reimbursement has been added to assignment: ${template.workTitle}</a>

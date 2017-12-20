@@ -1,0 +1,54 @@
+.page-profile {
+	@include scaffolding;
+	@include new-form-textarea;
+
+	.profile {
+		&--details {
+			min-height: 30em;
+		}
+		&--quick-actions {
+			margin-bottom: 1em;
+		}
+		&--quick-actions-close {
+			&, &:hover, &:active, &:visited {
+				color: $white;
+				text-decoration: none;
+			}
+		}
+	}
+
+	.user-profile.profile {
+		@include remove-from-network-button;
+		background: $white;
+		color: $grey;
+		min-width: 730px; //remove this when making it responsive
+		position: relative;
+
+		#tag_suggest {
+			height: 4em;
+			width: 100%;
+		}
+	}
+
+	.collapse--inner {
+		margin-bottom: 1em;
+	}
+
+	.user-team {
+		ul {
+			margin: 0;
+		}
+
+		.profile-card--secondary {
+			clear: left;
+		}
+	}
+}
+
+.qualifications-container{
+  min-height: 480px;
+}
+
+.qualifications-action {
+  margin-top: 140px
+}

@@ -1,0 +1,59 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Statement Available</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				Your Statement, ${template.statement.description}, is now available for you to review online. This Statement includes all your assignments that were approved during the statement period. To see your statement or download it as a PDF, please log in to your WorkMarket account.
+			</p>
+
+		  	<p style="margin: 0px 0px 20px 0px">
+		    	<table cellspacing="0" cellpadding="5"  style="border:1px solid #f5f5f5; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 11px; padding:0; border-collapse:collapse; width: 100%;">
+			    	<tbody>
+			        	<tr>
+							<td><strong>Issue Date: </strong></td>
+							<td>$date.format('EEE, d MMM yyyy', ${template.statement.createdOn})</td>        	
+						</tr>
+						<tr>
+							<td><strong>Due Date: </strong></td>
+							<td>$date.format('EEE, d MMM yyyy', ${template.statement.dueDate})</td>
+						</tr>
+						<tr>
+							<td><strong>Invoice Number: </strong></td>
+							<td>${template.statement.invoiceNumber}</td>
+						</tr>
+						<tr>
+							<td><strong>Balance: </strong></td>
+							<td>$$math.abs(${template.statement.balance})</td>
+						</tr>
+			    	</tbody>
+			    </table>
+		    </p
+
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/payments/invoices">View Statement</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+
+		    <p>
+		        Your Statement may be paid through the payment center if you have sufficient funds in your account. You may add funds via credit card, wire transfer, direct deposit or check.<br/>
+		        <br/>
+		        Sincerely,<br/>
+		        WorkMarket
+		    </p>
+
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

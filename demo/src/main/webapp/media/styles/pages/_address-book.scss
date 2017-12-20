@@ -1,0 +1,55 @@
+.page-address-book {
+	@include scaffolding;
+	@include new-form-inputs;
+
+	.wm-tabs {
+		float: left;
+	}
+	.wm-tab--content {
+		clear: both;
+	}
+	.clientFilter,
+	.groupFilter {
+		@include span(4);
+	}
+	.wm-spinner {
+		@include center;
+		font-size: 2em;
+	}
+	.button-group {
+		float: right;
+		margin-top: -5px;
+	}
+	.tab-content {
+		clear: both;
+	}
+	.tab-pane.-active {
+		display: block;
+	}
+	.wm-modal {
+		.phones {
+			&--main {
+				width: span(4);
+				display: inline-block;
+			}
+			&--ext {
+				width: span(1);
+				display: inline-block;
+			}
+		}
+	}
+	.map-controls {
+		display: flex;
+
+		.button {
+			margin-bottom: 1em;
+		}
+	}
+	.map-address {
+		@include span(3);
+		margin-left: auto;
+	}
+	.client-filter-contact {
+		margin-bottom: 0;
+	}
+}

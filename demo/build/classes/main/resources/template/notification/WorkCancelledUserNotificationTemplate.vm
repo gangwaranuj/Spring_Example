@@ -1,0 +1,5 @@
+<a href="/assignments/details/${template.work.workNumber}">Assignment cancelled: ${template.workTitle}
+#if ($showPricing && $template.work.fulfillmentStrategy.amountEarned)
+You will be paid ${number.currency($template.work.fulfillmentStrategy.amountEarned)}
+#end
+</a>

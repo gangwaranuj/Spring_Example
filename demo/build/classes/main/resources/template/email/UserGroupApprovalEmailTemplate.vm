@@ -1,0 +1,35 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Talent Pool Application Approved</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+			<p>
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				Congratulations! Your application to the following talent pool was approved:<br/>
+				${template.userGroupName}<br/>
+				<br/>
+			</p>
+
+			<p style="margin: 0px">
+				As a member, you may receive messages and assignments that are sent exclusively to this talent pool. You can leave the talent pool at any time for any reason by visiting the talent pool details page.
+			</p>
+
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/groups/${template.userGroup.id}">View Talent Pool</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>	
+
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

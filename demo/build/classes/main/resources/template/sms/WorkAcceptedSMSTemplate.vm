@@ -1,0 +1,8 @@
+Assignment Accepted: ${template.workTitle} -
+Assigned: ${template.resource.firstName} ${template.resource.lastName} - 
+Email: ${template.resource.email} - 
+#if ( ${template.resource.profile.workPhone} )
+Phone: ${template.resource.profile.workPhone} - 
+#end
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}
+

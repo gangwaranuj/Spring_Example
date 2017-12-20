@@ -1,0 +1,27 @@
+/////////////////////////////
+// Third Party Logo Styles //
+/////////////////////////////
+
+.third-party-logo {
+	background-size: 100%;
+	background-repeat: no-repeat;
+
+	&.-inline {
+		display: inline-block;
+		vertical-align: text-bottom;
+	}
+
+	&.-square {
+		width: #{$base-line-height}em;
+		height: #{$base-line-height}em;
+	}
+
+	// Partner specific
+	&.-intuit {
+		background-image: url('images/intuit.svg');
+	}
+
+	&.-intuit-qb {
+		background-image: url('images/intuit-qb.svg');
+	}
+}

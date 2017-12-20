@@ -1,0 +1,19 @@
+<div class="control-group">
+	<label for="distance" class="control-label">Distance</label>
+	<div class="controls">
+		<input id="distance" name="distance" type="number" min="0" step="5" class="input-block-level" />
+	</div>
+</div>
+<div class="control-group" id="travel_address">
+	<label for="addressTyper" class="control-label">Address</label>
+	<div class="controls">
+		<input id="addressTyper" type="text" placeholder="Address or Postal Code" class="input-block-level" />
+		<input path="address1" maxlength="255" id="address1" type="hidden"/>
+		<input path="city" maxlength="255" id="city" type="hidden"/>
+		<input path="state" maxlength="255" id="state" type="hidden"/>
+		<input path="postalCode" maxlength="11" id="postalCode" type="hidden"/>
+		<input path="country" maxlength="255" id="country" type="hidden"/>
+		<input path="longitude" maxlength="255" id="longitude" type="hidden"/>
+		<input path="latitude" maxlength="255" id="latitude" type="hidden"/>
+	</div>
+</div>

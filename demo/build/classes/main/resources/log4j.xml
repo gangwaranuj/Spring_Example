@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="trace" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d %t %-5p [%t] [%c.%M] %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="AdministratorEmail" class="org.apache.log4j.net.SMTPAppender">
+		<param name="BufferSize" value="512" />
+		<param name="SMTPHost" value="smtp" />
+		<param name="From" value="dev@workmarket.com" />
+		<param name="To" value="dev@workmarket.com" />
+		<param name="Subject" value="Production Tomcat Application Error" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error" />
+			<param name="LevelMax" value="fatal" />
+		</filter>
+	</appender>
+
+	<appender name="AdministratorQueueEmail" class="org.apache.log4j.net.SMTPAppender">
+		<param name="BufferSize" value="512" />
+		<param name="SMTPHost" value="smtp" />
+		<param name="From" value="dev@workmarket.com" />
+		<param name="To" value="dev@workmarket.com" />
+		<param name="Subject"
+			value="Production Tomcat - Queue Consumers Application Error" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error" />
+			<param name="LevelMax" value="fatal" />
+		</filter>
+	</appender>
+
+	<appender name="accountRegisterReconciliation" class="org.apache.log4j.FileAppender">
+		<param name="File" value="./logs/accountRegisterReconciliation.log" />
+		<param name="Append" value="false" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %5p[%d](%F:%L):: %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ROLLING_DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<!-- The active file to log to -->
+		<param name="file" value="${logger.debug.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="MaxBackupIndex" value="30" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<!-- The log message pattern -->
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+
+	<appender name="ROLLING_ERROR" class="org.apache.log4j.RollingFileAppender">
+		<!-- The active file to log to -->
+		<param name="file" value="${logger.error.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="MaxBackupIndex" value="30" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<!-- The log message pattern -->
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="jmsErrorLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.jmsError.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="analyticsLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.analytics.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+				<param name="MaxBackupIndex" value="30" />
+		<param name="MaxFileSize" value="10MB" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %-5p  %d{ISO8601} [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="transactionLog" class="org.apache.log4j.RollingFileAppender">
+			<param name="file" value="${logger.transactional.filename}" />
+			<param name="append" value="true" />
+			<param name="encoding" value="UTF-8" />
+			<param name="MaxFileSize" value="10MB" />
+			<layout class="com.workmarket.logging.ContextPatternLayout">
+					<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+			</layout>
+	</appender>
+
+	<appender name="apiLog" class="org.apache.log4j.RollingFileAppender">
+			<param name="file" value="${logger.api.filename}" />
+			<param name="append" value="true" />
+			<param name="encoding" value="UTF-8" />
+			<param name="MaxFileSize" value="10MB" />
+			<param name="MaxBackupIndex" value="30" />
+			<layout class="com.workmarket.logging.ContextPatternLayout">
+					<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+			</layout>
+	</appender>
+
+	<appender name="hacksLog" class="org.apache.log4j.RollingFileAppender">
+			<param name="file" value="${logger.hacks.filename}" />
+			<param name="append" value="true" />
+			<param name="encoding" value="UTF-8" />
+			<param name="MaxFileSize" value="10MB" />
+			<param name="MaxBackupIndex" value="30" />
+			<layout class="com.workmarket.logging.ContextPatternLayout">
+					<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+			</layout>
+	</appender>
+
+	<appender name="webHooksLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.webhooks.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="30" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="geocodeLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.geocode.filename}" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="MaxFileSize" value="10MB" />
+		<param name="MaxBackupIndex" value="30" />
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{yyyy.MM.dd/zzz HH:mm:ss.SSS} [%h] %p [%t]:%c{3}.%M()%L %X %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="com.workmarket.service.infra.interceptor.TransactionProfiler" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.transactional.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.infra.interceptor.EventRouterInterceptor" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.transactional.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.business.screening.SterlingScreeningServiceImpl" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.data.solr.indexer" additivity="false">
+			<level value="DEBUG" />
+			<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.search.cache" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.infra.jms.JmsExceptionListener" additivity="false">
+		<level value="ERROR" />
+		<appender-ref ref="${logger.jmsError.appender}" />
+	</logger>
+
+	<logger name="org.hibernate.engine.StatefulPersistenceContext.ProxyWarnLog">
+		<level value="ERROR" />
+		<appender-ref ref="${logger.error.appender}" />
+	</logger>
+
+	<logger name="accountRegisterReconciliationLog">
+		<level value="INFO" />
+		<appender-ref ref="accountRegisterReconciliation" />
+	</logger>
+
+	<logger name="com.workmarket.cmd" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<logger name="com.workmarket.service" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.thrift" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.web" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<!-- Upload related debug loggers -->
+	<logger name="com.workmarket.service.thrift" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.thrift.transactional" additivity="false">
+			<level value="INFO"/>
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.business.upload.transactional" additivity="false">
+			<level value="INFO"/>
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.web.controllers.assignments" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<!-- Request/response trace for Spring Web Services -->
+	<logger name="org.springframework.ws.client.MessageTracing.sent" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.api" additivity="false">
+			<level value="TRACE" />
+			<appender-ref ref="${logger.api.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.api.v2.worker.security.LoginTracker" additivity="false">
+			<level value="TRACE" />
+			<appender-ref ref="${logger.hacks.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.web.interceptors.ThrottlingInterceptor" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.api.appender}" />
+	</logger>
+
+	<!-- Analytics purposes -->
+	<logger name="com.workmarket.service.search" additivity="false">
+			<level value="INFO" />
+			<appender-ref ref="${logger.analytics.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.integration.webhook" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="${logger.webhooks.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.business.integration.hooks.webhook" additivity="false">
+		<level value="TRACE" />
+		<appender-ref ref="${logger.webhooks.appender}" />
+	</logger>
+
+	<logger name="com.googlecode.flyway" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="${logger.debug.appender}"/>
+	</logger>
+
+	<logger name="com.workmarket.service.infra.business.GeocodingServiceImpl" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="${logger.geocode.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.business.scheduler" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.domains.model.postalcode.PostalCodeUtilities" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="${logger.geocode.appender}" />
+	</logger>
+
+	<logger name="org.hibernate.transaction" additivity="false">
+			<level value="INFO"/>
+			<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.infra.payment" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.domains.work.service.state.WorkStatusServiceImpl" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.domains.work.service.route" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.domains.search" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.dao.search.user" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="com.workmarket.service.infra.business.UserRoleService" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<logger name="org.springframework.security.saml" additivity="false">
+		<level value="DEBUG" />
+		<appender-ref ref="${logger.debug.appender}" />
+	</logger>
+
+	<root>
+		<priority value="WARN" />
+		<appender-ref ref="${logger.error.appender}" />
+	</root>
+
+</log4j:configuration>

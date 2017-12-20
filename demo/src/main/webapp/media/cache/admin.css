@@ -1,0 +1,313 @@
+.qq-uploader { position:relative; width: 100%;}
+.assignments-uploader {position:relative; width: 96px;}
+
+.qq-upload-button {}
+.qq-upload-button input {cursor: pointer !important; font-size: 18px !important;}
+.qq-upload-button-hover {}
+.qq-upload-button-focus {}
+
+.qq-upload-drop-area {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	padding: 5px 0;
+	text-align: center;
+	z-index: 2;
+	background-color: #FF9797;
+	color: #fff;
+}
+.qq-upload-drop-area span {
+    display:block; position:absolute; width:100%; font-size:12px;
+}
+.qq-upload-drop-area-active {background: #FF7171;}
+
+.qq-upload-list {margin:3px 0; padding:0; list-style:disc;}
+.qq-upload-list li { margin:0; padding:0;}
+.qq-upload-file, .qq-upload-spinner, .qq-upload-size, .qq-upload-cancel, .qq-upload-failed-text {
+    margin-right: 7px;
+}
+
+.qq-upload-file {}
+.qq-upload-spinner {display:inline-block; background: url("images/loading.gif"); width:15px; height:15px; vertical-align:text-bottom;}
+.qq-upload-size,.qq-upload-cancel {font-size:11px;}
+
+.qq-upload-failed-text {display:none;}
+.qq-upload-fail .qq-upload-failed-text {display:inline;}
+
+legend {
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  font-size: 21px;
+  line-height: 40px;
+  color: #333333;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5; }
+
+.accounting-summaries .generate-summary {
+  margin-bottom: 1em; }
+
+.accounting-summary .export-link {
+  float: right;
+  margin-top: -2em; }
+
+.accounting-summary td, .accounting-summary th {
+  width: 50%;
+  text-align: right; }
+  .accounting-summary td:first-child, .accounting-summary th:first-child {
+    width: 25%;
+    text-align: left; }
+
+.accounting-summary tfoot {
+  font-weight: bold; }
+
+.sidebar {
+  float: left;
+  width: 220px;
+  margin: 0; }
+
+#subscription_details #subscription_status {
+  margin-left: 10px; }
+
+#subscription_details #AddOnsOptions .row, #subscription_details #discountOptions .row {
+  margin-bottom: 1em; }
+
+#subscription_details #AddOnsOptions select, #subscription_details #discountOptions select {
+  width: 100%; }
+
+#subscription_details #AddOnsOptions label, #subscription_details #discountOptions label {
+  text-align: right; }
+
+#subscription_form input[type="radio"] {
+  margin-top: 0; }
+
+#subscription_form #number_of_months {
+  margin-right: 1em; }
+
+#subscription_form .control-group.error .inlineError {
+  float: left; }
+
+#subscription_form #paymentTierEffectiveDate, #subscription_form #addOnsEffectiveDate {
+  margin: 0 0.5em;
+  width: 5em; }
+
+#subscription_form .serviceTypeConfig label {
+  display: inline-block;
+  margin-right: 1em; }
+
+#subscription_form .subscription-tier .inlineError {
+  margin-left: 1em; }
+
+.previous_subscription table td:first-child {
+  width: 130px; }
+
+.previous_subscription .previous_subscription_tiers th, .previous_subscription .previous_subscription_tiers td {
+  text-align: center; }
+
+.previous_subscription .previous_subscription_tiers th {
+  font-size: 0.75em; }
+
+.previous_subscription .previous_subscription_tiers td:first-child {
+  width: 30px; }
+
+.previous_subscription .previous_notes {
+  font-size: 12px; }
+
+.tier-form .input-prepend {
+  float: left;
+  margin-right: 5px; }
+
+.tier-form .transaction-fee-ranges-title {
+  font-size: 0.85em;
+  overflow: hidden;
+  margin-bottom: 1em; }
+  .tier-form .transaction-fee-ranges-title .item {
+    float: left;
+    margin-right: 1.3em; }
+
+#subscription_tier_form.subscription_tier_width {
+  width: 50em; }
+
+#subscription_tier_form .tier-actions {
+  float: left; }
+
+#transactional_form {
+  position: relative; }
+  #transactional_form .add-tier-btn {
+    position: absolute;
+    bottom: 28px;
+    right: 15px; }
+  #transactional_form .tier-actions {
+    position: absolute;
+    display: inline-block; }
+  #transactional_form .transaction-fee-ranges-title {
+    overflow: hidden;
+    margin-bottom: 1em; }
+
+.branding {
+  width: 60%;
+  min-width: 640px;
+  padding: 30px;
+  margin: 2em 0em 2em 26em;
+  border: 2px solid #f7961d;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  font-family: 'Open Sans';
+  background-color: #ffffff; }
+  .branding img {
+    width: 200px;
+    margin-bottom: 1em; }
+  .branding h3 {
+    color: #f7961d; }
+  .branding li {
+    font-size: 1.3em;
+    line-height: 1.2em; }
+  .branding p {
+    color: #8d9092;
+    font-size: 1.3em;
+    line-height: 1.2em; }
+  .branding ul {
+    color: #8d9092; }
+
+.text {
+  display: inline-block; }
+
+.orange-top {
+  background-color: #f7961d;
+  width: 60%;
+  padding: 30px;
+  margin: 2em 0em 2em 26em;
+  min-width: 640px;
+  border: 2px solid #ffffff;
+  border-radius: 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  font-family: 'Open Sans'; }
+  .orange-top img {
+    width: 200px;
+    margin-bottom: 1em;
+    padding-top: 3px; }
+  .orange-top h3 {
+    color: #ffffff;
+    font-size: 2.3em;
+    padding-bottom: 10px;
+    display: block; }
+  .orange-top p {
+    color: #ffffff;
+    font-size: 1.7em;
+    line-height: 1.2em; }
+  .orange-top h2 {
+    color: #ffffff;
+    display: inline-block;
+    vertical-align: top;
+    font-style: italic;
+    float: right;
+    font-size: 2em;
+    padding-right: 1em; }
+
+.new-relic-container {
+  margin-left: 7.5em;
+  width: 65%;
+  border: 2px solid #f7961d;
+  -webkit-border-radius: 6px; }
+
+.freeze-sidebar {
+  position: absolute;
+  margin-left: 2em;
+  margin-top: 1em; }
+
+.branding-image {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("images/backgrounds/marketplace_wm.jpg");
+  background-repeat: no-repeat;
+  margin: -2em -2em -8em;
+  padding: 4em; }
+
+#outer-container .main.container {
+  padding-top: 5em; }
+  #outer-container .main.container .row_sidebar_left {
+    margin: 0; }
+    #outer-container .main.container .row_sidebar_left .sidebar {
+      margin-left: 0; }
+
+#outer-container .main.container-fluid {
+  padding-top: 5em; }
+  #outer-container .main.container-fluid .row_sidebar_left {
+    margin: 0; }
+
+@media print {
+  a[href]:after {
+    content: none; } }
+
+.admin-forums-review, .admin-forums-unban, .admin-forums-delete, .admin-forums-ban {
+  display: block; }
+
+#adhoc_invoice_form #invoiceLineItems .line_item {
+  margin-bottom: 1em; }
+
+#adhoc_invoice_form #invoiceLineItems input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  height: inherit; }
+
+body.manage-company .radio_inline {
+  margin: 0px 5px !important; }
+
+body.manage-company .row_sidebar_left .content {
+  width: auto; }
+
+body.manage-company .content.report table.simple {
+  border: none; }
+
+body.manage-company .content.report .kpi-data {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  margin: 0 1em 1em 0;
+  padding: 10px; }
+
+body.manage-company .content.report .graph {
+  position: relative;
+  padding-bottom: 20px; }
+  body.manage-company .content.report .graph .x-axis {
+    position: absolute;
+    bottom: 18px;
+    width: 100%;
+    border-top: 1px solid #ccc; }
+    body.manage-company .content.report .graph .x-axis .tick {
+      position: absolute;
+      text-align: center;
+      font-size: 9px;
+      white-space: nowrap;
+      width: 21px; }
+  body.manage-company .content.report .graph .data {
+    position: relative;
+    height: 150px; }
+    body.manage-company .content.report .graph .data .bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      display: inline-block;
+      background-color: #ddd;
+      border-style: solid;
+      border-color: #ccc;
+      border-width: 1px 1px 0;
+      width: 21px;
+      height: 0;
+      margin: 0;
+      text-align: center;
+      font-size: 9px; }
+      body.manage-company .content.report .graph .data .bar .value {
+        position: relative;
+        top: -20px; }
+
+body.manage-profile .wm-avatar {
+  font-size: 5em;
+  margin-left: 1rem;
+  float: left; }
+
+/*# sourceMappingURL=admin.css.map */

@@ -1,0 +1,24 @@
+<div id="add_media_modal">
+	<div id="image_preview" class="image_preview"></div>
+
+	<label for="add_profile_mult_photo_id">
+		<input type="text" id="add_profile_mult_photo_id" placeholder="Optional File Caption"/>
+	</label>
+	<span class="help-block">Photo/Video size limit is 150MB.</span>
+	<div id="file-uploader" class="file_uploader">
+		<noscript>
+			{{> ../../funcs/templates/file-input name="qqfile" id="qqfile" }}
+		</noscript>
+	</div>
+	<input type="hidden" id="media_id" />
+	<input type="hidden" id="position" />
+
+	<h5>Privacy Settings - <small>control who can view the uploaded photo/video by selecting from the following.</small></h5>
+	{{> ../../funcs/templates/radio name="privacy_upload" value="group" text="<span class='tooltipped tooltipped-n' aria-label='All Talent Pool Owners can view'>Companies of Talent Pools I am in</span>" isChecked=true }}
+	{{> ../../funcs/templates/radio name="privacy_upload" value="all" text="<span class='tooltipped tooltipped-n' aria-label='Everyone can view'>Anyone</span>" }}
+
+	<div class="wm-modal--footer">
+		<button id="save_media" class="button -primary" disabled>Complete Upload &amp; Save</button>
+		<button class="button" data-modal-close>Close</button>
+	</div>
+</div>

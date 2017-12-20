@@ -1,0 +1,134 @@
+%message-line {
+	display: block;
+	content: "";
+	height: 100%;
+	width: calc(#{map-get($message, avatar-size) / 2} - 5px);
+	position: absolute;
+	left: map-get($message, avatar-size) / -2 - map-get($message, avatar-spacing);
+	top: -5px;
+	border-left: $default-border;
+}
+
+.message {
+	@include clearfix;
+	clear: both;
+	position: relative;
+	padding-top: map-get($message, response-top-padding);
+
+	&--avatar {
+		float: left;
+
+		.wm-avatar {
+			font-size: map-get($message, avatar-size);
+			color: #111111;
+			margin-right: #{map-get($message, avatar-spacing) / map-get($message, avatar-size) * 1em};
+		}
+	}
+	&--details {
+		position: relative;
+		float: left;
+		width: calc(100% - #{map-get($message, avatar-size) + map-get($message, avatar-spacing)});
+
+		a {
+			display: inline-block;
+			margin-bottom: 0.5em;
+		}
+	}
+	&--meta {
+		color: $light-grey;
+
+		.wm-icon-users {
+			@include circle;
+			float: right;
+			width: 1em;
+			height: 1em;
+			font-size: 1.5em;
+			background-color: map-get($message, content-background-color);
+		}
+	}
+	&--date {
+		font-size: 0.8em;
+		float: right;
+	}
+	&--content {
+		border-radius: $base-border-radius;
+		position: relative;
+		background-color: map-get($message, content-background-color);
+		padding: 0.5em 1em;
+
+		&::before {
+			@include triangle(up, map-get($message, content-background-color), 0.5em);
+			position: absolute;
+			top: -0.4em;
+		}
+
+		.message.-is-sent & {
+			background-color: map-get($message, sent-message-content-background-color);
+
+			&::before { @include triangle(up, map-get($message, sent-message-content-background-color), 0.5em); }
+		}
+	}
+	&--text {
+		@include ellipsis;
+		white-space: pre-wrap;
+	}
+	&--response {
+		@include clearfix;
+		border-radius: 0 0 map-get($message, border-radius) map-get($message, border-radius);
+		position: relative;
+		clear: both;
+		margin-left: map-get($message, avatar-spacing) + map-get($message, avatar-size);
+		padding: 1em 1em 0;
+		background-color: map-get($message, content-background-color);
+		display: none;
+		border-top: 1px solid $white;
+
+		.message.-expanded & { display: block; }
+
+		.message.-has-response > &::before { @extend %message-line; }
+	}
+	&--new-label {
+		@include transition(opacity 3s linear);
+		opacity: 0;
+		border-radius: $base-border-radius;
+		padding: 0 0.5em;
+		background-color: $orange;
+		position: absolute;
+		font-size: map-get($message, new-label-size);
+		top: map-get($message, avatar-size) / map-get($message, new-label-size) + map-get($message, response-top-padding);
+		color: $white;
+		z-index: 1;
+		width: map-get($message, avatar-size) / map-get($message, new-label-size) * 1em;
+		margin-top: 0.5em;
+
+		.message.-is-new & {
+			@include transition(opacity 3s linear);
+			opacity: 1;
+		}
+	}
+	&--new-response {
+		position: absolute;
+		display: none;
+		right: -0.5em;
+		top: 50%;
+		@include transform(translate(0, -50%));
+		padding: 0.2em;
+		background-color: $blue;
+		border-radius: $default-border;
+		color: $white;
+		cursor: pointer;
+
+		.message--content:hover & { display: block; }
+	}
+	&--privacy {
+		margin-left: 0.4em;
+		float: right;
+
+		i::before {
+			color: $charcoal-grey;
+			background-color: map-get($message, content-background-color);
+			@include circle;
+			font-size: 1.5em;
+		}
+	}
+}

@@ -1,0 +1,59 @@
+@mixin reset-box-sizing {
+	*, *::before, *::after {
+		box-sizing: border-box;
+	}
+}
+
+@mixin scaffolding {
+	@include reset-box-sizing;
+
+	& {
+		background-color: $base-background-color;
+		color: $base-text-color;
+		font: #{$base-font-size}/#{$base-line-height} #{$body-font};
+	}
+
+	.container {
+		@include container;
+		width: auto;
+	}
+
+	%content-area {
+		border-radius: 0.3em;
+		background-color: $alternate-background-color;
+		border: $default-border;
+		padding: 1rem 1rem 0;
+	}
+
+	#outer-container {
+		padding-top: $site-header-height + 1.5rem;
+	}
+
+	// slide the container over when the left nav is open
+	.topbar.left-nav ~ #outer-container, .app-nav.left-nav ~ #outer-container {
+		&, .-fixed {
+			transition: margin-left #{$nav-transition-duration} #{$nav-transition-easing};
+		}
+		.-fixed {
+			width: 100%;
+			padding-left: 3.5em;
+			padding-right: 3.5em;
+		}
+	}
+	.topbar.left-nav.open ~ #outer-container, .app-nav.left-nav.open ~ #outer-container {
+		&, .-fixed {
+			margin-left: $nav-width;
+		}
+		.-fixed {
+			width: calc(100% - #{$nav-width});
+		}
+	}
+}
+
+#container {
+	z-index: $container-index;
+}
+
+html {
+	font-family: $body-font;
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		I'm sorry, that status code isn't available. Please try again. Enter a status code followed by the #.
+	</Say>
+	<Redirect>${baseurl}${callbackUri}?redirect=menu</Redirect>
+</Response>

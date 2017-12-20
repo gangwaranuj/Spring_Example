@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+		default-lazy-init="false" 
+		default-autowire="no">
+
+	<bean id="mailSender" class="${mailSenderClass}">
+		<property name="host" value="${mail.system.host}" />
+	</bean>
+
+	<bean id="invitationMailSender" class="${mailSenderClass}">
+		<property name="host" value="${mail.invitations.host}" />
+	</bean>
+
+	<bean id="mailSender2" class="${mailSenderClass}">
+		<property name="host" value="${mail.system2.host}" />
+	</bean>
+
+	<bean id="templateMessage" class="org.springframework.mail.SimpleMailMessage">
+		<property name="from" value="donnotreply@workmarket.com" />
+	</bean>
+</beans>

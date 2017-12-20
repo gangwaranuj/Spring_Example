@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		<![CDATA[
+			Hello ${toUser.firstName},
+			You have a WorkMarket assignment bundle waiting.
+			Title: ${template.work.title}.
+			Date and time: ${template.bundleData.overview.dates.from}.
+			#if ($showPrice)
+			Payment: ${template.bundleData.overview.budget}.
+			#end
+		]]>
+	</Say>
+	<Gather action='${baseurl}${callbackUri}' numDigits='1' timeout='10'>
+		<Say voice='woman'>
+			Please listen to the following options:
+			#if($template.work.assignToFirstResourceEnabled)
+				Press 1 to accept.
+			#end
+			Press 2 to decline.
+			Press 3 for a description of the assignment.
+		</Say>
+	</Gather>
+	<Redirect>${baseurl}${callbackUri}?loop=1</Redirect>
+</Response>

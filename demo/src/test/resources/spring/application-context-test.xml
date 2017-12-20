@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:cache="http://www.springframework.org/schema/cache"
+	   xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd"
+	   default-lazy-init="true" default-autowire="no">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+	<cache:annotation-driven />
+
+	<context:property-placeholder
+			location="classpath:/config/config-common.properties"
+			ignore-unresolvable="true"/>
+
+	<context:annotation-config/>
+
+	<context:component-scan base-package="com.workmarket.configuration" />
+	<context:component-scan base-package="com.workmarket.thrift" />
+	<context:component-scan base-package="com.workmarket.search.validator"/>
+	<context:component-scan base-package="com.workmarket.search.queue"/>
+	<context:component-scan base-package="com.workmarket.search.cache"/>
+	<context:component-scan base-package="com.workmarket.service" />
+	<context:component-scan base-package="com.workmarket.dao"/>
+	<context:component-scan base-package="com.workmarket.data.solr"/>
+	<context:component-scan base-package="com.workmarket.factory" />
+	<context:component-scan base-package="com.workmarket.reporting.service" />
+	<context:component-scan base-package="com.workmarket.redis" />
+	<context:component-scan base-package="com.workmarket.integration.autotask" />
+	<context:component-scan base-package="com.workmarket.integration.webhook" />
+	<context:component-scan base-package="com.workmarket.common.cache" />
+	<context:component-scan base-package="com.workmarket.common.service.helpers" />
+	<context:component-scan base-package="com.workmarket.common.template" />
+	<context:component-scan base-package="com.workmarket.web" />
+	<context:component-scan base-package="com.workmarket.velvetrope" />
+
+	<context:component-scan base-package="com.workmarket.domains.api" />
+	<context:component-scan base-package="com.workmarket.api" />
+
+	<context:component-scan base-package="com.workmarket.domains.onboarding.model"/>
+	<context:component-scan base-package="com.workmarket.domains.velvetrope" />
+	<context:component-scan base-package="com.workmarket.domains.compliance" />
+
+	<context:component-scan base-package="com.workmarket.domains.forums.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.forums.service"/>
+	<context:component-scan base-package="com.workmarket.domains.forums.solr"/>
+
+	<context:component-scan base-package="com.workmarket.domains.search.model"/>
+
+	<context:component-scan base-package="com.workmarket.domains.groups.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.groups.service"/>
+	<context:component-scan base-package="com.workmarket.domains.groups.facade"/>
+
+	<context:component-scan base-package="com.workmarket.domains.work.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.work.facade.service"/>
+	<context:component-scan base-package="com.workmarket.domains.work.service"/>
+	<context:component-scan base-package="com.workmarket.domains.work.cache"/>
+
+	<context:component-scan base-package="com.workmarket.domains.reports.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.reports.service"/>
+	<context:component-scan base-package="com.workmarket.domains.reports.controllers"/>
+
+	<context:component-scan base-package="com.workmarket.domains.authentication"/>
+
+	<context:component-scan base-package="com.workmarket.domains.payments.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.payments.service"/>
+	<context:component-scan base-package="com.workmarket.domains.payments.validator"/>
+	<context:component-scan base-package="com.workmarket.domains.payments.controllers"/>
+
+	<context:component-scan base-package="com.workmarket.domains.search.group.indexer.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.search.group.indexer.service"/>
+	<context:component-scan base-package="com.workmarket.sso"/>
+
+	<context:component-scan base-package="com.workmarket.dao.leaderboard"/>
+	<context:component-scan base-package="com.workmarket.service.analytics"/>
+	<context:component-scan base-package="com.workmarket.domains.search.solr"/>
+
+	<context:component-scan base-package="com.workmarket.vault"/>
+
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="basename" value="file:${basedir}/src/main/webapp/WEB-INF/messages"/>
+		<property name="cacheSeconds" value="0"/>
+	</bean>
+
+	<import resource="classpath:/spring/datasource.xml" />
+	<import resource="classpath:/spring/sessionfactory.xml" />
+	<import resource="classpath:/spring/transactionmanager.xml" />
+	<import resource="classpath:/spring/work-reporting-application-context.xml" />
+	<import resource="classpath:/spring/aop.xml"/>
+	<import resource="classpath:/spring/mvc.xml"/>
+
+	<import resource="classpath:/spring/jms.xml"/>
+	<import resource="classpath:/spring/jmslisteners.xml"/>
+	<import resource="classpath:/spring/jmsembedded.xml"/>
+
+	<import resource="classpath:/sso/sso.xml"/>
+	<import resource="classpath:/spring/security.xml"/>
+	<import resource="classpath:/spring/encryption.xml"/>
+
+	<import resource="classpath:/spring/services/adapters.xml"/>
+	<import resource="classpath:/spring/services/linkedin.xml"/>
+	<import resource="classpath:/spring/services/rest.xml"/>
+	<import resource="classpath:/spring/services/search.xml"/>
+	<import resource="classpath:/spring/services/velocity.xml"/>
+
+	<bean name="socialSignInAdapter" class="com.workmarket.domains.authentication.services.SocialSignInAdapter"/>
+	<bean name="socialConfig" class="com.workmarket.service.configuration.SocialConfig"/>
+
+	<!-- SOLR -->
+	<!-- Task Executor -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="3"/>
+		<property name="maxPoolSize" value="5"/>
+		<property name="queueCapacity" value="10000"/>
+	</bean>
+
+	<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetObject">
+			<bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+				<property name="targetClass" value="java.lang.System"/>
+				<property name="targetMethod" value="getProperties"/>
+			</bean>
+		</property>
+		<property name="targetMethod" value="putAll"/>
+		<property name="arguments">
+			<props>
+				<prop key="javax.net.ssl.keyStore">${javax.net.ssl.keyStore}</prop>
+				<prop key="javax.net.ssl.keyStorePassword">${javax.net.ssl.keyStorePassword}</prop>
+				<prop key="sun.security.ssl.allowUnsafeRenegotiation">${sun.security.ssl.allowUnsafeRenegotiation}</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate"/>
+
+	<bean id="externalScreeningService" class="com.workmarket.service.business.screening.ExternalScreeningServiceMockImpl"/>
+	<bean id="vaultServerService" class="com.workmarket.vault.services.VaultServerServiceRedisImpl" />
+
+	<bean id="mailSender" class="com.workmarket.service.business.mock.MockJavaMailSender" />
+	<bean id="mailSender2" class="com.workmarket.service.business.mock.MockJavaMailSender" />
+	<bean id="invitationMailSender" class="com.workmarket.service.business.mock.MockJavaMailSender" />
+
+	<bean id="featureEvaluator" class="com.workmarket.domains.authentication.features.FeatureEvaluatorImpl">
+		<property name="config" ref="featureEvaluatorConfiguration"/>
+	</bean>
+
+	<bean id="recurrenceClient" class="com.workmarket.recurrence.RecurrenceClientMock"/>
+</beans>

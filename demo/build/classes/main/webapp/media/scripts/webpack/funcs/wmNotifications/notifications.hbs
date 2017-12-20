@@ -1,0 +1,14 @@
+<li class="dropdown-menu--header">
+	<div class="row-fluid">
+		<span class="muted span8">Notifications</span>
+		<a id="see-all" class="span8 text-right" href="/mysettings/notifications">Settings</a>
+	</div>
+</li>
+{{#each this.notifications}}
+	<li class="dropdown-menu--item">{{{this.display_message}}}
+		<small class="meta"><i class="icon-time muted"></i> {{this.displayTime}}<i class="icon-circle {{#unless this.viewed_at}} power-on{{/unless}}" id="notification_status"></i></small>
+	</li>
+{{/each}}
+<li class="dropdown-menu--footer">
+	<a id="see-all" class="pull-left" href="/notifications/active">See All</a>
+</li>

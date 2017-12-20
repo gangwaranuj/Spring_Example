@@ -1,0 +1,1 @@
+Funds withdrawn from your account: ${number.currency($template.transaction.amount)}

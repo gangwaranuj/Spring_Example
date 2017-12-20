@@ -1,0 +1,9 @@
+<div class="profile-picture {{#if this.isLoaded}}-loaded{{/if}}" data-onboarding>
+	<div class="photo-crop">
+		<img class="photo-crop--photo" src="{{this.src}}" />
+	</div>
+	<div class="profile-picture--image" style="background-image: url({{this.src}});"></div>
+	<i class="wm-icon-user"></i>
+	<button class="profile-picture--save button -primary">{{[../../helpers/translate] "save"}}</button>
+	{{> ../../funcs/templates/file-input text=([../../helpers/translate] "onboarding.addPhoto")}}
+</div>

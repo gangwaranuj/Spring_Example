@@ -1,0 +1,1 @@
+${template.attempt.assessmentUserAssociation.user.fullName} #if($template.attempt.passedFlag)passed#{else}failed#{end} your test: ${template.attempt.assessmentUserAssociation.assessment.name}

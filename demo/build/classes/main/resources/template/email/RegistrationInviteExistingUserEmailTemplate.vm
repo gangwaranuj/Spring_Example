@@ -1,0 +1,40 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Invitation from $!{template.invitation.invitingUser.fullName}</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+			Hello $!{template.invitation.firstName},</p>
+			<p>
+				$!{template.invitation.invitingUser.fullName} invites you to join the <strong>$!{template.invitation.invitingUser.company.effectiveName} contractor network</strong> on the WorkMarket platform.<br/><br/>
+				As a contractor for <strong>$!{template.invitation.invitingUser.company.effectiveName}</strong> they will be able invite you to perform work whether or not your profile is listed in search.
+			</p>
+
+			#if ($template.invitation.message && $template.invitation.message.length() > 0)
+				<h1 style="font-weight: 700; font-size: 14px; margin: 0px 0px 10px 0px">A note from $!{template.invitation.invitingUser.fullName}</h1>
+				<p style="margin: 0px 0px 20px 0px">
+					#set( $rawMessage = $display.br($escape.html($template.invitation.message)) )
+					$!{rawMessage}
+				</p>
+			#end
+
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: inline-block; padding: 6px 7px 4px;" href="${baseurl}/invitations/accept/$!{template.invitation.encryptedId}">Accept</a>
+				</td>
+				<td style="width:20px"></td>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: inline-block; padding: 6px 7px 4px;" href="${baseurl}/invitations/decline/$!{template.invitation.encryptedId}">Decline</a>
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+
+		</div>
+		
+	</td>
+</tr>
+
+#parse("template/email/partials/about-wm.vm")

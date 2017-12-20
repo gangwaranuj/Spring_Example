@@ -1,0 +1,4 @@
+{
+"message": "Statement ${template.statement.invoiceNumber} is now available",
+"action": "${baseurl}/payments/invoices/payables/due"
+}

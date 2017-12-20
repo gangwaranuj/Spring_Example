@@ -1,0 +1,4 @@
+{
+"message": "A requirement has expired for talent pool: ${template.userGroupName} and your membership is pending your review",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

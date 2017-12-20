@@ -1,0 +1,4 @@
+{
+"message": "Expense Reimbursement Request for assignment: ${template.workTitle} has been declined",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		You need to enter your WorkMarket ID to access this system. Please call back with your ID. Thank you. Good Bye.
+	</Say>
+</Response>

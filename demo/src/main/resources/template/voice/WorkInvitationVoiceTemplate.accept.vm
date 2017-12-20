@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		You accepted this assignment. Thank you. Good bye.
+	</Say>
+</Response>

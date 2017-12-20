@@ -1,0 +1,6 @@
+${template.actorFullName}
+#if(${template.oldValue})
+	resolved the label ${template.oldValue.description}.
+#else
+	added the label ${template.newValue.description}.
+#end

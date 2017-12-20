@@ -1,0 +1,23 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Drug Screening Results: Failed</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				The results from your recent drug screening through the WorkMarket platform are complete. You had one or more infractions and your WorkMarket profile is suspended.<br/>
+			</p>
+
+			<p style="margin: 0px 0px 10px 0px">
+				Anyone you have worked with in the WorkMarket ecosystem will no longer be able to send assignments to you or view your profile. They cannot see that you are suspended or that you failed a drug screening. Your are still able to manage your profile and account and add assignments to the WorkMarket platform.</p>
+			
+			<p style="margin: 0px 0px 20px 0px; font-weight: 700">
+				Please do not contact WorkMarket for issues related to infractions on you drug screening.</p>
+			
+			<p style="margin: 0px">
+				If you feel the drug screening was incomplete or inaccurate, please contact the Sterling Compliance Department at 1-800-853-3228 or email <a href="mailto:askcompliancemail@sterlinginfosystems.com">askcompliancemail@sterlinginfosystems.com</a>.
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

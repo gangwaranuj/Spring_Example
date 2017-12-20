@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<bean id="binaryResponseHandler" class="org.apache.solr.client.solrj.impl.BinaryResponseParser" />
+	<bean id="userSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/usercore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>usercore</value></constructor-arg>
+		<constructor-arg><value>true</value></constructor-arg>
+	</bean>
+
+	<bean id="userUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/usercore</value></constructor-arg>
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>usercore</value></constructor-arg>
+		<constructor-arg><value>true</value></constructor-arg>
+	</bean>
+
+	<bean id="globalCoreUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/globalcore</value></constructor-arg>
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>globalcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="workUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/workcore</value></constructor-arg>
+		<!-- queue size -->
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<!-- thread count -->
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>workcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="forumPostSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/forumcore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>forumcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="forumPostUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/forumcore</value></constructor-arg>
+		<!-- queue size -->
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<!-- thread count -->
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>forumcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="workSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/workcore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>workcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="readOnlyWorkSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.slaveBaseurl}/workcore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>workcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="groupSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/groupcore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>groupcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="groupUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/groupcore</value></constructor-arg>
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>groupcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="globalCoreSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/globalcore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>globalcore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="suggestionSolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/suggestioncore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>suggestioncore</value></constructor-arg>
+		<constructor-arg><value>false</value></constructor-arg>
+	</bean>
+
+	<bean id="companySolrServer" class="com.workmarket.domains.search.solr.SolrHttpSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/companycore</value></constructor-arg>
+		<constructor-arg><null /></constructor-arg>
+		<constructor-arg ref="binaryResponseHandler" />
+		<constructor-arg><value>companycore</value></constructor-arg>
+		<constructor-arg><value>true</value></constructor-arg>
+	</bean>
+
+	<bean id="companyUpdateSolrServer" class="com.workmarket.domains.search.solr.SolrConcurrentUpdateSolrServerProxy">
+		<constructor-arg><value>${solr.baseurl}/companycore</value></constructor-arg>
+		<constructor-arg><value>${solr.buffer.size}</value></constructor-arg>
+		<constructor-arg><value>100</value></constructor-arg>
+		<constructor-arg><value>companycore</value></constructor-arg>
+		<constructor-arg><value>true</value></constructor-arg>
+	</bean>
+
+	<bean id="solrUpdateTaskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="5" />
+		<property name="queueCapacity" value="500" />
+	</bean>
+
+	<bean id="workerHydrator" class="com.workmarket.domains.search.worker.WorkerHydrator"/>
+	<bean id="workerFacetHydrator" class="com.workmarket.domains.search.worker.WorkerFacetHydrator"/>
+
+	<!--bean id="findWorkerClient" class="com.workmarket.search.worker.FindWorkerClientImpl"/-->
+	<bean id="findWorkerClient" class="com.workmarket.search.worker.MockFindWorkerClient">
+			<constructor-arg><value>/mockdata/workersearch</value></constructor-arg>
+	</bean>
+	<bean id="apiWorkerHydrator" class="com.workmarket.api.v2.employer.search.worker.services.WorkerHydratorImpl"/>
+
+	<bean id="qualificationClient" class="com.workmarket.search.qualification.QualificationClient" />
+
+</beans>

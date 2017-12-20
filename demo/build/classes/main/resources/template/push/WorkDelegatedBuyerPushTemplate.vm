@@ -1,0 +1,4 @@
+{
+"message": "Your assignment: ${template.workTitle} was handed off to ${template.delegatedResource.fullName} at ${template.delegatedResource.company.effectiveName}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

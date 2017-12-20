@@ -1,0 +1,20 @@
+@import "../utils/mixins/misc";
+
+@font-face {
+	font-family: "workmarket-social";
+	src: url("wm-social.eot");
+	src: url("wm-social.woff") format("woff"),
+	url("wm-social.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+$icons-social: (
+	facebook: '\e031',
+	twitter: '\e032',
+	google-plus: '\e003',
+	linked-in: '\e018'
+);
+
+@include wm-icon-iterator("workmarket-social", $icons-social);
+

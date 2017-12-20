@@ -1,0 +1,4 @@
+{
+"message": "Your profile update has changed your status in the following talent pool: ${template.userGroupName}",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

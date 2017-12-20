@@ -1,0 +1,5 @@
+{
+"message": "Assignment no longer available: ${template.workTitle} (ID: ${template.work.workNumber})",
+"action": "${baseurl}/feed"
+}
+

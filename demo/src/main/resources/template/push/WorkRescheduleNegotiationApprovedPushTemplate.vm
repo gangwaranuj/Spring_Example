@@ -1,0 +1,4 @@
+{
+"message": "Reschedule request for assignment: ${template.work.title} has been approved",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

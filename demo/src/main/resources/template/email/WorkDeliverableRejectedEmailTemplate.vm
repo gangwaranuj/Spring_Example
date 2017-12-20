@@ -1,0 +1,83 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+	Deliverable Rejected</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 20px 0px">
+		#if ($onBehalfOfUser && $onBehalfOfUser.firstName)
+			Hello ${onBehalfOfUser.firstName},<br/>
+		#else
+			Hello ${toUser.firstName},<br/>
+		#end
+		<br/>
+		${template.work.company.effectiveName} rejected your deliverable  ${template.assetName} for ${template.workTitle} (ID: ${template.work.workNumber}).
+	</p>
+
+	<p style="margin: 20px;padding:20px;background-color: #f5f5f5;">
+		<strong>Reason: </strong><br/>
+		#set( $rawNote = $display.br($escape.html($template.rejectionReason)) )
+		<em>${rawNote}</em>
+	</p>
+
+	<p style="margin: 0px 0px 20px 0px">
+		Please upload a new deliverable in order to submit your assignment for approval as soon as possible.
+	</p>
+
+	<p style="margin: 0px 0px 20px 0px">
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tbody>
+		<tr>
+			<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+				<a target="_blank"
+				   style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;"
+				   href="${baseurl}/assignments/details/${template.work.workNumber}#deliverables">Upload New Deliverable</a>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</p>
+
+	<p style="margin: 20px 0px">
+		If you have any questions, please contact the assignment owner via the contact information below to resolve the issue as soon as possible.
+		<br/>
+		<br/>
+		Primary Client Contact Details:
+	<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f9f9f9; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+		<tbody>
+		<tr>
+			<td width = "30%">
+				<strong>Name:</strong>
+			</td>
+			<td>
+				${template.work.buyer.firstName} ${template.work.buyer.lastName}
+			</td>
+		</tr>
+		<tr>
+			<td width = "30%">
+				<strong>Email:</strong>
+			</td>
+			<td>
+				${template.work.buyer.email}
+			</td>
+		</tr>
+		<tr>
+			<td width = "30%">
+				<strong>Phone:</strong>
+			</td>
+			<td>
+				${template.work.buyer.profile.workPhone}
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</p>
+
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")
+
+#if (${template.encryptedWorkFollowId})
+	#parse("template/email/partials/unfollow.vm")
+#end

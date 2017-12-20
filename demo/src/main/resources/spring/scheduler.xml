@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd"
+	   profile="scheduler,allinone">
+
+	<!--
+		Cron-Expressions reference
+
+		 1) Seconds
+		 2) Minutes
+		 3) Hours
+		 4) Day-of-Month
+		 5) Month
+		 6) Day-of-Week
+		 7) Year (optional)
+
+		 http://www.quartz-scheduler.org/documentation/quartz-1.x/tutorials/crontrigger
+	 -->
+	<task:scheduler id="scheduler" pool-size="50"/>
+
+	<task:scheduled-tasks scheduler="scheduler">
+
+		<!--  Accounting related tasks -->
+		<task:scheduled ref="accountingProcessor" method="sendLowBalanceAlerts" cron="0 10,40 13-23 * * ?"/>
+		<task:scheduled ref="accountingProcessor" method="resetAllLowBalanceAlertSentToday" cron="0 0 9 * * ?"/>
+		<task:scheduled ref="accountingProcessor" method="sendInvoiceDueReminders" cron="0 5 13 * * ?"/>
+		<task:scheduled ref="accountingProcessor" method="processDueInvoices" cron="0 15 14 * * ?"/>
+		<task:scheduled ref="accountingProcessor" method="generateStatements" cron="0 30 6 * * ?"/>
+
+		<!-- GCC -->
+		<!-- move gcc account from pending to active state, once a day at 2am -->
+		<task:scheduled ref="gccExecutor" method="activateGCCAccounts" cron="0 0 1 * * ?" />
+		<!-- do withdrawal of the available funds in case if user has an account where auto withdrawal feature is enabled -->
+		<task:scheduled ref="gccExecutor" method="autoWithdrawalOfFunds" cron="0 45 16,19 * * ?" />
+		<!-- sync with GCC side and disable account if it was deactivated at GCC -->
+		<task:scheduled ref="gccExecutor" method="deActivateGccCard"  cron="0 0/30 * * * ?" />
+
+		<task:scheduled ref="paymentSummationExecutor" method="execute" cron="0 0 7 * * ?"/>
+		<task:scheduled ref="accountRegisterReconcileExecutor" method="execute" cron="0 0 8 * * ?"/>
+
+		<!-- Auto pay of invoices/assignments -->
+		<!-- TODO: Auto pay should run at 8 AM EST, we need to figure out a way to avoid the EDT - EST issue-->
+		<task:scheduled ref="autoPaymentExecutor" method="execute" cron="0 0 12 * * ?"/>
+
+		<!-- Analytics and warehousing processors -->
+		<task:scheduled ref="dailySummaryExecutor" method="execute" cron="0 1 5 * * ?"/>
+
+		<task:scheduled ref="summaryExecutor" method="createAccountRegisterDailySnapshot" cron="0 5 5 * * *"/>
+		<task:scheduled ref="summaryExecutor" method="createAccountRegisterMonthlySnapshot" cron="0 5 5 1 * *"/>
+		<task:scheduled ref="summaryExecutor" method="createHourlyRegisterTransactionHistorySummary" cron="0 0 * * * *"/>
+		<task:scheduled ref="summaryExecutor" method="updateCompanySummary" cron="0 15 * * * *"/>
+		<task:scheduled ref="summaryExecutor" method="updateFactMonthlyWork" cron="0 0 * * * *"/>
+		<task:scheduled ref="summaryExecutor" method="updateUserGroupSummary" cron="0 30 15,3 * * *"/>
+
+		<task:scheduled ref="resourceNoShowAlertBackstopExecutor" method="execute" cron="0 * * * * ?"/>
+
+		 <!--Deliverable Late Notifier-->
+		<task:scheduled ref="deliverableDueExecutor" method="execute" cron="0 * * * * ?"/>
+
+		 <!--Deliverable Due Reminder Notifier-->
+		<task:scheduled ref="deliverableDueReminderAlertExecutor" method="execute" cron="0 * * * * ?"/>
+
+		<!-- Bulk payment fulfillment executor -->
+		<task:scheduled ref="paymentFulfillmentExecutor" method="execute" cron="0 0/2 * * * ?"/>
+
+		<!-- Assignment Aging Alert Email -->
+		<task:scheduled ref="agingAlertExecutor" method="execute" cron="0 0 15 * * ?"/>
+
+		<!-- Bundle Processing -->
+		<!-- every hour -->
+		<task:scheduled ref="workBundleProcessor" method="updateAllWorkBundleCompleteStatus" cron="0 42 * * * ?"/>
+
+		<!-- every hour -->
+		<task:scheduled ref="workBundleProcessor" method="updateAllWorkBundleVoidStatus" cron="0 52 * * * ?"/>
+
+		<!-- Check Inactive Apple Devices-->
+		<task:scheduled ref="iosDevicesExecutor" method="execute" cron="0 0 0 1 * ?" />
+
+		<!-- Score card solr reindex -->
+		<task:scheduled ref="scoreCardSolrReindexExecutor" method="execute" cron="0 30 8 * * ?"/>
+
+		<!-- Recurring Custom Reports -->
+		<task:scheduled ref="scheduledReportsExecutor" method="execute" cron="0 7 * * * ?"/>
+
+		<!-- Subscriptions -->
+		<task:scheduled ref="subscriptionTransactionExecutor" method="execute" cron="0 0/10 * * * ?"/>
+
+		<!-- Generate subscription invoices -->
+		<task:scheduled ref="subscriptionMonthlyInvoiceExecutor" method="execute" cron="0 2 5 1 * ?"/>
+
+		<!-- Update cancelled/modified/expired subscriptions on the cancellation/effective/end date -->
+		<!-- Update account pricing types based on subscription status  -->
+		<task:scheduled ref="subscriptionUpdateExecutor" method="execute" cron="0 10 4 * * ?"/>
+		<task:scheduled ref="subscriptionUpdateExecutor" method="generateMissingRenewalInvoices" cron="0 15 5 1 * ?"/>
+
+		<task:scheduled ref="subscriptionThroughputReconciliation" method="execute" cron="0 30 6 * * *"/>
+		<!-- Commented out temporarily as it causes OOM craching
+		<task:scheduled ref="subscriptionMonthlyReconciliation" method="execute" cron="0 55 8 * * ?"/ -->
+
+		<!-- Pending routing strategies -->
+		<task:scheduled ref="routingStrategyExecutor" method="execute" cron="0 0/2 * * * ?"/>
+
+		<task:scheduled ref="workSolrOptimizer" method="execute" cron="0 0 1 * * ?"/>
+
+		<task:scheduled ref="solrIndexReconciliation" method="reindex" trigger="onstart"/>
+		<task:scheduled ref="solrIndexReconciliation" method="reindexLastHour" cron="0 0/30 * * * ?"/>
+
+		<!-- Creating & Sending the public Feed to Indeed -->
+		<task:scheduled ref="publicFeedToXmlExecutor" method="execute" cron="0 0 4 * * ?"/>
+
+		<!-- Caches -->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateWorkLabels" cron="0 0/5 * * * ?"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateCompanyInfo" trigger="onstart"/>
+		<!-- Certifications cache-->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateCertificationCache" trigger="onstart"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateCertificationCache" cron="0 0 0/2 * * ?"/>
+		<!-- Assessment cache-->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateAssessmentsCache" trigger="onstart"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateAssessmentsCache" cron="0 0 0/2 * * ?"/>
+		<!-- Insurance cache-->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateInsuranceCache" trigger="onstart"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateInsuranceCache" cron="0 0 0/3 * * ?"/>
+		<!-- License cache-->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateLicenseCache" trigger="onstart"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateLicenseCache" cron="0 0 0/3 * * ?"/>
+		<!-- Group cache-->
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateGroupCache" trigger="onstart"/>
+		<task:scheduled ref="hydratorCacheImpl" method="hydrateGroupCache" cron="0 0 0/3 * * ?"/>
+
+		<task:scheduled ref="geoCodeExecutor" method="execute" trigger="onstart"/>
+
+		<task:scheduled ref="userGroupsInactivityExecutor" method="deactivateInactiveGroups" cron="0 0 5 * * ?"/>
+
+		<task:scheduled ref="userGroupsReevaluationExecutor" method="reevaluateUserGroupRequirementSets" cron="0 0 5 * * *"/>
+
+		<!-- Reminder of 1099s every Monday at 8 on the months Feb, March and April -->
+		<task:scheduled ref="taxForm1099ReminderExecutor" method="execute" cron="0 0 12 * FEB,MAR,APR TUE"/>
+
+		<!-- Vault verification every day t 2 AM -->
+		<task:scheduled ref="vaultMigrationExecutor" method="verifyAllTaxEntities" cron="0 0 2 * * *"/>
+
+		<!-- Talent pool recommendation every Monday morning -->
+		<task:scheduled ref="recommendationExecutor" method="recommendTalentsToTalentPools" cron="0 0 10 * * MON"/>
+
+		<!-- Bad Actors every Wednesday at 5:00AM UTC -->
+		<task:scheduled ref="badActorExecutor" method="blockBadActors" cron="0 5 0 * * WED"/>
+
+	</task:scheduled-tasks>
+
+	<bean id="onstart" class="org.springframework.scheduling.support.PeriodicTrigger" >
+		<!--  Long.MAX_VALUE ms = 3E8 years; will run 5s after startup and not run again for 3E8 years -->
+		<constructor-arg name="period" value="#{ T(java.lang.Long).MAX_VALUE }" />
+		<property name="initialDelay" value="5000" />
+	</bean>
+
+
+	<!-- Subscription Incremental Invoices generation  -->
+	<bean id="subscriptionIncrementalInvoicesJob" class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="subscriptionMonthlyInvoiceExecutor"/>
+		<property name="targetMethod" value="generateIncrementalSubscriptionInvoices"/>
+	</bean>
+
+	<bean id="cronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="subscriptionIncrementalInvoicesJob"/>
+		<!-- run the last day of each month at 7 AM UTC -->
+		<property name="cronExpression" value="0 0 7 L * ?"/>
+	</bean>
+
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails"><list><ref bean="subscriptionIncrementalInvoicesJob"/></list></property>
+		<property name="triggers"><list><ref bean="cronTrigger"/></list></property>
+	</bean>
+
+</beans>

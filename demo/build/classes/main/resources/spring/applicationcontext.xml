@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xmlns:task="http://www.springframework.org/schema/task"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<context:property-placeholder
+			location="classpath:/config/config-common.properties,${wm.conf}"
+			ignore-unresolvable="true" />
+
+	<context:mbean-export registration="replaceExisting"/>
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.workmarket.configuration" />
+	<context:component-scan base-package="com.workmarket.thrift" />
+	<context:component-scan base-package="com.workmarket.search"/>
+	<context:component-scan base-package="com.workmarket.service" />
+	<context:component-scan base-package="com.workmarket.dao"/>
+	<context:component-scan base-package="com.workmarket.data"/>
+	<context:component-scan base-package="com.workmarket.domains.model.requirementset"/>
+	<context:component-scan base-package="com.workmarket.domains.onboarding.model"/>
+
+	<context:component-scan base-package="com.workmarket.search" />
+	<context:component-scan base-package="com.workmarket.common.template" />
+	<context:component-scan base-package="com.workmarket.factory" />
+	<context:component-scan base-package="com.workmarket.reporting" />
+	<context:component-scan base-package="com.workmarket.redis" />
+	<context:component-scan base-package="com.workmarket.integration.autotask" />
+	<context:component-scan base-package="com.workmarket.integration.webhook" />
+	<context:component-scan base-package="com.workmarket.common.service.helpers" />
+	<context:component-scan base-package="com.workmarket.common.cache" />
+	<context:component-scan base-package="com.workmarket.web" />
+	<context:component-scan base-package="com.workmarket.api" />
+	<context:component-scan base-package="com.workmarket.velvetrope" />
+	<context:component-scan base-package="com.workmarket.domains.velvetrope" />
+	<context:component-scan base-package="com.workmarket.domains.compliance" />
+
+	<import resource="services/search.xml" />
+
+	<!-- Reporting context -->
+	<import resource="work-reporting-application-context.xml"  />
+
+	<import resource="datasource.xml" />
+	<import resource="databaseMigrations.xml" />
+	<import resource="sessionfactory.xml" />
+	<import resource="transactionmanager.xml" />
+
+	<import resource="aop.xml" />
+	<import resource="velvetrope.xml" />
+
+	<import resource="jms.xml"/>
+	<import resource="jmslisteners.xml"/>
+	<import resource="jmsembedded.xml"/>
+
+	<import resource="scheduler.xml"/>
+
+	<import resource="services/adapters.xml" />
+	<import resource="services/autotask.xml" />
+	<import resource="services/deskSso.xml" />
+	<import resource="services/linkedin.xml" />
+	<import resource="services/mail.xml" />
+	<import resource="services/rest.xml" />
+	<import resource="services/velocity.xml" />
+
+	<!-- SOLR -->
+	<bean id="workSolrTemplate" class="org.springframework.data.solr.core.SolrTemplate" scope="singleton">
+		<constructor-arg ref="workSolrServer" />
+	</bean>
+
+	<bean id="workSearchRepository" class="com.workmarket.data.solr.repository.WorkSearchRepositoryImpl">
+		<property name="solrOperations" ref="workSolrTemplate" />
+	</bean>
+
+	<!-- Task Executor -->
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="20" />
+		<property name="maxPoolSize" value="500" />
+		<property name="queueCapacity" value="10000" />
+	</bean>
+
+	<task:annotation-driven executor="executor"/>
+
+	<task:executor id="executor"
+				   pool-size="20-500"
+				   queue-capacity="1000"
+				   rejection-policy="CALLER_RUNS"/>
+</beans>

@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		<![CDATA[
+			The following assignment bundle is available.
+			Title: ${template.work.title}.
+			Date and time: ${template.bundleData.overview.dates.from}.
+			#if ($showPrice)
+			Payment: ${template.bundleData.overview.budget}.
+			#end
+			Please visit ${baseurl} to accept or decline this assignment.
+		]]>
+	</Say>
+	<Redirect>${baseurl}${callbackUri}?loop=1</Redirect>
+</Response>

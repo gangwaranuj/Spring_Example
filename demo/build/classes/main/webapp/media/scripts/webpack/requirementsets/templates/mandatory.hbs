@@ -1,0 +1,6 @@
+{{#if this.isMandatoryRequirement}}
+	<div class="mandatory-checkbox">
+		<input type="checkbox" checked="{{#if this.enabled}}true{{/if}}{{#unless this.enabled}}false{{/unless}}"/> Mandatory
+		<div class="muted mandatory-desc">Worker must pass this requirement in order to apply</div>
+	</div>
+{{/if}}

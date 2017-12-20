@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema"
+	xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:tns="https://smwreports.sterlingdirect.com/XMLBackgroundChecks/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="https://smwreports.sterlingdirect.com/XMLBackgroundChecks/">
+	<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A service to submit background check requests.</wsdl:documentation>
+	<wsdl:types>
+		<s:schema elementFormDefault="qualified"
+			targetNamespace="https://smwreports.sterlingdirect.com/XMLBackgroundChecks/">
+			<s:element name="SubmitRequest">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="XMLDocumentString"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="SubmitRequestResponse">
+				<s:complexType>
+					<s:sequence>
+						<s:element minOccurs="0" maxOccurs="1" name="SubmitRequestResult"
+							type="s:string" />
+					</s:sequence>
+				</s:complexType>
+			</s:element>
+			<s:element name="AuthenticationHeader" type="tns:AuthenticationHeader" />
+			<s:complexType name="AuthenticationHeader">
+				<s:sequence>
+					<s:element minOccurs="0" maxOccurs="1" name="UserId"
+						type="s:string" />
+					<s:element minOccurs="0" maxOccurs="1" name="Password"
+						type="s:string" />
+				</s:sequence>
+				<s:anyAttribute />
+			</s:complexType>
+		</s:schema>
+	</wsdl:types>
+	<wsdl:message name="SubmitRequestSoapIn">
+		<wsdl:part name="parameters" element="tns:SubmitRequest" />
+	</wsdl:message>
+	<wsdl:message name="SubmitRequestSoapOut">
+		<wsdl:part name="parameters" element="tns:SubmitRequestResponse" />
+	</wsdl:message>
+	<wsdl:message name="SubmitRequestAuthenticationHeader">
+		<wsdl:part name="AuthenticationHeader" element="tns:AuthenticationHeader" />
+	</wsdl:message>
+	<wsdl:portType name="XML_x0020_Background_x0020_Check_x0020_RequestSoap">
+		<wsdl:operation name="SubmitRequest">
+			<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Submit a Background Check request via XML. UserID and Password are required.</wsdl:documentation>
+			<wsdl:input message="tns:SubmitRequestSoapIn" />
+			<wsdl:output message="tns:SubmitRequestSoapOut" />
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="XML_x0020_Background_x0020_Check_x0020_RequestSoap"
+		type="tns:XML_x0020_Background_x0020_Check_x0020_RequestSoap">
+		<soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="SubmitRequest">
+			<soap:operation
+				soapAction="https://smwreports.sterlingdirect.com/XMLBackgroundChecks/SubmitRequest"
+				style="document" />
+			<wsdl:input>
+				<soap:body use="literal" />
+				<soap:header message="tns:SubmitRequestAuthenticationHeader"
+					part="AuthenticationHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:binding name="XML_x0020_Background_x0020_Check_x0020_RequestSoap12"
+		type="tns:XML_x0020_Background_x0020_Check_x0020_RequestSoap">
+		<soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="SubmitRequest">
+			<soap12:operation
+				soapAction="https://smwreports.sterlingdirect.com/XMLBackgroundChecks/SubmitRequest"
+				style="document" />
+			<wsdl:input>
+				<soap12:body use="literal" />
+				<soap12:header message="tns:SubmitRequestAuthenticationHeader"
+					part="AuthenticationHeader" use="literal" />
+			</wsdl:input>
+			<wsdl:output>
+				<soap12:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="XML_x0020_Background_x0020_Check_x0020_Request">
+		<wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">A service to submit background check requests.</wsdl:documentation>
+		<wsdl:port name="XML_x0020_Background_x0020_Check_x0020_RequestSoap"
+			binding="tns:XML_x0020_Background_x0020_Check_x0020_RequestSoap">
+			<soap:address
+				location="https://smwuat.sterlingdirect.com/XMLBackgroundChecks/Request.asmx" />
+		</wsdl:port>
+		<wsdl:port name="XML_x0020_Background_x0020_Check_x0020_RequestSoap12"
+			binding="tns:XML_x0020_Background_x0020_Check_x0020_RequestSoap12">
+			<soap12:address
+				location="https://smwuat.sterlingdirect.com/XMLBackgroundChecks/Request.asmx" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

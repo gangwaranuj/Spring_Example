@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		I'm sorry but you need to enter an assignment ID to update an assignment status. Please call back when you have an assignment ID ready. Thank you. Good Bye.
+	</Say>
+</Response>

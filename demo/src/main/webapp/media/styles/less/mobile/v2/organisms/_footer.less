@@ -1,0 +1,52 @@
+.footer {
+	border: none;
+	background-color: inherit;
+	margin-top: 2em !important; //overriding vendor grid, should be removed
+	.unit {
+		padding: @small-space;
+		text-align: center;
+		a {
+			color: @medium-gray;
+			text-decoration: none;
+			padding: 0 @small-space;
+		}
+	}
+}
+
+.public-footer {
+	.rocket-container {
+		.opacity(.9);
+		height: @footer;
+		.box-sizing(border-box);
+		display: block;
+		padding-right: 0.5em;
+
+		.rocket-icon {
+			height: 2em;
+			display: block;
+			width: 2em;
+			position: relative;
+			margin: 0 auto;
+			display: block;
+			clear: both;
+			.flame {
+				fill: @yellow;
+				.flickering-flame;
+			}
+		}
+		small {
+			text-align: center;
+			display: block;
+			color: @orange;
+			clear: both;
+			margin: 1em auto 0;
+		}
+		.rocket-footer {
+			text-align: center;
+			margin-right: 0.5em;
+			a {
+				color: @blue;
+			}
+		}
+	}
+}

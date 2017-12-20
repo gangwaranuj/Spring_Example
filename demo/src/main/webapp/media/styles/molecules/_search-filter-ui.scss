@@ -1,0 +1,77 @@
+.search-filter-ui {
+	.search-filter-full-results {
+		#page_size, .wm-pagination {
+			margin-top: 0;
+			margin-right: 0;
+			margin-left: 5px;
+			position: relative;
+		}
+
+		.search-controls {
+			clear: both;
+		}
+
+		.content.content-search {
+			width: 100%;
+		}
+	}
+
+	.search-filter-loadstate {
+		width: 100%;
+		margin-top: 3em;
+		margin-bottom: 3em;
+		display: none;
+		text-align: center;
+	}
+
+	.search-header {
+		.count-overview {
+			float: left;
+			.pull-left {
+				margin-right: 1em;
+			}
+		}
+		.header-searchtype-toggle {
+			float: right;
+		}
+		.workers-option, .vendors-option {
+			float: left; 
+		}
+		.settings-switch {
+			float: left;
+			margin-left: 0.5em;
+			margin-right: 0.5em;
+		}
+		.settings-switch--skin {
+			color: $light-grey;
+		}
+	}
+
+	.search-filter-banner {
+		padding-top: 1em;
+		height: 50px;
+		border-bottom: 1px solid $default-border-color;
+		box-shadow: 0 5px 5px -5px $light-grey;
+		margin-top: -2.5em;
+		margin-bottom: 1em;
+
+		h1 {
+			float: left;
+			font-size: 1.6em;
+			font-weight: normal;
+			line-height: 1.2;
+			margin: 0 1.5em 0 0;
+		}
+
+		.wm-label {
+			float: left;
+			margin-right: 1.5em;
+			margin-top: 2px;
+		}
+	}
+
+	.search-beta-actions {
+		float: left;
+		margin-top: 4px;
+	}
+}

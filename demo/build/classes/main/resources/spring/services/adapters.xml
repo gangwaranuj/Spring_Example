@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oxm="http://www.springframework.org/schema/oxm"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/oxm http://www.springframework.org/schema/oxm/spring-oxm-3.2.xsd"
+		default-lazy-init="true">
+
+	<!--
+		Configuration and setup for adapters to external service providers.
+		These include adapters for:
+
+		* SMS
+		* Voice/IVR (Twilio)
+		* Payment Gateway (First Data)
+		* Background and Drug Screening (Acxiom)
+		* Asset Management and Content Delivery (AWS)
+		* Geocoder (Google)
+		* Sugar
+	-->
+
+	<bean id="paymentAdapter" class="${payment.adapterClass}" />
+	<bean id="voiceAdapter" class="${voice.adapterClass}" />
+	<bean id="remoteFileAdapter" class="${remoteFile.adapterClass}" />
+	<bean id="linkShortenerAdapter" class="${linkShortener.adapterClass}" />
+	<bean id="buyerSignUpAdapter" class="${buyerSignUp.adapterClass}" />
+	<bean id="afterShipGateway" class="${aftership.gatewayClass}" />
+	<bean id="vaultServerService" class="${vault.serverServiceClass}" />
+
+	<!-- Payment Adapter -->
+	<oxm:jaxb2-marshaller id="firstDataMarshaller">
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.fdggwsapi.FDGGWSApiOrderRequest"/>
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.fdggwsapi.FDGGWSApiOrderResponse"/>
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.v1.CreditCardTxType"/>
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.v1.CreditCardData"/>
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.v1.Payment"/>
+		<oxm:class-to-be-bound name="net.linkpt.secure.fdggwsapi.schemas_us.v1.Transaction"/>
+	</oxm:jaxb2-marshaller>
+
+	<bean id="webServiceTemplate" class="org.springframework.ws.client.core.WebServiceTemplate" lazy-init="true">
+		<constructor-arg>
+			<bean id="messageFactory" class="org.springframework.ws.soap.saaj.SaajSoapMessageFactory"/>
+		</constructor-arg>
+		<property name="marshaller" ref="firstDataMarshaller"/>
+		<property name="unmarshaller" ref="firstDataMarshaller"/>
+		<property name="messageSender">
+			<bean class="org.springframework.ws.transport.http.CommonsHttpMessageSender">
+				<constructor-arg>
+					<bean class="org.apache.commons.httpclient.HttpClient">
+						<constructor-arg>
+							<bean class="org.apache.commons.httpclient.params.HttpClientParams">
+								<property name="authenticationPreemptive" value="true"/>
+								<property name="connectionManagerClass" value="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager"/>
+								<property name="soTimeout" value="180000" />
+							</bean>
+						</constructor-arg>
+					</bean>
+				</constructor-arg>
+				<property name="credentials">
+					<bean class="org.apache.commons.httpclient.UsernamePasswordCredentials">
+						<constructor-arg value="${payment.adapter.firstdata.username}"/>
+						<constructor-arg value="${payment.adapter.firstdata.password}"/>
+					</bean>
+				</property>
+				<property name="connectionTimeout" value="180000"/>
+				<property name="readTimeout" value="180000"/>
+			</bean>
+		</property>
+		<property name="destinationProvider">
+			<bean class="org.springframework.ws.client.support.destination.Wsdl11DestinationProvider">
+				<property name="wsdl" value="${payment.adapter.firstdata.wsdl}"/>
+			</bean>
+		</property>
+	</bean>
+
+
+	<oxm:jaxb2-marshaller id="acxiomMarshaller" contextPath="com.acxiom.aissreports.jaxb" />
+
+	<bean id="externalScreeningService" class="${screening.externalServiceClass}" lazy-init="true">
+	</bean>
+
+	<!-- Remote File Adapter -->
+
+	<bean name="aWSConfigData" class="com.workmarket.service.infra.file.AWSConfigData">
+		<property name="localAssetFileDirectory" value="${remoteFile.localAssetFileDirectory}" />
+		<property name="remoteFileEnvironment" value="${remoteFile.remoteFileEnvironment}" />
+		<property name="defaultUrlPrefix" value="${remoteFile.defaultUrlPrefix}" />
+		<property name="cdnDevProdUrlPrefix" value="${remoteFile.cdnDevProdUrlPrefix}" />
+		<property name="cdnProdPublicUrlPrefix" value="${remoteFile.cdnProdPublicUrlPrefix}" />
+		<property name="defaultAuthorizedUrlExpiration" value="${remoteFile.defaultAuthorizedUrlExpiration}" />
+		<property name="triggerMultipart" value="${remoteFile.triggerMultipart}" />
+		<property name="basicAWSCredentials">
+			<bean name="basicAWSCredentials" class="com.amazonaws.auth.BasicAWSCredentials">
+				<constructor-arg value="${remoteFile.accessKey}" />
+				<constructor-arg value="${remoteFile.secretKey}" />
+			</bean>
+		</property>
+		<property name="s3BucketPrivate" value="${remoteFile.location.private}" />
+		<property name="s3BucketPublic" value="${remoteFile.location.public}" />
+		<property name="s3BucketTmp" value="${remoteFile.location.tmp}" />
+	</bean>
+
+</beans>

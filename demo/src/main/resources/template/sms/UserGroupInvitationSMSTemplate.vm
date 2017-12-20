@@ -1,0 +1,9 @@
+#if($template.vendorInvitation)
+	#set($target = "your company")
+#else
+	#set($target = "you")
+#end
+Group invitation:
+${template.userGroup.company.effectiveName}
+invites ${target} to the group:
+${template.userGroup.name}

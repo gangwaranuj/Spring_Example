@@ -1,0 +1,102 @@
+.custom-fields-page {
+	.nav h3 {
+		text-align: left;
+	}
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+	}
+	form {
+		h3 {
+			color: @gray;
+			margin: 0;
+		}
+	}
+	ul {
+		list-style-type: none;
+		padding: 0;
+		li {
+			margin: 1em;
+		}
+	}
+	.seller-fields label {
+		background: @bright-green;
+	}
+	label {
+		background: @medium-gray;
+		color: white;
+		padding: @small-space @small-space 0;
+		.border-radiuses (5px, 0, 0, 5px);
+		margin-bottom: 0;
+		display: inline-block;
+		word-break: break-word;
+	}
+	input {
+		border-top-left-radius: 0;
+		font-size: 1em;
+		border-color:@medium-gray;
+	}
+	select {
+		.border-radiuses(@base-border-radius, @base-border-radius, @base-border-radius, 0);
+		border-color:@medium-gray;
+		&.disabled-select {
+			color:@gray;
+			background: @light-gray;
+			border-color:@light-gray;
+			& + .select-down-arrow-icon {
+				polygon {
+					fill: @medium-gray;
+				}
+			}
+		}
+	}
+	.notice {
+		display: block;
+		border-left: none;
+	}
+	p {
+		margin-left: 1em;
+		border-left: 2px solid @orange;
+		padding-left: .5em;
+	}
+
+	.link-cf {
+		padding: .3em;
+		margin: 0;
+		display: none;
+		float: right;
+		color: @blue;
+		font-size: 0.9em;
+	}
+
+	.select-down-arrow-icon {
+		float: right;
+		margin: -2.4em -3.3em 0 0;
+		position: relative;
+		polygon {
+			fill: @orange;
+			stroke-miterlimit: 10;
+		}
+	}
+
+	.buyer-custom-fields-partial {
+		margin: 2em 0;
+	}
+
+	.required-field {
+		padding: .3em;
+		margin: 0;
+		float: right;
+		small {
+			color: @orange;
+			float: left;
+		}
+		.asterisk-icon {
+			fill: @orange;
+			float: left;
+			height: .7em;
+			width: .7em;
+			padding-right: .2em;
+		}
+	}
+}

@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Gather action='${baseurl}${callbackUri}'>
+
+		#if($template.work.checkinCallRequired)
+			<Say voice='woman'>
+				To check in or out for this assignment, please contact ${template.work.checkinContactName} at ${template.work.checkinContactPhoneForIvr}.
+			</Say>
+		#elseif(!$template.work.checkinRequired)
+			<Say voice='woman'>
+				Check in and out are not available on this assignment.
+			</Say>
+		#end
+
+		<Say voice='woman'>
+			Please listen to the following options and make your selection followed by the #:
+		</Say>
+		
+		<Say voice='woman'>
+			#if($template.work.checkinRequired)
+				Press 1 to check in.
+				Press 2 to check out.
+			#end
+			#if($template.work.resourceConfirmationRequired)
+				Press 3 to confirm this assignment.
+			#end
+		</Say>
+		
+	</Gather>
+	<Redirect>${baseurl}${callbackUri}</Redirect>
+</Response>

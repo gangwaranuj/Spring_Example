@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd ">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<context:property-placeholder
+		location="classpath:/config/config-common.properties,${wm.conf}"
+		ignore-unresolvable="true" />
+
+	<context:mbean-export registration="replaceExisting"/>
+
+	<context:annotation-config/>
+
+	<context:component-scan base-package="org.springframework.security.saml"/>
+
+	<context:component-scan base-package="com.workmarket.thrift" />
+	<context:component-scan base-package="com.workmarket.search"/>
+	<context:component-scan base-package="com.workmarket.service" />
+	<context:component-scan base-package="com.workmarket.dao"/>
+	<context:component-scan base-package="com.workmarket.data"/>
+	<context:component-scan base-package="com.workmarket.payments.funds.model" />
+	<context:component-scan base-package="com.workmarket.search" />
+	<context:component-scan base-package="com.workmarket.common.template" />
+	<context:component-scan base-package="com.workmarket.factory" />
+	<context:component-scan base-package="com.workmarket.reporting" />
+	<context:component-scan base-package="com.workmarket.redis" />
+	<context:component-scan base-package="com.workmarket.integration.autotask" />
+	<context:component-scan base-package="com.workmarket.integration.webhook" />
+	<context:component-scan base-package="com.workmarket.common.service.helpers" />
+	<context:component-scan base-package="com.workmarket.common.cache" />
+	<context:component-scan base-package="com.workmarket.web" />
+	<context:component-scan base-package="com.workmarket.web.config"/>
+	<context:component-scan base-package="com.workmarket.web.controllers"/>
+	<context:component-scan base-package="com.workmarket.web.validators"/>
+	<context:component-scan base-package="com.workmarket.web.helpers"/>
+	<context:component-scan base-package="com.workmarket.api"/>
+	<context:component-scan base-package="com.workmarket.velvetrope" />
+	<context:component-scan base-package="com.workmarket.vault" />
+	<context:component-scan base-package="com.workmarket.domains.velvetrope" />
+	<context:component-scan base-package="com.workmarket.configuration" />
+	<context:component-scan base-package="com.workmarket.domains.compliance" />
+	<context:component-scan base-package="com.workmarket.domains.banking" />
+
+	<context:component-scan base-package="com.workmarket.domains.onboarding.model"/>
+	<context:component-scan base-package="com.workmarket.domains.model.requirementset"/>
+
+	<context:component-scan base-package="com.workmarket.domains.forums.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.forums.service"/>
+
+	<context:component-scan base-package="com.workmarket.domains.search.model"/>
+
+	<context:component-scan base-package="com.workmarket.domains.groups.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.groups.service"/>
+	<context:component-scan base-package="com.workmarket.domains.groups.facade"/>
+
+	<context:component-scan base-package="com.workmarket.domains.work.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.work.facade.service"/>
+	<context:component-scan base-package="com.workmarket.domains.work.service"/>
+	<context:component-scan base-package="com.workmarket.domains.work.cache"/>
+
+	<context:component-scan base-package="com.workmarket.domains.reports.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.reports.service"/>
+	<context:component-scan base-package="com.workmarket.domains.reports.controllers"/>
+
+	<context:component-scan base-package="com.workmarket.domains.authentication"/>
+
+	<context:component-scan base-package="com.workmarket.domains.payments.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.payments.service"/>
+	<context:component-scan base-package="com.workmarket.domains.payments.validator" />
+	<context:component-scan base-package="com.workmarket.domains.payments.controllers"/>
+
+	<context:component-scan base-package="com.workmarket.domains.search.group.indexer.dao"/>
+	<context:component-scan base-package="com.workmarket.domains.search.group.indexer.service"/>
+	<context:component-scan base-package="com.workmarket.service.screening.configuration"/>
+	<context:component-scan base-package="com.workmarket.domains.search.solr"/>
+	<context:component-scan base-package="com.workmarket.sso"/>
+
+</beans>

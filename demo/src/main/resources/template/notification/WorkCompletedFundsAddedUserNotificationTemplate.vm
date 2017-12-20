@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Funds#if($showPricing) (${number.currency($template.work.fulfillmentStrategy.amountEarned)})#end have been added to your account for your completion of the assignment: ${template.workTitle}</a>

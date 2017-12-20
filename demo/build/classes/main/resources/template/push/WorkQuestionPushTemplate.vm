@@ -1,0 +1,4 @@
+{
+"message": "${template.fullName} asked a question about assignment: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}#questions"
+}

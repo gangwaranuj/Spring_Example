@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+
+		@page {
+			margin: 10em 4em 18em 4em;
+
+		@top-center {content: element(header);}
+		@bottom-center {content: element(footer);}
+			}
+
+		body { font-family: sans-serif; font-size: 10pt; margin: 0 0.1em 2em; }
+
+		header { position: running(header); }
+
+		footer { font-family: sans-serif; font-size: 8pt; font-style: italic; position: running(footer); }
+
+		table.info { width: 250px; margin: 10px; border-collapse: collapse; }
+
+		table.info td:last-child { text-align: right; }
+
+		table.info tr:last-child td { border-top: 1px solid; margin-top: 5px; }
+	</style>
+</head>
+
+<body>
+<header>
+	<h2> Earnings Report for 1/1/${template.earningReport.taxYear} to 12/31/${template.earningReport.taxYear}</h2>
+	<hr/>
+</header>
+
+<strong>Name:</strong> ${template.earningReport.fullName}<br/>
+<strong>DBA Name:</strong> #if ($template.earningReport.businessFlag) ${template.earningReport.lastName}#end<br/>
+<strong>Tax Type:</strong> ${template.earningReport.formattedTaxType}<br/>
+<strong>Address:</strong> ${template.earningReport.address}, ${template.earningReport.city}, ${template.earningReport.state}, ${template.earningReport.postalCode}
+<br/>
+<strong>Country:</strong> ${template.earningReport.country.toUpperCase()}<br/>
+<strong>Tax Identification Number:</strong> ${template.earningReport.taxNumber}<br/><br/>
+
+
+<div style="margin-bottom:100px">
+	<h3>Earnings Information</h3>
+	<table class="info">
+		<tr>
+			<td>Total Paid Assignments:</td>
+			<td>${template.earningReport.formattedWorkPayments}</td>
+		</tr>
+		<tr>
+			<td>Courtesy Payments:</td>
+			<td>${template.earningReport.formattedMarketingPayments}</td>
+		</tr>
+		<tr>
+			<td>Assignment Reversals:</td>
+			<td>${template.earningReport.formattedPaymentReversals}</td>
+		</tr>
+		<tr>
+			<td>Expenses:</td>
+			<td>${template.earningReport.formattedExpenses}</td>
+		</tr>
+		<tr>
+			<td><strong>Net Earnings:</strong></td>
+			<td>$${template.earningReport.formattedNetEarnings}</td>
+		</tr>
+	</table>
+</div>
+<div style="margin-bottom:20px; border-top: 1px dotted black; font-size:12px">
+	<p>Thank you for using the WorkMarket Platform for the past year. Our main goal for this year is to help you earn even more money.<br/>
+		<br/>
+		The best way to earn more business is to:
+	<ul>
+		<li><a target="_blank" href="https://www.workmarket.com/profile-edit/insurance">Add</a> your insurance coverages</li>
+		<li><a target="_blank" href="https://www.workmarket.com/profile-edit/photo">Upload</a> a professional profile photo</li>
+		<li><a target="_blank" href="https://www.workmarket.com/screening/bkgrnd">Complete</a> your background check and drug test</li>
+	</ul>
+	</p>
+</div>
+<footer>
+	The data in this report may be required to be reported to your domestic taxing authority depending on your local
+	tax laws. Please note this data may be already submitted by the entity that sent you assignments as part of their
+	tax filings.
+	<br/><br/>
+	WorkMarket, Inc., or any of subsidiary thereof, does not advise on any personal or business tax requirements or
+	issues. Use of any information from WorkMarket or any other web site referred to is for general information only
+	and does not represent personal tax advice either express or implied. You are encouraged to seek professional
+	tax advice for personal or business tax questions.
+</footer>
+</body>
+</html>

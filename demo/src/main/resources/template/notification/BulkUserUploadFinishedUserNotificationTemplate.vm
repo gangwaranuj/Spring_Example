@@ -1,0 +1,3 @@
+<a class="view-upload" href="/users">
+	Your bulk upload has completed. Click here to view the ${template.uploadCount} uploaded users.
+</a>

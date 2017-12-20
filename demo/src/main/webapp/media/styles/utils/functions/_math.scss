@@ -1,0 +1,4 @@
+@function preciseRound($number, $precision) {
+	$scale: pow(10, $precision);
+	@return round($scale * $number) / $scale;
+}

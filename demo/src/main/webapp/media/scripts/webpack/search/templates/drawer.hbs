@@ -1,0 +1,19 @@
+{{#if this.isGroupDetail}}
+    <button class="button -bulk-action download-documents">Download Assets</button>
+    {{#if this.export_csv}}
+        <button class="button -bulk-action export-as-csv">Export CSV</button>
+    {{/if}}
+    <button class="button -bulk-action remove-decline-users">Remove/Decline</button>
+    <button class="button -bulk-action uninvite-users">Uninvite</button>
+    <button class="button -bulk-action approve-users">Approve</button>
+    <button class="button -bulk-action group-modal bulk">Talent Pool Action</button>
+{{/if}}
+
+{{#unless this.isGroupDetail}}
+    {{#if this.isAssignment}}
+        <button class="button -bulk-action send-work bulk fadeIn animated">Send Assignment</button>
+    {{else}}
+        <button class="button -bulk-action group-modal bulk fadeIn animated">Talent Pool Action</button>
+    {{/if}}
+    <button class="button -bulk-action test-modal bulk fadeIn animated">Invite to Test</button>
+{{/unless}}

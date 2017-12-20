@@ -1,0 +1,45 @@
+<div class="skills-search" style="display:none">
+<label class="onboarding-label expertise-label" for="skill">Skills<span>*</span></label>
+
+<div class="skills-search-content">
+<p class="skills-message">
+{{#[../../helpers/gt] this.skillsNeeded  0}}
+	Get discovered by companies and find the most relevant work by adding at least <span class="skill-count">{{this.skillsNeeded}}</span> more {{#[../../helpers/pluralize] 'skill' this.skillsNeeded}}{{/[../../helpers/pluralize]}}
+{{/[../../helpers/gt]}}
+
+{{#[../../helpers/eq] this.skillsNeeded  0}}
+{{#[../../helpers/gt] this.skillsLeft 0}}
+	Great! You can add as many as <span class="skill-count">{{this.skillsLeft}}</span> more {{#[../../helpers/pluralize] 'skill' this.skillsLeft}}{{/[../../helpers/pluralize]}}; the more the better
+{{/[../../helpers/gt]}}
+
+{{#[../../helpers/eq] this.skillsLeft 0}}
+	Nice! You can always update your skills in the 'My Profile' section later.
+{{/[../../helpers/eq]}}
+
+{{/[../../helpers/eq]}}
+</p>
+
+
+<div>
+	<ul class="your-skills your-skills-wrapper" name="your-skills" data-float-label data-onboarding>
+	{{#each this.skills}}
+		<li class='skill' recommended="{{this.attributes.recommended}}" skill-id="{{this.attributes.id}}" type="{{this.attributes.type}}">{{this.attributes.name}}</li>
+	{{/each}}
+
+		<div class="skills-select" {{#[../../helpers/eq] this.skillsLeft 0}}style="display:none"{{/[../../helpers/eq]}}>
+    		<input class="skills-autocomplete" type="text" name="skill" placeholder="Search or Select..." value="" data-onboarding />
+    	</div>
+	</ul>
+
+</div>
+
+<div class="recommended-skills {{#[../../helpers/eq] this.skillsLeft 0}}disabled{{/[../../helpers/eq]}}">
+	<p>Suggested Skills</p>
+	<ul class="skills" name="skills" data-float-label data-onboarding>
+		{{#each this.recommendedSkills}}
+    		<li class='skill' recommended="{{this.attributes.recommended}}" skill-id="{{this.attributes.id}}" type="{{this.attributes.type}}">{{this.attributes.name}}</li>
+    	{{/each}}
+	</ul>
+</div>
+</div>
+</div>

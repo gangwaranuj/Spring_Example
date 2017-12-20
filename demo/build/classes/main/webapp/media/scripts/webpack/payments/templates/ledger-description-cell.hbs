@@ -1,0 +1,51 @@
+<div>
+	{{#if this.meta.is_prefund_assignment_authorization}}
+		{{this.data}}
+	{{else}}
+		{{#if this.meta.work_number}}
+			<a href="/assignments/details/{{this.meta.work_number}}">{{this.data}} ({{this.meta.work_number}})</a>
+			{{#unless this.meta.is_owner}}
+				{{#unless this.meta.is_work_market_initiated_transaction}}
+                    <small>for {{this.meta.company_name}}</small>
+				{{/unless}}
+			{{/unless}}
+			{{#if this.meta.is_owner}}
+				<small class="meta nowrap">{{this.meta.invoice_number}}</small>
+			{{/if}}
+		{{else}}
+			{{#if this.meta.is_bundle}}
+				<a href="/payments/invoices/print/{{this.meta.bundle_id}}">{{this.data}}</a>
+				<small class="meta nowrap">{{this.meta.bundle_number}}</small>
+			{{else}}
+				{{#if this.meta.is_statement}}
+					<a href="/payments/invoices/payables/statements/{{this.meta.statement_id}}">{{this.data}}</a>
+					<small class="meta nowrap">{{this.meta.statement_number}}</small>
+				{{else}}
+					{{#if this.meta.is_service_invoice}}
+						<a href="/payments/invoices/print_service_invoice/{{this.meta.service_invoice_id}}" target="_blank">{{this.data}}</a>
+						<small class="meta nowrap">{{this.meta.service_invoice_number}}</small>
+					{{else}}
+                        {{#if this.meta.is_credit_memo}}
+                            <a href="/payments/invoices/print_service_invoice/{{this.meta.service_invoice_id}}" target="_blank">{{this.data}}</a>
+                            <small class="meta nowrap">{{this.meta.service_invoice_number}}</small>
+                        {{else}}
+                            {{#unless this.meta.is_pending}}
+                                {{#if this.isDeposit}}
+                                    {{#if this.depositPaymentTypeCredit}}{{this.data}} (<a href="/payments/generate_cc_receipt/{{this.meta.id}}">receipt</a>){{/if}}
+                                    {{#if this.depositPaymentTypeBank}}{{this.data}} (<a href="/payments/generate_bank_receipt/{{this.meta.id}}">receipt</a>){{/if}}
+                                    {{#if this.depositPaymentTypeWire}}{{this.data}} (<a href="/payments/generate_wire_or_check_receipt/wire/{{this.meta.id}}">receipt</a>){{/if}}
+                                    {{#if this.depositPaymentTypeCheck}}{{this.data}} (<a href="/payments/generate_wire_or_check_receipt/check/{{this.meta.id}}">receipt</a>){{/if}}
+                                {{else}}
+                                    {{this.data}}
+                                {{/if}}
+                            {{/unless}}
+                            {{#if this.meta.is_pending}}
+                                {{this.data}}
+                            {{/if}}
+                        {{/if}}
+					{{/if}}
+				{{/if}}
+			{{/if}}
+		{{/if}}
+	{{/if}}
+</div>

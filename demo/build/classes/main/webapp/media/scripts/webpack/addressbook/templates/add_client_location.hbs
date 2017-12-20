@@ -1,0 +1,94 @@
+<label class="assignment-creation--label -required" for="location-client">Client</label>
+<div class="assignment-creation--field">
+	<select id="location-client" name="client" class="wm-select"></select>
+</div>
+
+<label class="assignment-creation--label -required" for="location-project">Project</label>
+<div class="assignment-creation--field">
+	<select id="location-project" name="project" class="wm-select"></select>
+</div>
+
+<label class="assignment-creation--label -required" for="location-mode">Location</label>
+<div class="assignment-creation--field">
+	{{> ../../funcs/templates/radio name="location-mode" value="contact-manager" text="Select location from Contact Manager" isChecked=isContactManagerLocationChecked }}
+	{{> ../../funcs/templates/radio name="location-mode" value="virtual" text="Virtual / Offsite" isChecked=isVirtualLocationChecked }}
+	{{> ../../funcs/templates/radio name="location-mode" value="new" text="Create New Location" isChecked=isNewLocationChecked }}
+</div>
+
+{{#with location}}
+	{{#[../../helpers/eq] mode 'contact-manager'}}
+		<label class="assignment-creation--label -required" for="location-id">Location Name</label>
+		<div class="assignment-creation--field">
+			<select id="location-id" name="location-id" class="wm-select"></select>
+		</div>
+	{{/[../../helpers/eq]}}
+
+	{{#[../../helpers/eq] mode 'new'}}
+		<label class="assignment-creation--label -required" for="location-name">Location Name</label>
+		<div class="assignment-creation--field">
+			<input id="location-name" type="text" name="location-name" value="{{name}}" />
+		</div>
+
+		<label class="assignment-creation--label -required" for="location-number">Location Number</label>
+		<div class="assignment-creation--field">
+			<input id="location-number" type="text" name="location-number" value="{{number}}" />
+		</div>
+
+		<label class="assignment-creation--label -required" for="location-type">Location Type</label>
+		<div class="assignment-creation--field">
+			<select id="location-type" name="location-type" class="wm-select">
+				<option value="commercial">Commercial</option>
+				<option value="residential">Residential</option>
+				<option value="government">Government</option>
+				<option value="education">Education</option>
+			</select>
+		</div>
+
+		<label class="assignment-creation--label -required" for="location-addressLine1">Location Address</label>
+		<div id="location-addressLine1" class="assignment-creation--field">
+			<input type="text" name="location-addressLine1" value="{{addressLine1}}" placeholder="Address" />
+			<input type="text" name="location-addressLine2" value="{{addressLine2}}" placeholder="Suite / Floor" />
+			<input type="text" name="location-city" value="{{city}}" placeholder="City" />
+			<input type="text" name="location-state" value="{{state}}" placeholder="State" />
+			<input type="text" name="location-zip" value="{{zip}}" placeholder="Zip" />
+		</div>
+
+		<h2 class="assignment-creation--subheading">Location Contact</h2>
+
+		<label class="assignment-creation--label" for="location-contact-firstName">Name</label>
+		<div class="assignment-creation--field">
+			<input type="text" id="location-contact-firstName" name="location-contact-firstName" value="{{contact.firstName}}" placeholder="First" />
+			<input type="text" name="location-contact-lastName" value="{{contact.lastName}}" placeholder="Last" />
+		</div>
+
+		<label class="assignment-creation--label" for="location-contact-workPhone">Phone</label>
+		<div class="assignment-creation--field">
+			<input type="tel" id="location-contact-workPhone" name="location-contact-workPhone" value="{{contact.workPhone}}" placeholder="(___) ___-____" data-mask />
+			<input type="text" name="location-contact-workPhoneExtension" value="{{contact.workPhoneExtension}}" placeholder="Ext." />
+		</div>
+
+		<label class="assignment-creation--label" for="location-contact-email">Email</label>
+		<div class="assignment-creation--field">
+			<input type="email" id="location-contact-email" name="location-contact-email" value="{{contact.email}}" />
+		</div>
+
+		<h2 class="assignment-creation--subheading">Secondary Location Contact</h2>
+
+		<label class="assignment-creation--label" for="location-secondaryContact-firstName">Name</label>
+		<div class="assignment-creation--field">
+			<input type="text" id="location-secondaryContact-firstName" name="location-secondaryContact-firstName" value="{{secondaryContact.firstName}}" placeholder="First" />
+			<input type="text" name="location-secondaryContact-lastName" value="{{secondaryContact.lastName}}" placeholder="Last" />
+		</div>
+
+		<label class="assignment-creation--label" for="location-secondaryContact-workPhone">Phone</label>
+		<div class="assignment-creation--field">
+			<input type="tel" id="location-secondaryContact-workPhone" name="location-secondaryContact-workPhone" value="{{secondaryContact.workPhone}}" placeholder="(___) ___-____" data-mask />
+			<input type="text" name="location-secondaryContact-workPhoneExtension" value="{{secondaryContact.workPhoneExtension}}" placeholder="Ext." />
+		</div>
+
+		<label class="assignment-creation--label" for="location-secondaryContact-workPhone">Email</label>
+		<div class="assignment-creation--field">
+			<input type="email" id="location-secondaryContact-email" name="location-secondaryContact-email" value="{{secondaryContact.email}}" />
+		</div>
+	{{/[../../helpers/eq]}}
+{{/with}}

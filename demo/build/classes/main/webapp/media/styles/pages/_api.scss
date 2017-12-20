@@ -1,0 +1,90 @@
+.page-api {
+	@include scaffolding;
+	@include new-form-inputs;
+	@include new-typography;
+	@include new-form-textarea;
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+	}
+	.content {
+		@include span(9 omega);
+		margin-bottom: 2em;
+	}
+	pre {
+		display: block;
+		padding: 9.5px;
+		margin: 0 0 10px;
+		font-size: 12px;
+		line-height: 20px;
+		word-break: break-all;
+		word-wrap: break-word;
+		white-space: pre-wrap;
+		background-color: $white;
+		border: 1px solid $off-white;
+		border: 1px solid rgba(0, 0, 0, 0.15);
+		-webkit-border-radius: 4px;
+		-moz-border-radius: 4px;
+		border-radius: 4px;
+	}
+	code, pre {
+		padding: 0 3px 2px;
+		font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+		font-size: 11px;
+		color: #333333;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	code {
+		display: inline;
+		padding: 2px 4px;
+		color: $red;
+		background-color: $off-white;
+		border: 1px solid $grey;
+		white-space: nowrap;
+	}
+	p {
+		margin: 0 0 10px;
+		line-height: 1.5;
+	}
+	.table {
+		background: $white;
+		width: 100%;
+		margin-bottom: 20px;
+		max-width: 100%;
+		border-collapse: collapse;
+		border-spacing: 0;
+		border-color: $grey;
+		td {
+			padding: 8px;
+			line-height: 20px;
+			text-align: left;
+			vertical-align: top;
+			border-top: 1px solid $white;
+		}
+	}
+	.table-striped tbody > tr:nth-child(odd) > td,
+	.table-striped tbody > tr:nth-child(odd) > th {
+		background-color: #f9f9f9;
+	}
+	.table-hover tbody tr:hover > td,
+	.table-hover tbody tr:hover > th {
+		background-color: #f5f5f5;
+	}
+	h1, h2, h3, h4, h5 {
+		font-weight: bold;
+	}
+	.required {
+		&:before {
+			content: '*';
+			color: #9d261d;
+			font-weight: bold;
+			line-height: 0;
+			margin-right: 5px;
+			top: 2px;
+			position: relative;
+		}
+	}
+}

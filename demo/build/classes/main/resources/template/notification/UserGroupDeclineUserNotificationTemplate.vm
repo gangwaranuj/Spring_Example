@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/groups/${template.userGroup.id}">Your application to the talent pool: ${template.userGroupName} was declined</a>

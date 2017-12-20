@@ -1,0 +1,55 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Welcome to WorkMarket</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+	<p style="margin: 10px 0px 0px 0px">
+		#if (${toUser.firstName})
+			Hello ${toUser.firstName},
+		#else
+			Hello,
+		#end
+		<br/>
+	</p>
+
+	<p>Welcome to WorkMarket and thank you for signing up! We're excited to have you join the WorkMarket community of freelance workers.</p>
+
+	<div style="font-weight: bold; font-size: 13px; border-bottom: 1px solid #ededed; background-color: #ffffff; padding: 4px 0;">Ready to work? Here are a few steps to get started:</div>
+
+	<ul style="margin-left:-20px;">
+		<li><span style="font-weight: bold;">Complete your Profile</span>:
+			<a href="${baseurl}/profile-edit/photo" style="text-decoration: none">Upload a profile photo</a> and <a href="${baseurl}/profile-edit/certifications" style="text-decoration: none">upload licenses and certifications</a> to your profile to position yourself for contract work.</li><br/>
+
+		<li><span style="font-weight: bold;">Browse Work</span>:
+			<a href="${baseurl}/find-work" style="text-decoration: none">Browse <span style="font-weight:bold; color: #f7961D">Work</span><span style="font-weight:bold; color: #717A82">Feed</span></strong></a> for thousands of work opportunities available every day.</li><br/>
+
+		<li><span style="font-weight: bold;">Join Groups</span>:
+			<a href="${baseurl}/search-groups" style="text-decoration: none">Browse groups</a> created by hundreds of clients to unlock additional work opportunities.</li><br/>
+
+		<li><span style="font-weight: bold;">Configure Payments</span>:
+			Link a <a href="${baseurl}/funds/accounts/new" style="text-decoration: none">bank account</a> or apply for <a href="${baseurl}/funds/accounts/gcc" style="text-decoration: none">WorkMarket Visa Card</a> for faster access to your funds.</li><br/>
+
+		<li><span style="font-weight: bold;">Go Mobile</span>:
+			Download our mobile app for <a target="_" href="https://itunes.apple.com/us/app/work-market/id675449493?mt=8&uo=4" target="itunes_store" style="text-decoration: none">iPhone</a> or <a target="_" href="https://play.google.com/store/apps/details?id=com.workmarket.android" style="text-decoration: none">Android</a> to manage your work on the go.</li>
+	</ul>
+
+	<p style="margin: 20px 0px">
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tbody>
+		<tr>
+			<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/">Go to WorkMarket Now</a>
+
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</p>
+
+	<p style="font-size:11px; color: #717A82">
+		For general inquiries or to request support with your account, please visit our <a href="https://workmarket.zendesk.com/hc/en-us">help center</a> or call our support team at 212-229-WORK (9675).
+	</p>
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

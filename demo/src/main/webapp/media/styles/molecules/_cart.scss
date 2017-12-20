@@ -1,0 +1,46 @@
+.content-search {
+	border-radius: $base-border-radius;
+	border: $default-border;
+	padding: 0.5em 1em 1em 1em;
+	background-color: $alternate-background-color;
+	margin-bottom: 8em;
+
+	.wm-pagination {
+		float: right;
+		font-size: 0.8em;
+		margin-top: -3.5em;
+
+		& ~ .wm-pagination {
+			margin-top: 0;
+		}
+	}
+
+	#cart {
+		#cart-drawer {
+			font-size: 0.75em;
+			flex-grow: 1;
+
+			.button {
+				margin-bottom: 0;
+			}
+			.internal-export-csv {
+				float: right;
+			}
+		}
+		.accordion-body {
+			width: 53em;
+			.drawer-div {
+				margin: 2em 0 2em 14em;
+			}
+			.actions {
+				margin-left: 7.7em;
+			}
+		}
+
+		.internal-export-csv { padding-top: 0.5em; }
+	}
+
+	#search_results.-fixed-toolbar {
+		padding-top: 1.5em;
+	}
+}

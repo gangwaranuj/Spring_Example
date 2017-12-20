@@ -1,0 +1,9 @@
+package com.workmarket.factory;
+
+import com.workmarket.domains.model.banking.BankingIntegrationGenerationRequestType;
+
+public interface BankingIntegrationGenerationRequestRowMapperFactory {
+
+	BankingIntegrationGenerationRequestRowMapper getRowMapper(BankingIntegrationGenerationRequestType integrationType);
+	BankingIntegrationGenerationRequestHeaderMapper  getHeaderMapper(BankingIntegrationGenerationRequestType integrationType);
+}

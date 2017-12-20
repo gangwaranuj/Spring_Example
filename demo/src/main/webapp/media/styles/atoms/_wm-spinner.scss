@@ -1,0 +1,41 @@
+$spinner: (
+	element-size: 1.5em
+);
+
+@keyframes spinner-fade {
+	0% { background-color: $blue; }
+	100% { background-color: transparent; }
+}
+
+.wm-spinner {
+	position: relative;
+	display: inline-block;
+	font-size: map-get($spinner, element-size);
+	width: 1em;
+	height: 1em;
+
+	&--blade {
+		@include center;
+		width: 1px;
+		height: 0.2em;
+		border-radius: 1px;
+		background-color: transparent;
+		transform-origin: center 0;
+		animation: spinner-fade 1s infinite linear;
+
+		$animation-delay: 0s;
+		$blade-rotation: 0deg;
+		$total-blades: 18;
+		$rotational-displacement: 360 / $total-blades;
+		$rotational-delay: 1 / $total-blades;
+
+		@for $i from 1 through $total-blades {
+			&:nth-child(#{$i}) {
+				animation-delay: $animation-delay;
+				transform: rotate($blade-rotation) translateY(100%);
+				$blade-rotation: $blade-rotation + $rotational-displacement;
+				$animation-delay: $animation-delay + $rotational-delay;
+			}
+		}
+	}
+}

@@ -1,0 +1,15 @@
+<h5>Add Compliance Rules</h5>
+<div class="well-content">
+	<div class="control-group">
+		<label for="complianceRuleTypes" class="control-label">Select the type of compliance rule to add to your set</label>
+		<div class="controls">
+			<select id="complianceRuleTypes" class="input-block-level" data-toggle="form">
+				<option class="prompt">- Select -</option>
+				{{#each this.complianceRuleTypes}}
+					<option value="{{this.attributes.name}}">{{this.attributes.humanName}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<div data-placeholder="form"></div>
+	</div>
+</div>

@@ -1,0 +1,85 @@
+.notifications-page {
+	height: 100%;
+
+	h2 {
+		color: @dark-gray;
+		margin: .5em auto .5em;
+	}
+
+	#public-message {
+		padding-right: 1em;
+	}
+
+	.content {
+		margin-top: 1.6em;
+		min-height: 460px;
+		padding-left: 2em;
+	}
+	.zero-notifications {
+		text-align: center;
+		font-size: 1.2em;
+		color:@dark-gray;
+		display: none;
+	}
+	.notifications {
+		@notifications-timeline-width: 2px;
+
+		display: none;
+		height: 100%;
+		list-style-type: none;
+		margin: 0;
+		border-left: @notifications-timeline-width solid rgba(247, 150, 29, 0.5);
+		min-height: 430px;
+
+		li {
+			margin: 0 0 0 -20px;
+			padding: 1em 0;
+			width: 90%;
+			.box-sizing(border-box);
+			a {
+				text-decoration: none;
+				display: block;
+				text-align: left;
+				color: @orange;
+				.box-sizing(border-box);
+				margin-bottom: 10px;
+				&.visited {
+					color: @dark-gray;
+					outeline: none;
+					border: none;
+					&:before {
+						background-color: @light-gray;
+					}
+				}
+				&:before {
+					content: '';
+					border-radius: 50%;
+					border: 2px solid white;
+					background-color: @orange;
+					height: 25px;
+					width: 25px;
+					display: block;
+					float: left;
+					margin: 5px -36px;
+				}
+			}
+			.notification-meta {
+				color: @dark-gray;
+				padding: 5px;
+				background: @light-gray;
+				border-radius: 3px;
+			}
+		}
+	}
+	//visited notifications utility class
+	.visited {
+		border: 2px solid @light-orange !important;
+		color: @light-orange !important;
+		a {
+			color: @light-orange !important;
+		}
+		.notification-meta {
+			background: @light-orange !important;
+		}
+	}
+}

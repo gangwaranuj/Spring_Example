@@ -1,0 +1,15 @@
+<div class="wm-search-filter--ratings">
+	<h2 class="sidebar-card--title">Quality</h2>
+	{{> slider title="Overall Satisfaction" name="slider" id="satisfactionRate" value="0" min="0" max="100" step="1" units="%" }}
+	<input type="hidden" name="satisfactionRate"/>
+	{{> slider title="On-Time" name="slider" id="onTimePercentage" value="0" min="0" max="100" step="1" units="%" }}
+	<input type="hidden" name="onTimePercentage"/>
+	{{> slider title="Deliverable On-Time" name="slider" id="deliverableOnTimePercentage" value="0" min="0" max="100" step="1" units="%" }}
+	<input type="hidden" name="deliverableOnTimePercentage"/>
+	<hr/>
+	{{> button text="Close" classlist="close-advanced-facet"}}
+	{{> button text="Apply" classlist="apply-ratings -primary"}}
+	<div id="verifications">
+		<ul class="filter_items inputs-list"></ul>
+	</div>
+</div>

@@ -1,0 +1,81 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #333333; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">${template.work.company.effectiveName}</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 20px 0px">
+		#if ($onBehalfOfUser && $onBehalfOfUser.firstName)
+			Hello ${onBehalfOfUser.firstName},<br/>
+		#else
+			Hello ${toUser.firstName},<br/>
+		#end
+		<br/>
+		You've been invited to the following <b>assignment bundle</b>.
+		#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+			The first person to accept the bundle will be assigned to perform the work for <b>all included assignments, listed below</b>.
+		#else
+			The client will review your application and, if you are selected, you will be assigned to perform the work for <b>all included assignments, listed below</b>.
+		#end
+	</p>
+
+	#if ($showPrice)
+		<p>
+			<b>Total Budget: ${template.bundleData.overview.budget}</b>
+		</p>
+	#end
+
+	<p style="margin: 20px 0px">
+		<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f9f9f9; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+			<tbody>
+			<tr>
+			<th>Title</th>
+			<th>Location</th>
+			<th>Start Date</th>
+			#if ($showPrice)
+				<th>Budget</th>
+			#end
+			</tr>
+			#foreach($assignment in ${template.bundleData.assignments})
+				<tr>
+					<td><a href="${baseurl}/assignments/details/${assignment.workNumber}">${assignment.title}</a></td>
+					<td>${assignment.location}</td>
+					<td>${assignment.due}</td>
+					#if ($showPrice)
+						<td>${assignment.budget}</td>
+					#end
+				</tr>
+			#end
+			</tbody>
+		</table>
+	</p>
+
+	<p style="text-align: center;">
+		#if ($onBehalfOfUser && $onBehalfOfUser.encryptedId)
+			<img src="${baseurl}/assignment_status/${template.work.workNumber}/${onBehalfOfUser.encryptedId}" alt="Assignment Status" />
+		#else
+			<img src="${baseurl}/assignment_status/${template.work.workNumber}/${toUser.encryptedId}" alt="Assignment Status" />
+		#end
+	</p>
+
+	<p style="margin: 20px 0px">
+		<table cellspacing="0" cellpadding="0" border="0">
+			<tbody>
+			<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+					<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/details/${template.work.workNumber}">View Assignment Bundle Details</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</p>
+
+	<p style="font-size:10px; color:#777;">
+		#if ($onBehalfOfUser && $onBehalfOfUser.encryptedId)
+			<a style="color:#777" href="${baseurl}/user/blockclient?user=${onBehalfOfUser.encryptedId}&client=${template.companyNumber}">Click here to stop receiving requests from ${template.work.company.effectiveName}</a>. This includes assignments, group invites, and test invites.
+		#else
+			<a style="color:#777" href="${baseurl}/user/blockclient?user=${toUser.encryptedId}&client=${template.companyNumber}">Click here to stop receiving requests from ${template.work.company.effectiveName}</a>. This includes assignments, group invites, and test invites.
+		#end
+	</p>
+
+</div>
+
+#parse("template/email/partials/do-not-reply.vm")

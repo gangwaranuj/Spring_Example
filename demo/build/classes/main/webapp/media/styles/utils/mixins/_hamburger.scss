@@ -1,0 +1,16 @@
+@mixin hamburger($color, $height: 2px, $width: 1em, $spacing: $height) {
+	&, &::before, &::after {
+		content: "";
+		display: block;
+		height: $height;
+		width: $width;
+		background-color: $color;
+		position: relative;
+	}
+	&::before {
+		top: #{($spacing + $height) * -1};
+	}
+	&::after {
+		top: $spacing;
+	}
+}

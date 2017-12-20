@@ -1,0 +1,144 @@
+<form id="form_labels_manage">
+
+	<input type="hidden" name="id" value="{{this.form.workSubStatusTypeId}}">
+
+	<div id="label-form">
+		<div>
+			<label>Label Name</label>
+			<input id="label_name" name="description" value="{{this.form.description}}" type="text"/>
+		</div>
+
+		<div>
+			<label>
+				Worker Access
+				<span class="tooltipped tooltipped-n" aria-label="Indicate if the worker can view and/or apply this label."><i class="wm-icon-question-filled"></i></span>
+			</label>
+
+			<select id="resource_access" name="resourceAccess" class="wm-select">
+				<option value="">None</option>
+				<option value="view" {{#[../../helpers/eq] this.form.resourceAccess 'view'}}selected{{/[../../helpers/eq]}}>View</option>
+				<option value="view_edit" {{#[../../helpers/eq] this.form.resourceAccess 'view_edit'}}selected{{/[../../helpers/eq]}}>View &amp; Set</option>
+			</select>
+		</div>
+
+		<div>
+			<label>Notifications
+				<span class="tooltipped tooltipped-n" aria-label="Indicate who should be notified when this label is applied.  Note that individual users can turn off these notifications."><i class="wm-icon-question-filled"></i></span>
+			</label>
+
+			<input id="notify" type="hidden" name="notify"/>
+
+			<input id="label-notifications" name="workSubStatusTypeRecipientIds"/>
+		</div>
+	</div>
+
+	<div class="page-header">
+		<br/>
+		<h4>Actions:<small> available when this label is applied:</small></h4>
+	</div>
+
+	<div>
+		<div id="action_checkboxes" class="label-left">
+			<label>
+				<input type="checkbox" name="alert" value="true" {{#if this.form.alert}}checked{{/if}}/> Mark the assignment as Alert status
+				<span class="tooltipped tooltipped-n" aria-label="Alert labels appear in the Alert section of the Assignment Dashboard."><i class="wm-icon-question-filled"></i></span>
+			</label>
+			<label>
+				<input type="checkbox" name="noteRequired" {{#if this.form.noteRequired}}checked{{/if}}/> Require the user to enter a
+				<select id="noteRequiredAccess" name="noteRequiredAccess" class="span3">
+					<option value="pr" {{#[../../helpers/eq] this.form.noteRequiredAccess 'pr'}}selected{{/[../../helpers/eq]}}>Private message</option>
+					<option value="sh" {{#[../../helpers/eq] this.form.noteRequiredAccess 'sh'}}selected{{/[../../helpers/eq]}}>Privileged message</option>
+				</select>
+				<span class="tooltipped tooltipped-n" aria-label="If unchecked, adding a note is optional. Note: if the label is added by the worker, it is automatically considered shared."><i class="wm-icon-question-filled"></i></span>
+			</label>
+			<label>
+				<input type="checkbox" name="includeInstructions" {{#if this.form.includeInstructions}}checked{{/if}}/> Include instructions for note field
+				<span class="tooltipped tooltipped-n" aria-label="If checked, instructions are visible even when note is not required."><i class="wm-icon-question-filled"></i></span>
+			</label>
+			<div class="additional_fields dn">
+				<textarea name="instructions" rows="10" placeholder="Provide the user with instructions on what to include in their note.">{{this.form.instructions}}</textarea>
+			</div>
+			<label>
+				<input type="checkbox" name="scheduleRequired" {{#if this.form.scheduleRequired}}checked{{/if}}/> Require a reschedule
+				<span class="tooltipped tooltipped-n" aria-label="If checked, the user must propose a reschedule time."><i class="wm-icon-question-filled"></i></span>
+			</label>
+			<div class="additional_fields dn">
+				<label>
+					<input type="checkbox" name="removeAfterReschedule" {{#if this.form.removeAfterReschedule}}checked{{/if}}/> Remove label once reschedule is approved or declined.
+				</label>
+			</div>
+		</div>
+	</div>
+
+	<div class="page-header">
+		<br/>
+		<h4>
+			Scope: <small>define the range of <strong>statuses</strong> where this label can be applied/seen</small>
+			<span id="scope-popover" class="tooltipped tooltipped-n" aria-label="Often, labels are only relevant while an assignment is in a particular status, or set of statuses. Once an assignment enters the defined range, you may apply this label - once it leaves, the label is removed automatically. 'Complete' here means the worker has completed the assignment and it is now awaiting approval. 'Approved' includes assignments that have been approved and are either pending payment or already paid.">
+				<i class="wm-icon-question-filled"></i>
+			</span>
+		</h4>
+	</div>
+
+	<div class="input label-left">
+		<div id="scope_slider_container" class="slider-container">
+			<div id="labels_container" class="labels-container">
+				<span class="slider_label">Draft</span>
+				<span class="slider_label">Sent</span>
+				<span class="slider_label">Assigned</span>
+				<span class="slider_label">Complete</span>
+				<span class="slider_label last">Invoiced</span>
+			</div>
+			<div id="labelScopeRange" class="labels"></div>
+			<input type="hidden" id="scope_range_from" name="workStatusTypeScopeRangeFrom" value="{{this.form.workStatusTypeScopeRangeFrom}}"/>
+			<input type="hidden" id="scope_range_to" name="workStatusTypeScopeRangeTo" value="{{this.form.workStatusTypeScopeRangeTo}}"/>
+		</div>
+		<label>
+			<input type="checkbox" name="removeOnVoidOrCancelled" {{#if this.form.removeOnVoidOrCancelled}}checked{{/if}}/> Remove on Void/Cancel
+			<span class="tooltipped tooltipped-n" aria-label="If checked, this label will be removed when the assignment is voided/cancelled."><i class="wm-icon-question-filled"></i></span>
+		</label>
+
+		{{#if templatesEnabled}}
+			<label>
+				Define which <strong>templates</strong> can use this label (leave blank for "all"):
+				<span class="tooltipped tooltipped-n" aria-label="If this label should only be used on assignments created with particular templates, you can specify them here."><i class="wm-icon-question-filled"></i></span>
+			</label>
+		{{/if}}
+
+		{{#if templatesEnabled}}
+			<div id="workTemplateIdsDiv">
+				<select id="workTemplateIds" name="workTemplateIds" data-placeholder="Enter template name" multiple="multiple">
+					{{#each this.templates}}
+						<option value="{{@key}}">{{this}}</option>
+					{{/each}}
+				</select>
+			</div>
+		{{/if}}
+
+		<!--enable for thrillist-->
+		<!--<br/>-->
+		<!--<label>Add which employees should be alerted when this label is added:</label>-->
+		<!--<select class="company-employees"></select>-->
+	</div>
+
+	{{#if this.form.workSubStatusTypeId}}
+		<div id="scopeWarning" class="dn alert-message">
+			<strong>Warning:</strong> If this label is on any assignments no longer matching the specified scope, it will be removed from those assignments. This cannot be undone.
+		</div>
+	{{/if}}
+
+
+	<div class="wm-action-container">
+		{{#if this.form.workSubStatusTypeId}}
+			<span>Active Label</span>
+			<input name="active" type="checkbox" {{#if this.form.active}}checked{{/if}} />
+			<span class="tooltipped tooltipped-n" aria-label="Deactivated labels are visible (per their settings) and can be removed from assignments, but cannot be added to them."><i class="wm-icon-question-filled"></i></span>
+			<button class="button cta-delete-label" href="/settings/manage/label_delete/{{this.form.workSubStatusTypeId}}">Delete Permanently</button>
+		{{else}}
+			<input type="hidden" name="active" value="true" checked="checked" />
+		{{/if}}
+
+		<button type="button" class="button" data-modal-close>Cancel</button>
+		<button id="save-label" class="button -primary">Save</button>
+	</div>
+</form>

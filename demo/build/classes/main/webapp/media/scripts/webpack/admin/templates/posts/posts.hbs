@@ -1,0 +1,19 @@
+{{#each posts}}
+	<tr>
+		<td>
+			<div
+				style="max-width: 40em; min-width: 40em; width: 40em; word-wrap: break-word; overflow: hidden;"
+				class="comment -collapsed"
+			>
+				{{this.comment}}
+			</div>
+		</td>
+		<td style="word-wrap: break-word; word-break: break-word;">
+			<a href="/forums/post/{{this.discussionId}}" target="blank">{{this.title}}</a>
+		</td>
+		<td>{{this.creatorName}}</td>
+		<td>{{this.modifiedDate}}</td>
+	</tr>
+{{else}}
+	No results!
+{{/each}}

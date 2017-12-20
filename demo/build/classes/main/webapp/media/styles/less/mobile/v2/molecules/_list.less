@@ -1,0 +1,151 @@
+// Mixins
+.mobile-list-mixin(@background-color, @status-color, @count-color) {
+	margin-bottom: 2px;
+	padding: 0;
+
+	&:last-of-type {
+		margin-bottom: 0;
+	}
+	a {
+		background: @background-color;
+		display: block;
+		&:active {
+			background-color: darken(@background-color, 10%);
+		}
+	}
+	.count {
+		color: white;
+		background: @count-color;
+	}
+	.status {
+		color: @status-color;
+	}
+}
+
+// Styles
+.section {
+	&.less-important .mobile-list { .mobile-list-mixin(@light-gray, @gray, @dark-gray); }
+	&.important .mobile-list { .mobile-list-mixin(@pale-orange, @orange, @orange); }
+	&.late-stage .mobile-list { .mobile-list-mixin(@light-gray, @gray, @medium-gray); }
+	&.funds-stage .mobile-list { .mobile-list-mixin(@light-green, @green, @green); }
+	&.past-due-stage .mobile-list { .mobile-list-mixin(@light-gray, @gray, @faded-red); }
+}
+
+.count {
+	display: inline-block;
+	padding: 0.3em 0;
+	font-size: @normal-font-size;
+	width: 4em;
+	text-align: center;
+	border-right: 2px solid white;
+	.box-sizing();
+}
+
+.funds-title {
+	width: 100%;
+	border-right: 0;
+}
+
+.status {
+	display: inline-block;
+	font-size: 1.2em;
+	text-indent: 9px;
+}
+
+.wrap div:nth-child(2) .assignment_list:first-child {
+	margin-top: @medium-space;
+}
+
+.clicker {
+	float: right;
+	margin: @small-space;
+	font-size: 1.4em;
+}
+
+.assignment_list {
+	margin: @medium-space 0 !important; //TODO:overriding vendor grid, must change;
+	cursor: pointer;
+	background: white;
+	text-align: center;
+	color: @dark-gray;
+	.border-radius(@base-border-radius * 2);
+	.box-shadow(0px 0px 10px 0px rgba(0,0,0,0.5));
+	&:hover, &:focus, &:active {
+		.box-shadow(0px 0px 10px 0px rgba(255,255,255,0.15))
+	}
+
+	h3 {
+		font-size: @normal-font-size;
+		font-family: @bold-font;
+		margin: 0;
+	}
+
+	.whole:first-child {
+		color: @dark-gray;
+	}
+
+	.disclosure img {
+		position: absolute;
+		right: 3px;
+		margin: 70px 0;
+	}
+	p {
+		display: inline-block;
+		margin: 0;
+		padding: 0 @medium-space;
+		font-size: .9em;
+	}
+	.relevant-3 {
+		padding: .75em 0 !important;
+		border-top: 4px solid @dark-gray;
+		background: @light-gray;
+		color: @dark-gray;
+		.border-radiuses (0, 5px, 5px, 0);
+
+		.main-value {
+			background: white;
+			padding: 0.5em .3em 0;
+			.border-radius(5px);
+		}
+
+		.price, .schedule, .list-distance {
+			display: inline-block;
+			padding: 0 @small-space;
+			text-align: center;
+			span {
+				display: block;
+			}
+
+			span:last-child {
+				padding: .75em 0 0;
+			}
+		}
+	}
+}
+
+.up {
+	position: fixed;
+	right: @medium-space;
+	bottom: @medium-space;
+	width: 3em;
+	background: @orange;
+	.fake-button(#C97B1B);
+	height: 3em;
+	display: none;
+	.border-radius(50%);
+	.transitions(all .5s ease);
+	svg {
+		width: 3em;
+		height: 2em;
+		margin-top: .5em;
+	}
+}
+
+.general-list {
+	padding-top: @big-space;
+	.pagination {
+		a {
+			font-size: @small-font-size;
+		}
+	}
+}

@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Appointment time set for assignment: ${template.workTitle}</a>

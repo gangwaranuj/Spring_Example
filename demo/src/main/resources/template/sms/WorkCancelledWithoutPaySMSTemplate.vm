@@ -1,0 +1,5 @@
+Cancellation:
+${template.workTitle} -
+Call ${template.work.buyer.firstName} ${template.work.buyer.lastName} 
+at ${template.work.buyer.profile.workPhone} with questions -
+    ${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

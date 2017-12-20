@@ -1,0 +1,41 @@
+$data-float-label: (
+	font-size: 0.8em,
+	offset: -1em
+) !default;
+
+// Only applied to non empty attributes
+[data-float-label]:not([data-float-label=""]),
+[data-error-label]:not([data-error-label=""]) {
+	padding-top: map-get($data-float-label, font-size);
+
+	&::before {
+		display: block;
+		font-size: map-get($data-float-label, font-size);
+		line-height: 1;
+		content: attr(data-float-label);
+		position: relative;
+		top: 0;
+		margin-bottom: map-get($data-float-label, offset);
+		visibility: hidden;
+		transition: top 0.1s linear;
+	}
+
+	&.-focused {
+		color: $orange;
+	}
+	&.-label::before {
+		top: map-get($data-float-label, offset);
+		visibility: visible;
+	}
+	&.-invalid {
+		color: $red;
+
+		&::before {
+			content: attr(data-error-label);
+		}
+	}
+
+	input, select, textarea {
+		position: relative;
+	}
+}

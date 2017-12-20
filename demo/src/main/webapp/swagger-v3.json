@@ -1,0 +1,130 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Worker and Employer APIs",
+    "version" : "v3",
+    "title" : "Swagger spec for Work Market API v3",
+    "termsOfService" : "https://www.workmarket.com/tos",
+    "contact" : {
+      "name" : "Work Market API Team",
+      "url" : "https://developer.workmarket.com",
+      "email" : "api@workmarket.com"
+    },
+    "license" : {
+      "name" : "Company Licence",
+      "url" : "https://developer.workmarket.com/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host" : "www.workmarket.com",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "constants"
+  }, {
+    "name" : "data"
+  }, {
+    "name" : "reports"
+  } ],
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/v3/data/reports/{companyUuid}/{reportId}" : {
+      "get" : {
+        "tags" : [ "data", "reports" ],
+        "summary" : "Get report by companyUuid and reportId",
+        "description" : "",
+        "operationId" : "getReportByCompany",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/GetReportRequest"
+          }
+        }, {
+          "name" : "companyUuid",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "reportId",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int64"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Success",
+            "schema" : {
+              "type" : "object"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "GetReportRequest" : {
+      "type" : "object",
+      "properties" : {
+        "filterField1" : {
+          "type" : "string"
+        },
+        "filterField1Value" : {
+          "type" : "string"
+        },
+        "filterField2" : {
+          "type" : "string"
+        },
+        "filterField2Value" : {
+          "type" : "string"
+        },
+        "offset" : {
+          "type" : "integer",
+          "format" : "int32",
+          "minimum" : 0
+        },
+        "limit" : {
+          "type" : "integer",
+          "format" : "int32",
+          "maximum" : 100
+        },
+        "filterFields" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/SimpleEntryStringString"
+          }
+        },
+        "filterFieldKeySet" : {
+          "type" : "array",
+          "uniqueItems" : true,
+          "items" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "SimpleEntry" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "object"
+        },
+        "value" : {
+          "type" : "object"
+        }
+      }
+    },
+    "SimpleEntryStringString" : {
+      "type" : "object",
+      "properties" : {
+        "key" : {
+          "type" : "string"
+        },
+        "value" : {
+          "type" : "string"
+        }
+      }
+    }
+  }
+}

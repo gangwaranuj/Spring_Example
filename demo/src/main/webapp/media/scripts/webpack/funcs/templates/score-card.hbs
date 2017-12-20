@@ -1,0 +1,109 @@
+<div class="score-card {{classlist}} {{#if showrecent}}-recent{{/if}}" id="{{id}}">
+	<h2 class="score-card--title" data-score-all="{{values.satisfaction.all.all}}%" data-score-company="{{values.satisfaction.company.all}}%">
+		{{#if showrecent}}
+			{{> icon name='graph' active=true }}
+		{{/if}}
+		Satisfaction
+	</h2>
+	<div class="score-card--details">
+		{{#if showrecent}} {{#unless isDispatch}}
+			{{> toggle name="score-card-toggle" value="all" text="All" isChecked="true" classlist="" }}
+			{{> toggle name="score-card-toggle" value="yours" text="Yours" classlist="" }}
+			<table class="score-card--table">
+				<thead>
+				<tr>
+					<th></th>
+					<th>3 Mo.</th>
+					<th>All</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><span class="score-card--metrics">Paid Assign {{#if paidAssignmentsForCompany}}<span>({{paidAssignmentsForCompany}} for you)</span>{{/if}}</span></td>
+					<td class="-all">{{values.paidAssignments.all.net90}}</td>
+					<td class="-company">{{values.paidAssignments.company.net90}}</td>
+					<td class="-all">{{values.paidAssignments.all.all}}</td>
+					<td class="-company">{{values.paidAssignments.company.all}}</td>
+				</tr>
+				<tr>
+					<td><span class="score-card--metrics">Cancelled</span></td>
+					<td class="-all">{{values.cancelled.all.net90}}</td>
+					<td class="-company">{{values.cancelled.company.net90}}</td>
+					<td class="-all">{{values.cancelled.all.all}}</td>
+					<td class="-company">{{values.cancelled.company.all}}</td>
+				</tr>
+				<tr>
+					<td><span class="score-card--metrics">Abandoned</span></td>
+					<td class="-all">{{values.abandoned.all.net90}}</td>
+					<td class="-company">{{values.abandoned.company.net90}}</td>
+					<td class="-all">{{values.abandoned.all.all}}</td>
+					<td class="-company">{{values.abandoned.company.all}}</td>
+				</tr>
+				</tbody>
+			</table>
+			<hr />
+			{{> completion classlist="score-card--overall -all" name="Satisfaction" min=0 max=100 unit="%" value=values.satisfaction.all.all }}
+			{{> completion classlist="score-card--overall -company" name="Satisfaction" min=0 max=100 unit="%" value=values.satisfaction.company.all }}
+			<span class="completion-bar--name">On-Time</span>
+			<span class="completion-bar--value -all">{{values.onTime.all.all}}%</span>
+			<span class="completion-bar--value -company">{{values.onTime.company.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.onTime.all.all }}
+			{{> progress-bar classlist="-company" size="small" width=values.onTime.company.all }}
+			<span class="completion-bar--name">Deliverables</span>
+			<span class="completion-bar--value -all">{{values.deliverables.all.all}}%</span>
+			<span class="completion-bar--value -company">{{values.deliverables.company.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.deliverables.all.all }}
+			{{> progress-bar classlist="-company" size="small" width=values.deliverables.company.all }}
+		{{else}}
+			<table class="score-card--table">
+				<thead>
+				<tr>
+					<th></th>
+					<th>3 Mo.</th>
+					<th>All</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr>
+					<td><span class="score-card--metrics">Paid Assign</span></td>
+					<td>{{values.paidAssignments.all.net90}}</td>
+					<td>{{values.paidAssignments.all.all}}</td>
+				</tr>
+				<tr>
+					<td><span class="score-card--metrics">Cancelled</span></td>
+					<td>{{values.cancelled.all.net90}}</td>
+					<td>{{values.cancelled.all.all}}</td>
+				</tr>
+				<tr>
+					<td><span class="score-card--metrics">Abandoned</span></td>
+					<td>{{values.abandoned.all.net90}}</td>
+					<td>{{values.abandoned.all.all}}</td>
+				</tr>
+				</tbody>
+			</table>
+			<hr />
+			{{> completion classlist="score-card--overall -all" name="Satisfaction" min=0 max=100 unit="%" value=values.satisfaction.all.all }}
+			<span class="completion-bar--name">On-Time</span>
+			<span class="completion-bar--value">{{values.onTime.all.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.onTime.all.all }}
+			<span class="completion-bar--name">Deliverables</span>
+			<span class="completion-bar--value">{{values.deliverables.all.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.deliverables.all.all }}
+		{{/unless}} {{else}}
+			{{> completion classlist="score-card--overall -all" name="Satisfaction" min=0 max=100 unit="%" value=values.satisfaction.all.all }}
+			<span class="completion-bar--name">On-Time</span>
+			<span class="completion-bar--value">{{values.onTime.all.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.onTime.all.all }}
+			<span class="completion-bar--name">Deliverables</span>
+			<span class="completion-bar--value">{{values.deliverables.all.all}}%</span>
+			{{> progress-bar classlist="-all" size="small" width=values.deliverables.all.all }}
+			{{#if isDispatcher}}
+				<span class="score-card--metrics -all" data-score="{{values.paidAssignments.all.all}}">Paid Assign</span>
+			{{else}}
+				<span class="score-card--metrics -all" data-score="{{values.paidAssignments.all.all}}">Paid Assign <span>({{values.paidAssignments.company.all}} for you)</span></span>
+			{{/if}}
+			<span class="score-card--metrics -all" data-score="{{values.cancelled.all.all}}">Cancelled</span>
+			<span class="score-card--metrics -all" data-score="{{values.abandoned.all.all}}">Abandoned</span>
+		{{/if}}
+	</div>
+</div>

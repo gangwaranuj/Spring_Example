@@ -1,0 +1,19 @@
+<div class="assignment-creation">
+	<div class="assignment-creation--sidebar">
+		<label class="assignment-creation--templates">
+			Templates
+			<select class="wm-select" name="assignment-creation-template"></select>
+		</label>
+		{{#each modules}}
+			<div class="assignment-creation--tab {{#if isActive}}-active{{/if}}" data-content="#assignment-creation--{{id}}">{{title}}</div>
+		{{/each}}
+	</div>
+	<main class="assignment-creation--main">
+		{{#each modules}}
+			<section id="assignment-creation--{{id}}" class="assignment-creation--section {{#if isActive}}-active{{/if}}">
+				<h2 class="assignment-creation--header">{{title}}</h2>
+				<div class="assignment-creation--content assignment-creation--{{id}}"></div>
+			</section>
+		{{/each}}
+	</main>
+</div>

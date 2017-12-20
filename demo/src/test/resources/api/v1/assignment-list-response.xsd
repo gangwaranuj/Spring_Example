@@ -1,0 +1,68 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="envelope">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="meta">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="errors"/>
+                            <xs:element type="xs:short" name="status_code"/>
+                            <xs:element type="xs:byte" name="version"/>
+                            <xs:element type="xs:float" name="execution_time"/>
+                            <xs:element type="xs:byte" name="timestamp"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="response">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:byte" name="total_results"/>
+                            <xs:element type="xs:byte" name="count"/>
+                            <xs:element type="xs:byte" name="start"/>
+                            <xs:element type="xs:byte" name="limit"/>
+                            <xs:element name="data">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element type="xs:long" name="id" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="project_id" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="project_name" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="title" minOccurs="0"/>
+                                                    <xs:element type="xs:int" name="scheduled_start" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="scheduled_end" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="city" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="state" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="postal_code" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="location_id" minOccurs="0"/>
+                                                    <xs:element type="xs:float" name="spend_limit" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="modified_status" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="status" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="substatuses" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="labels" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="internal_owner" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="client" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="client_id" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="invoice_number" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="paid_date" minOccurs="0"/>
+                                                    <xs:element type="xs:float" name="total_cost" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="resource_company_name" minOccurs="0"/>
+                                                    <xs:element type="xs:int" name="resource_user_number" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="resource_full_name" minOccurs="0"/>
+                                                    <xs:element type="xs:int" name="last_modified_on" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="modifier_first_name" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="modifier_last_name" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

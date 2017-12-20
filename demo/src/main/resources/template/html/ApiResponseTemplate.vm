@@ -1,0 +1,10 @@
+#if ($hasErrors)
+	<h3 style="color: red">Your request was not processed succesfully</h3>
+	<ul>
+		#foreach ($error in $apiResponse.meta.errors)
+			<li><span style="color: red">$error.message</span></li>
+		#end
+	</ul>
+#else
+	<h3>Your request was processed succesfully.</h3>
+#end

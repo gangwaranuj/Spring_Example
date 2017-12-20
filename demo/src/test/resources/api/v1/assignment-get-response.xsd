@@ -1,0 +1,232 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="envelope">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="meta">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:string" name="errors" minOccurs="0"/>
+                            <xs:element type="xs:short" name="status_code" minOccurs="0"/>
+                            <xs:element type="xs:byte" name="version" minOccurs="0"/>
+                            <xs:element type="xs:float" name="execution_time" minOccurs="0"/>
+                            <xs:element type="xs:byte" name="timestamp" minOccurs="0"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="response">
+                    <xs:complexType>
+                        <xs:all>
+                            <xs:element type="xs:long" name="id" minOccurs="0"/>
+                            <xs:element type="xs:string" name="title" minOccurs="0"/>
+                            <xs:element type="xs:string" name="description" minOccurs="0"/>
+                            <xs:element type="xs:string" name="instructions" minOccurs="0"/>
+                            <xs:element type="xs:string" name="desired_skills" minOccurs="0"/>
+                            <xs:element type="xs:anyURI" name="short_url" minOccurs="0"/>
+                            <xs:element type="xs:string" name="status" minOccurs="0"/>
+                            <xs:element name="substatuses">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element type="xs:string" name="code" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="note" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="description" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="userResolvable" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="colorRgb" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="id" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetId" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetDescription" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetCode" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetColorRgb" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetNote" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="labels" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element name="item" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element type="xs:string" name="code" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="note" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="description" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="userResolvable" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="colorRgb" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="id" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetId" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetDescription" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetCode" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetColorRgb" minOccurs="0"/>
+                                                    <xs:element type="xs:byte" name="isSetNote" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="project" minOccurs="0"/>
+                            <xs:element type="xs:string" name="client" minOccurs="0"/>
+                            <xs:element type="xs:int" name="internal_owner" minOccurs="0"/>
+                            <xs:element name="internal_owner_details" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:string" name="first_name" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="last_name" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:byte" name="sent_worker_count" minOccurs="0"/>
+                            <xs:element type="xs:int" name="assignment_window_start" minOccurs="0"/>
+                            <xs:element type="xs:string" name="assignment_window_start_date" minOccurs="0"/>
+                            <xs:element type="xs:string" name="assignment_window_end" minOccurs="0"/>
+                            <xs:element type="xs:string" name="assignment_window_end_date" minOccurs="0"/>
+                            <xs:element type="xs:string" name="scheduled_time" minOccurs="0"/>
+                            <xs:element type="xs:string" name="scheduled_time_date" minOccurs="0"/>
+                            <xs:element type="xs:int" name="scheduled_start" minOccurs="0"/>
+                            <xs:element type="xs:string" name="scheduled_end" minOccurs="0"/>
+                            <xs:element name="reschedule_request" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:string" name="note" minOccurs="0"/>
+                                        <xs:element type="xs:int" name="requested_on" minOccurs="0"/>
+                                        <xs:element type="xs:int" name="request_window_start" minOccurs="0"/>
+                                        <xs:element type="xs:int" name="request_window_end" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="request_scheduled_time" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="requested_by_resource" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="budget_increase_request" minOccurs="0"/>
+                            <xs:element type="xs:string" name="expense_reimbursement_request" minOccurs="0"/>
+                            <xs:element type="xs:string" name="bonus_request" minOccurs="0"/>
+                            <xs:element type="xs:string" name="resolution" minOccurs="0"/>
+                            <xs:element type="xs:string" name="industry" minOccurs="0"/>
+                            <xs:element type="xs:string" name="time_zone" minOccurs="0"/>
+                            <xs:element type="xs:byte" name="required_attachments" minOccurs="0"/>
+                            <xs:element type="xs:string" name="location" minOccurs="0"/>
+                            <xs:element type="xs:byte" name="location_offsite" minOccurs="0"/>
+                            <xs:element type="xs:string" name="location_contact" minOccurs="0"/>
+                            <xs:element type="xs:string" name="support_contact" minOccurs="0"/>
+                            <xs:element name="active_resource" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:int" name="id" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="first_name" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="last_name" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="company_name" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="email" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="profile_picture" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="profile_picture_large" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="rating" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="number_of_ratings" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="confirmed_onsite" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="confirmed_date" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="phone_numbers" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="address" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="check_in_out" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="pricing">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:string" name="type" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="spend_limit" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="budget_increases" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="expense_reimbursements" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="bonuses" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="additional_expenses" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="flat_price" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="per_hour_price" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="max_number_of_hours" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="per_unit_price" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="max_number_of_units" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="initial_per_hour_price" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="initial_number_of_hours" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="additional_per_hour_price" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="max_blended_number_of_hours" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="invoice_number" minOccurs="0"/>
+                            <xs:element name="payment" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:float" name="max_spend_limit" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="actual_spend_limit" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="buyer_fee" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="total_cost" minOccurs="0"/>
+                                        <xs:element type="xs:float" name="hours_worked" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="paid_on" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="payment_due_on" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="attachments" minOccurs="0"/>
+                            <xs:element type="xs:int" name="created_on" minOccurs="0"/>
+                            <xs:element type="xs:int" name="last_modified_on" minOccurs="0"/>
+                            <xs:element name="history">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="item" minOccurs="0" maxOccurs="unbounded">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element type="xs:int" name="date" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="text" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="set_by" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="resolved_by" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="label_id" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="label_name" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="created_on" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="notes" minOccurs="0"/>
+                            <xs:element type="xs:string" name="custom_fields" minOccurs="0"/>
+                            <xs:element name="parts" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:all>
+                                        <xs:element type="xs:byte" name="supplied_by_resource" minOccurs="0"/>
+                                        <xs:element type="xs:byte" name="return_required" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="distribution_method" minOccurs="0"/>
+                                        <xs:element name="pickup_location" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:all>
+                                                    <xs:element type="xs:string" name="name" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="address_1" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="address_2" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="city" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="state" minOccurs="0"/>
+                                                    <xs:element type="xs:short" name="zip" minOccurs="0"/>
+                                                    <xs:element type="xs:string" name="country" minOccurs="0"/>
+                                                </xs:all>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element type="xs:float" name="pickup_part_value" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="pickup_shipping_provider" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="pickup_tracking_number" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="return_location" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="return_part_value" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="return_shipping_provider" minOccurs="0"/>
+                                        <xs:element type="xs:string" name="return_tracking_number" minOccurs="0"/>
+                                    </xs:all>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element type="xs:string" name="pending_offers" minOccurs="0"/>
+                            <xs:element type="xs:string" name="declined_resources" minOccurs="0"/>
+                            <xs:element type="xs:string" name="questions" minOccurs="0"/>
+                        </xs:all>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

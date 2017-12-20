@@ -1,0 +1,70 @@
+.funds {
+	height: 100%;
+
+	.content {
+		padding: 1em 0;
+	}
+	.section {
+		margin: 0 @medium-space @small-space;
+		.border-radius;
+		overflow: hidden;
+		span {
+			line-height: 2.3em;
+			background: @light-gray;
+			display: block;
+		}
+	}
+	.withdraw {
+		padding: 1em 1em;
+		.withdraw-container {
+			background: @light-gray;
+			.border-radius(@base-border-radius * 2);
+			padding: 0 1em 1em;
+			margin-bottom: 1em;
+			h4 {
+				padding: 0.7em 1em .5em;
+				color: #58595d;
+				font-size: 1.2em;
+				background: white;
+				display: inline-block;
+			}
+			select {
+				.border-radius(@base-border-radius);
+				& + .select-down-arrow-icon {
+					float: right;
+					position: relative;
+					margin: -2.5em 1em 0 0;
+					pointer-events:all;
+				}
+			}
+			.amount-outlet {
+				font-size: 1.2em;
+			}
+			.add-on {
+				display: inline-block;
+				padding: 0.64em;
+				font-size: 1.2em;
+				color: @white;
+				background: @dark-gray;
+				.border-radius(3px);
+			}
+			input {
+				width: 80%;
+				display: inline-block;
+			}
+			.final-amount {
+				color: @green;
+			}
+		}
+	}
+	.home-footer-links {
+		text-align: center;
+		.home-help-link {
+			color: @orange;
+		}
+		.signout-icon {
+			fill: @gray;
+			margin-left: 1em;
+		}
+	}
+}

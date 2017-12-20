@@ -1,0 +1,23 @@
+body.admin {
+	#userinsurance_list {
+		width: 100%;
+		clear: both;
+	}
+
+	.latest-posts {
+		.search-controls > * {
+			display: inline;
+		}
+		.pagination > * {
+			display: inline;
+		}
+		#posts-table {
+			.-collapsed {
+				max-height: 11em;
+			}
+			tr {
+				vertical-align: baseline;
+			}
+		}
+	}
+}

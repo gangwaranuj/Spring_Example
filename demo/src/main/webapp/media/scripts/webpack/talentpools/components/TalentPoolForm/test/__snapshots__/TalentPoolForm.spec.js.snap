@@ -1,0 +1,588 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TalentPoolForm /> Rendering should render the same way with orgStructures disabled 1`] = `
+<WMPaper
+  style={
+    Object {
+      "padding": "1em",
+    }
+  }
+>
+  <form
+    data-radium={true}
+  >
+    <WMFormRow
+      id="name"
+      labelText="Name"
+      required={true}
+    >
+      <WMTextField
+        disabled={false}
+        fullWidth={true}
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="industry"
+      labelText="Industry"
+      required={true}
+    >
+      <WMSelectField
+        disabled={false}
+        fullWidth={true}
+        name="industry"
+        onChange={[Function]}
+        valid={true}
+        value={0}
+      >
+        <WMMenuItem
+          primaryText="Sales, Event, and Promotional Marketing"
+          value={1045}
+        />
+      </WMSelectField>
+    </WMFormRow>
+    <WMFormRow
+      id="skills"
+      labelText="Skills"
+    >
+      <WMAutocompleteChips
+        allowFreeText={false}
+        chipLabelKey="name"
+        chipMetaKey="id"
+        chips={
+          Immutable.List [
+          ]
+        }
+        dataSource={Array []}
+        dataSourceConfig={
+          Object {
+            "text": "name",
+            "value": "id",
+          }
+        }
+        hintText="Type Skill..."
+        name="skills"
+        onAddChip={[Function]}
+        onRemoveChip={[Function]}
+        onUpdateInput={[Function]}
+        readOnly={false}
+        style={
+          Object {
+            "color": "blue",
+            "flex": "1",
+          }
+        }
+        underlineShow={true}
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="owner"
+      labelText="Owner"
+      required={true}
+    >
+      <WMSelectField
+        disabled={false}
+        fullWidth={true}
+        name="owner"
+        onChange={[Function]}
+        valid={true}
+        value={0}
+      >
+        <WMMenuItem
+          primaryText="API API"
+          value="19262"
+        />
+      </WMSelectField>
+    </WMFormRow>
+    <WMFormRow
+      id="description"
+      labelText="Description"
+      required={true}
+    >
+      <WMTextField
+        disabled={false}
+        fullWidth={true}
+        multiLine={true}
+        name="description"
+        onChange={[Function]}
+        value=""
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="type"
+      labelText="Type"
+      required={true}
+    >
+      <WMRadioButtonGroup
+        name="openMembership"
+        onChange={[Function]}
+        valueSelected="true"
+      >
+        <WMRadioButton
+          disabled={true}
+          label="Visible to workers (public)"
+          name="openMembership"
+          value="true"
+        />
+        <WMRadioButton
+          disabled={true}
+          label="Only visible to my company (private)"
+          name="openMembership"
+          style={
+            Object {
+              "marginBottom": "1em",
+            }
+          }
+          value="false"
+        />
+      </WMRadioButtonGroup>
+    </WMFormRow>
+    <WMFormRow
+      id="public-options"
+      labelText="Public Options"
+    >
+      <div>
+        <WMCheckbox
+          checked={false}
+          disabled={false}
+          id="requiresApproval"
+          label="Review Applicants Manually"
+          name="requiresApproval"
+          onCheck={[Function]}
+        />
+        <WMCheckbox
+          checked={false}
+          disabled={false}
+          id="searchable"
+          label="Allow workers to discover Talent Pool in marketplace"
+          name="searchable"
+          onCheck={[Function]}
+          style={
+            Object {
+              "marginBottom": "1em",
+            }
+          }
+        />
+      </div>
+    </WMFormRow>
+    <WMFormRow
+      id="active"
+      labelText="Active"
+    >
+      <div
+        style={
+          Object {
+            "marginLeft": ".2em",
+            "marginTop": ".8em",
+          }
+        }
+      >
+        <a
+          onClick={[Function]}
+        >
+          <WMToggle
+            className="material-icons"
+            labelPosition="right"
+            toggled={false}
+          />
+        </a>
+      </div>
+    </WMFormRow>
+    <div
+      data-radium={true}
+    >
+      <WMFormRow
+        id="delete"
+        labelText=""
+      >
+        <a
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#fb0000",
+              "cursor": "pointer",
+              "margin": "1em 0 0 1em",
+              "textDecoration": "none",
+            }
+          }
+        >
+          Delete Talent Pool
+        </a>
+      </WMFormRow>
+      <WMModal
+        actions={
+          Array [
+            <WMRaisedButton
+              label="Cancel"
+              onClick={[Function]}
+              secondary={true}
+          />,
+            <WMRaisedButton
+              label="Delete"
+              onClick={[Function]}
+              primary={true}
+              style={
+                  Object {
+                      "marginLeft": "1em",
+                    }
+              }
+          />,
+          ]
+        }
+        modal={false}
+        open={false}
+        style={
+          Object {
+            "zIndex": "10001",
+          }
+        }
+        title="Are you sure you want to delete this talent pool?"
+      />
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        backgroundColor="#ffffff"
+        disabled={true}
+        id="saveTalentPool"
+        label="Update Talent Pool"
+        labelColor="#646b6f"
+        onClick={[Function]}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </form>
+</WMPaper>
+`;
+
+exports[`<TalentPoolForm /> Rendering should render the same way with orgStructures enabled 1`] = `
+<WMPaper
+  style={
+    Object {
+      "padding": "1em",
+    }
+  }
+>
+  <form
+    data-radium={true}
+  >
+    <WMFormRow
+      id="name"
+      labelText="Name"
+      required={true}
+    >
+      <WMTextField
+        disabled={false}
+        fullWidth={true}
+        name="name"
+        onChange={[Function]}
+        value=""
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="industry"
+      labelText="Industry"
+      required={true}
+    >
+      <WMSelectField
+        disabled={false}
+        fullWidth={true}
+        name="industry"
+        onChange={[Function]}
+        valid={true}
+        value={0}
+      >
+        <WMMenuItem
+          primaryText="Sales, Event, and Promotional Marketing"
+          value={1045}
+        />
+      </WMSelectField>
+    </WMFormRow>
+    <WMFormRow
+      id="orgunits"
+      labelText="Org Units"
+      required={true}
+    >
+      <WMSelectFieldChips
+        chips={
+          Immutable.List [
+            Object {
+              "id": "org-001",
+              "isSticky": true,
+              "label": "Org A",
+              "meta": "org-001",
+              "value": "org-001",
+            },
+            Object {
+              "id": "org-002",
+              "isSticky": false,
+              "label": "Org B",
+              "meta": "org-002",
+              "value": "org-002",
+            },
+          ]
+        }
+        fullWidth={true}
+        name="orgunits"
+        onChange={[Function]}
+      >
+        <WMStackedMenuItem
+          disabled={true}
+          primaryText="Org A"
+          secondaryText={null}
+          secondaryTextPlacement="above"
+          value="org-001"
+        />
+        <WMStackedMenuItem
+          disabled={false}
+          primaryText="Org B"
+          secondaryText="Org A > "
+          secondaryTextPlacement="above"
+          value="org-002"
+        />
+        <WMStackedMenuItem
+          disabled={false}
+          primaryText="Org C"
+          secondaryText="Org A > Org B > "
+          secondaryTextPlacement="above"
+          value="org-003"
+        />
+      </WMSelectFieldChips>
+    </WMFormRow>
+    <WMFormRow
+      id="skills"
+      labelText="Skills"
+    >
+      <WMAutocompleteChips
+        allowFreeText={false}
+        chipLabelKey="name"
+        chipMetaKey="id"
+        chips={
+          Immutable.List [
+          ]
+        }
+        dataSource={Array []}
+        dataSourceConfig={
+          Object {
+            "text": "name",
+            "value": "id",
+          }
+        }
+        hintText="Type Skill..."
+        name="skills"
+        onAddChip={[Function]}
+        onRemoveChip={[Function]}
+        onUpdateInput={[Function]}
+        readOnly={false}
+        style={
+          Object {
+            "color": "blue",
+            "flex": "1",
+          }
+        }
+        underlineShow={true}
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="owner"
+      labelText="Owner"
+      required={true}
+    >
+      <WMSelectField
+        disabled={false}
+        fullWidth={true}
+        name="owner"
+        onChange={[Function]}
+        valid={true}
+        value={0}
+      >
+        <WMMenuItem
+          primaryText="API API"
+          value="19262"
+        />
+      </WMSelectField>
+    </WMFormRow>
+    <WMFormRow
+      id="description"
+      labelText="Description"
+      required={true}
+    >
+      <WMTextField
+        disabled={false}
+        fullWidth={true}
+        multiLine={true}
+        name="description"
+        onChange={[Function]}
+        value=""
+      />
+    </WMFormRow>
+    <WMFormRow
+      id="type"
+      labelText="Type"
+      required={true}
+    >
+      <WMRadioButtonGroup
+        name="openMembership"
+        onChange={[Function]}
+        valueSelected="true"
+      >
+        <WMRadioButton
+          disabled={true}
+          label="Visible to workers (public)"
+          name="openMembership"
+          value="true"
+        />
+        <WMRadioButton
+          disabled={true}
+          label="Only visible to my company (private)"
+          name="openMembership"
+          style={
+            Object {
+              "marginBottom": "1em",
+            }
+          }
+          value="false"
+        />
+      </WMRadioButtonGroup>
+    </WMFormRow>
+    <WMFormRow
+      id="public-options"
+      labelText="Public Options"
+    >
+      <div>
+        <WMCheckbox
+          checked={false}
+          disabled={false}
+          id="requiresApproval"
+          label="Review Applicants Manually"
+          name="requiresApproval"
+          onCheck={[Function]}
+        />
+        <WMCheckbox
+          checked={false}
+          disabled={false}
+          id="searchable"
+          label="Allow workers to discover Talent Pool in marketplace"
+          name="searchable"
+          onCheck={[Function]}
+          style={
+            Object {
+              "marginBottom": "1em",
+            }
+          }
+        />
+      </div>
+    </WMFormRow>
+    <WMFormRow
+      id="active"
+      labelText="Active"
+    >
+      <div
+        style={
+          Object {
+            "marginLeft": ".2em",
+            "marginTop": ".8em",
+          }
+        }
+      >
+        <a
+          onClick={[Function]}
+        >
+          <WMToggle
+            className="material-icons"
+            labelPosition="right"
+            toggled={false}
+          />
+        </a>
+      </div>
+    </WMFormRow>
+    <div
+      data-radium={true}
+    >
+      <WMFormRow
+        id="delete"
+        labelText=""
+      >
+        <a
+          onClick={[Function]}
+          style={
+            Object {
+              "color": "#fb0000",
+              "cursor": "pointer",
+              "margin": "1em 0 0 1em",
+              "textDecoration": "none",
+            }
+          }
+        >
+          Delete Talent Pool
+        </a>
+      </WMFormRow>
+      <WMModal
+        actions={
+          Array [
+            <WMRaisedButton
+              label="Cancel"
+              onClick={[Function]}
+              secondary={true}
+          />,
+            <WMRaisedButton
+              label="Delete"
+              onClick={[Function]}
+              primary={true}
+              style={
+                  Object {
+                      "marginLeft": "1em",
+                    }
+              }
+          />,
+          ]
+        }
+        modal={false}
+        open={false}
+        style={
+          Object {
+            "zIndex": "10001",
+          }
+        }
+        title="Are you sure you want to delete this talent pool?"
+      />
+    </div>
+    <div
+      data-radium={true}
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        backgroundColor="#ffffff"
+        disabled={true}
+        id="saveTalentPool"
+        label="Update Talent Pool"
+        labelColor="#646b6f"
+        onClick={[Function]}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </form>
+</WMPaper>
+`;

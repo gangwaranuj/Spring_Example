@@ -1,0 +1,180 @@
+<h2>Recently Updated Assignments</h2>
+<p><em>https://www.workmarket.com/api/v1/<strong>assignments/list_updated</strong></em></p>
+
+<p>List of recently updated assignment.</p>
+<p>An assignment is considered updated when one of the following fields is modified: <em>title</em>, <em>description</em>, <em>instructions</em>, <em>desired skills</em>, <em>schedule</em>, <em>pricing</em>, <em>location</em>, <em>location contact</em>, <em>support contact</em>, <em>internal owner</em>, <em>client</em>, <em>project</em>, <em>status</em> and <em>labels</em>.</p>
+<p>Additionally, the following events mark an assignment as updated: the addition of a <em>worker</em>, <em>note</em>, <em>attachment</em>, <em>question/answer</em>; in the event of a <em>counteroffer</em>, <em>negotiation (expense, bonus, budget)</em> or <em>schedule change request</em>.</p>
+<p>A good rule of thumb is that an assignment is updated for any new entry that appears in the assignment&rsquo;s history.</p>
+
+<table>
+	<tr>
+		<td>HTTP Method</td>
+		<td><code>GET</code></td>
+	</tr>
+	<tr>
+		<td>Requires Authentication</td>
+		<td>Yes</td>
+	</tr>
+</table>
+
+<h3>Parameters <small>All parameters are optional, unless otherwise indicated.</small></h3>
+
+<table>
+	<tbody>
+		<tr>
+			<td><code>status</code></td>
+			<td>active</td>
+			<td>One of <code>draft</code>, <code>sent</code>, <code>void</code>, <code>declined</code>, <code>active</code>, <code>cancelled</code>, <code>inprogress</code>, <code>complete</code>,  <code>paymentPending</code>, <code>paid</code>, <code>refunded</code>, or <code>exception</code>
+			<p>See <a href="/apidocs/endpoints/assignments/statuses">Assignments &raquo; Statuses</a> for a full list</p>
+			<p><strong>Note:</strong> <code>exception</code> is a pseudo-status that will return any assignment with a label that is configured as an "alert" label. As such, the actual status of returned assignments can vary.</p></td>
+		</tr>
+		<tr>
+			<td><code>modified_since</code></td>
+			<td>1311185447</td>
+			<td><span class="required"></span> Modification date of assignments in <a href="http://en.wikipedia.org/wiki/Unix_time">Unix time</a>
+            <p><strong>Note:</strong> <code>modified_since</code> can not be more than 2 months in the past.
+            Consider using <a href="/apidocs/endpoints/assignments/list">Assignments &raquo; List</a> instead if you need additional data.</p></td>
+        </tr>
+		<tr>
+			<td><code>start</code></td>
+			<td>0</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><code>limit</code></td>
+			<td>25</td>
+			<td></td>
+		</tr>
+		<tr>
+			<td><code>sort_dir</code></td>
+			<td>ASC</td>
+			<td>
+				Sort direction (either <code>ASC</code> or <code>DESC</code>, default is <code>ASC</code>).  Sort is always based on assignment start date/time.
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>Response fields</h3>
+<table>
+	<tbody>
+		<tr>
+			<td><code>total_results</code></td>
+			<td>Total number of rows in the result set.</td>
+		</tr>
+		<tr>
+			<td><code>count</code></td>
+			<td>Total number of rows returned.</td>
+		</tr>
+		<tr>
+			<td><code>start</code></td>
+			<td>Row number to begin fetching results from.</td>
+		</tr>
+		<tr>
+			<td><code>limit</code></td>
+			<td>Total number of results to return per call. Max is 25 rows.</td>
+		</tr>
+		<tr>
+			<td><code>data</code></td>
+			<td>The list of assignments.</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>Row Data</h4>
+<table>
+	<tbody>
+		<tr>
+			<td><code>id</code></td>
+			<td>Assignment Number</td>
+		</tr>
+		<tr>
+			<td><code>title</code></td>
+			<td>Assignment Title</td>
+		</tr>
+		<tr>
+			<td><code>scheduled_start</code></td>
+			<td>Assignment Start</td>
+		</tr>
+		<tr>
+			<td><code>scheduled_end</code></td>
+			<td>End of assignment window of time</td>
+		</tr>
+		<tr>
+			<td><code>city</code></td>
+			<td>Location city</td>
+		</tr>
+		<tr>
+			<td><code>state</code></td>
+			<td>Location state</td>
+		</tr>
+		<tr>
+			<td><code>postal_code</code></td>
+			<td>Location postal code</td>
+		</tr>
+		<tr>
+			<td><code>location_id</code></td>
+			<td>ID of the location</td>
+		</tr>
+		<tr>
+			<td><code>spend_limit</code></td>
+			<td>Max price of the assignment</td>
+		</tr>
+		<tr>
+			<td><code>modified_status</code></td>
+			<td>Displayable Status</td>
+		</tr>
+		<tr>
+			<td><code>status</code></td>
+			<td>Assignment Status. See <a href="/apidocs/endpoints/assignments/statuses">Assignments &raquo; Statuses</a></td>
+		</tr>
+		<tr>
+			<td><code>substatuses</code></td>
+			<td>Sub statuses associated with the assignment <span class="label important">deprecated</span></td>
+		</tr>
+		<tr>
+			<td><code>labels</code></td>
+			<td>Labels associated with the assignment</td>
+		</tr>
+		<tr>
+			<td><code>internal_owner</code></td>
+			<td>Owner of the assignment</td>
+		</tr>
+		<tr>
+			<td><code>client</code></td>
+			<td>Company the assignment is for</td>
+		</tr>
+		<tr>
+			<td><code>paid_date</code></td>
+			<td>Date the assignment was paid</td>
+		</tr>
+		<tr>
+			<td><code>total_cost</code></td>
+			<td>Total cost of the assignment including WM Fees</td>
+		</tr>
+		<tr>
+			<td><code>resource_company_name</code></td>
+			<td>Company name of the worker assigned</td>
+		</tr>
+		<tr>
+			<td><code>resource_user_number</code></td>
+			<td>User number of the worker assigned</td>
+		</tr>
+		<tr>
+			<td><code>resource_full_name</code></td>
+			<td>Full name of the worker assigned</td>
+		</tr>
+		<tr>
+			<td><code>last_modified_on</code></td>
+			<td>Date the assignment was last modified</td>
+		</tr>
+		<tr>
+			<td><code>modifier_first_name</code></td>
+			<td>First name of the user who last modified the assignment</td>
+		</tr>
+		<tr>
+			<td><code>modifier_last_name</code></td>
+			<td>Last name of the user who last modified the assignment</td>
+		</tr>
+	</tbody>
+</table>

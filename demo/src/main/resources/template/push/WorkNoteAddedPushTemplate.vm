@@ -1,0 +1,5 @@
+{
+"message": "${template.noteCreatorFullName} added a note to assignment: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}#notes"
+}
+

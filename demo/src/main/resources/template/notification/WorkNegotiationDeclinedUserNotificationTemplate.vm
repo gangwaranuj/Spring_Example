@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.negotiation.work.workNumber}">Application declined: ${template.negotiation.workTitle}</a>

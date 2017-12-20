@@ -1,0 +1,207 @@
+.completion-page {
+	height: 100%;
+	color:@dark-gray;
+
+	.nav {
+		.x-button {
+			margin: 1em;
+		}
+		h1 {
+			float: left;
+		}
+	}
+
+	.important {
+		padding-bottom: 2em;
+	}
+
+	h1, h2, h3, h4 {
+		text-align: left;
+	}
+
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+		padding: 0 @small-space;
+		.grid:first-child {
+			padding-top: @medium-space;
+		}
+	}
+
+	input, textarea {
+		margin-bottom: 0;
+		border: 2px solid @medium-gray;
+	}
+
+	input[type='submit'] {
+		.default-button;
+	}
+
+	.work-title {
+		margin: 0;
+	}
+
+	.work-number {
+		font-size: @small-font-size;
+		color: @gray;
+	}
+
+	.error-msg {
+		background: #f2dede;
+		color: #b94a48;
+		padding: 0.5em;
+		.border-radius(5px);
+		margin: 0.8em 0;
+	}
+
+	ul:not(.unstyled), textarea {
+		margin: 1em 0;
+	}
+
+	.pricing-details {
+		list-style: none;
+		padding: 1em;
+		background: @light-gray;
+		h3 {
+			margin: 0 0 1em;
+		}
+
+		.border-radius(5px);
+
+		li {
+			display: table;
+			width: 100%;
+
+			#hours-units-label {
+				width: 65%;
+			}
+
+			div {
+				display: table-cell;
+				vertical-align: middle;
+				padding: 0.15em;
+				&:not(:only-child) {
+					&:first-child {
+						width: 75%;
+					}
+					&:last-child {
+						text-align: right;
+					}
+				}
+
+				input {
+					display: inline-block;
+					padding: 0.2em;
+					text-align: right;
+					width: 100%;
+				}
+
+				&.work-done-inputs {
+					label {
+						display: inline-block;
+						width: 45%;
+						padding-top: 0.5em;
+						text-align: right;
+						color: @gray;
+						font-size: @tiny-font-size;
+						input {
+							font-size: 1.3rem;
+						}
+					}
+				}
+			}
+		}
+
+		.final-value-container {
+			display: table;
+			width: 100%;
+			margin: 1em 0;
+			div {
+				display: table-cell;
+				vertical-align: middle;
+				&:first-child {
+					width: 85%;
+				}
+
+				&:last-child {
+					text-align: right;
+				}
+			}
+		}
+	}
+
+	.tax-section {
+		.collect-tax-section {
+			list-style: none;
+			padding: 1em;
+			background: @light-gray;
+			h3 {
+				margin: 0;
+			}
+
+			.border-radius(5px);
+
+			.tax-responsibility {
+				margin-bottom: 1em;
+
+				small {
+					width: ~"calc(100% - 1.1em)";
+				}
+			}
+
+			li {
+				display: table;
+				width: 100%;
+				margin: .5em 0;
+
+				div {
+					display: table-cell;
+					vertical-align: middle;
+					padding: 0.15em;
+				}
+
+				div:first-child {
+					width: 80%;
+				}
+
+				div:last-child {
+					text-align: left;
+				}
+
+				label {
+					input {
+						width: 70%;
+						display: inline-block;
+						padding: 0.2em;
+						margin-right: 0.1em;
+						text-align: right;
+					}
+				}
+
+				.collect-tax {
+					width: auto;
+					float: right;
+				}
+
+				.tax-note {
+					padding-top: 0.2em;
+					font-size: @tiny-font-size;
+					color: @gray;
+				}
+
+			}
+		}
+	}
+	.max-spend-limit-error-txt {
+		padding: .5em !important;
+		font-size: 1em;
+	}
+
+	.edit-pricing-earnings-outlet {
+		color: @blue;
+		text-decoration: underline;
+		background: white;
+		padding: .3em;
+		border-radius: 3px;
+	}
+}

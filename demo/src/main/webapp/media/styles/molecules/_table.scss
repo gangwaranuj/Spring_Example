@@ -1,0 +1,146 @@
+$table: (
+	header: (
+		default: (
+			background-color: $charcoal-grey
+		),
+		hover: (
+			background-color: lighten($charcoal-grey, 10%)
+		),
+		sorting: (
+			width: 5px
+		)
+	),
+	body: (
+		default: (
+			background-color: $white
+		),
+		hover: (
+			background-color: $off-white
+		)
+	),
+);
+
+%table-sorting {
+	cursor: pointer;
+
+	&:hover {
+		background-color: map-fetch($table, header, hover, background-color);
+	}
+}
+
+%table-sorting-arrow {
+	@extend %table-sorting;
+	position: relative;
+
+	&::after {
+		position: absolute;
+		top: 50%;
+		right: 1em;
+		transform: translateY(-50%);
+	}
+}
+
+table {
+	width: 100%;
+	margin-bottom: 1em;
+
+	th, td {
+		padding: 0.8em;
+	}
+	th {
+		text-align: left;
+		background-color: map-fetch($table, header, default, background-color);
+		color: $white;
+		font-weight: normal;
+
+		&:first-of-type {
+			border-radius: $base-border-radius 0 0 $base-border-radius;
+		}
+		&:last-of-type {
+			border-radius: 0 $base-border-radius $base-border-radius 0;
+		}
+		&:first-of-type:last-of-type {
+			border-radius: $base-border-radius;
+		}
+		&.sorting {
+			@extend %table-sorting;
+		}
+		&.sorting_asc {
+			@extend %table-sorting-arrow;
+
+			&::after {
+				@include triangle(up, $white, map-fetch($table, header, sorting, width));
+			}
+		}
+		&.sorting_desc {
+			@extend %table-sorting-arrow;
+
+			&::after {
+				@include triangle(down, $white, map-fetch($table, header, sorting, width));
+			}
+		}
+	}
+	tbody {
+		tr {
+			background-color: map-fetch($table, body, default, background-color);
+
+			&:hover {
+				background-color: map-fetch($table, body, hover, background-color);
+			}
+		}
+	}
+}
+
+.table {
+	@include new-typography;
+	border: $default-border;
+	border-radius: $base-border-radius;
+	padding: 1em 1em 0;
+
+	&--header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 1em;
+
+		.table--title,
+		.action-menu,
+		.wm-pagination {
+			margin-bottom: 0;
+		}
+		.button,
+		.action-menu {
+			font-size: $small-element-size;
+		}
+	}
+	&--title {
+		&::before {
+			@include circle;
+			font-size: 0.8em;
+			float: left;
+			padding: 0.2em;
+			border: 1px solid;
+			margin-right: 0.4em;
+		}
+	}
+	&--bulk-actions {
+		text-align: center;
+
+		.wm-checkbox {
+			display: inline-block;
+			padding: 0.4em;
+			margin-bottom: 0;
+		}
+	}
+	&--filters {
+		flex-grow: 1;
+		text-align: center;
+
+		& ~ * {
+			margin-left: 1em;
+		}
+		.filter {
+			margin: 0;
+		}
+	}
+}

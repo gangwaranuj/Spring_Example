@@ -1,0 +1,45 @@
+<div class="span4" {{#if lane}}data-lane="{{lane}}"{{/if}} data-id="{{id}}">
+	<li>
+		<div class="box-wrapper">
+			<div class="box-upper">
+				<h3>
+					<strong>
+						{{#[../../helpers/gt] name.length 40 }}
+							<a class="tooltipped tooltipped-n" aria-label="{{name}}" href="/groups/{{id}}">{{name_short}}...</a>
+						{{else}}
+							<a href="/groups/{{id}}">{{name}}</a>
+						{{/[../../helpers/gt]}}
+					</strong>
+				</h3>
+
+				<p class="description">{{description_no_html}}...</p>
+				{{#if avatar_uri}}
+					<div class="tac" style="height:90px; padding-top:10px">
+						<img src="{{[../../helpers/stripProtocol] avatar_uri}}" style="max-height:70px; max-width:140px"/>
+					</div>
+				{{/if}}
+			</div>
+			<div class="box-details">
+				{{#if has_requirements}}
+					<div class="status-label reqs">1+ Requirements to join</div>
+				{{/if}}
+			</div>
+			<div class="box-stats">
+				<ul class="unstyled">
+					<li class="members">
+						{{member_count}}
+						<br/>
+						<small class="meta">members</small>
+					</li>
+					<li class="created">
+						<i class="wm-icon-calendar"/>
+						<div class="meta">
+							<div class="launched">Launched</div>
+							<div class="create-date">{{created_on}}</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</li>
+</div>

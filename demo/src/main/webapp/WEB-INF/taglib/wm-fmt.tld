@@ -1,0 +1,275 @@
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+		version="2.0">
+	<tlib-version>1.0</tlib-version>
+	<short-name>wm-fmt</short-name>
+	<uri>http://www.workmarket.com/taglib/fmt</uri>
+	<function>
+		<description>Format text to foil spammers</description>
+		<name>spamSlayer</name>
+		<function-class>com.workmarket.utility.SpamSlayer</function-class>
+		<function-signature>java.lang.String slay(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Format phone number</description>
+		<name>phone</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String formatPhoneNumber(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Display day name</description>
+		<name>weekdayName</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String getWeekdayName(int)</function-signature>
+	</function>
+	<function>
+		<description>Display month name</description>
+		<name>monthName</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String getMonthName(int)</function-signature>
+	</function>
+	<function>
+		<description>Format Date - uses joda-time</description>
+		<name>formatDate</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String format(java.lang.String, java.util.Date)</function-signature>
+	</function>
+	<function>
+		<description>Format Date with Timezone- uses joda-time</description>
+		<name>formatDateWithTimeZone</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String format(java.lang.String, java.util.Date, java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Format Date - uses joda-time</description>
+		<name>formatDateFromIso8601StringWithTimeZone</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String format(java.lang.String, java.lang.String, java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Format Calendar - uses joda-time</description>
+		<name>formatCalendar</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String format(java.lang.String, java.util.Calendar)</function-signature>
+	</function>
+	<function>
+		<description>Format Calendar With Timezone - uses joda-time</description>
+		<name>formatCalendarWithTimeZone</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String format(java.lang.String, java.util.Calendar, java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Format date by millis - uses joda-time</description>
+		<name>formatMillis</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String formatMillis(java.lang.String, java.lang.Long)</function-signature>
+	</function>
+	<function>
+		<description>Format date by millis - uses joda-time</description>
+		<name>formatMillisWithTimeZone</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String formatMillis(java.lang.String, java.lang.Long, java.lang.String)
+		</function-signature>
+	</function>
+	<function>
+		<description>Get number of days from given time</description>
+		<name>daySpanFromMillis</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String daySpanFromMillis(long)</function-signature>
+	</function>
+	<function>
+		<description>Get duration breakdown (e.g. 3 days, 2 hours, etc.)</description>
+		<name>getDurationBreakdown</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String getDurationBreakdown(long)</function-signature>
+	</function>
+	<function>
+		<description>Get duration breakdown by Hours (e.g. 2 hours, 1 minute etc.)</description>
+		<name>getDurationBreakdownHours</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String getDurationBreakdownHours(long)</function-signature>
+	</function>
+	<function>
+		<description>Pluralize a noun based on a count</description>
+		<name>pluralize</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String pluralize(java.lang.String, java.lang.Integer)</function-signature>
+	</function>
+	<function>
+		<description>Pluralize a noun based on a count that is a double</description>
+		<name>pluralizeDouble</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String pluralize(java.lang.String, java.lang.Double)</function-signature>
+	</function>
+	<function>
+		<name>showLastNDigits</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String showLastNDigits(java.lang.String, java.lang.Character, java.lang.Integer)
+		</function-signature>
+	</function>
+	<function>
+		<name>capitalize</name>
+		<function-class>org.apache.commons.lang.WordUtils</function-class>
+		<function-signature>java.lang.String capitalize(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>capitalizeFully</name>
+		<function-class>org.apache.commons.lang.WordUtils</function-class>
+		<function-signature>java.lang.String capitalizeFully(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>truncate</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String truncate(java.lang.String, int, int, java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<name>nl2br</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String newLineToXhtmlBreak(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>stripHTML</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String stripHTML(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>stripXSS</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String stripXSSAndEscapeHtml(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>tidy</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String stripTags(java.lang.String))</function-signature>
+	</function>
+	<function>
+		<name>escapeHtml</name>
+		<function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+		<function-signature>java.lang.String escapeHtml(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>escapeJavaScript</name>
+		<function-class>org.apache.commons.lang.StringEscapeUtils</function-class>
+		<function-signature>java.lang.String escapeJavaScript(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>escapeHtmlAndnl2br</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String escapeHtmlAndnl2br(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>formatAddressLong</name>
+		<function-class>com.workmarket.thrift.core.AddressUtilities</function-class>
+		<function-signature>java.lang.String formatAddressLong(com.workmarket.thrift.core.Address)</function-signature>
+	</function>
+	<function>
+		<name>formatLocationType</name>
+		<function-class>com.workmarket.domains.model.LocationType</function-class>
+		<function-signature>java.lang.String getName(java.lang.Long)</function-signature>
+	</function>
+	<function>
+		<name>formatAddressShort</name>
+		<function-class>com.workmarket.thrift.core.AddressUtilities</function-class>
+		<function-signature>java.lang.String formatAddressShort(com.workmarket.thrift.core.Address)</function-signature>
+	</function>
+	<function>
+		<name>formatAddress</name>
+		<function-class>com.workmarket.thrift.core.AddressUtilities</function-class>
+		<function-signature>java.lang.String formatAddress(com.workmarket.thrift.core.Address, java.lang.String,
+			boolean)
+		</function-signature>
+	</function>
+    <function>
+        <name>formatAddressDTO</name>
+        <function-class>com.workmarket.dto.AddressDTOUtilities</function-class>
+        <function-signature>java.lang.String formatAddressLong(com.workmarket.dto.AddressDTO)
+        </function-signature>
+    </function>
+	<function>
+		<name>autoLink</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String autoLink(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<description>Convert a rating to an English text string representing number of stars</description>
+		<name>getStarsText</name>
+		<function-class>com.workmarket.web.helpers.RatingStarsHelper</function-class>
+		<function-signature>java.lang.String convertRatingValueToText(int)</function-signature>
+	</function>
+	<function>
+		<description>Format bytes as human readable sizes</description>
+		<name>bytes</name>
+		<function-class>org.apache.commons.io.FileUtils</function-class>
+		<function-signature>java.lang.String byteCountToDisplaySize(long)</function-signature>
+	</function>
+	<function>
+		<description>Evaluate if the date is in future</description>
+		<name>isInFuture</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>boolean isInFuture(java.util.Calendar)</function-signature>
+	</function>
+	<function>
+		<description>Calculate day difference from current date</description>
+		<name>daysBetweenNow</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>int getDaysBetweenNow(java.util.Calendar)</function-signature>
+	</function>
+	<function>
+		<description>Calculate month difference from current date</description>
+		<name>monthsBetweenNow</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>int getMonthsBetweenNow(java.util.Calendar)</function-signature>
+	</function>
+	<function>
+		<description>Current date</description>
+		<name>now</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.util.Calendar getCalendarNow()</function-signature>
+	</function>
+	<function>
+		<name>subtractTime</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.util.Calendar subtractTime(java.util.Calendar,java.lang.Integer,java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>lastDayOfTheMonth</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>int getLastDayOfTheMonth(java.util.Calendar)</function-signature>
+	</function>
+	<function>
+		<name>previousMonth</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.util.Calendar getPreviousMonth()</function-signature>
+	</function>
+	<function>
+		<name>fuzzySpan</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String fuzzySpan(java.util.Date)</function-signature>
+	</function>
+	<function>
+		<name>fuzzySpanMillis</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>java.lang.String fuzzySpan(java.lang.Long)</function-signature>
+	</function>
+	<function>
+		<name>getHoursAndMinutes</name>
+		<function-class>com.workmarket.utility.DateUtilities</function-class>
+		<function-signature>org.joda.time.Period getHoursAndMinutes(java.lang.Float)</function-signature>
+	</function>
+	<function>
+		<name>toPrettyName</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String toPrettyName(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>upcaseFirstLetter</name>
+		<function-class>com.workmarket.utility.StringUtilities</function-class>
+		<function-signature>java.lang.String upcaseFirstLetter(java.lang.String)</function-signature>
+	</function>
+	<function>
+		<name>unescape</name>
+		<function-class>org.apache.commons.lang3.StringEscapeUtils</function-class>
+		<function-signature>java.lang.String unescapeHtml4(java.lang.String)</function-signature>
+	</function>
+</taglib>

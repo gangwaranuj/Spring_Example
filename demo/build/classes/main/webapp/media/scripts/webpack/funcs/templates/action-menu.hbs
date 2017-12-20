@@ -1,0 +1,12 @@
+{{#if shouldShowMDL}}
+	<button id="{{id}}" class="mdl-button mdl-js-button mdl-button--icon {{buttonClassList}}">
+		<i class="material-icons">more_vert</i>
+	</button>
+	<ul class="mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect {{classList}}" for="{{id}}">
+		{{> @partial-block }}
+	</ul>
+{{else}}
+	<select class="action-menu">
+		{{> @partial-block }}
+	</select>
+{{/if}}

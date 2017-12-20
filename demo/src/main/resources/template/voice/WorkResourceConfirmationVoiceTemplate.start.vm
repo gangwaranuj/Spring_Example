@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+        <![CDATA[
+		    Hello ${toUser.firstName}, this is WorkMarket calling to let you know you have an upcoming assignment.
+		    Please confirm assignment ID ${template.work.workNumber}.
+		    <!-- You are expected to appear at ${template.address} on ${template.date}. -->
+        ]]>
+	</Say>
+	<Gather action='${baseurl}${callbackUri}'>
+		<Say voice='woman'>
+			Press 1 to confirm this assignment.
+			Press 2 to cancel your involvement.
+			Press # to return to the main menu.
+		</Say>
+	</Gather>
+</Response>

@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}#questions">${template.fullName} answered your question: ${template.workTitle}</a>

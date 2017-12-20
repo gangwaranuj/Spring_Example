@@ -1,0 +1,21 @@
+@function em($value, $context: $base-font-size) {
+	@if (unit($value) == "rem") {
+		@error "Function `em` does not support `rem` value conversion.";
+	} @else if (unit($value) == "em") {
+		@return $value;
+	} @else if unitless($value) {
+		@return $value * 1em;
+	} @else {
+		@return $value / $context * 1em;
+	}
+}
+
+@function px($value, $context: $base-font-size) {
+	@if (unit($value) == "px") {
+		@return $value;
+	} @else if unitless($value) {
+		@return $value * 1px;
+	} @else {
+		@return $value * $context / 1em;
+	}
+}

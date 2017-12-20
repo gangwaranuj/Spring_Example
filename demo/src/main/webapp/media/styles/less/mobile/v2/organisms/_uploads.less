@@ -1,0 +1,61 @@
+.add-attachment-page {
+	height: 100%;
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+	}
+	form {
+		margin-top: 2em;
+	}
+	textarea {
+		margin: 2em 0 0;
+		border: 2px solid @dark-gray;
+		&:focus {
+			border-color: @dark-gray;
+			color: @dark-gray;
+		}
+	}
+	input[type="file"] {
+		border: none;
+		display: block;
+		width: 100%;
+		padding: 2em 0;
+		color: transparent;
+		.box-sizing(border-box);
+		&::-webkit-file-upload-button {
+			visibility: hidden;
+		}
+		&:before {
+			content: 'Add Attachment';
+			display: block;
+			text-align: center;
+			background: @gray;
+			.border-radius(@base-border-radius);
+			padding: @small-space 0;
+			margin: @big-space 0 -2em;
+			white-space: nowrap;
+			-webkit-user-select: none;
+			cursor: pointer;
+			color: white;
+			font-size: @large-font-size;
+		}
+	}
+	input[type='submit'] {
+		.button;
+		background: @green;
+		color: white;
+		padding: @small-space;
+		margin: @medium-space 0 @medium-space;
+	}
+	label {
+		background: @dark-gray;
+		color: white;
+		height: 1em;
+		padding: .3em;
+		.border-radiuses (@base-border-radius 0, 0, @base-border-radius);
+		position: absolute;
+		left: 21px;
+		border: 2px solid @dark-gray;
+		margin-top: -3px;
+	}
+}

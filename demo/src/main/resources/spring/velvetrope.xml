@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+	default-lazy-init="true">
+
+	<bean id="velvetRopeAspect" class="com.workmarket.velvetrope.VelvetRopeAspect"/>
+
+	<aop:config proxy-target-class="false">
+
+		<aop:pointcut id="annotatedMethod" expression="com.workmarket.velvetrope.VelvetRopeAspect.annotatedMethod(velvetRope)"/>
+		<aop:pointcut id="annotatedClass" expression="com.workmarket.velvetrope.VelvetRopeAspect.annotatedClass(velvetRope)"/>
+		<aop:pointcut id="annotatedGuestMethod" expression="com.workmarket.velvetrope.VelvetRopeAspect.annotatedGuestMethod(velvetRope, guest)"/>
+
+		<aop:aspect ref="velvetRopeAspect">
+			<aop:around method="checkAnnotatedMethod" pointcut-ref="annotatedMethod" arg-names="pjp,velvetRope"/>
+			<aop:around method="checkAnnotatedClass" pointcut-ref="annotatedClass" arg-names="pjp,velvetRope"/>
+			<aop:around method="checkAnnotatedGuestMethod" pointcut-ref="annotatedGuestMethod" arg-names="pjp,velvetRope,guest"/>
+		</aop:aspect>
+
+	</aop:config>
+
+</beans>

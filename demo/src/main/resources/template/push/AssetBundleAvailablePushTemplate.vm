@@ -1,0 +1,5 @@
+<a href=""></a>
+{
+"message": "Attachments are available to download",
+"action": "${template.downloadUri}"
+}

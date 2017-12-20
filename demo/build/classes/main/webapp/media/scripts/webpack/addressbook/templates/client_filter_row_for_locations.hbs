@@ -1,0 +1,4 @@
+<option></option>
+{{#each this.clientList}}
+	<option value="{{this.id}}" name="{{this.name}}" count="{{this.locationCount}}"  {{#if this.isSelected}}selected{{/if}}>{{this.name}} ({{this.locationCount}} location)</option>
+{{/each}}

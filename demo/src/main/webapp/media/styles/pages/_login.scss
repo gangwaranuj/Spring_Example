@@ -1,0 +1,16 @@
+.page-login {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-form-textarea;
+	@include new-typography;
+
+
+	.left { @include span(3); }
+	.login-container { @include span(6); }
+	.right { @include span(3 omega); }
+
+	.center { text-align: center; }
+
+	[type="password"] { @include form-element; }
+}

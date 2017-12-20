@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/payments/invoices/payables/due">Statement ${template.statement.invoiceNumber} is now available</a>

@@ -1,0 +1,4 @@
+<label class="switch {{classlist}}" id="{{id}}" aria-label="{{tooltip}}" {{#if attributes}}data-usernumber={{attributes}}{{/if}}>
+	<input type="{{#if isUnique}}radio{{else}}checkbox{{/if}}" name="{{name}}" value="{{value}}" class="switch--checkbox" {{#if checked}}checked{{/if}} />
+	<div class="switch--skin">{{{text}}}</div>
+</label>

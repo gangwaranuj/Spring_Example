@@ -1,0 +1,26 @@
+.bulk-custom-field-popup {
+	h5 { font-weight: bold !important; }
+	label { margin-bottom: 0 !important; }
+	.container {
+		width: 99%;
+		display: inline-flex;
+		input, select {
+			width: 99%;
+			display: inline-flex;
+		}
+		label {
+			font-size: 1.2em;
+			margin-left: 1em;
+		}
+	}
+	.bulk-edit-input {
+		width: 65%;
+		margin-right: 35px;
+		float: left;
+	}
+
+	.bulk-edit-checkbox {
+		padding-top: 5px;
+		float: left;
+	}
+}

@@ -1,0 +1,5 @@
+#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+Your counteroffer was declined: ${template.workTitle}
+#else
+Your application was not accepted: ${template.workTitle}
+#end

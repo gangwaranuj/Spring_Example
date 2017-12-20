@@ -1,0 +1,50 @@
+.error-nav {
+	background: @light-gray;
+	h1 {
+		color: @dark-gray;
+		margin: @small-space;
+		font-size: @normal-font-size;
+	}
+}
+
+.four-oh-four-button {
+	padding: @small-space;
+	background: @orange;
+	color: white;
+	.border-radius(5px);
+	float: right;
+}
+
+.go-home {
+	.four-oh-four-button;
+	margin: 2em .5em -2em;
+}
+
+.go-back {
+	margin: 2em .5em -2em;
+	.four-oh-four-button;
+}
+
+#hardhat {
+	height: 20em;
+	pointer-events: all;
+}
+
+#construction-tape {
+	width: 100%;
+	background-image: repeating-linear-gradient(55deg, rgb(255, 255, 255), rgb(255, 255, 255) 50px, @light-orange 50px, @orange 110px);
+	.box-shadow(0px 0px 14px 7px rgba(0, 0, 0, 0.1));
+	position: relative;
+	height: 2em;
+	margin-top: -3em;
+}
+
+#error-title {
+	position: relative;
+	margin: -200px auto;
+	text-align: center;
+	color: rgba(186, 186, 186, 1);
+	font-size: @huge-font-size;
+	font-family: @important-font;
+	z-index: 0;
+}

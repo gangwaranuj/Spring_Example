@@ -1,0 +1,36 @@
+<p>
+	Please confirm these subscription details below before submitting.
+</p>
+
+<form>
+	<table>
+		<tbody>
+			<tr>
+				<td>Subscription Term</td>
+				<td>{{startDate}} to {{endDate}}</td>
+			</tr>
+			<tr>
+				<td>Payment Period</td>
+				<td>{{paymentPeriod}}</td>
+			</tr>
+			<tr>
+				<td>Cost per period</td>
+				<td>${{costPerPeriod}}</td>
+			</tr>
+			<tr>
+				<td>Vendor of Record</td>
+				<td>{{vendorOfRecord}}</td>
+			</tr>
+			<tr>
+				<td>Subscription Periods for 1st Year</td>
+				<td>
+					<ol>
+						{{#each periods}}
+							<li>{{startDate}} to {{endDate}}</li>
+						{{/each}}
+					</ol>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</form>

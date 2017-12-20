@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		Please hold. Transferring to a client service representative.
+	</Say>
+	<Dial>
+		<Number>${wmSupportPhoneNumber}</Number>
+	</Dial>
+</Response>

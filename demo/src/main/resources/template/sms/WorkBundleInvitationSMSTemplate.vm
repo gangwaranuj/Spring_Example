@@ -1,0 +1,7 @@
+New Bundle:
+${template.workTitle} -
+${template.bundleData.overview.dates.from} - ${template.bundleData.overview.dates.to} -
+#if ($showPrice)
+${template.bundleData.overview.budget} -
+#end
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

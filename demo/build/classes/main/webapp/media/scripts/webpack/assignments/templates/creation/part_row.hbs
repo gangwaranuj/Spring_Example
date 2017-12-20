@@ -1,0 +1,28 @@
+<tr>
+	<td>
+		<input type="hidden" name="{{this.formPropertyUuid }}" value="{{this.uuid}}" class="part-uuid" />
+		<input type="text" maxlength="{{this.nameMax}}" name="{{this.formPropertyName}}" value="{{this.name}}" class="name" placeholder="Enter name" />
+	</td>
+	<td>
+		<a class="tooltipped tooltipped-n parts-table--tracking-label {{#[../../../helpers/eq] this.shippingProvider 'OTHER'}}-untracked{{/[../../../helpers/eq]}}"
+		   aria-label="{{this.partsLabel}}"
+		   href="{{this.providerUrl}}">
+			{{this.displayTrackingNumber}}
+		</a>
+		<input type="hidden" name="{{this.formPropertyNumber}}" value="{{this.trackingNumber}}" class="number" />
+	</td>
+	<td class="_provider_ {{this.partsClasses}}{{#if this.isPending}}-detecting-provider{{/if}}">
+		{{> ../../../funcs/templates/spinner}}
+		{{> ../../../funcs/templates/icon name='fedex'}}
+		{{> ../../../funcs/templates/icon name='dhl'}}
+		{{> ../../../funcs/templates/icon name='usps'}}
+		{{> ../../../funcs/templates/icon name='ups'}}
+		{{> ../../../funcs/templates/icon name='truck'}}
+		<input type="hidden" name="{{this.formPropertyProvider}}" value="{{this.shippingProvider}}" class="shipping-provider" />
+	</td>
+	<td>
+		<input type="number" step="0.01" max="{{this.valueMax}}" min="{{this.valueMin}}" name="{{this.formPropertyPrice}}" value="{{this.partValue}}" placeholder="Enter price" class="item-price" pattern="[0-9,.]*" />
+		<input type="hidden" name="{{this.formPropertyIsReturn}}" value="{{this.isReturn}}" class="is-return" />
+		<i class="wm-icon-trash"></i>
+	</td>
+</tr>

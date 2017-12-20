@@ -1,0 +1,52 @@
+.page-public-work {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-typography;
+	@include new-form-textarea;
+
+	.work {
+		padding-top: 2em;
+		padding-bottom: 2em;
+	}
+
+	.sidebar-card {
+		margin-right: 3em;
+		&--call-to-action {
+			padding-top: 2em;
+			text-align: center;
+		}
+		&--details {
+			i {
+				display: inline-flex;
+				padding: 0.5em;
+			}
+			h5 { padding-left: 1em; }
+		}
+	}
+
+	.work-secondary {
+		@include span(4);
+	}
+	.work-content {
+		@include span(8);
+		margin-bottom: 2em;
+		margin-right: 0;
+		padding-left: 6em;
+
+		&--status {
+			padding-bottom: 1em;
+		}
+		&--success { color: $green }
+		&--danger { color: $red }
+		&--alert {
+			text-align: center;
+			width: 50%;
+			margin-left: 25%;
+			background-color: $light-grey;
+			border-radius: $base-border-radius;
+			padding: 2em;
+			margin-bottom: 1em;
+		}
+	}
+}

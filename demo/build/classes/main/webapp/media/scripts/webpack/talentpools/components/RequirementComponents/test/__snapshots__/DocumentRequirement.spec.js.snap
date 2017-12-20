@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DocumentRequirement /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMFormRow
+  id="requirements-document"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <WMSelectField
+      fullWidth={true}
+      hintText="Select a document"
+      name="document"
+      onChange={[Function]}
+      valid={true}
+    />
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        disabled={true}
+        label="Add this requirement"
+        onClick={[Function]}
+        secondary={true}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </div>
+</WMFormRow>
+`;

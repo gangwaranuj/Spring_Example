@@ -1,0 +1,366 @@
+.wm-modal {
+	@include new-form-inputs;
+	@include new-form-boxes;
+	@include new-form-textarea;
+	@include new-form-label;
+	@include new-unordered-lists;
+	@include typography;
+	@include reset-box-sizing;
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	height: 0;
+	opacity: 0;
+	z-index: map-get($modal, z-index);
+	background-color: rgba($black, 0.6);
+	overflow-y: auto;
+	overflow-x: hidden;
+	transition: opacity $base-transition-duration $base-transition-easing;
+
+	&.-active {
+		transition: opacity $base-transition-duration $base-transition-easing;
+		height: 100%;
+		opacity: 1;
+
+		& ~ #outer-container {
+			@include translateZ;
+			filter: blur(2px);
+		}
+	}
+
+	.wm-progress-indicator {
+		margin: 1em 0 3em;
+	}
+
+	&--slide {
+		@include clearfix;
+		box-shadow: 0 0 0.5em $dark-grey;
+		border-radius: 5px;
+		background-color: $white;
+		position: absolute;
+		left: map-get($modal, width) * -1;
+		top: 0;
+		width: 100%;
+		transition: left 0.25s ease-in-out, opacity 0.25s ease-in-out;
+		color: $grey;
+		opacity: 0;
+		z-index: -1;
+		@media only screen and (min-width: $small-screen) {
+			@include transform(translateX(-50%));
+			top: 10%;
+			max-width: map-get($modal, width);
+		}
+
+		.radio-button {
+			margin-bottom: 0.5em;
+
+			&:last-of-type { margin-bottom: 1em; }
+
+			&--skin { margin-right: 0.5em; }
+		}
+		.caption {
+			display: block;
+			margin-top: -1em;
+			margin-bottom: 1em;
+		}
+		.-label.-invalid { color: $red; }
+		img { width: 100%; }
+
+		&.-active {
+			left: 0;
+			opacity: 1;
+			z-index: 0;
+
+			@media only screen and (min-width: $small-screen) {
+				left: 50%;
+			}
+
+			& ~ .wm-modal--slide {
+				left: 100%;
+				opacity: 0;
+			}
+		}
+
+		&.-sidebar {
+			max-width: none;
+
+			@media only screen and (min-width: $medium-screen) {
+				max-width: map-get($modal, sidebar-width);
+			}
+		}
+
+		&.-full-height {
+			height: 90%;
+			top: 5%;
+		}
+	}
+	&--viewport {
+		&.-fixed-scroll {
+			overflow: auto;
+			height: calc(100vh - #{map-fetch($modal, toolbar, height)} - #{map-fetch($modal, control, height)});
+
+			&.-full-height {
+				height: calc(90.5vh - #{map-fetch($modal, toolbar, height)} - #{map-fetch($modal, control, height)});
+			}
+		}
+		@media only screen and (min-width: $small-screen) {
+			@include container;
+			&.-fixed-scroll:not(.-full-height) {
+				height: 440px;
+			}
+		}
+	}
+	&--content {
+		padding: map-fetch($modal, content, padding);
+
+		&.-fixed-scroll {
+			min-height: 430px;
+			position: relative;
+			z-index: 0;
+		}
+		&-actions {
+			overflow: hidden;
+			float: right;
+			margin-bottom: 0.5em;
+
+			.button + .button {
+				margin-left: 0.2em;
+			}
+		}
+	}
+	&--toolbar {
+		background: $off-white;
+		height:  map-fetch($modal, toolbar, height);
+		padding: 0.8em 1em 0;
+		border-top-right-radius: 5px;
+		border-top-left-radius: 5px;
+		&.-shadow {
+			box-shadow: 0 2px 2px rgba($black, 0.3);
+			position: relative;
+			z-index: 1;
+		}
+	}
+	&--header {
+		font-size: 1.4em;
+		margin-top: -0.3em;
+		overflow: hidden;
+		padding-bottom: .5em;
+		color: $charcoal-grey;
+		.logo-work-market {
+			font-size: .7em;
+			margin: 0 auto;
+		}
+
+		@media only screen and (min-width: $medium-screen) {
+			@include container;
+			font-size: 1.6em;
+			padding-top: map-get($modal, header-padding);
+			padding-left: #{1em / 1.6};
+			padding-right: #{1em / 1.6};
+		}
+	}
+	&--title {
+
+		@media only screen and (max-width: $medium-screen) {
+			// Step 2 has a long title, so we need to shrink for mobile
+			font-size: 0.9em;
+		}
+	}
+	&--close {
+		font-size: map-fetch($modal, close, font-size);
+		padding-top:6px;
+		float: right;
+		cursor: pointer;
+		color: $light-grey;
+	}
+	&--controls {
+		width: 100%;
+		clear: both;
+		border-bottom-right-radius: 5px;
+		border-bottom-left-radius: 5px;
+		overflow: hidden;
+		&.-shadow {
+			box-shadow: 0 -2px 2px rgba($black, 0.3);
+			position: relative;
+			z-index: 1;
+		}
+	}
+	&--control {
+		border: 0;
+		background: $light-grey;
+		height: map-fetch($modal, control, height);
+		color: $white;
+		font-size: 1.2em;
+		text-transform: uppercase;
+		float: left;
+		opacity: 1;
+		i::before {
+			display: inline;
+			position: relative;
+			top: 2px;
+			margin: 0 0.5em;
+		}
+		&.-primary {
+			background: $green;
+
+			.wm-spinner {
+				margin-bottom: 3px;
+				display: none;
+				vertical-align: middle;
+			}
+			&:disabled {
+				.wm-spinner {
+					display: inline-block;
+				}
+				.wm-icon-right-arrow {
+					display: none;
+				}
+			}
+
+			&.-disabled {
+				background: $light-grey;
+			}
+		}
+		&:disabled {
+			background: $off-white;
+		}
+		&.-sidebar-tertiary-control {
+			width: #{span(3) + gutter()};
+			border-right: $default-border;
+			border-right-color: $grey;
+		}
+		&.-sidebar-main-control {
+			width: calc(#{span(9)} * .5);
+
+			&:not(.-primary) {
+				border-right: $default-border;
+				border-right-color: $grey;
+			}
+		}
+	}
+	&--alert {
+		margin: 1em;
+	}
+
+	&--footer {
+		@include clearfix;
+		clear: both;
+		padding: 1em;
+		margin-bottom: 1.2em;
+
+		.button {
+			@include omega;
+			margin-left: 1em;
+		}
+		.-back {
+			float: left;
+			margin-left: 0;
+		}
+		.wm-spinner {
+			display: none;
+			float: right;
+		}
+	}
+	&--indicator {
+		font-size: 0.45em;
+		height: 4em;
+		margin: 3em 0 1em 0;
+
+		@media only screen and (min-width: $medium-screen) {
+			font-size: 0.6em;
+		}
+
+		.indicator {
+			float: right;
+			text-align: center;
+			position: relative;
+			width: 25%;
+
+			&:after {
+				display: block;
+				content: attr(data-step);
+				position: absolute;
+				top: 2.5em;
+				left: 0;
+				right: 0;
+			}
+
+			&--icon {
+				@include circle;
+				background: $light-grey;
+				display: block;
+				height: 1.5em;
+				margin: 0 auto;
+				width: 1.5em;
+				&:before {
+					color: $light-grey;
+					line-height: 1.6;
+				}
+			}
+
+			&.-active {
+				.indicator--icon {
+					background-color: $orange;
+					height: 2em;
+					position: relative;
+					top: -.25em;
+					width: 2em;
+					&:before {
+						color: $orange;
+						line-height: 2;
+					}
+				}
+
+				& ~ .indicator .indicator--icon {
+					&:before {
+						color: $white;
+					}
+				}
+
+				&:after {
+					color: $orange;
+				}
+			}
+		}
+		hr {
+			border-width: 3px;
+			bottom: -1.1em;
+			margin: 0 auto;
+			position: relative;
+			width: 75%;
+		}
+	}
+	&--number {
+		@include circle;
+		padding: 0 0.4em;
+		display: block;
+		background-color: $green;
+		line-height: 1.5;
+		width: 1.4em;
+		height: 1.4em;
+		text-align: center;
+		color: $white;
+		font-weight: 200;
+		float: left;
+		margin-right: 0.5em;
+		margin-top: map-get($modal, header-padding) * -1;
+
+		@media only screen and (max-width: $medium-screen) {
+			font-size: 0.8em;
+			clear: both;
+		}
+	}
+
+	&--shadow-block {
+		height: 5px;
+		width: 100%;
+		background: $white;
+	}
+
+	[type="checkbox"], [type="radio"] {
+		margin-bottom: 0;
+	}
+}

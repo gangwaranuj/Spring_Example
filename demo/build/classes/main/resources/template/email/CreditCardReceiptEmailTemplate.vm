@@ -1,0 +1,11 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Credit Card Deposit Receipt</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			Funds have successfully been deposited into your account.
+			<br /><br />
+			Please keep the attached receipt for your records.
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

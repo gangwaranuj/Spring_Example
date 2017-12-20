@@ -1,0 +1,280 @@
+/////// Config defaults for site colors ///////
+// -----------------------------------------------------------------------------
+$dark-grey: #4a5254;
+$charcoal-grey: #646b6f;
+$grey: #8d9092;
+$light-grey: #cecece;
+$off-white: #f1f1f1;
+$white: #ffffff;
+$blue: #1890e0;
+$light-blue: #53b3f3;
+$green: #5eb65f;
+$light-green: #5bc75d;
+$orange: #f7961d;
+$red: #fb0000;
+$purple: #bd10e0;
+$black: #000;
+
+// Alert Levels
+$neutral-color: $grey;
+$success-color: $green;
+$notice-color: $blue;
+$warning-color: $orange;
+$danger-color: $red;
+
+// MDL
+$palette-wm-orange: "247,150,29";
+$palette-wm-blue: "24,144,224";
+
+// Shipping Company Branding
+$usps-blue: #0060A0;
+$ups-yellow: #FFCE6B;
+$ups-brown: #4F2700;
+$fedex-orange: #F67900;
+$fedex-purple: #472A93;
+$dhl-red: #D80000;
+$dhl-yellow: #FFCD00;
+
+$base-background-color: $off-white;
+$alternate-background-color: $white;
+
+$base-link-color: $light-blue;
+$alternate-link-color: $blue;
+
+$base-text-color: $charcoal-grey;
+$alternate-text-color: $white;
+$placeholder-text-color: $grey;
+
+$primary-action-color: $light-green;
+
+$disabled-color: $light-grey;
+
+/////// Config defaults for site border style ///////
+// -----------------------------------------------------------------------------
+$base-border-width: 1px;
+$base-border-style: solid;
+$base-border-color: $white;
+$base-border-radius: 4px;
+
+$default-border-color: $light-grey;
+$default-border: $base-border-width $base-border-style $default-border-color;
+
+$default-box-shadow: 0 5px 5px $light-grey;
+
+/////// Page dimension configuration ///////
+// -----------------------------------------------------------------------------
+$site-header-height: 4rem;
+$site-footer-height: 5rem;
+$nav-width: 13.8rem;
+
+$base-element-factor: 1;
+$small-element-factor: 0.75;
+$tiny-element-factor: 0.5;
+
+$base-element-size: $base-element-factor * 1em;
+$small-element-size: $small-element-factor * 1em;
+$tiny-element-size: $tiny-element-factor * 1em;
+
+$base-element-height: $base-element-size * 2;
+$small-element-height: $small-element-size * 2;
+$tiny-element-height: $tiny-element-size * 2;
+
+$base-element-bottom-spacing: 1em;
+
+$susy: (
+	columns: 12,
+	container: 80em
+);
+
+/////// .action-input configuration ///////
+// -----------------------------------------------------------------------------
+$default-action-input-background-color: $white;
+$default-action-input-color: $orange;
+
+$time-filter-active-padding-y: 4px;
+$time-filter-active-padding-x: 2px;
+$time-filter-active-border-width: 2px;
+
+$action-input-padding: 1px;
+$action-input-icon-dimension: 1.37em;
+$action-input-icon-padding: 0.2em;
+
+$action-input-text-font-size: 0.7em;
+$action-input-text-padding-x: 0.8em;
+$action-input-text-padding-x-large: ($action-input-icon-dimension / $action-input-text-font-size) + $action-input-text-padding-x;
+$action-input-text-margin-y: 0.5em;
+
+/////// Typography configuration ///////
+// -----------------------------------------------------------------------------
+$base-font-size: 14px;
+$small-font-size: 12px;
+$tiny-font-size: 10px;
+
+$base-line-height: 1.2;
+
+$font-weight: (
+	light: 300,
+	normal: 400,
+	semi-bold: 600,
+	bold: 700,
+	extra-bold: 800
+);
+
+$FontAwesomePath: "fonts";
+
+$body-font: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$menu-font: map-get($font-weight, semi-bold) 1em $body-font;
+$small-font: map-get($font-weight, normal) $small-font-size $body-font;
+
+$heading: (
+	small: $base-font-size + 4,
+	medium: $base-font-size + 6,
+	large: $base-font-size + 10
+);
+
+/////// Material Design Lite configuration ///////
+// -----------------------------------------------------------------------------
+$preferred_font: $body-font;
+$performance_font: $body-font;
+
+$image_path: './images';
+
+$target-elements-directly: false;
+
+$color-primary: $palette-wm-orange;
+$color-accent: $palette-wm-blue;
+$text-color-primary: $charcoal-grey;
+
+$progress-secondary-color: $light-grey;
+
+/////// Form Element configuration ///////
+// -----------------------------------------------------------------------------
+$form-element-padding-y: 0.3em;
+$form-element-padding-x: 0.5em;
+$form-element-spacing: 1em;
+$form-element-color: $charcoal-grey;
+$form-element-background-color: $white;
+
+/////// UI @media breakpoint defaults ///////
+// -----------------------------------------------------------------------------
+$small-screen: 768px;
+$medium-screen: 1280px;
+$large-screen: 1440px;
+
+$screen: "only screen";
+$small: "only screen and (min-width: #{$small-screen})";
+$medium: "only screen and (min-width: #{$medium-screen})";
+$large: "only screen and (min-width: #{$large-screen})";
+$landscape: "only screen and (orientation: landscape)";
+$portrait: "only screen and (orientation: portrait)";
+
+/////// Site Icons and Images ///////
+// -----------------------------------------------------------------------------
+$aspect-radio-1-1: 100%;
+$aspect-radio-2-1: 50%;
+$aspect-radio-1-2: 200%;
+$aspect-radio-4-3: 75%;
+$aspect-radio-16-9: 56.25%;
+
+/////// Animations ////////
+// -----------------------------------------------------------------------------
+$base-transition-duration: 0.2s;
+$base-transition-easing: linear;
+
+$search-transition-duration: 0.4s;
+$nav-transition-duration: 0.3s;
+$nav-transition-easing: ease-out;
+
+/////// z-index ////////
+// -----------------------------------------------------------------------------
+$container-index: 9996;
+$site-footer-index: 1299;
+$nav-index: 9998;
+$header-index: $nav-index + 1;
+$modal-index: $header-index + 1;
+$alert-index: $modal-index + 1;
+$search-filter-index: $alert-index + 1;
+
+//TODO: Verify we need these values
+$tooltip-z-index: $modal-index + 1;
+$google-autocomplete-z-index: $modal-index + 1;
+
+/////// Float Labels ///////
+// -----------------------------------------------------------------------------
+$data-float-label: (
+	font-size: 0.75em,
+	offset: -1em
+);
+
+/////// Message ///////
+// -----------------------------------------------------------------------------
+$message: (
+	avatar-size: 2.5em,
+	avatar-spacing: 1em,
+	content-background-color: $off-white,
+	response-content-background-color: lighten($orange, 36%),
+	response-top-padding: 1em,
+	response-top-offset: -0.5em,
+	sent-message-content-background-color: lighten($blue, 40%),
+	border-radius: 0.5em,
+	new-label-size: 0.8em
+);
+
+/////// Assignment States ///////
+// -----------------------------------------------------------------------------
+$assignment-states: (
+	draft: (
+		color: $grey,
+		content: "Draft"
+	),
+	sent: (
+		color: $light-blue,
+		content: "Sent"
+	),
+	assigned: (
+		color: $blue,
+		content: "Assigned"
+	),
+	in-progress: (
+		color: $blue,
+		content: "In Progress"
+	),
+	pending-approval: (
+		color: $blue,
+		content: "Pending Approval"
+	),
+	invoiced: (
+		color: $light-green,
+		content: "Invoiced"
+	),
+	paid: (
+		color: $green,
+		content: "Paid"
+	),
+	cancelled: (
+		color: $red,
+		content: "Cancelled"
+	)
+);
+
+/////// Modal ///////
+// -----------------------------------------------------------------------------
+$modal: (
+	header-padding: 0.2em,
+	z-index: $modal-index,
+	width: 50em,
+	sidebar-width: 72em,
+	close: (
+		font-size: 24px
+	),
+	toolbar: (
+		height: 60px
+	),
+	control: (
+		height: 60px
+	),
+	content: (
+		padding: 2em
+	)
+);

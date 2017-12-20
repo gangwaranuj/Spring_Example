@@ -1,0 +1,17 @@
+.switch {
+	display: inline-block;
+	margin-bottom: 0.5em;
+
+	&--checkbox {
+		display: none;
+	}
+	&--skin {
+		@include button-base;
+		@include button-toggle;
+		padding-left: .8em;
+		padding-right: .8em;
+		margin: 0;
+
+		&:before { float: left; }
+	}
+}

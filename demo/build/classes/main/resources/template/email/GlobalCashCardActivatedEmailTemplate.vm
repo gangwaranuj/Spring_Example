@@ -1,0 +1,25 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px
+0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">WorkMarket Visa Card Requested</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+	<p>
+		Your WorkMarket Visa Card is active. You can now start withdrawing available funds to your WorkMarket Visa!
+	</p>
+	<p>
+		<strong>What's next?</strong><br/><br/>
+		If you haven't already, <a href="${baseurl}/funds/accounts">set up automatic withdrawal</a>, or
+		withdraw any available funds to your card right away. Withdrawal requests made by 4pm EST will be processed and typically
+		available within 24 hours.
+	</p>
+	<p>
+		For more information about your card and the approval process, you can contact Global Cash Card at
+		1-866-395-9200 or <a href="https://www.globalcashcard.com/benefits/cardholder_benefits
+		.cfm">visit their website</a>.
+		Additionally, <a href="http://j.mp/16V5MH7">see our help article for more on the WM Visa Card.</a>
+	</p>
+
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

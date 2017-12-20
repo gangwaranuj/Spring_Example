@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<BackgroundReports xmlns="http://ns.hr-xml.org/2004-08-02" userId="userid" password="password"><BackgroundReportPackage type="report"><ProviderReferenceId><IdValue>9441581</IdValue></ProviderReferenceId><ClientReferenceId><IdValue>854164</IdValue></ClientReferenceId><ScreeningStatus><OrderStatus>Completed</OrderStatus><ResultStatus>Hit</ResultStatus><DateOrderReceived>2005-10-17T19:50:00Z</DateOrderReceived></ScreeningStatus><ScreeningsSummary><PersonalData><PersonName><GivenName>DANIEL</GivenName><MiddleName>DUSTIN</MiddleName><FamilyName primary="true">ODELL</FamilyName></PersonName><DemographicDetail><GovernmentId issuingAuthority="SSN" countryCode="US">999999999</GovernmentId></DemographicDetail></PersonalData><PersonalData><PostalAddress><CountryCode>US</CountryCode><PostalCode>92832</PostalCode><Region>CA</Region><Municipality>FULLERTON</Municipality><DeliveryAddress><AddressLine>123 Main AVE NONE</AddressLine></DeliveryAddress></PostalAddress></PersonalData><AdditionalItems qualifier="Subcode" vendor="Acxiom"><Text>E1234567</Text></AdditionalItems><AdditionalItems qualifier="Requestor" vendor="Acxiom"><Text>TestRequestor</Text></AdditionalItems><AdditionalItems qualifier="Location" vendor="Acxiom"><Text>Location 123</Text></AdditionalItems><AdditionalItems qualifier="CustomerReference" vendor="Acxiom"><Text>854164</Text></AdditionalItems></ScreeningsSummary><Screenings><Screening type="criminal" qualifier="county"><ProviderReferenceId><IdValue>944158101</IdValue></ProviderReferenceId><ClientReferenceId><IdValue>85416401</IdValue></ClientReferenceId><ScreeningStatus><OrderStatus>Completed</OrderStatus><ResultStatus>Clear</ResultStatus><DateOrderReceived>2005-10-17T19:50:00Z</DateOrderReceived><AdditionalItems qualifier="Package" vendor="Acxiom"><Text>9355</Text></AdditionalItems><AdditionalItems qualifier="Product" vendor="Acxiom"><Text>1002</Text></AdditionalItems></ScreeningStatus><ScreeningResults type="result" mediaType="txt" resultType="report"><Text>  CRIMINAL RECORD CHECK CLEAR
+                                         ** CLEAR **
+
+State:         	CA
+County:        	ORANGE
+
+The above court was checked and no Felony/Misdemeanor records were found.
+This search includes Misdemeanors found at the county court level.
+
+Records were searched for the period  10/19/1998 - 10/19/2005
+</Text></ScreeningResults></Screening><Screening type="criminal" qualifier="county"><ProviderReferenceId><IdValue>944158102</IdValue></ProviderReferenceId><ClientReferenceId><IdValue>85416402</IdValue></ClientReferenceId><ScreeningStatus><OrderStatus>Completed</OrderStatus><ResultStatus>Hit</ResultStatus><DateOrderReceived>2005-10-17T19:50:00Z</DateOrderReceived><AdditionalItems qualifier="Package" vendor="Acxiom"><Text>9355</Text></AdditionalItems><AdditionalItems qualifier="Product" vendor="Acxiom"><Text>1002</Text></AdditionalItems></ScreeningStatus><ScreeningResults type="result" mediaType="txt" resultType="report"><Text>   CRIMINAL HISTORY
+                                         ** SEE BELOW **
+
+Type of Search:  	CRIMINAL
+Search Date:     	10/26/1998 to 10/26/2005
+Jurisdiction:    	SAN DIEGO
+State:           	CA
+		   	
+Offense Date:    	11/25/1999
+Case Number:     	M111111/SAN DIEGO MUNICIPAL COURT
+Charge:          	USING OFFENSIVE WORDS IN PUBLIC - MISDEMEANOR
+Disposition:     	GUILTY, 1 YEAR SUMMARY PROBATION, $300.00 
+			FINE, ATTEND AIDS EDUCATION PROGRAM
+			CONVICTION
+Disposition date:	12/16/1999
+The following information was found -
+Name:            	DANIEL DUSTIN ODELL
+DOB:             	MATCHES
+SSN:             	NA
+Addr on File:    	NA
+DL#:             	NA
+Physical Desc:   	NA
+This Felony search only includes Misdemeanors found at the county court level.
+</Text></ScreeningResults></Screening><Screening type="criminal" qualifier="county"><ProviderReferenceId><IdValue>944158103</IdValue></ProviderReferenceId><ClientReferenceId><IdValue>85416403</IdValue></ClientReferenceId><ScreeningStatus><OrderStatus>Completed</OrderStatus><ResultStatus>Clear</ResultStatus><DateOrderReceived>2005-10-17T19:50:00Z</DateOrderReceived><AdditionalItems qualifier="Package" vendor="Acxiom"><Text>9355</Text></AdditionalItems><AdditionalItems qualifier="Product" vendor="Acxiom"><Text>1002</Text></AdditionalItems></ScreeningStatus><ScreeningResults type="result" mediaType="txt" resultType="report"><Text>  CRIMINAL RECORD CHECK CLEAR
+                                         ** CLEAR **
+
+State:         	CA
+County:        	LOS ANGELES
+
+The above court was checked and no Felony/Misdemeanor records were found.
+This search includes Misdemeanors found at the county court level.
+
+Records were searched for the period  10/19/1998 - 10/19/2005
+</Text></ScreeningResults></Screening></Screenings></BackgroundReportPackage></BackgroundReports>

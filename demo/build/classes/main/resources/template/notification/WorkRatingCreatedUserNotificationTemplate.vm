@@ -1,0 +1,5 @@
+#if( ${template.work} )
+<a href="/assignments/details/${template.work.workNumber}">${template.rating.ratingCompany.effectiveName} rated you on assignment: ${template.workTitle}</a>
+#else
+${template.rating.ratingCompany.effectiveName} rated you.
+#end

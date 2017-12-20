@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/lms/view/details/${template.attempt.assessmentUserAssociation.assessment.id}">Your grade is ready for the test: ${template.attempt.assessmentUserAssociation.assessment.name}</a>

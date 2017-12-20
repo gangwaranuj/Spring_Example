@@ -1,0 +1,11 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Payment Terms Override Set</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 10px 0px 10px 0px">Payment terms approved and now available for ${template.company.effectiveName}</p>
+			<p style="margin: 10px 0px 10px 0px">${template.note}</p>
+			<p style="margin: 10px 0px 10px 0px"><strong>Note:</strong> Client must still turn terms on.</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

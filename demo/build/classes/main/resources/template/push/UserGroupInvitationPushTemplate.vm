@@ -1,0 +1,9 @@
+{
+#if($template.vendorInvitation)
+	#set($target = "your company")
+#else
+	#set($target = "you")
+#end
+"message": "Talent pool invitation: ${template.userGroup.company.effectiveName} invites ${target} to the talent pool: ${template.userGroupName}",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

@@ -1,0 +1,112 @@
+$pagination: (
+	element-size: $small-element-height,
+	background-color: $white,
+	color: $charcoal-grey,
+	font-size: 1em,
+	border-width: $base-border-width,
+	padding: $base-border-width,
+	button: (
+		font-size: $small-font-size,
+		default: (
+			color: $white,
+			background-color: $light-blue,
+		),
+		hover: (
+			color: $white,
+			background-color: $blue
+		),
+		active: (
+			color: $white,
+			background-color: $blue
+		),
+		focus: (
+			color: $white,
+			background-color: $blue
+		)
+	),
+	order: (
+		first-item: 2,
+		last-item: 4,
+		previous-button: 1,
+		next-button: 5,
+		text: 3
+	)
+);
+
+@function pagination-button-padding($multiplier: 1) {
+	$pagination-button: map-get($pagination, button);
+	$pagination-button-map: map-merge($pagination-button, (
+		element-size: map-get($pagination, element-size) - em(map-get($pagination, padding) * 2) - em(map-get($pagination, border-width) * 2)
+	));
+	@return element-padding($pagination-button-map, $multiplier);
+}
+
+@mixin pagination-button-state($state) {
+	background-color: map-fetch($pagination, button, $state, background-color);
+	color: map-fetch($pagination, button, $state, color);
+}
+
+%pagination-button {
+	@include pagination-button-state(default);
+	border-radius: $base-border-radius - 1;
+	text-align: center;
+	font-size: map-fetch($pagination, button, font-size);
+	padding: pagination-button-padding();
+
+	&:hover {
+		@include pagination-button-state(hover);
+		text-decoration: none;
+	}
+	&:active {
+		@include pagination-button-state(active);
+	}
+	&:focus {
+		@include pagination-button-state(focus);
+	}
+}
+
+@mixin pagination-button($direction) {
+	@extend %pagination-button;
+	@if $direction == left {
+		border-radius: #{$base-border-radius - 1} 0 0 #{$base-border-radius - 1};
+		margin-right: 0.5em;
+	} @else {
+		border-radius: 0 #{$base-border-radius - 1} #{$base-border-radius - 1} 0;
+		margin-left: 0.5em;
+	}
+}
+
+.wm-pagination {
+	display: inline-flex;
+	padding: map-get($pagination, padding);
+	color: map-get($pagination, color);
+	border: map-get($pagination, border-width) $base-border-style currentColor;
+	border-radius: $base-border-radius;
+	background-color: map-get($pagination, background-color);
+	font-size: map-get($pagination, font-size);
+	align-items: center;
+	line-height: 1;
+	margin-bottom: $base-element-bottom-spacing;
+
+	&::before {
+		content: attr(data-min);
+		order: map-fetch($pagination, order, first-item);
+	}
+	&::after {
+		content: attr(data-max);
+		order: map-fetch($pagination, order, last-item);
+	}
+
+	&--back {
+		@include pagination-button(left);
+		order: map-fetch($pagination, order, previous-button);
+	}
+	&--next {
+		@include pagination-button(right);
+		order: map-fetch($pagination, order, next-button);
+	}
+	&--label {
+		order: map-fetch($pagination, order, text);
+		padding: 0 0.2em;
+	}
+}

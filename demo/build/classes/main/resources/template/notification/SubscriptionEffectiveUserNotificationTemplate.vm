@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/mmw/subscription">Your subscription contract with WorkMarket is in effect as of $date.format('MMM dd, yyyy', ${template.subscriptionConfiguration.effectiveDate})</a>

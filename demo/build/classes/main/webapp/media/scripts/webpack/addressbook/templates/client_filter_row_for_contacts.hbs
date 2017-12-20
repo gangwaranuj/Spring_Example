@@ -1,0 +1,4 @@
+<option></option>
+{{#each this.clientList}}
+	<option value="{{this.id}}" {{#if this.isSelected}}selected{{/if}}>{{this.name}}</option>
+{{/each}}

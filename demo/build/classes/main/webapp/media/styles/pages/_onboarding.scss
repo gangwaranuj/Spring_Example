@@ -1,0 +1,524 @@
+.page-onboarding {
+	@include scaffolding;
+	background: url("images/Worker_dashboard_blur.png") no-repeat center 0, url("images/wood_bg.jpg") no-repeat center;
+	background-size: cover;
+
+	.topbar.left-nav.open ~ #outer-container, .app-nav.left-nav.open ~ #outer-container {
+		margin-left: 0;
+	}
+
+	.main .logo-work-market {
+		fill: $white;
+		margin-bottom: 1rem;
+		display: block;
+
+		@media only screen and (min-width: $small-screen) {
+			position: absolute;
+			top: 0.25em;
+			left: calc(50% - 30em);
+		}
+	}
+
+	// Onboarding Modal Styling
+	// ---------------------------------------------------------------------------
+	.wm-modal {
+		&--close { display: none; }
+		&--slide {
+			&:nth-of-type(1) {
+				overflow: hidden;
+
+				.wm-modal--content {
+					position: relative;
+					left: 0;
+					@include transition(left 0.5s ease-in-out);
+
+					&.-preview {
+						.wm-file-input { display: none; }
+						.profile-picture--save { display: block; }
+
+						@media only screen and (max-width: $small-screen) {
+							.photo-crop {
+								opacity: 1;
+
+								&--photo { margin-top: 0; }
+							}
+						}
+
+						@media only screen and (min-width: $small-screen) {
+							left: calc(100% - 15em);
+
+							.photo-crop { margin-bottom: 0; }
+							.-back { opacity: 0; }
+						}
+					}
+				}
+			}
+		}
+		label.onboarding-label {
+			color: $dark-grey;
+			margin-bottom: 3px;
+			span {
+				color: $orange;
+			}
+		}
+
+		input, textarea, .selectize-input {
+			&.error {
+				border: 1px solid $orange;
+			}
+		}
+
+		.selectize-input {
+			z-index: 2;
+		}
+	}
+
+	textarea {
+		padding: 0.5em;
+		max-height: 120px;
+		@include placeholder {
+			font-style: italic;
+			font-weight: 300;
+		}
+	}
+
+	.wm-spinner {
+		font-size: 0.75em;
+	}
+
+	// Step 1
+	// ---------------------------------------------------------------------------
+	.contact-information {
+		@include span(6);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(4);
+		}
+
+		&:nth-of-type(2n-1) { @include omega; }
+	}
+
+	.contact-email {
+		@include span(12 omega);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(8 omega);
+		}
+	}
+
+	.phones {
+		@include span(12 omega);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(8 omega);
+		}
+	}
+
+	.phone {
+		@include clearfix;
+
+		&--name {
+			@include span(4);
+
+			@media only screen and (min-width: $small-screen) {
+				@include span(3);
+			}
+		}
+		&--area {
+			@include span(5);
+		}
+		&--number {
+			@include span(7 omega);
+		}
+		&--add, &--remove {
+			width: 100%;
+
+			@media only screen and (min-width: $small-screen) {
+				@include span(3 omega);
+			}
+		}
+		&--remove + .phone--add { margin-top: map-get($data-float-label, "offset") * map-get($data-float-label, "font-size") / -1em; }
+	}
+	.photo-crop {
+		@include transition(margin-bottom 0.5s ease-in-out, opacity 0.5s ease-in-out);
+
+		@media only screen and (max-width: $small-screen) {
+			opacity: 0;
+		}
+		@media only screen and (min-width: $small-screen) {
+			float: left;
+			width: 500px;
+			margin-left: calc(-500px - 3em);
+			margin-bottom: -500px;
+		}
+
+		&--photo {
+			@include transition(margin-top 0.5s ease-in-out);
+
+			@media only screen and (max-width: $small-screen) {
+				margin-top: -100%;
+			}
+		}
+
+		.jcrop-holder { margin: 0 auto 2em; }
+	}
+
+	.user-details {
+		@include clearfix;
+	}
+
+	.profile, .company-logo {
+		@include clearfix;
+		font-size: 0.7em;
+		margin-bottom: 2em;
+		@media only screen and (min-width: $small-screen) {
+			@include span(4);
+			padding-bottom: 50px;
+			font-size: 1em;
+		}
+
+		svg { display: block; }
+		small {
+			@include span(8);
+			@include pre(2);
+			display: block;
+
+			@media only screen and (min-width: $small-screen) {
+				@include span(12 omega);
+			}
+		}
+	}
+	.profile-picture {
+		text-align: center;
+
+		&.-loaded {
+			.profile-picture--image { display: block; }
+			i { display: none; }
+		}
+
+		&--save { display: none; }
+		&--image, i {
+			width: 1em;
+			height: 1em;
+			font-size: 10em;
+			@include circle;
+			display: block;
+			margin: 0 auto;
+			background-color: $light-grey;
+			color: #111111;
+		}
+
+		i.wm-icon-buildings:before {
+			font-size: 0.65em;
+			position: relative;
+			top: .3em;
+		}
+
+		&--image {
+			display: none;
+			background-size: 100%;
+			background-repeat: no-repeat;
+		}
+	}
+
+	.legal-status {
+		@include clearfix;
+		margin-top: 2em;
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(8 omega);
+			margin-top: 0;
+		}
+	}
+
+	.profile, .company-details {
+		.wm-file-input, .profile-picture--save {
+			width: 10em;
+			margin: -1em auto 0.5em;
+			@include translateZ(0);
+		}
+		.wm-file-input {
+			padding-left: 0;
+			padding-right: 0;
+		}
+	}
+
+	.wm-select { margin-bottom: 0.5em; }
+
+	// Step 2
+	// ---------------------------------------------------------------------------
+	.formats-alert {
+		align-items: center;
+		border: 2px solid #5bc75d;
+		border-radius: 4px;
+		display: flex;
+		justify-content: space-around;
+		margin-bottom: 20px;
+		padding: 20px;
+
+		i {
+			color: #5bc75d;
+			margin-right: 25px;
+		}
+	}
+
+	.location-address {
+		.caption {
+			margin-bottom: .5em;
+		}
+	}
+	.map {
+		height: 18em;
+		margin-bottom: 1em;
+		border-radius: $base-border-radius;
+	}
+	.map-assignments {
+		@include span(12 omega);
+		margin-bottom: 1em;
+		text-align: center;
+		strong { border-bottom: 2px solid $orange; }
+	}
+	.wm-slider--text::after { padding-left: 0.2em; }
+
+	// Step 3
+	// ---------------------------------------------------------------------------
+	.company-website {
+		@include span(6);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(4);
+		}
+	}
+
+	.number-workers, .year-founded {
+		@include span(6 omega);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(4 omega);
+		}
+	}
+
+	.company-address { @include span(12 omega); }
+
+	.company-details {
+		@include span(12 omega);
+		@include transition(opacity 0.7s ease-out, height 0.7s ease-out, margin-bottom 0.7s ease-in-out);
+		@include translateZ(-1px);
+		opacity: 0;
+		margin-bottom: -15em;
+		height: 0;
+		padding-top: 1em;
+		position: relative;
+		z-index: 5;
+	}
+	.company-logo {
+		@include clearfix;
+		width: 50%;
+		margin: 0 auto;
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(4);
+		}
+
+		&--image { margin-bottom: 1em; }
+	}
+	.work-experience, .company-name {
+		@include span(12 omega);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(8 omega);
+		}
+	}
+	.wm-radio {
+		@include span(12 omega);
+		font-style: italic;
+		margin-bottom: 1em;
+
+		&:last-of-type { margin-bottom: 3em; }
+
+		&--text small { padding-top: 0.2em; }
+	}
+
+
+	// Step 4
+	// ---------------------------------------------------------------------------
+	.industries {
+		width: 70% !important;
+		&.-label::before { top: -2.1em; }
+	}
+	.industry {
+		@include span(12 omega);
+
+		@media only screen and (min-width: $small-screen) {
+			@include span(6);
+
+			&:last-of-type { @include span(12); }
+			&:nth-of-type(2n-1) { @include omega; }
+		}
+
+		&:last-of-type {
+			margin-bottom: 2em;
+		}
+
+		.other-industry-value{
+			float: left;
+			width: 80%;
+			margin-top: -2.5em;
+			margin-left: 10%;
+		}
+
+		small {
+			display: inline;
+			font-style: italic;
+		}
+	}
+
+	.skills li:before {
+		content: "+ ";
+	}
+
+	li.skill:before {
+		font-size: 2em;
+		float: left;
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+
+	li.skill {
+		float: left;
+		margin-left:5px;
+		margin-right: 5px;
+		margin-top: 5px;
+		min-height: 18px;
+		min-width: 100px;
+		background-color: #8d9092;
+		text-align: center;
+		line-height: 18px;
+		padding-left: 5px;
+		padding-right: 5px;
+		font-size: .8em;
+		text-transform: capitalize;
+		color: white;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+	.skills-search {
+		float: left;
+		width: 100%;
+	}
+
+	.your-skills {
+		float: left;
+		width: 100%;
+		min-height: 100px;
+	}
+
+	.your-skills li:after {
+		content: " x";
+		float: right;
+		padding-left: 5px;
+		font-size: 1.5em;
+	}
+
+	.your-skills .skill {
+		color: white;
+		background-color: #8d9092
+	}
+
+	.ui-autocomplete {
+		z-index: 100000;
+	}
+
+	.skills-autocomplete {
+		border: none !important;
+	}
+
+	.skills-autocomplete {
+		.selectize-input {
+			border: none
+		}
+	}
+
+	.skills-autocomplete:focus {
+		background-color: inherit;
+		box-shadow: none;
+	}
+
+	.your-skills-wrapper {
+		background-color: white;
+		border: 1px solid #cecece;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		min-height: 100px;
+		max-height: 200px;
+	}
+
+	.recommended-skills{
+		float: left;
+		margin-top: 10px;
+	}
+
+	.recommended-skills p{
+		margin-left: 5px;
+	}
+	.skill-count {
+		color: #f7961d;
+	}
+
+	.expertise-label {
+		float: left;
+		margin-right: 10px;
+		width: 20%;
+	}
+	.skills-search-content {
+		float: left;
+		width: 70%;
+	}
+	.jobtitle-autocomplete {
+		float: left;
+		width: 70% !important;
+	}
+	.skills-select {
+		float: left;
+		width: 30%
+	}
+	.skills {
+		min-height: 100px;
+	}
+
+	.recommended-skills.disabled  li{
+		opacity: .5
+	}
+
+	// Legacy
+	.topbar, .app-nav, .site-footer { display: none; }
+	#outer-container {
+		padding-top: 0;
+		background-color: rgba($white, 0.5);
+	}
+
+	#getStartedView {
+		p {
+			margin: 2em 0 1.5em;
+		}
+
+		ul {
+			list-style-type: inherit;
+			margin-bottom: 1em;
+			margin-left: 2em;
+		}
+
+		li {
+			line-height: 2.2;
+		}
+	}
+
+	//needed because of overflown: hidden .wm-modal--slide parent container
+	.year-founded, .phone--area {
+		.selectize-dropdown.single.wm-select {
+			top: -150px !important;
+		}
+	}
+}

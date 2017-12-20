@@ -1,0 +1,4 @@
+{
+"message": "Your application to the talent pool: ${template.userGroupName} was declined",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

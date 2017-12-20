@@ -1,0 +1,57 @@
+var wm__ttl = wm_feed_title ? '' + wm_feed_title + '' : 'Find work at WorkMarket';
+var wm__dbr = wm_feed_border ? 'border:' + wm_feed_border + ';' : '';
+var wm__wth = wm_feed_width ? 'width:' + wm_feed_width + ';' : '';
+var wm__bg  = wm_feed_background_color ? 'background-color:' + wm_feed_background_color + ';' : '';
+var wm__fnt = wm_feed_text_font ? 'font:' + wm_feed_text_font + ';' : '';
+var wm__lnk = wm_feed_link_color ? 'color:' + wm_feed_link_color + ';' : '';
+var wm__pad = wm_feed_padding ? 'padding:' + wm_feed_padding + ';' : '';
+
+document.write('<div style="' + wm__pad + wm__bg + wm__wth + wm__dbr + '">');
+	document.write('<table cellspacing="0" cellpadding="4" style="' + wm__wth + '">');
+		document.write('<tr>');
+			document.write('<td style="' + wm__fnt + '" align="center" valign="top">');
+				document.write('<a href="$baseUrl" style="' + wm__lnk + '">');
+					document.write(wm__ttl);
+				document.write('</a>');
+			document.write('</td>');
+		document.write('</tr>');
+#foreach ($work in $feed)
+		document.write('<tr>');
+			document.write('<td style="' + wm__fnt + '" align="left" valign="top">');
+				document.write('<div style="float:left;padding:0 3px 0 0;">');
+					document.write('<a href="$baseUrl/work/$escape.javascript($work.getWorkNumber())" style="' + wm__lnk + '">');
+						document.write('$escape.javascript($work.getPublicTitle())');
+					document.write('</a>');
+				document.write('</div>');
+				document.write('<div style="float:right">');
+					document.write('<div style="float:left;padding:0 3px;">');
+#if ($work.getCity())
+						document.write('$escape.javascript($work.getCity()), $escape.javascript($work.getState())');
+#else
+						document.write('Virtual Location');
+#end
+					document.write('</div>');
+					document.write('<div style="float:left;padding:0 3px;">');
+						document.write('$date.format('default_date', $work.getScheduleFromDate())');
+					document.write('</div>');
+				document.write('</div>');
+			document.write('</td>');
+		document.write('</tr>');
+#end
+		document.write('<tr>');
+			document.write('<td style="white-space:nowrap;font:12px Arial,Helvetica,Sans serif" align="center" valign="top">');
+				document.write('<a href="$baseUrl" style="text-decoration:none; background-color:#4B5254; padding:2px 5px"><span style="color:#FE8707;">Work</span><span style="color:#FFFFFF;">Market</span></a>');
+			document.write('</td>');
+		document.write('</tr>');
+		document.write('<tr>');
+			document.write('<td style="white-space:nowrap;font:12px Arial,Helvetica,Sans serif" align="center" valign="top">');
+				document.write('<a href="$baseUrl/feed/build" style="' + wm__lnk + '">Get a Work Feed</a>');
+			document.write('</td>');
+		document.write('</tr>');
+		document.write('<tr>');
+			document.write('<td style="white-space:nowrap;font:12px Arial,Helvetica,Sans serif" align="center" valign="top">');
+				document.write('<a href="$baseUrl/signup/creatework" style="' + wm__lnk + '">Show your work in the Work Feed</a>');
+			document.write('</td>');
+		document.write('</tr>');
+	document.write('</table>');
+document.write('</div>');

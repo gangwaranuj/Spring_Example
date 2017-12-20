@@ -1,0 +1,4 @@
+{
+"message": "Resource failed to confirm assignment: ${template.work.title}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

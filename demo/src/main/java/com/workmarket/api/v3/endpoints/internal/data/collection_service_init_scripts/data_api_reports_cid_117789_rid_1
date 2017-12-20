@@ -1,0 +1,101 @@
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/namespace/create \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{ "namespace": "data.api.reports.cid.117789" }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/collection/create \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "display_name": "WorkMarket Tests",
+    "metadata": {
+      "data": [{
+        "key": "id",
+        "value": 1
+      },
+      {
+        "key": "description",
+        "value": ""
+      },
+      {
+        "key": "type",
+        "value": "basic"
+      }]
+    }
+   }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/namespace/collection/add \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "namespace": "data.api.reports.cid.628997",
+    "collection_uuid": "8939cfe6-e870-4f69-8a9a-2292647e"
+    }
+  }'
+
+curl -X POST \
+  http://collection-worrell.dev.workmarket.com:8081/collection/items/add \
+  -H 'content-type: application/json' \
+  -H 'x-wm-requestid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -H 'x-wm-userid: 988730a7-e4a3-4238-a62a-85befcd477e6' \
+  -d '{
+    "collection_uuid": "a11e3086-791a-4125-aaf6-30596afd",
+    "items": [{
+        "external_id": 1,
+        "object_type": "source",
+        "metadata": {
+            "data": [{
+                "key": "service",
+                "value": "com.workmarket.service.business.AssessmentServiceImpl"
+            },
+            {
+                "key": "callable",
+                "value": "findAssessmentsByCompany"
+            },
+            {
+                "key": "callableParameterTypes",
+                "value": "[\"java.lang.Long\", \"com.workmarket.domains.model.assessment.AssessmentPagination\"]"
+            },
+            {
+                "key": "callableInputConverter",
+                "value": "reportRequestToParameterListForFindAssessmentsByCompany"
+            },
+            {
+              "key": "callableOutputConverter",
+              "value": "assessmentPaginationToApiReportData"
+            },
+            {
+              "key": "callableOutputConverterParameterTypes",
+              "value": "[\"com.workmarket.domains.model.assessment.AssessmentPagination\"]"
+            },
+            {
+              "key": "filterFieldWhiteList",
+              "value": "[]"
+            },
+            {
+              "key": "filterFieldRequired",
+              "value": "[]"
+            }]
+        }
+    },
+    {
+        "external_id": 2,
+        "object_type": "schema",
+        "metadata": {
+            "data": [{
+              "key": "test_id",
+              "value": "int"
+             },
+            {
+              "key": "test_name",
+              "value": "string"
+            }]
+        }
+    }]
+}'

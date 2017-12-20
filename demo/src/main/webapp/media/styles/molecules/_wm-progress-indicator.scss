@@ -1,0 +1,92 @@
+$wm-progress-indicator: (
+	total-steps: 6,
+	minimum-steps: 2,
+	bottom-padding: 2em,
+	track-height: 3px
+);
+
+.wm-progress-indicator {
+	@include clearfix;
+	display: flex;
+	align-items: center;
+	color: $light-grey;
+	position: relative;
+	padding-bottom: map-get($wm-progress-indicator, bottom-padding);
+
+	@media only screen and (min-width: $medium-screen) {
+		font-size: 0.75em;
+	}
+
+	.indicator {
+		display: flex;
+		flex-grow: 1;
+		color: currentColor;
+		position: relative;
+		height: 4em;
+
+		&::before {
+			position: absolute;
+			top: calc(50% - #{map-get($wm-progress-indicator, track-height) / 2});
+			display: block;
+			content: "";
+			height: map-get($wm-progress-indicator, track-height);
+			width: 100%;
+			background-color: $light-grey;
+		}
+		&::after {
+			display: block;
+			content: attr(data-step-title);
+			font-weight: bold;
+			color: currentColor;
+			text-align: center;
+			position: absolute;
+			left: 0;
+			top: 100%;
+			width: 100%;
+		}
+
+		&.-active {
+			color: $orange;
+
+			&::after {
+				font-size: 1.2em;
+			}
+
+			& ~ .indicator .indicator--icon::before {
+				display: none;
+			}
+
+			.indicator--icon {
+				font-size: 1.5em;
+
+				&::before {
+					display: none;
+				}
+			}
+		}
+		&:first-of-type::before {
+			width: 50%;
+			left: 50%;
+		}
+		&:last-of-type::before {
+			width: 50%;
+		}
+
+		&--icon {
+			@include circle;
+			align-self: center;
+			background: currentColor;
+			display: block;
+			height: 2em;
+			margin: 0 auto;
+			width: 2em;
+			position: relative;
+
+			&::before {
+				@include icon(checkmark);
+				@include center;
+				color: $white;
+			}
+		}
+	}
+}

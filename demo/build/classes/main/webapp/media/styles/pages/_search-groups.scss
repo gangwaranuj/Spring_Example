@@ -1,0 +1,34 @@
+.page-search-groups {
+	.page-header {
+		overflow: hidden;
+
+		h2 {
+			float: left;
+			margin: 0;
+		}
+		#sortby {
+			float: left;
+			margin: 5px 0 0 25px;
+		}
+		.new-group {
+			float: right;
+			margin-top: 1px;
+		}
+	}
+	.keyword-search {
+		@include clearfix;
+
+		input {
+			@include span(9);
+			box-sizing: border-box;
+			height: 2em;
+		}
+		.button {
+			@include span(3 omega);
+		}
+		a {
+			clear: both;
+			float: right;
+		}
+	}
+}

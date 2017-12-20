@@ -1,0 +1,179 @@
+<td class="invoice-check check">
+	{{#unless this.isReceivables}}
+		{{#unless this.model.invoiceIsBundled}}
+			{{#unless this.invoiceStatusTypeCodeVoid}}
+				{{#unless this.model.pendingPaymentFulfillment}}
+					<input type="checkbox" name="ids[]" value="{{this.model.invoiceId}}"/>
+				{{/unless}}
+			{{/unless}}
+		{{/unless}}
+	{{/unless}}
+</td>
+
+<td class="invoice-detail">
+	{{#unless this.isReceivables}}
+		{{#unless this.model.editable}}
+			<span class="tooltipped tooltipped-n" aria-label="This invoice is locked"><i class="wm-icon-lock-circle"></i></span>
+		{{/unless}}
+	{{/unless}}
+	<span>{{#if this.model.invoiceSummaryNumber}} {{this.model.invoiceSummaryNumber}} &bull; {{/if}}{{this.model.invoiceNumber}}{{#if this.model.workNumber}} &bull; {{this.model.workNumber}}{{/if}}</span>
+	{{#if this.isInvoiceTypeSubscription}}
+		<strong><a href="/payments/invoices/print_service_invoice/{{this.model.invoiceId}}" class="print-invoice-outlet" target="_blank">{{this.model.invoiceDescription}}</a></strong><br/>
+	{{/if}}
+	{{#unless this.isInvoiceTypeSubscription}}
+		{{#if this.isInvoiceTypeAdHoc}}
+			<strong>
+				<a href="/payments/invoices/print_service_invoice/{{this.model.invoiceId}}" class="print-invoice-outlet" target="_blank">{{this.model.invoiceDescription}}</a>
+			</strong>
+		{{/if}}
+	{{/unless}}
+	{{#unless this.isInvoiceTypeSubscription}}
+		{{#unless this.isInvoiceTypeAdHoc}}
+			<strong><a target="_blank" href="/assignments/details/{{this.model.workNumber}}">{{this.model.workTitle}}</a></strong>
+		{{/unless}}
+	{{/unless}}
+
+	<div class="tooltipped tooltipped-n" aria-label="Work Date, Location and Worker Name">
+		{{#if this.model.workDate}}{{[../../helpers/formattedDate] this.model.workDate}}{{/if}}
+		{{#if this.model.workCountry}}{{#if this.model.workDate}}&bull; {{/if}}{{this.model.formattedAddressShort}}{{/if}}
+		{{#if this.model.workResourceName}}{{#if this.model.workCountry}}&bull; {{else}}{{#if this.model.workDate}}&bull; {{/if}}{{/if}}{{this.model.workResourceName}}{{/if}}
+	</div>
+
+	{{#if this.model.downloadedOn}}
+		<div class="tooltipped tooltipped-n" aria-label="Print Date">Downloaded: {{[../../helpers/formattedDate] this.model.downloadedOn}}</div>
+	{{/if}}
+	{{#if this.isReceivables}}
+		<p><small><em>For questions about this invoice, please call {{this.model.buyerFullName}} {{#if this.model.companyName}} from {{this.model.companyName}}{{/if}}{{#if this.model.buyerPhone}} at {{this.model.buyerPhone}}{{/if}}</em></small></p>
+	{{/if}}
+
+	<div class="help-block">
+		{{#if this.invoiceStatusTypeCodeVoid}}
+			<div class="row-fluid">
+				<div class="span5">Created</div>
+				<div class="span11">{{[../../helpers/formattedDate] this.model.invoiceCreatedDate}}</div>
+			</div>
+			<dt>Voided</dt>
+			<dd>{{[../../helpers/formattedDate] this.model.invoiceVoidDate}} ({{[../../helpers/formatCurrency] this.model.invoiceBalance}})</dd>
+		{{/if}}
+		{{#unless this.invoiceStatusTypeCodeVoid}}
+			{{#unless this.isInvoiceTypeSubscription}}
+				{{#unless this.isInvoiceTypeAdHoc}}
+						<div class="row-fluid">
+							<div class="span5">Approved</div>
+							<div class="span11">{{[../../helpers/formattedDate] this.model.workCloseDate}}</div>
+						</div>
+				{{/unless}}
+			{{/unless}}
+		{{/unless}}
+        {{#if this.model.uniqueIdDisplayName}}
+            <div class="row-fluid">
+                <div class="span5">{{this.model.uniqueIdDisplayName}}:</div>
+                <div class="span11">{{this.model.uniqueIdValue}}</div>
+            </div>
+        {{/if}}
+		{{#each this.model.customFields}}
+			<div class="row-fluid">
+				<div class="span5">
+					<div class="custom-field">{{this.fieldName}}:</div>
+				</div>
+				<div class="span11">
+					<div class="custom-field">{{this.fieldValue}}</div>
+				</div>
+			</div>
+		{{/each}}
+		<hr/>
+		<ul class="invoice-actions">
+			{{#if this.isInvoiceTypeSubscription}}
+				<li><a href="/payments/invoices/print_service_invoice/{{this.model.invoiceId}}" class="print-invoice-outlet" target="_blank">Print</a></li>
+			{{/if}}
+			{{#unless this.isInvoiceTypeSubscription}}
+				{{#if this.isInvoiceTypeAdHoc}}
+					<li><a href="/payments/invoices/print_service_invoice/{{this.model.invoiceId}}" class="print-invoice-outlet" target="_blank">Print</a></li>
+					<li><a href="/payments/invoices/email/{{this.model.invoiceId}}" class="email-invoice-outlet">Email</a></li>
+				{{/if}}
+			{{/unless}}
+			{{#unless this.isInvoiceTypeSubscription}}
+				{{#unless this.isInvoiceTypeAdHoc}}
+					<li><a href="/payments/invoices/print/{{this.model.invoiceId}}" class="print-invoice-outlet" target="_blank">Print</a></li>
+					<li><a href="/payments/invoices/email/{{this.model.invoiceId}}" class="email-invoice-outlet">Email</a></li>
+					<li><a href="/payments/invoices/export/{{this.model.invoiceId}}">Export CSV</a></li>
+				{{/unless}}
+			{{/unless}}
+			{{#unless this.model.invoiceIsBundled}}
+				{{#unless this.invoiceStatusTypeCodeVoid}}
+					{{#unless this.pendingPaymentFulfillment}}
+						{{#unless this.isReceivables}}
+							{{#if this.mmwAutoPayEnabled}}
+								<li><span class="label success ml tooltipped tooltipped-n" aria-label="This invoice will auto pay on its due date if funds are available on your account.">Auto Pay</span></li>
+							{{/if}}
+						{{/unless}}
+					{{/unless}}
+				{{/unless}}
+			{{/unless}}
+			{{#if this.model.invoiceIsBundled}}
+				{{#if this.model.editable}}
+					<li><a class="js-remove-from-bundle tooltipped tooltipped-n" href="javascript:void(0);" data-invoice-id="{{this.model.invoiceId}}" data-invoice-summary="{{this.model.invoiceSummaryId}}" aria-label="You cannot have an empty bundle.">Remove From Bundle</a></li>
+				{{/if}}
+			{{/if}}
+			{{#unless this.model.editable}}
+				{{#if this.invoiceStatusTypeCodePending}}
+					<li><a class="js-unlock-invoice" data-invoice="{{this.model.invoiceId}}" href="javascript:void(0);">Unlock</a></li>
+				{{/if}}
+			{{/unless}}
+		</ul>
+	</div>
+</td>
+<td class="invoice-status">
+	{{#if this.model.pendingPaymentFulfillment}}
+		<em>Processing</em>
+	{{/if}}
+	{{#unless this.model.pendingPaymentFulfillment}}
+		{{#if this.invoiceStatusTypeCodePaid}}Paid{{/if}}
+	{{/unless}}
+	{{#unless this.model.pendingPaymentFulfillment}}
+		{{#unless this.invoiceStatusTypeCodePaid}}
+			{{#if this.invoiceStatusTypeCodeVoid}}Void{{/if}}
+		{{/unless}}
+	{{/unless}}
+	{{#unless this.model.pendingPaymentFulfillment}}
+		{{#unless this.invoiceStatusTypeCodePaid}}
+			{{#unless this.invoiceStatusTypeCodeVoid}}
+				<small>
+					Due: {{[../../helpers/formattedDate] this.model.invoiceDueDate}}
+					<br/><span class="text-error">{{[../../helpers/invoiceDueDateStatus] this.model.invoiceDueDate}}</span>
+				</small>
+				{{#if hasFeatureFastFunds}}
+					{{#if isFastFundsAvailable}}
+						{{> ../../funcs/templates/button classlist="get-paid-now" text="Get Paid Now" }}
+					{{/if}}
+					{{#if isFastFundsComplete}}
+						<div class="paid-via-fastfunds">
+							<small>Paid via <strong>FastFunds</strong></small>
+						</div>
+					{{/if}}
+				{{/if}}
+			{{/unless}}
+		{{/unless}}
+	{{/unless}}
+</td>
+
+<td class="invoice-amount amount nowrap">
+	{{#if this.invoiceStatusTypeCodeVoid}}$0.00{{/if}}
+	{{#unless this.invoiceStatusTypeCodeVoid}}
+		{{#if this.invoiceIsSubscriptionOrAdhoc}}{{[../../helpers/formatCurrency] this.model.invoiceBalance}}{{/if}}
+	{{/unless}}
+	{{#unless this.invoiceStatusTypeCodeVoid}}
+		{{#unless this.invoiceIsSubscriptionOrAdhoc}}
+			{{#if this.model.owner}}
+				{{[../../helpers/formatCurrency] this.model.buyerTotalCost}}
+			{{/if}}
+		{{/unless}}
+	{{/unless}}
+	{{#unless this.invoiceStatusTypeCodeVoid}}
+		{{#unless this.invoiceIsSubscriptionOrAdhoc}}
+			{{#unless this.model.owner}}
+				{{[../../helpers/formatCurrency] this.model.amountEarned}}
+			{{/unless}}
+		{{/unless}}
+	{{/unless}}
+</td>

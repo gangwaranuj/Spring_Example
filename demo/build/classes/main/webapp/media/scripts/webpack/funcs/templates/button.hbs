@@ -1,0 +1,29 @@
+{{#if shouldShowMDL}}
+	{{#if href}}
+		<a
+			class="mdl-button mdl-js-button {{classlist}} mdl-js-ripple-effect {{#if raised}}mdl-button--raised{{/if}} {{#if primary}}mdl-button--primary{{/if}} {{#if accent}}mdl-button--accent{{/if}}"
+			aria-label="{{tooltip}}"
+			id="{{id}}"
+			{{#if disabled}}disabled{{/if}}
+			{{attributes}}
+			href="{{href}}"
+		>{{{text}}}</a>
+	{{else}}
+		<button
+			class="mdl-button mdl-js-button {{classlist}} mdl-js-ripple-effect {{#if raised}}mdl-button--raised{{/if}} {{#if primary}}mdl-button--primary{{/if}} {{#if accent}}mdl-button--accent{{/if}}"
+			aria-label="{{tooltip}}"
+			id="{{id}}"
+			{{#if disabled}}disabled{{/if}}
+			{{attributes}}
+		>{{{text}}}</button>
+	{{/if}}
+{{else}}
+	<button
+		class="button -new {{#if primary}}-primary{{/if}} {{classlist}} {{#if tooltip}}tooltipped tooltipped-{{#if tooltipDirection}}{{tooltipDirection}}{{else}}n{{/if}}{{/if}}"
+		{{#if tooltip}}aria-label="{{tooltip}}"{{/if}}
+		id="{{id}}"
+		{{#if disabled}}disabled{{/if}}
+	>
+		<div class="button--content {{#if icon}}wm-icon-{{icon}}{{/if}}">{{{text}}}</div>
+	</button>
+{{/if}}

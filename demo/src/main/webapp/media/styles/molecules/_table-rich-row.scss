@@ -1,0 +1,134 @@
+.table-rich-row {
+	display: flex;
+	align-items: flex-start;
+	overflow: hidden;
+
+	> section {
+		border-bottom: $default-border;
+
+		&:first-of-type {
+			border-left: $default-border;
+		}
+
+		&:last-of-type {
+			border-right: $default-border;
+		}
+	}
+
+	&.-hidden {
+		height: 0;
+		visibility: hidden;
+		overflow: hidden;
+	}
+
+	&--cell-wrapper {
+		box-sizing: border-box;
+		height: 50px;
+		display: flex;
+		align-items: center;
+		flex-wrap: nowrap;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		margin-right: -0.5em;
+		margin-left: -0.5em;
+
+		.-actions & {
+			justify-content: center;
+		}
+
+		> * {
+			margin: 0 0.5em;
+		}
+	}
+
+	&--fixed {
+		overflow: hidden;
+		flex: 1 0 30%;
+
+		&:first-of-type {
+			box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+		}
+
+		&:last-of-type {
+			box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+			z-index: 1;
+		}
+
+		&.-actions {
+			max-width: 5em;
+		}
+	}
+
+	&--main-content {
+		flex-grow: 3;
+		overflow: auto;
+
+		&.-scrolling {
+			max-width: 70%;
+		}
+	}
+
+	table {
+		overflow: hidden;
+		width: 100%;
+		border-radius: 0;
+		border: none;
+		margin: 0;
+
+		th {
+			border-radius: 0;
+			cursor: pointer;
+
+			&:first-of-type,
+			&:last-of-type {
+				border-radius: 0;
+			}
+
+			&.-sorting {
+				background-color: $grey;
+			}
+
+			.heading-text {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+
+				&::after {
+					display: inline-block;
+				}
+
+				// TODO: Move to general table styles
+				&.-ascending {
+					&::after {
+						@include icon(sort-asc);
+					}
+				}
+
+				&.-descending {
+					&::after {
+						@include icon(sort-desc);
+					}
+				}
+			}
+		}
+
+		// TODO: Move to general table styles
+		tr {
+			&:nth-child(even) {
+				background-color: $off-white;
+			}
+		}
+
+		.hover {
+			background-color: $off-white;
+		}
+
+		th,
+		td {
+			padding: 0 1em;
+			box-sizing: border-box;
+		}
+	}
+}

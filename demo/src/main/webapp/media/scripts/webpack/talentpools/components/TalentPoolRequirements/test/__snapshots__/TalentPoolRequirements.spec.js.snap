@@ -1,0 +1,199 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TalentPoolRequirements /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMPaper
+  style={
+    Object {
+      "padding": "1em",
+      "width": "100%",
+    }
+  }
+>
+  <WMFieldSet
+    text="Talent Pool Requirements"
+  >
+    <div
+      style={
+        Object {
+          "margin": "1em 0",
+        }
+      }
+    >
+      <WMFormRow
+        id="talent-pool-requirement-add"
+        labelText="Requirements"
+      >
+        <WMSelectField
+          floatingLabelText="Choose Requirement Type to Add"
+          fullWidth={true}
+          name="requirementAdd"
+          onChange={[Function]}
+          style={
+            Object {
+              "margin": "-1.5em 0 0 0",
+            }
+          }
+          valid={true}
+          value=""
+        >
+          <WMMenuItem
+            primaryText="Agreement"
+            value="AgreementRequirement"
+          />
+          <WMMenuItem
+            primaryText="Availability"
+            value="AvailabilityRequirement"
+          />
+          <WMMenuItem
+            primaryText="Background Check"
+            value="BackgroundCheckRequirement"
+          />
+          <WMMenuItem
+            primaryText="Certification"
+            value="CertificationRequirement"
+          />
+          <WMMenuItem
+            primaryText="Company Type"
+            value="CompanyTypeRequirement"
+          />
+          <WMMenuItem
+            primaryText="Country"
+            value="CountryRequirement"
+          />
+          <WMMenuItem
+            primaryText="Document"
+            value="DocumentRequirement"
+          />
+          <WMMenuItem
+            primaryText="Drug Test"
+            value="DrugTestRequirement"
+          />
+          <WMMenuItem
+            primaryText="eSignature"
+            value="SignatureRequirement"
+          />
+          <WMMenuItem
+            primaryText="Industry"
+            value="IndustryRequirement"
+          />
+          <WMMenuItem
+            primaryText="Insurance"
+            value="InsuranceRequirement"
+          />
+          <WMMenuItem
+            primaryText="License"
+            value="LicenseRequirement"
+          />
+          <WMMenuItem
+            primaryText="Maximum Abandoned Assignments"
+            value="AbandonedRateRequirement"
+          />
+          <WMMenuItem
+            primaryText="Maximum Cancelled Assignments"
+            value="CancelledRateRequirement"
+          />
+          <WMMenuItem
+            primaryText="Minimum On-Time Deliverables"
+            value="DeliverableOnTimeRequirement"
+          />
+          <WMMenuItem
+            primaryText="Minimum On-Time Arrival"
+            value="OnTimeRequirement"
+          />
+          <WMMenuItem
+            primaryText="Minimum Satisfaction Rating"
+            value="SatisfactionRatingRequirement"
+          />
+          <WMMenuItem
+            primaryText="Profile Video"
+            value="ProfileVideoRequirement"
+          />
+          <WMMenuItem
+            primaryText="Talent Pool Membership"
+            value="TalentPoolMembershipsRequirement"
+          />
+          <WMMenuItem
+            primaryText="Tests"
+            value="AssessmentsRequirement"
+          />
+          <WMMenuItem
+            primaryText="Travel Distance"
+            value="TravelDistanceRequirement"
+          />
+          <WMMenuItem
+            primaryText="Worker Type"
+            value="WorkerTypeRequirement"
+          />
+        </WMSelectField>
+      </WMFormRow>
+    </div>
+    <div />
+    <WMFormRow
+      id="talent-pool-active-requirements"
+    >
+      <WMList />
+    </WMFormRow>
+    <div
+      style={
+        Object {
+          "margin": "1em 0",
+        }
+      }
+    >
+      <WMFormRow
+        id="talent-pools-save-requirements"
+      >
+        <div
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row-reverse",
+            }
+          }
+        >
+          <WMRaisedButton
+            disabled={true}
+            label="Save Requirements"
+            onClick={[Function]}
+            primary={true}
+            style={
+              Object {
+                "margin": "1em 0 0 1em",
+              }
+            }
+          />
+        </div>
+      </WMFormRow>
+      <WMFormRow
+        baseStyle={
+          Object {
+            "alignItems": "baseline",
+            "margin": "1em 0",
+          }
+        }
+        id="talent-pool-auto-enforce"
+        labelText="Remove members when requirements are not met"
+      >
+        <WMRadioButtonGroup
+          name="autoEnforce"
+          onChange={[Function]}
+          valueSelected="false"
+        >
+          <WMRadioButton
+            disabled={false}
+            label="Yes"
+            name="autoEnforce"
+            value="true"
+          />
+          <WMRadioButton
+            disabled={false}
+            label="No"
+            name="autoEnforce"
+            value="false"
+          />
+        </WMRadioButtonGroup>
+      </WMFormRow>
+    </div>
+  </WMFieldSet>
+</WMPaper>
+`;

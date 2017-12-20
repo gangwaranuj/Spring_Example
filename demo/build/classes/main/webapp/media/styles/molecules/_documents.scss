@@ -1,0 +1,134 @@
+#documents {
+	.accordion-heading {
+		position: relative;
+		.documents-download-all-icon {
+			display: inline-block;
+			width: 1.7em;
+			position: absolute;
+			right: 1.8em;
+			bottom: -1px;
+			.foreground {
+				fill: $white;
+			}
+			.background {
+				fill: $charcoal-grey;
+				opacity: .68;
+			}
+			&:hover {
+				.background {
+					fill: $green;
+					opacity: 1;
+				}
+			}
+			&.-hidden {
+				visibility: hidden;
+			}
+		}
+	}
+
+	#documents-well {
+		.asset-visibility.dropdown {
+			.visibility-copy {
+				opacity: 0.68;
+			}
+		}
+		.asset-description-container {
+			textarea {
+				width: 21.5em;
+				min-height: 3em;
+			}
+		}
+	}
+
+	.upload-documents form input {
+		display: block;
+		visibility: hidden;
+		width: 0;
+		height: 0;
+	}
+}
+
+// Assignment creation page
+#assignment-documents {
+	.documents {
+		margin-top: 1em;
+		margin-left: 0;
+		.non-required-deliverable {
+			margin-top: 1em;
+			.darken {
+				filter: brightness(0.5);
+			}
+			.asset-description-container {
+				textarea {
+					margin-left: 1em;
+					min-height: 4.4em;
+					height: 3.6em;
+					width: 41em;
+					border-radius: 3px;
+					box-sizing: border-box;
+				}
+			}
+			.fileNamePlaceholder {
+				margin-left: 2em;
+				width: 25em;
+			}
+			.progress {
+				width: 18em;
+			}
+			.asset-info {
+				width: 26em;
+				.asset-name {
+					position: relative;
+					top: 0.5em;
+					margin-left: -0.5em;
+				}
+
+				.asset-timestamp {
+					margin-left: -0.5em;
+				}
+			}
+			.asset-visibility {
+				display: inline;
+				height: 2.2em;
+				width: 14em;
+				margin-right: -1.9em;
+				.visibility-selection {
+					display: none;
+				}
+				.visibility-copy {
+					opacity: 0.68;
+				}
+			}
+			.qq-upload-size-parent {
+				display: none;
+			}
+			.qq-upload-cancel {
+				display: none;
+			}
+			.qq-upload-spinner-parent {
+				display: none;
+			}
+		}
+	}
+	.uploader-container {
+		display: inline-flex;
+
+		.uploader-input {
+			display: block;
+			visibility: hidden;
+			opacity: 0;
+			-ms-filter: 'alpha(opacity=0)';
+			height: 0;
+			width: 0;
+			cursor: pointer;
+		}
+		.uploader-button {
+			margin-right: 1.1em;
+		}
+		.qq-upload-drop-area {
+			display: none;
+			width: 0;
+			height: 0;
+		}
+	}
+}

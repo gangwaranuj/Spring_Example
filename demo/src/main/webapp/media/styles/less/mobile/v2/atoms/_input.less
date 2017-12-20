@@ -1,0 +1,64 @@
+input, textarea, button {
+	outline: none;
+	&:focus {
+		outline: none;
+	}
+}
+
+input, input.email, input.password {
+	border: 2px solid @gray;
+	padding: @small-space;
+	display: block;
+	width: 100%;
+	font-size: @normal-font-size;
+	color: @orange;
+	.border-radius(@base-border-radius);
+	.transitions(all .5s ease);
+	.box-sizing(border-box);
+	.placeholder(color, @gray);
+	&:focus {
+		border-color: @orange;
+		color: @orange;
+	}
+}
+
+textarea {
+	width: 100%;
+	border: 2px solid @light-gray;
+	height: 5em !important;
+	font-size: @normal-font-size;
+	.border-radius(@base-border-radius);
+	.placeholder(color, @gray);
+	.transitions(all .5s ease);
+	.box-sizing(border-box);
+	&:focus {
+		border-color: @orange;
+		color: @orange;
+	}
+	&.blue {
+		&:focus {
+			border-color: @teal;
+			color: @teal;
+		}
+	}
+}
+
+select {
+	width: 100%;
+	height: auto;
+	padding: 1em;
+	margin: 0 0 1em;
+	border: 2px solid @light-gray;
+	.border-radius(@base-border-radius);
+	background: white;
+	color: @orange;
+	line-height: 1;
+	outline: none;
+	font-size: 80%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	cursor: pointer;
+	.box-sizing(border-box);
+	.placeholder(color, @gray);
+}

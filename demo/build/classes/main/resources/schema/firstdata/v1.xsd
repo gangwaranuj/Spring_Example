@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:v1="http://secure.linkpt.net/fdggwsapi/schemas_us/v1" targetNamespace="http://secure.linkpt.net/fdggwsapi/schemas_us/v1" elementFormDefault="qualified">
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- main  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<xs:element name="Transaction" type="v1:Transaction" />
+
+	<xs:complexType name="Transaction">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:element name="CreditCardTxType" type="v1:CreditCardTxType" />
+					<xs:element name="CreditCardData" type="v1:CreditCardData" minOccurs="0" />
+					<xs:element ref="v1:CreditCard3DSecure" minOccurs="0" />					
+				</xs:sequence>			
+				<xs:sequence>
+					<xs:element name="TeleCheckTxType" type="v1:TeleCheckTxType" />
+					<xs:element name="TeleCheckData" type="v1:TeleCheckData" minOccurs="0" />
+				</xs:sequence>
+				<xs:sequence>				
+					<xs:element name="CalculateTax" type="v1:CalculateTax" />					
+				</xs:sequence>
+				<xs:sequence>				
+					<xs:element name="CalculateShipping" type="v1:CalculateShipping" />					
+				</xs:sequence>				
+			</xs:choice>
+			<xs:element ref="v1:Payment" minOccurs="0" />
+			<xs:element ref="v1:TransactionDetails" minOccurs="0" />
+			<xs:element ref="v1:Billing" minOccurs="0" />
+			<xs:element ref="v1:Shipping" minOccurs="0" />
+			<xs:element ref="v1:Notes" minOccurs = "0"/>
+			<xs:element ref="v1:ItemList" minOccurs = "0"/>
+						
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Options - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	
+	<xs:complexType name="CalculateTax">
+		<xs:complexContent>
+			<xs:extension base="v1:Options">
+				<xs:sequence>
+					<xs:element name="SubTotal" type="xs:double" minOccurs = "0"/>                                                        
+					<xs:element name="ShipState" type="v1:String2max" minOccurs="0" />
+					<xs:element name="ShipZip" type="v1:Zip" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+
+	<xs:complexType name="CalculateShipping">
+		<xs:complexContent>
+			<xs:extension base="v1:Options">
+				<xs:sequence>
+					<xs:element name="SubTotal" type="xs:double" minOccurs = "0"/>
+					<xs:element name="Weight" type="xs:double" minOccurs = "0"/>
+            		<xs:element name="ItemCount" type="xs:integer" minOccurs = "0"/>
+            		<xs:element name="CarrierType" type="xs:integer" minOccurs = "0"/>					                                                        
+					<xs:element name="ShipState" type="v1:String2max" minOccurs="0" />
+					<xs:element name="ShipZip" type="v1:Zip" minOccurs="0" />
+					<xs:element name="ShipCountry" type="v1:String3max" minOccurs="0" />
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="CreditCardTxType">
+		<xs:complexContent>
+			<xs:extension base="v1:Options">
+				<xs:sequence>
+					<xs:element name="Type">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="credit" />
+								<xs:enumeration value="forceTicket" />
+								<xs:enumeration value="postAuth" />
+								<xs:enumeration value="preAuth" />
+								<xs:enumeration value="return" />
+								<xs:enumeration value="sale" />
+								<xs:enumeration value="void" />								
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+					<xs:element name = "result" minOccurs = "0">
+					<xs:simpleType>
+						<xs:restriction base = "xs:string">			
+							<xs:enumeration value = "Duplicate"/>			
+							<xs:enumeration value = "Decline"/>
+							<xs:enumeration value = "Good"/>
+							<xs:enumeration value = "Live"/>			
+						</xs:restriction>
+					</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+	<xs:complexType name="TeleCheckTxType">
+		<xs:complexContent>
+			<xs:extension base="v1:Options">
+				<xs:sequence>
+					<xs:element name="Type">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">								
+								<xs:enumeration value="return" />
+								<xs:enumeration value="sale" />
+								<xs:enumeration value="void" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	
+
+	<xs:complexType name="Options">
+		<xs:sequence>
+			<xs:element name="StoreId" type="v1:String20max" minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- Card  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<xs:complexType name="CreditCardData">
+		<xs:sequence>
+			<xs:choice>
+				<xs:sequence>
+					<xs:group ref="v1:Card" minOccurs="0" />
+					<xs:element name="CardCodeValue" type="v1:CardCodeValue" minOccurs="0" />
+					<!-- below tag added by Israel for US Gateway -->
+					<xs:element name="CardCodeIndicator" default="NOT_PROVIDED" minOccurs = "0">
+						<xs:simpleType>
+							<xs:restriction base="xs:string">
+								<xs:enumeration value="" />
+								<xs:enumeration value="NOT_PROVIDED" />
+								<xs:enumeration value="PROVIDED" />
+								<xs:enumeration value="ILLEGIBLE" />
+								<xs:enumeration value="NO_IMPRINT" />
+								<xs:enumeration value="NOT_PRESENT" />
+							</xs:restriction>
+						</xs:simpleType>
+					</xs:element>
+				</xs:sequence>
+				<xs:element name="TrackData" type="v1:TrackData" />
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:group name="Card">
+		<xs:sequence>
+			<xs:element name="CardNumber">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{13,24}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ExpMonth">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="(0[1-9])|(1[0-2])" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ExpYear">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:pattern value="[0-9]{2}" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:simpleType name="CardCodeValue">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{3,4}|" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="TrackData">
+		<xs:restriction base="xs:string">
+			<!-- track 1 length + track 2 length + track 3 length = 90 + 64 + 107 = 261 -->
+			<xs:pattern value="[a-zA-Z0-9;%=^?/ ]{1,261}" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="TeleCheckData">	
+			<xs:all>
+					<xs:element name="CheckNumber" type="v1:CheckNumber" minOccurs="0" />
+					<xs:element name="AccountType" type="v1:AccountType" minOccurs="0" />
+					<xs:element name="AccountNumber" type="v1:AccountNumber" minOccurs="0" />					
+					<xs:element name="RoutingNumber" type="v1:RoutingNumber" minOccurs="0" />
+					<xs:element name="SocialSecurityNumber" type="v1:SocialSecurityNumber" minOccurs="0" />
+					<xs:element name="DrivingLicenseNumber" type="v1:DrivingLicenseNumber" minOccurs="0" />
+					<xs:element name="DrivingLicenseState" type="v1:DrivingLicenseState" minOccurs="0" />
+					<xs:element name="BankName" type="v1:BankName" minOccurs="0" />
+					<xs:element name="BankState" type="v1:BankState" minOccurs="0" />
+			</xs:all>
+	</xs:complexType>	
+	
+	<xs:simpleType name="CheckNumber">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[0-9]{3,6}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="AccountType">		
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="pc" />
+				<xs:enumeration value="ps" />
+				<xs:enumeration value="bc" />
+				<xs:enumeration value="bs" />
+				<xs:enumeration value="PC" />
+				<xs:enumeration value="PS" />
+				<xs:enumeration value="BC" />
+				<xs:enumeration value="BS" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="AccountNumber">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[0-9]{0,17}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="RoutingNumber">	
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[0-9]{0,9}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="SocialSecurityNumber">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[0-9]{9}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="DrivingLicenseNumber">		
+			<xs:restriction base="xs:string">
+				<xs:minLength value="8" />
+				<xs:maxLength value="32" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="DrivingLicenseState">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[a-zA-Z]{2}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="BankName">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[a-zA-Z ]{0,26}" />
+			</xs:restriction>		
+	</xs:simpleType>
+	
+	<xs:simpleType name="BankState">		
+			<xs:restriction base="xs:string">
+				<xs:pattern value="[a-zA-Z]{2}" />
+			</xs:restriction>		
+	</xs:simpleType>	
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- common  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<xs:element name="CreditCard3DSecure">
+		<xs:complexType>
+			<xs:all>				
+				<xs:element name="PayerSecurityLevel" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base = "xs:string">
+                             <xs:enumeration value = "01"/>
+                             <xs:enumeration value = "02"/>
+                             <xs:enumeration value = "05"/>
+                             <xs:enumeration value = "06"/>
+                             <xs:enumeration value = "07"/>
+                        </xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="AuthenticationValue" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="20" />
+							<xs:maxLength value="32" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="XID" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:minLength value="20" />
+							<xs:maxLength value="32" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Payment">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="HostedDataID" type="v1:String128max" minOccurs="0" />
+				<xs:group ref="v1:Amount" minOccurs="0" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:group name="Amount">
+		<xs:sequence>
+			<xs:element name="ChargeTotal">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:pattern value="([1-9]([0-9]{0,3}))?[0-9](\.[0-9]{1,2})?" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<!-- below tags added by Israel for US Gateway -->
+			<xs:element name="SubTotal" minOccurs = "0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:pattern value="([1-9]([0-9]{0,3}))?[0-9](\.[0-9]{1,2})?" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>		
+			<xs:element name="Tax" minOccurs = "0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:pattern value="([1-9]([0-9]{0,3}))?[0-9](\.[0-9]{1,2})?" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="VATTax" minOccurs = "0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:pattern value="([1-9]([0-9]{0,3}))?[0-9](\.[0-9]{1,2})?" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>	
+			<xs:element name="Shipping" minOccurs = "0">
+				<xs:simpleType>
+					<xs:restriction base="xs:decimal">
+						<xs:pattern value="([1-9]([0-9]{0,3}))?[0-9](\.[0-9]{1,2})?" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:element name="TransactionDetails">
+		<xs:complexType>
+			<xs:all>
+			    <xs:element name="UserID" type="xs:string" minOccurs="0" />
+				<xs:element name="InvoiceNumber" type="v1:String48max" minOccurs="0" />
+				<xs:element name="OrderId" type="v1:String100max" minOccurs="0" />
+				<xs:element name="Ip" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="(25[0-5]|(2[0-4]|1[0-9]|[1-9])?[0-9])\.(25[0-5]|(2[0-4]|1[0-9]|[1-9])?[0-9])\.(25[0-5]|(2[0-4]|1[0-9]|[1-9])?[0-9])\.(25[0-5]|(2[0-4]|1[0-9]|[1-9])?[0-9])|" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="ReferenceNumber" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="(NEW)?[0-9a-zA-Z]{1,6}" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="TDate" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:pattern value="[0-9]{10}|" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element ref="v1:Recurring" minOccurs="0" />
+				<xs:element ref="v1:TaxExempt" minOccurs="0" />
+				<xs:element ref="v1:TerminalType" minOccurs="0"/>
+				<xs:element name="TransactionOrigin" default="ECI" minOccurs="0">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="ECI" />							
+							<xs:enumeration value="MOTO" />
+							<xs:enumeration value="RETAIL" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:element name="PONumber" type="v1:String48max" minOccurs="0" />
+				<xs:element name="DeviceID" type="xs:string" minOccurs="0" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Billing">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="CustomerID" type="v1:String32max" minOccurs="0" />
+				<xs:element name="Name" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Company" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Address1" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Address2" type="v1:String96max" minOccurs="0" />
+				<xs:element name="City" type="v1:String96max" minOccurs="0" />
+				<xs:element name="State" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Zip" type="v1:Zip" minOccurs="0" />
+				<xs:element name="Country" type="v1:String32max" minOccurs="0" />
+				<xs:element name="Phone" type="v1:String32max" minOccurs="0" />
+				<xs:element name="Fax" type="v1:String32max" minOccurs="0" />
+				<xs:element name="Email" type="v1:String64max" minOccurs="0" />				
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:element name="Shipping">
+		<xs:complexType>
+			<xs:all>
+				<xs:element name="Weight" type="xs:double" minOccurs = "0"/>
+                <xs:element name="Items" type="xs:decimal" minOccurs = "0"/>
+                <xs:element name="Carrier" type="xs:decimal" minOccurs = "0"/>
+                <xs:element name="Total" type="xs:double" minOccurs = "0"/>                                                        
+				<xs:element name="Type" type="v1:String20max" minOccurs="0" />
+				<xs:element name="Name" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Address1" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Address2" type="v1:String96max" minOccurs="0" />
+				<xs:element name="City" type="v1:String96max" minOccurs="0" />
+				<xs:element name="State" type="v1:String96max" minOccurs="0" />
+				<xs:element name="Zip" type="v1:Zip" minOccurs="0" />
+				<xs:element name="Country" type="v1:String32max" minOccurs="0" />
+			</xs:all>
+		</xs:complexType>
+	</xs:element>
+
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- simple types  - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+	<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+	<xs:simpleType name="String128max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="128" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String100max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String96max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="96" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String64max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="64" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String48max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="24" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String32max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="32" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String24max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="24" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="String20max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="20" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="String3max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="3" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="String2max">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="2" />
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:simpleType name="Zip">		
+			<xs:restriction base="xs:string">
+				<xs:maxLength value="25" />	
+			</xs:restriction>		
+	</xs:simpleType>
+
+	<xs:element name="Notes">
+		<xs:complexType>
+		        <xs:all>
+		                <xs:element name = "Comments" type = "xs:string" minOccurs = "0"/>
+		                <xs:element name = "ReferredBy" type = "xs:string" minOccurs = "0"/>
+		        </xs:all>
+		</xs:complexType>
+     </xs:element>
+     
+    <xs:element name = "ItemList">
+		<xs:complexType>			
+			<xs:sequence>
+				<xs:element name = "ItemEntry" minOccurs = "0" maxOccurs = "unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name = "Id" type = "xs:string"/>
+							<xs:element name = "Description" type = "xs:string" minOccurs = "0"/>
+							<xs:element name = "Price" type = "xs:string"/>
+							<xs:element name = "Quantity" type = "xs:string"/>
+							<xs:element name = "Serial" type = "xs:string" minOccurs = "0"/>
+							<xs:element name = "ESDtype" type = "xs:string" minOccurs = "0"/>
+							<xs:element name = "Softfile" type = "xs:string" minOccurs = "0"/>
+							<xs:element name = "OptionList" minOccurs = "0">
+								<xs:complexType>								    
+									<xs:sequence>
+										<xs:element name = "OptionEntry" minOccurs = "0" maxOccurs = "unbounded">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name = "OptionName" type = "xs:string"/>
+													<xs:element name = "OptionValue" type = "xs:string"/>													
+												</xs:all>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>									
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>			
+		</xs:complexType>
+	</xs:element>
+	
+	<xs:element name = "Recurring" default = "No">
+		<xs:simpleType>
+			<xs:restriction base = "xs:string">			
+				<xs:enumeration value = "Yes"/>
+				<xs:enumeration value = "No"/>			
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name = "TaxExempt" default = "No">
+		<xs:simpleType>
+			<xs:restriction base = "xs:string">
+				<xs:enumeration value = "Yes"/>
+				<xs:enumeration value = "No"/>			
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>	
+	<xs:element name = "TerminalType">
+		<xs:simpleType>
+			<xs:restriction base = "xs:string">			
+				<xs:enumeration value = "Standalone"/>
+				<xs:enumeration value = "Unspecified"/>			
+				<xs:enumeration value = "POS"/>			
+				<xs:enumeration value = "Unattended"/>			
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,214 @@
+.page-public {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-typography;
+	@include new-form-textarea;
+
+	.container {
+		text-align: center;
+		padding-top: 5em;
+	}
+
+	.custom-look {
+		@include span(8);
+		label {
+			cursor: pointer;
+			float: left;
+		}
+	}
+	.custom-results {
+		@include span(4 omega);
+		label {
+			cursor: pointer;
+			float: left;
+		}
+	}
+	li {
+		padding: 0.3em;
+	}
+
+	.alert {
+		background-color: $green;
+	}
+
+	.help-block {
+		font-size: 0.9em;
+		color: $grey;
+		margin-bottom: 0;
+		text-align: left;
+	}
+
+	.default {
+		color: $grey;
+		font-size: 0.8em;
+		margin: -1em 0 1em 0;
+		font-style: italic;
+	}
+
+	.location {
+		input { display: inline; }
+		.postal { width: 8em; }
+		.distance { width: 4em; }
+	}
+
+}
+
+// Login & Password
+
+.login, .reset-password {
+	background: $off-white;
+}
+
+.credentials {
+	&__logo {
+		display: block;
+		max-width: 200px;
+		margin: 40px auto;
+	}
+
+	&__options {
+		align-items: center;
+		display: flex;
+		flex-direction: row-reverse;
+		justify-content: space-between;
+		width: 500px; margin: 25px auto 0 auto;
+
+		&-reset {
+			text-transform: uppercase;
+		}
+	}
+
+	&__messages {
+		display: flex;
+		align-items: top;
+		width: 500px;
+		margin: 0 auto 0.5em;
+		box-sizing: border-box;
+		border-radius: 3px;
+		background-color: white;
+		padding: 20px;
+		font-size: 14px;
+		border: 2px solid $light-blue;
+
+		@media (max-width: 500px) {
+			width: auto;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+
+		&--error {
+			border: 2px solid $red;
+		}
+
+		&--success {
+			border: 2px solid $light-green;
+		}
+
+		&--hidden {
+			display: none;
+		}
+
+		&-icon {
+			margin-right: 20px;
+			color: $light-blue;
+
+			&--error {
+				color: $red;
+			}
+
+			&--success {
+				color: $light-green;
+			}
+		}
+
+		.alert {
+			margin-top: 2px;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+
+		li {
+			margin: 1em 0;
+
+			&:first-of-type {
+				margin-top: 0;
+			}
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&__container {
+		margin: 0 auto;
+		width: 500px;
+
+		@media (max-width: 500px) {
+			width: auto;
+			margin: 0 20px;
+		}
+	}
+
+	&__lock-icon {
+		margin-right: 0.5em;
+		color: $light-grey;
+	}
+
+	&__heading {
+		color: $grey;
+	}
+
+	&__copy {
+		line-height: 1.4;
+		width: 100%;
+		box-sizing: border-box;
+
+		p:first-of-type {
+			margin-top: 0;
+		}
+	}
+
+	&__form-field {
+		width: 100%;
+	}
+
+	&__actions {
+		display: flex;
+		align-items: center;
+		padding: 20px;
+	}
+
+	&__support {
+		text-align: center;
+		font-size: 14px;
+		width: 500px;
+		margin: 15px auto 40px;
+
+		@media (max-width: 500px) {
+			width: auto;
+			margin-left: 20px;
+			margin-right: 20px;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		font-weight: 600;
+		color: $light-blue
+	}
+
+	.mdl-button.credentials__submit-button {
+		margin-left: auto;
+		flex-shrink: 0;
+
+		&--enabled {
+			background-color: $green;
+		}
+	}
+}

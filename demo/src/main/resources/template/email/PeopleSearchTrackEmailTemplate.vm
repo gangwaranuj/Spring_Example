@@ -1,0 +1,38 @@
+
+
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Worker Search Tracking Alert </h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+		<p style="margin: 0px 0px 20px 0px">
+		The following search returned <strong>${template.totalResultsCount}</strong> results.
+		<br/>
+    <br/>
+		<strong>Date:</strong> ${template.searchDate} <br/>
+		<strong>User Name:</strong> ${template.userFullName} <br/>
+		<strong>Company Name:</strong> ${template.companyName} <br/>
+		<strong>Filters:</strong> <br/>
+    <br/>
+
+		Location: ${template.searchLog.willingToTravelTo} <br/>
+		Distance to location: ${template.searchLog.maxMileFromResourceToLocation} miles <br/>
+		Has avatar: ${template.searchLog.avatarFilter} <br/>
+		Has video: ${template.searchLog.videoFilter} <br/>
+		Satisfaction rate minimum: ${template.searchLog.satisfactionRateFilterFrom} <br/>
+    On-time percentage minimum: ${template.searchLog.onTimePercentageFilterFrom} <br/>
+    Deliverable on-time percentage minimum: ${template.searchLog.deliverableOnTimePercentageFilterFrom} <br/>
+		Groups:
+		#foreach( $id in ${template.searchLog.groupFilter} )
+    <a href="${baseurl}/groups/$id">$id</a> <br/>
+		#end
+    <br/>
+		Certifications:
+		#foreach( $id in ${template.searchLog.certificationFilter} )
+			$id <br/>
+		#end
+    <br/>
+
+		</p>
+</div>
+
+#parse("template/email/partials/do-not-reply.vm")

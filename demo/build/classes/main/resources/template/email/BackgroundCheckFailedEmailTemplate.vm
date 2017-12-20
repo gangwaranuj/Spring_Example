@@ -1,0 +1,37 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Background Check Results: Alert</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				The results from your background check you initiated through WorkMarket are complete. At WorkMarket we take security seriously so that our marketplace is safe for both our talent and our employers.
+			</p>
+
+			<p>
+				The check identified one or more infractions during the process.  Details of the background check scoring sheet can be found <a href="https://workmarket.zendesk.com/hc/en-us/article_attachments/204362388/Sterling_Work_Market_all_Scoring.pdf" target="_blank">here</a>.
+			</p>
+			<p>
+				These outstanding issues will result in the following for your WorkMarket account:
+				<ul>
+					<li>The alert result will be displayed on your WorkMarket profile</li>
+				</ul>
+			</p>
+
+			<p>
+      	You can still:
+      	<ul>
+      		<li>Be visible to employers in marketplace search results</li>
+      		<li>Apply for assignments</li>
+      		<li>Manage your profile and account details</li>
+      		<li>Complete assignments that are currently in progress</li>
+      	</ul>
+      </p>
+
+			<p>
+				If you feel the background check was incomplete or inaccurate, please contact the Sterling Compliance Department at 1-800-853-3228 client code: 6367 or email <a href="mailto:askcompliancemail@sterlinginfosystems.com">askcompliancemail@sterlinginfosystems.com</a>. Please do not contact WorkMarket for issues with your background check.
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

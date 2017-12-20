@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/lms/view/details/${template.assessment.id}">${template.companyName} invited you to take a test: ${template.assessmentName}</a>

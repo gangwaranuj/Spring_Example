@@ -1,0 +1,27 @@
+
+			<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #333333; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">${template.work.company.effectiveName}</h1>
+
+			<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+			<p style="margin: 0px 0px 20px 0px">
+				#if ($onBehalfOfUser && $onBehalfOfUser.firstName)
+					Hello ${onBehalfOfUser.firstName},<br/>
+				#else
+					Hello ${toUser.firstName},<br/>
+				#end
+				<br/>
+				The assignment, <strong>${template.workTitle}</strong> <small>(${template.work.workNumber})</small>, that you recently applied for has been accepted by someone else.<br/>
+				<br/>
+				<a href="${baseurl}/">Browse
+					<span style="font-weight:bold; color: #f7961D">Work</span>
+					<span style="font-weight:bold; color: #717A82">Feed</span>
+				</a>
+				for thousands of work opportunities available every day.
+				<br/>
+				Have a great day!
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

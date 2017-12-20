@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/lms/view/details/${template.attempt.assessmentUserAssociation.assessment.id}">${template.attempt.assessmentUserAssociation.user.fullName} #if($template.attempt.passedFlag) passed #else failed #end the test: ${template.attempt.assessmentUserAssociation.assessment.name}</a>

@@ -1,0 +1,1 @@
+${template.actorFullName} updated the status from ${template.oldStatus.description} to ${template.newStatus.description}

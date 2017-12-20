@@ -1,0 +1,22 @@
+@mixin new-tables {
+	width: 100%;
+
+	thead th {
+		padding: inherit;
+		background: inherit;
+		color: inherit;
+		vertical-align: inherit;
+		font-size: inherit;
+		border-top: inherit;
+		border-bottom: inherit;
+	}
+	th, tr {
+		font-size: inherit;
+	}
+	td {
+		border-bottom: inherit;
+	}
+	tr + tr td {
+		border-bottom: inherit;
+	}
+}

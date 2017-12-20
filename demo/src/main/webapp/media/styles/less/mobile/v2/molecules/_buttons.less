@@ -1,0 +1,193 @@
+input.submit {
+	width: 100%;
+	color: white;
+	background: @orange;
+	font-size: @normal-font-size;
+	padding: @small-space;
+	margin: 20px auto;
+	.border-radius(@base-border-radius);
+	border: none;
+	&:active {
+		.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+	}
+}
+
+button {
+	width: 100%;
+	padding: @small-space;
+	font-size: @normal-font-size;
+	.border-radius(@base-border-radius);
+	border: none;
+	.text-shadow(@text-shadow);
+	line-height: 30px;
+	&:active {
+		.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+	}
+}
+
+.button {
+	width: 100%;
+	padding: .7em @small-space @small-space @small-space;
+	font-size: @normal-font-size;
+	.border-radius(@base-border-radius);
+	border: none;
+	.box-sizing(border-box);
+	outline: none;
+	display: block;
+	margin: .7em 0;
+	line-height: 30px;
+	text-align: center;
+	font-family: @bold-font;
+	&:active {
+		.box-shadow(inset 0px 0px 4px rgba(0,0,0,0.5));
+	}
+}
+
+.counteroffer {
+	.button;
+	background: @teal;
+	color: white;
+	.fake-button(darken(@teal, 10%));
+}
+
+.decline {
+	.button;
+	background: @error;
+	color: white;
+	.fake-button(darken(@error, 10%));
+}
+
+.accept-terms-button {
+	.button;
+	background: @bright-green;
+	color: white;
+	.fake-button(darken(@bright-green, 10%));
+}
+
+.disabled-button {
+	background-color: @medium-gray;
+	color: @gray;
+	.button;
+	.fake-button(darken(@medium-gray, 10%));
+}
+
+.call-to-action {
+	width: 100%;
+	background: @pale-orange;
+	padding: 0.7em @small-space @small-space @small-space;
+	border-radius: @base-border-radius;
+	color: @orange;
+	display: inline-block;
+	.box-sizing(border-box);
+	font-size: 1.1em;
+	&:active {
+		background-color: darken(@pale-orange, 5%);
+	}
+	svg {
+		float: right;
+		margin: 0;
+	}
+	.clicker {
+		margin: 0;
+	}
+}
+
+.cancel-button {
+	.button;
+	background: @medium-gray;
+	color:white;
+	.fake-button(darken(@medium-gray, 10%));
+}
+
+.details-list-button {
+	svg {
+		float: right;
+		margin: 0;
+	}
+	.clicker {
+		margin: 0;
+	}
+}
+
+.default-button {
+	.button;
+	background-color: @orange;
+	color: white;
+	.fake-button(darken(@orange, 10%));
+}
+
+.complete-assignment-button {
+	.default-button;
+	&.disabled-button {
+		background-color: @medium-gray;
+		color: @gray;
+		.fake-button(@gray);
+	}
+}
+
+.checkin-button, .checkout-button, .save-custom-fields-button {
+	.button;
+	.fake-button(darken(@bright-green, 10%));
+	background-color: @bright-green;
+	color: white;
+}
+
+.feedback-box-button {
+	.default-button;
+}
+
+
+.deliverables-button {
+	.button;
+	.fake-button(darken(@teal, 10%));
+	background-color: @teal;
+	color: white;
+	width: auto;
+	.deliverables-button-icon {
+		width: 25px;
+		height: 25px;
+		float: left;
+		margin-right: -0.7em;
+	}
+	.items-bubble {
+		background: @white;
+		.border-radius(4px);
+		display: inline-block;
+		float: right;
+		color: @teal;
+		.text-shadow(@text-shadow);
+		font-size: 0.8em;
+		font-family: @bold-font;
+		padding: 0.2em 0.5em;
+		margin-top: -0.3em;
+		&:empty {
+			visibility: hidden;
+		}
+	}
+}
+
+.update-button {
+	.button;
+	.fake-button(#307F7D);
+	background-color:@teal;
+	color: white;
+	&:disabled {
+		background-color: @medium-gray;
+		color: @gray;
+		.fake-button(@gray);
+	}
+
+}
+
+.withdraw-button {
+	.button;
+	.fake-button(#307F7D);
+	background-color:@green;
+	color: white;
+	&:disabled {
+		background-color: @medium-gray;
+		color: @gray;
+		.fake-button(@gray);
+	}
+
+}

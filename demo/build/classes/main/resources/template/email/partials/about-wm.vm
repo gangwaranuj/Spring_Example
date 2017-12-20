@@ -1,0 +1,22 @@
+            </tbody>
+        </table>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td width="600" align="middle">
+        <div>
+            <img src="${baseurl}/media/images/email-footer.jpg" width="600">
+        </div>
+    </td>
+</tr>
+
+<tr valign="top">
+    <td>
+        <div style="width: 580px; padding: 10px; color: #aaa; font-size: 11px; line-height: 14px; font-family: Helvetica Neue, Arial, sans-serif;">
+            <p style="margin: 0px 0px 15px 0;">
+	            240 West 37th Street, 10th Floor, New York, NY 10018<br/>
+            </p>
+        </div>
+    </td>
+</tr>

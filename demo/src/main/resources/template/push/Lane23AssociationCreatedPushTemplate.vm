@@ -1,0 +1,4 @@
+{
+"message": "${template.company.effectiveName} added you to their contractor network",
+"action": "${baseurl}/search-groups"
+}

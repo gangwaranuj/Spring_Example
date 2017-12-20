@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/payments/ledger">Your ACH deposit ${number.currency($template.transaction.amount)} has been processed</a>

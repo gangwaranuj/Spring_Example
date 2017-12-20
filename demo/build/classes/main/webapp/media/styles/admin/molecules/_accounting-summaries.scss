@@ -1,0 +1,24 @@
+.accounting-summaries {
+	.generate-summary {
+		margin-bottom: 1em;
+	}
+}
+
+.accounting-summary {
+	.export-link {
+		float: right;
+		margin-top: -2em;
+	}
+	td, th {
+		width: 50%;
+		text-align: right;
+
+		&:first-child {
+			width: 25%;
+			text-align: left;
+		}
+	}
+	tfoot {
+		font-weight: bold;
+	}
+}

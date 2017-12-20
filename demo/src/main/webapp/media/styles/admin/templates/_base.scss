@@ -1,0 +1,30 @@
+#outer-container {
+	.main.container {
+		padding-top: 5em;
+
+		.row_sidebar_left {
+			margin: 0;
+
+			.sidebar {
+				margin-left: 0;
+			}
+		}
+	}
+	.main.container-fluid {
+		padding-top: 5em;
+
+		.row_sidebar_left {
+			margin: 0;
+		}
+	}
+}
+
+@media print {
+	a[href]:after {
+		content: none;
+	}
+}
+
+.admin-forums-review, .admin-forums-unban, .admin-forums-delete, .admin-forums-ban {
+	display: block;
+}

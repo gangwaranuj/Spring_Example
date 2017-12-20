@@ -1,0 +1,19 @@
+<div class="parts-mobile{{#if isNotSentOrDraft}}-active-worker-exists{{/if}}{{#if isOwnerOrAdmin}}is-company{{/if}}{{#if isSuppliedByWorker}}-is-supplied-by-worker{{/if}}">
+	<div class="parts-table--part-header">
+		<div class="parts-table--part-information">
+			<h3>{{#if isReturn}}
+					Parts being returned to:
+				{{else}}
+					Parts being sent to:
+				{{/if}}
+			</h3>
+		</div>
+
+		<div class="parts-table--part-creation">
+			<input maxlength="36" class="parts-table--item-name" type="text" placeholder="Part Name" />
+			<input maxlength="36" class="parts-table--tracking-number-input" type="text" placeholder="Tracking Number"/>
+			<input maxlength="10" class="parts-table--item-price" placeholder="Part Value" pattern="[0-9$,.]*" type="text" />
+			<button disabled class="button parts-table--add">Add</button>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,60 @@
+.page-assignment-contact {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-textarea;
+
+	.left-nav ~ #outer-container { //remove this when making it responsive
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.main.container {              //remove this when making it responsive
+		min-width: 730px;
+		padding: 0;
+
+	}
+
+	.count-overview {
+		text-align: center;
+		color: $grey;
+		margin-bottom: 3.5em;
+	}
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+	}
+	.content {
+		@include span(9 omega);
+		margin-bottom: 2em;
+	}
+
+	.results-spinner {
+		padding: 25% 0 25% 47%;
+	}
+
+	.-bulk-action { display: none; }
+
+	@media (max-width: 930px) {
+		.profile-card--view-profile {
+			left: -10%;
+		}
+	}
+
+	.lane-restriction {
+		color: $orange;
+		font-size: 0.7em;
+	}
+
+	.-disabled {  opacity: 0.2; }
+
+	#page_size {
+		float: right;
+		margin-top: -3.5em;
+		margin-right: 120px;
+		width: 110px;
+		height: 28px;
+		color: #646b6f;
+		font: 12.8px Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif
+	}
+}

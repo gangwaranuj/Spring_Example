@@ -1,0 +1,22 @@
+<div class="user-details">
+	<div class="profile"></div>
+	<div class="contact-information">
+		<label class="onboarding-label" for="firstName">{{[../../helpers/translate] "firstName"}} <span>*</span></label>
+		<input type="text" name="firstName" placeholder="{{[../../helpers/translate] "firstName"}}" value="{{this.firstName}}" data-onboarding />
+	</div>
+	<div class="contact-information">
+		<label class="onboarding-label" for="lastName">{{[../../helpers/translate] "lastName"}} <span>*</span></label>
+		<input type="text" name="lastName" placeholder="{{[../../helpers/translate] "lastName"}}" value="{{this.lastName}}" data-onboarding />
+	</div>
+	<div class="contact-email">
+		<label class="onboarding-label" for="email">{{[../../helpers/translate] "emailAddress"}} <span>*</span></label>
+		<input type="email" name="email" placeholder="{{[../../helpers/translate] "emailAddress"}}" value="{{this.email}}" data-onboarding />
+	</div>
+	<label class="onboarding-label" for="phones">{{[../../helpers/translate] "phoneNumber"}} <span>*</span></label>
+	<ul class="phones" name="phones"></ul>
+</div>
+
+<div class="wm-modal--footer">
+	<button class="button -continue tooltipped-w" aria-label="" disabled="disabled" data-slide="next" data-track="Profile/Continue">{{[../../helpers/translate] "continue"}}</button>
+	{{> ../../funcs/templates/spinner}}
+</div>

@@ -1,0 +1,46 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Payment Overdue</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				We would like to alert you that you currently have one or more invoices that are past due by
+				#if (${template.daysSinceOverdue})
+                    $math.add(${template.daysSinceOverdue}, 1) #if (${template.daysSinceOverdue} == 0) day. #else days. #end
+                #end
+				Please log in to your WorkMarket account today and pay your past due balance of $${template.pastDuePayables} as soon as possible.<br/>
+				<br/>
+				If these invoices are left unpaid, then your WorkMarket account will be automatically locked in
+                #if (${template.daysTillSuspended})
+                    ${template.daysTillSuspended} #if (${template.daysTillSuspended} > 1) days. #else day. #end
+                #end
+				If your account is locked, you will not have access to send new assignments, run reports, create new groups or tests, or withdraw funds from your account. 
+			</p>
+		
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/payments/invoices" target="_blank">View Invoices</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+
+			<p>
+				For more information on overdue payments, <a href="https://workmarket.zendesk.com/hc/en-us/articles/209338048-My-account-is-locked-due-to-past-due-invoices-how-can-I-unlock-it" target="_blank">see our help article.</a><br/>
+				<br/>
+				If you have already paid your invoices, thank you for your business and for choosing WorkMarket.<br/>
+				<br/> 
+				Sincerely,<br/>
+				WorkMarket
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

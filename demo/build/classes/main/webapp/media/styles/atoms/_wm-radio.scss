@@ -1,0 +1,9 @@
+.wm-radio {
+	display: flex;
+	margin-bottom: $base-element-bottom-spacing;
+
+	&.-wm-hit-area {
+		padding: 0.5em;
+		margin: -0.5em -0.5em 0.5em;
+	}
+}

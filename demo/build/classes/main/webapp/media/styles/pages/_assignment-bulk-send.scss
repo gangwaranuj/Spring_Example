@@ -1,0 +1,15 @@
+.page-assignment-bulk-send {
+	@include scaffolding;
+	@include new-unordered-lists;
+
+	#actions-header {
+		background-color: $white;
+		color: $grey;
+		#summary-actions {
+			padding-top: 1em;
+		}
+	}
+	select {
+		margin-top: 1em;
+	}
+}

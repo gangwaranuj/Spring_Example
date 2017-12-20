@@ -1,0 +1,50 @@
+.wm-fullscreen {
+	&--overlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 10000;
+		width: 100%;
+		background-color: rgba( $dark-grey, .9 );
+		color: $white;
+		padding-top: 3em;
+	}
+	&--icon {
+		font-size: 3em;
+		line-height: 1.25em;
+		font-weight: bold;
+		margin: 0 auto 1em auto;
+		text-align: center;
+		color: $dark-grey;
+		background: $white;
+		width: 50px;
+		height: 50px;
+		border-radius: 25px;
+	}
+	&--message, &--cta {
+		width: 70%;
+		margin: 0 auto 1em auto;
+		text-align: center;
+		font-size: 2em;
+		line-height: 1em;
+	}
+	&--buttons {
+		width: 50%;
+		margin: 0 auto;
+		display: flex;
+	}
+	&--button {
+		flex: 1;
+		cursor: pointer;
+		margin: 0 0.5em;
+		border: 3px solid $white;
+		padding: 0.5em;
+		text-align: center;
+		font-size: 2em;
+		text-transform: uppercase;
+		&.primary {
+			color: $light-green;
+			border: 3px solid $light-green;
+		}
+	}
+}

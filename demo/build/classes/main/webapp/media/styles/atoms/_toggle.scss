@@ -1,0 +1,62 @@
+$toggle: (
+	color: (
+		color: $grey,
+		background-color: $off-white,
+		border-color: $off-white
+	),
+	hover: (
+		color: $white,
+		background-color: lighten($orange, 10%),
+		border-color: lighten($orange, 10%)
+	),
+	active: (
+		color: $white,
+		background-color: $orange,
+		border-color: $orange
+	)
+);
+
+@mixin toggle-color($state) {
+	color: map-fetch($toggle, $state, color);
+	background-color: map-fetch($toggle, $state, background-color);
+	border-color: map-fetch($toggle, $state, border-color);
+}
+
+.toggle {
+	display: inline-block;
+	margin-bottom: 0.5em;
+
+	input {
+		display: none;
+	}
+
+	&--skin {
+		@include toggle-color(color);
+		outline: none;
+		padding: 0.3em 0.4em;
+		line-height: 1;
+		cursor: pointer;
+		text-align: center;
+		font-weight: bold;
+
+		.toggle:first-of-type & {
+			border-radius: $base-border-radius 0 0 $base-border-radius;
+		}
+		.toggle:last-of-type & {
+			border-radius: 0 $base-border-radius $base-border-radius 0;
+		}
+
+		&:hover {
+			@include toggle-color(hover);
+		}
+		&:active, &.-active, input:checked + & {
+			@include toggle-color(active);
+		}
+
+		&::before {
+			display: inline-block;
+			margin-right: 0.3em;
+			vertical-align: middle;
+		}
+	}
+}

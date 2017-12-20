@@ -1,0 +1,37 @@
+#subscription_form {
+	input {
+		&[type="radio"] {
+			margin-top: 0;
+		}
+	}
+
+	#number_of_months {
+		margin-right: 1em;
+	}
+
+	.control-group {
+		&.error {
+			.inlineError {
+				float: left;
+			}
+		}
+	}
+
+	#paymentTierEffectiveDate, #addOnsEffectiveDate {
+		margin: 0 0.5em;
+		width: 5em;
+	}
+
+	.serviceTypeConfig {
+		label {
+			display: inline-block;
+			margin-right: 1em;
+		}
+	}
+
+	.subscription-tier {
+		.inlineError {
+			margin-left: 1em;
+		}
+	}
+}

@@ -1,0 +1,89 @@
+$progress-bar: (
+	color: $grey,
+	small: (
+		font-size: 0.625rem,
+		height: 0.5rem,
+		spacing: 0.5em,
+		border-radius: $base-border-radius - 1
+	),
+	medium: (
+		font-size: 0.625rem,
+		height: 0.75rem,
+		spacing: 0.5em,
+		border-radius: $base-border-radius - 1
+	),
+	large: (
+		font-size: 1rem,
+		height: 1.5rem,
+		spacing: 0,
+		border-radius: $base-border-radius
+	)
+) !default;
+
+@mixin progress-bar-size($size) {
+	height: map-fetch($progress-bar, $size, height);
+
+	&::after {
+		font-size: map-fetch($progress-bar, $size, font-size);
+		line-height: map-fetch($progress-bar, $size, height);
+		margin-left: map-fetch($progress-bar, $size, spacing);
+	}
+
+	.progress-bar--skin, .progress-bar--progress {
+		border-radius: map-fetch($progress-bar, $size, border-radius);
+	}
+}
+
+.progress-bar {
+	display: flex;
+	margin-bottom: $base-element-bottom-spacing;
+	color: map-get($progress-bar, color);
+	text-align: center;
+
+	&::after {
+		content: attr(data-width);
+		font-weight: map-get($font-weight, extra-bold);
+		width: 3.0em;
+	}
+
+	&.-small {
+		@include progress-bar-size(small);
+	}
+	&.-medium {
+		@include progress-bar-size(medium);
+	}
+	&.-large {
+		@include progress-bar-size(large);
+		position: relative;
+
+		&::after {
+			@include center;
+			color: $white;
+			margin: 0;
+		}
+	}
+
+	&--skin {
+		position: relative;
+		flex-grow: 1;
+		height: 100%;
+		background-color: $light-grey;
+	}
+
+	&--progress {
+		height: 100%;
+		box-shadow: 0 1px 0 currentColor inset;
+		transition: width .4s ease-in-out;
+		background-color: $green;
+		background-size: 30px 30px;
+	}
+
+	@keyframes animate-stripes {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 60px 0;
+		}
+	}
+}

@@ -1,0 +1,87 @@
+.page-search {
+	//-- Legacy --
+	// Remove when we are globally using the new UI
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-textarea;
+	@include new-typography;
+	//-- END Legacy --
+
+	.left-nav ~ #outer-container { //remove this when making it responsive
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.main.container {              //remove this when making it responsive
+		min-width: 730px;
+		padding: 0;
+
+	}
+	.count-overview {
+		text-align: center;
+		color: $grey;
+		margin-bottom: 1em;
+	}
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+	}
+	.content {
+		@include span(9 omega);
+	}
+	.search-filter-full-results .content {
+		width: 100%;
+	}
+	.results-spinner { padding: 25% 0 25% 47%; }
+	.search-facets .sidebar-card { display: none; }
+	.sidebar-card--title { cursor: move; }
+	.-bulk-action { display: none; }
+
+	@media (max-width: 930px) {
+		.profile-card--view-profile {
+			left: -10%;
+		}
+	}
+	.wm-tab {
+		line-height: 1em;
+	}
+
+	#page_size {
+		float: right;
+		margin-top: -3.5em;
+		margin-right: 120px;
+		width: 110px;
+		height: 28px;
+		color: #646b6f;
+		font: 12.8px Open Sans, Helvetica Neue, Helvetica, Arial, sans-serif
+	}
+  
+  .user-ratings--table .score-card--details {
+	  	font-size: 0.9em;
+	}
+  
+  .mdl-slider__ie-container {
+		width: 100% !important;
+  }
+
+  .mdl-slider__ie-container .mdl-slider {
+		  margin-top: 25px !important;
+	  	box-shadow: inset 0px 0px transparent;
+  }
+
+  .profile-card--highlights label {
+	  	display: inline;
+		  background-color: yellow;
+	  	font-size: 1.0em;
+  }
+
+  .profile-highlight {
+		background-color: yellow;
+	}
+
+  .profile-limited-field {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+  }
+}

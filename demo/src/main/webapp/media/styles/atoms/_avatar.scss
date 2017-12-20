@@ -1,0 +1,50 @@
+@mixin avatar {
+	@include clearfix;
+	position: relative;
+	box-sizing: border-box;
+	background-color: $white;
+	width: 1em;
+	height: 1em;
+	font-size: 2rem;
+	border-radius: $base-border-radius;
+	border: $default-border;
+	padding: 1px;
+
+	&.-admin {
+		.wm-icon-wm-filled {
+			display: inline-block;
+		}
+	}
+
+	.wm-icon-user::before {
+		font-size: calc(1em - 4px);
+	}
+	.wm-icon-wm-filled {
+		display: none;
+		color: $orange;
+		border: 1px solid $white;
+		position: absolute;
+		top: 0;
+		right: 0;
+		transform: translate(40%, -40%);
+		font-size: 0.4em;
+		background-color: $white;
+	}
+	canvas, img {
+		width: 100%;
+		height: 100%;
+		display: block;
+	}
+	img, i {
+		border-radius: #{$base-border-radius - 1};
+	}
+	i {
+		display: block;
+	}
+}
+
+// This class is prefixed with wm- until the .avatar class is no longer
+// conflicting.
+.wm-avatar {
+	@include avatar;
+}

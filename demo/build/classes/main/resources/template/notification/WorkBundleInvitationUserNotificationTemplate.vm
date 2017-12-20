@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">$!{template.work.company.effectiveName} sent you an assignment bundle: ${template.workTitle}</a>

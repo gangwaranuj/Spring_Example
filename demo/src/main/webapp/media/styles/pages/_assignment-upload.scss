@@ -1,0 +1,52 @@
+.page-assignment-upload {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-textarea;
+	@include new-form-inputs;
+
+	// these next two css selectors are a hack until we move old colorbox modals to the new ones
+	// this is only scoped to this page - but could be utilized on other pages
+
+	#cboxLoadedContent {
+		width: initial !important;
+		overflow: initial !important;
+	}
+	#cboxContent {
+		height: initial !important;
+	}
+
+	.wm-modal {
+		[type="checkbox"] { margin-bottom: 0; }
+		label { margin-bottom: 0.5em; }
+		.wm-select { margin-bottom: 1em; }
+	}
+
+	.slider-container {
+		margin-bottom: 1em;
+
+		.ui-slider-horizontal {
+			height: 0.2em;
+			border: 1px solid $off-white;
+		}
+
+		.labels-container {
+			margin-bottom: 1em;
+		}
+
+		.slider_label {
+			display: inline-block;
+			color: gray;
+			width: 21.5%;
+			&.last{
+				width: 0 !important;
+			}
+
+			&.active {
+				color: black;
+				font-weight: bold;
+			}
+
+		}
+	}
+
+}

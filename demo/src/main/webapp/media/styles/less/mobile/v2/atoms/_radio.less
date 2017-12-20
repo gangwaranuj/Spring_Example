@@ -1,0 +1,83 @@
+label {
+	border: 2px solid @dark-gray;
+	font-size: @small-font-size;
+	background-color: white;
+	color: @gray;
+	outline: none;
+	.border-radius(@base-border-radius);
+	.box-shadow(0 8px 6px -6px @gray);
+}
+
+// hide input
+input.radio:empty {
+	margin-left: -999px;
+	width: 125px;
+	outline: none;
+}
+
+// style label
+input.radio:empty ~ label {
+	position: absolute;
+	line-height: 2.5em;
+	text-indent: 4em;
+	cursor: pointer;
+	.user-select(none);
+	right: 0;
+	left: 0;
+	padding-right: @small-space;
+	margin: 0 auto;
+	width: 125px;
+	outline: none;
+}
+
+input.radio:empty ~ label:before {
+	position: absolute;
+	display: block;
+	content: '';
+	width: 2.5em;
+	background: @dark-gray;
+	border-radius: 0;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	outline: none;
+}
+
+input.radio:hover:not(:checked) ~ label:before {
+	content: '\2714';
+	text-indent: .7em;
+	background-color: @dark-gray;
+	color: @light-gray;
+	outline: none;
+}
+
+// toggle on
+input.radio:checked ~ label:before {
+	content: '\2714';
+	text-indent: .7em;
+	color: @orange;
+	background-color: @dark-gray;
+	outline: none;
+}
+
+input.radio:checked ~ label {
+	color: @dark-gray;
+	font-size: @small-font-size;
+	padding-right: @small-space;
+	width: 125px;
+	outline: none;
+	color: @gray;
+	.box-shadow(0 8px 6px -6px @gray);
+}
+
+// radio focus
+input.radio:focus ~ label:before {
+	.box-shadow(0 0 0 3px #999);
+	outline: none;
+}
+
+#rememberMe {
+	display: inline;
+	width: 10px;
+	.checkbox;
+}

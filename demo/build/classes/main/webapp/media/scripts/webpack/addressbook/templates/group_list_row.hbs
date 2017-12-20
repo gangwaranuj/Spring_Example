@@ -1,0 +1,4 @@
+<option></option>
+{{#each this.groupsList}}
+	<option value="{{this.id}}" {{#[../../helpers/eq] this.memberCount 0}}disabled{{/[../../helpers/eq]}}>{{this.name}} ({{this.memberCount}})</option>
+{{/each}}

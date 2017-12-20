@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		@page InvoicePage {
+			margin: 8em 4em 4em 4em;
+
+		@top-center {content: element(header);}
+			}
+
+		@page InstructionsPage {
+			margin: 8em 4em 4em 4em;
+
+		@top-center {content: element(header);}
+		@bottom-center {content: element(footer);}
+			}
+
+		#invoice-page { page: InvoicePage; }
+
+		#instructions-page { page: InstructionsPage; }
+
+		body { font-family: sans-serif; font-size: 10pt; margin: 0 0.1em 2em; }
+
+		header { position: running(header); }
+
+		footer { position: running(footer); }
+
+		footer .thanks { text-align: center; font-weight: bold; text-size: 14px; border-top: 1px solid #000; margin-top: 4px; padding-top: 4px; }
+
+		footer .comments { padding-bottom: 2mm; font-size: 9pt; }
+
+		td { vertical-align: top; }
+
+		table.invoice { -fs-table-paginate: paginate; border-spacing: 0px; font-size: 9pt; width: 95%; border-collapse: collapse; margin-top: 20px; }
+
+		thead { display: table-header-group; }
+
+		table.invoice td { padding: 8px; border-left: 0.1mm solid #000000; border-right: 0.1mm solid #000000; border-bottom: 0.1mm solid #000000; }
+
+		table.invoice thead th { background-color: #EEEEEE; border: 0.1mm solid #000000; padding: 8px; }
+
+		table.invoice tbody tr { page-break-inside: avoid; }
+
+		table.small th, table.small td { font-size: 8pt; text-align: left; }
+
+		.small { font-size: 8pt; }
+
+		small { color: #666; }
+
+		table.header th { text-align: left; padding-right: 10px; min-width: 110px; padding-bottom: 5px; }
+
+		table.header td { text-align: left; padding-bottom: 5px; }
+
+		.terms { display: block; page-break-before: always; }
+
+		hr { border-width: .5px; }
+
+		h5 { margin-bottom: 5px; font-size: 12px; }
+	</style>
+</head>
+
+
+<body>
+
+<header>
+	<table width="100%">
+		<tr>
+			<td width="50%"><img src="${logoURL}"/></td>
+			<td width="50%" style="text-align: right;">
+				<div><h2>Bill to: ${template.invoice.companyName}</h2></div>
+			</td>
+		</tr>
+	</table>
+</header>
+
+<div id="invoice-page">
+
+	<h3 style="color:#000000;">
+		WorkMarket Invoice
+	</h3>
+
+	<hr/>
+	<table class="header">
+		<tr>
+			<th>Issue Date:</th>
+			<td>${template.invoiceCreatedDate}</td>
+		</tr>
+		<tr>
+			<th>Due Date:</th>
+			<td>${template.invoiceDueDate}</td>
+		</tr>
+		<tr>
+			<th>Invoice Number:</th>
+			<td>${template.invoice.invoiceNumber}</td>
+		</tr>
+		<tr>
+			<th>Amount Due:</th>
+			<td>$number.currency($template.invoice.invoiceBalance)</td>
+		</tr>
+	</table>
+	<hr/>
+
+
+	<h3>Invoice Details</h3>
+
+	<table class="invoice">
+		<thead>
+		<tr>
+			<th width="20%" style="text-align: left;">Invoice ID</th>
+			<th>Assignment</th>
+			<th width="20%">Due Date</th>
+			<th width="10%">Status</th>
+			<th width="10%" style="text-align: right;">Balance</th>
+		</tr>
+		</thead>
+
+		<tbody>
+		<tr>
+			<td>
+				${template.invoice.invoiceNumber}
+				#if ($template.invoice.invoiceSummaryNumber)
+					<small>${template.invoice.invoiceSummaryNumber}</small>
+					<br/>
+				#end
+			</td>
+			<td>
+				#if (${template.invoice.workNumber})
+					${template.invoice.workTitle} (${template.invoice.workNumber})<br/>
+				#else
+					(${template.invoice.invoiceDescription})
+				#end
+				<br/>
+				#if ($template.invoice.workCountry or $template.invoice.clientCompanyName)
+					#if ($template.invoice.workCountry)
+						<small>Location: ${template.invoice.formattedAddressShort}</small>
+						<br/>
+					#end
+					#if ($template.invoice.clientCompanyName)
+						<small> Client: ${template.invoice.clientCompanyName}</small>
+						<br/>
+					#end
+				#end
+				#if (${template.invoice.workResourceName})
+					<small> Worker Name: ${template.invoice.workResourceName}</small>
+					<br/>
+				#end
+				#if (${template.invoice.workResourceCompanyName})
+					<small> Company Name: ${template.invoice.workResourceCompanyName}</small>
+					<br/>
+				#end
+				#foreach ($customField in $template.invoice.customFields)
+					<small>${customField.fieldName}: ${customField.fieldValue}</small><br/>
+				#end
+			</td>
+			<td>
+				${template.invoiceDueDate}
+			</td>
+			<td>
+				#if ($template.invoice.invoiceStatusTypeCode == "pending")
+					Unpaid
+					#if ($template.invoice.invoicePastDue)
+						<br/>
+						<small style="color:#c43c35">Past Due</small>
+					#end
+				#elseif ($template.invoice.invoiceStatusTypeCode == "void")
+					Void
+					<small>
+						${template.invoiceVoidDate}
+					</small>
+				#else
+					${template.invoice.invoiceStatusTypeCode}<br/>
+					<small>
+						${template.invoicePaymentDate}
+					</small>
+				#end
+			</td>
+			<td align="right">
+				$number.currency($template.invoice.invoiceBalance)
+				<br/>
+			</td>
+		</tr>
+		</tbody>
+	</table>
+
+
+</div>
+
+
+<div id="instructions-page">
+	<h4>Payment Instructions</h4>
+
+	<p>
+		<strong>Terms:</strong> Payment must be received and posted by the individual due dates shown above.<br/>
+		Invoices may be paid via credit card, wire transfer, direct deposit, or check.
+	</p>
+
+	<h5>Send wire transfer to the following:</h5>
+	<table class="small">
+		<tr>
+			<th>Beneficiary Name</th>
+			<td>WorkMarket, Inc.</td>
+		</tr>
+		<tr>
+			<th>Beneficiary Account</th>
+			<td>9983235230</td>
+		</tr>
+		<tr>
+			<th>Beneficiary Address</th>
+			<td>240 West 37th Street, 10th Floor, New York, NY 10018</td>
+		</tr>
+		<tr>
+			<th>Beneficiary Phone #</th>
+			<td>(646) 588-4641</td>
+		</tr>
+		<tr>
+			<th>Beneficiary Bank Name</th>
+			<td>Citibank, N.A.</td>
+		</tr>
+		<tr>
+			<th>Beneficiary Bank City and State</th>
+			<td>787 Seventh Avenue, New York, NY 10019</td>
+		</tr>
+		<tr>
+			<th>ABA or Swift Code</th>
+			<td>021 0000 89 or CITIUS33</td>
+		</tr>
+	</table>
+
+	<h5>Send checks to the following address:</h5>
+
+	<p class="small">WorkMarket, Inc.<br/>
+		Attn: ID ${template.invoice.companyId}<br/>
+		Reference: Lockbox #7875<br/>
+		PO Box 7247<br/>
+		Philadelphia, PA 19170-7875</p>
+
+	<p>
+		<small>Please note that check processing may take up to 10 days.</small>
+	</p>
+
+	<h5>For overnight sending only:</h5>
+
+	<p class="small">
+		First Data/Remitco<br/>
+		Attn: WorkMarket/LBX # 7875<br/>
+		Ref: ID ${template.invoice.companyId}<br/>
+		400 White Clay Center Drive<br/>
+		Newark, DE 19711
+	</p>
+
+	<p>
+		<small>
+			Please include ID ${template.invoice.companyId} on the memo line of your check. Note that check processing may take up to 10 days.
+		</small>
+	</p>
+
+	<footer>
+		<div class="thanks">Thank you for choosing WorkMarket. We appreciate your business!</div>
+	</footer>
+</div>
+
+</body>
+</html>

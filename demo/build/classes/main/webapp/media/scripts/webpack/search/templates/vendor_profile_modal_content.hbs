@@ -1,0 +1,97 @@
+<div class="profile--messages">
+	{{#if facade.suspended}}
+		<h4>
+			This company is currently suspended.
+		</h4>
+	{{/if}}
+
+	{{#if facade.deactivated}}
+		<h4>
+			This company is currently deactivated.
+		</h4>
+	{{/if}}
+
+	{{#if facade.blocked}}
+		<h4 class="tac">Your company has blocked {{facade.companyName}} Please contact your administrator for more information.</h4>
+	{{/if}}
+</div>
+
+<header class="profile--header {{profileBackground}}">
+
+	<div class="profile--personal-info">
+		<div class="profile--avatar">
+			{{#if facade.avatarLargeAssetUri}}
+				{{> ../../funcs/templates/avatar src=facade.avatarLargeAssetUri }}
+			{{else}}
+				{{> ../../funcs/templates/avatar hash=facade.companyNumber }}
+			{{/if}}
+		</div>
+
+		<div class="profile--name">
+			{{facade.companyName}}
+			<span class="lane-type-badge tooltipped tooltipped-n" aria-label="Vendor">V</span>
+		</div>
+
+		<address class="profile--address">
+			{{#if facade.companyAddress}}
+				{{facade.companyAddress.shortAddress}}
+			{{/if}}
+		</address>
+	</div>
+</header>
+
+<section class="profile--details">
+	<!-- Tabs -->
+	<ul class="wm-tabs profile--details-tabs">
+		<li class="wm-tab -active" data-content="#user-overview-{{facade.companyNumber}}">
+			Overview
+		</li>
+		<li class="wm-tab team-tab" data-content="#user-team-{{facade.companyNumber}}">
+			Team
+		</li>
+	</ul>
+
+	<!-- *** Overview tab *** -->
+	<div class="wm-tab--content -active user-overview" id="user-overview-{{facade.companyNumber}}">
+		<div class="user-overview-left">
+			<p>
+				Company ID: <strong>{{facade.companyNumber}}</strong>
+			</p>
+
+			<span class="lane-type-badge tooltipped tooltipped-n" aria-label="Vendor">V</span>
+
+			<p>URL: <a class="break-word" href="{{baseurl}}/profile/company/{{facade.companyNumber}}">/profile/company/{{facade.companyNumber}}</a></p>
+		</div>
+
+		<div class="user-overview-right">
+			<p>Since: {{[../../helpers/formatDateShort] facade.createdOn}}</p>
+
+			{{{[../../helpers/taxEntityStatus] facade.taxEntityExists facade.verifiedTaxEntity}}}
+
+			{{#if facade.confirmedBankAccount}}
+				<p>Bank Account: <b>Confirmed</b></p>
+			{{else}}
+				<p>Bank Account: <b>Unconfirmed</b></p>
+			{{/if}}
+
+			{{#if facade.companycompanyWebsite}}
+				<p>
+					<i class="wm-icon-globe-circle"></i>
+					<a target="_blank" href="{{[../../helpers/ensureProtocol] facade.companyWebsite}}">{{facade.companyWebsite}}</a>
+				</p>
+			{{/if}}
+		</div>
+
+
+		<p class="overview-description">{{facade.companyOverview}}</p>
+	</div>
+
+	<!-- *** Team tab *** -->
+	<div class="wm-tab--content user-team" id="user-team-{{facade.companyNumber}}"></div>
+</section>
+
+<!--user scorecard-->
+<aside class="sidebar-card">
+	{{> ../../funcs/templates/score-card showrecent=true values=scoreCard }}
+	<button id="show-ratings" class="sidebar-card--button">See Ratings</button>
+</aside>

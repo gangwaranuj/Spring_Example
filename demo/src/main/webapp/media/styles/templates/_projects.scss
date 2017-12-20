@@ -1,0 +1,19 @@
+body.projects {
+	@include scaffolding;
+	@include new-form-inputs;
+
+	.control-group {
+		max-width: 50%;
+	}
+	.hasDatepicker {
+		width: calc(100% - 2em - 2px);
+		float: left;
+	}
+	.newclient {
+		width: 20em;
+	}
+	.ui-datepicker-trigger {
+		float: right;
+		margin: 0.5em;
+	}
+}

@@ -1,0 +1,159 @@
+$button: (
+	text-color: $white,
+	alternate-text-color: $dark-grey,
+	border-width: 1px,
+	background-color: (
+		toggle: $blue,
+		toggle-active: $grey
+	),
+	border-radius: $base-border-radius,
+	default: (
+		default: (
+			background-color: $light-blue
+		),
+		hover: (
+			background-color: $blue
+		),
+		disabled: (
+			background-color: $light-grey
+		)
+	),
+	primary: (
+		default: (
+			background-color: $light-green
+		),
+		hover: (
+			background-color: $green
+		),
+		disabled: (
+			background-color: $off-white
+		)
+	),
+	secondary: (
+		default: (
+			background-color: transparent
+		),
+		hover: (
+			background-color: transparent
+		),
+		disabled: (
+			background-color: transparent
+		)
+	),
+	toggle: (
+		default: (
+			background-color: $orange
+		),
+		hover: (
+			background-color: $orange
+		),
+		disabled: (
+			background-color: $light-grey
+		)
+	)
+) !default;
+
+@mixin button-color($button-type, $state, $inverse: false) {
+	$color: map-fetch($button, $button-type, $state, background-color);
+
+	@if $inverse {
+		color: $color;
+	} @else {
+		@if $color == transparent {
+			box-shadow: none;
+		} @else {
+			box-shadow: 0 2px 0 -1px rgba($color, 0.4);
+		}
+		background-color: $color;
+		border-color: $color;
+	}
+}
+
+@mixin button-background-color($button-type: default, $inverse: false) {
+	@include button-color($button-type, default, $inverse);
+
+	&:hover {
+		@include button-color($button-type, hover, $inverse);
+	}
+	&:active {
+		box-shadow: none;
+	}
+	&[disabled] {
+		@include button-color($button-type, disabled, $inverse);
+
+		&:hover {
+			@include button-color($button-type, disabled, $inverse);
+		}
+	}
+}
+
+@mixin button-styling {
+	padding: element-padding($button) element-padding($button);
+
+	&:not(:empty) {
+		padding: element-padding($button) element-padding($button, 2);
+
+		&::before {
+			float: left;
+			margin-right: 0.2em;
+			margin-left: -0.3em;
+		}
+	}
+}
+
+@mixin button-base {
+	@include reset-element;
+	@include button-background-color;
+	transition: all $base-transition-duration $base-transition-easing;
+	line-height: 1;
+	border-radius: map-get($button, border-radius);
+	border-style: solid;
+	border-width: map-get($button, border-width);
+	color: map-get($button, text-color);
+	display: inline-block;
+	vertical-align: middle;
+	padding: 0;
+	text-decoration: none;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-weight: map-get($font-weight, regular);
+
+	&:hover {
+		text-decoration: none;
+		color: map-get($button, text-color); // overrides link coloring
+	}
+	&:focus {
+		outline: none;
+	}
+	&:not(.-new) {
+		@include button-styling;
+	}
+
+	&--content {
+		@include button-styling;
+	}
+}
+
+@mixin button-primary {
+	@include button-background-color(primary);
+}
+
+@mixin button-secondary {
+	@include button-background-color(secondary);
+	@include button-background-color(default, true);
+}
+
+@mixin button-toggle {
+	input:checked ~ & {
+		@include button-background-color(toggle);
+	}
+}
+
+// Styles
+.button {
+	@include button-base;
+
+	&.-primary { @include button-primary; }
+	&.-secondary { @include button-secondary; }
+	&.-toggle { @include button-toggle; }
+}

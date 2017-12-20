@@ -1,0 +1,50 @@
+{{#each activities}}
+	<div class="activity">
+		{{#if this.isWorkStatusChange}}
+			<span class="activity--badge -work-status-change {{#if this.isAlert}}-alert{{/if}}">{{this.status}}</span>
+		{{/if}}
+		{{#if this.isWorkSubStatusChange}}
+			<span class="activity--badge -work-sub-status-change" style="background-color:#{{this.subStatus.colorRgb}}">{{this.subStatus.description}}</span>
+		{{/if}}
+		{{#if this.isWorkProperty}}
+			<i class="activity--icon wm-icon-information-filled"></i>
+		{{/if}}
+		{{#if this.isWorkResourceStatusChange}}
+			<span class="activity--badge -work-status-change {{#if this.isAlert}}-alert{{/if}}">{{this.status}}</span>
+		{{/if}}
+		{{#if this.isWorkCreated}}
+			<i class="activity--icon wm-icon-assignments"></i>
+		{{/if}}
+		{{#if this.isWorkNegotiationRequested}}
+			{{#if this.scheduleNegotiationOnly}}
+				<i class="activity--icon wm-icon-calendar"></i>
+			{{else}}
+				<i class="activity--icon wm-icon-payments-filled {{#if this.rejectAction}}-reject{{/if}}"></i>
+			{{/if}}
+		{{/if}}
+		{{#if this.isWorkRescheduleRequested}}
+			<i class="activity--icon wm-icon-calendar"></i>
+		{{/if}}
+		{{#if this.isWorkNegotiationExpired}}
+			<i class="activity--icon wm-icon-calendar"></i>
+		{{/if}}
+		{{#if this.isWorkNoteCreated}}
+			<i class="activity--icon wm-icon-note"></i>
+		{{/if}}
+		{{#if this.isWorkQuestionAsked}}
+			<i class="activity--icon wm-icon-question-filled"></i>
+		{{/if}}
+		<small class="activity--time">
+			{{#if this.onBehalfOfUser}}
+				(Action taken on behalf of {{this.onBehalfOfUser}} at {{this.timestampDate}})
+			{{else}}
+				({{this.timestampDate}})
+			{{/if}}
+		</small>
+		<p class="activity--description">
+			{{{this.text}}}
+		</p>
+	</div>
+{{else}}
+	<div class="activity--empty">There are no activities on this assignment.</div>
+{{/each}}

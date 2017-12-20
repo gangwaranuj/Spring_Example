@@ -1,0 +1,2 @@
+export const DRUG_SCREEN = 'DRUG_SCREEN';
+export const BACKGROUND_CHECK = 'BACKGROUND_CHECK';

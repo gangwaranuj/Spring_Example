@@ -1,0 +1,16 @@
+.page-funds {
+
+	.withdraw-funds {
+		margin-top: 2em;
+	}
+
+	.page-header {
+		@include heading-title;
+
+		display: flex;
+		flex-wrap: nowrap;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: center;
+	}
+}

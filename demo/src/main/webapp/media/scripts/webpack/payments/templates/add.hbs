@@ -1,0 +1,100 @@
+<label class="assignment-creation--label -required" for="payments-type">Payment Type</label>
+<div class="assignment-creation--field">
+	<select class="wm-select" name="payments-type" id="payments-type">
+		<option value="FLAT" {{#[../../helpers/eq] type 'FLAT'}}selected{{/[../../helpers/eq]}}>Flat Fee</option>
+		<option value="PER_HOUR" {{#[../../helpers/eq] type type 'PER_HOUR'}}selected{{/[../../helpers/eq]}}>Hourly Rate</option>
+		<option value="PER_UNIT" {{#[../../helpers/eq] type 'PER_UNIT'}}selected{{/[../../helpers/eq]}}>Unit Rate</option>
+		<option value="BLENDED_PER_HOUR" {{#[../../helpers/eq] type 'BLENDED_PER_HOUR'}}selected{{/[../../helpers/eq]}}>Blended Hourly Rate</option>
+		<option value="INTERNAL" {{#[../../helpers/eq] type 'INTERNAL'}}selected{{/[../../helpers/eq]}}>Internal</option>
+	</select>
+</div>
+
+{{#[../../helpers/eq] type 'FLAT'}}
+	<label class="assignment-creation--label -required" for="payments-flatPrice">Flat Fee</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{flatPrice}}" name="payments-flatPrice" id="payments-flatPrice" />
+	</div>
+{{/[../../helpers/eq]}}
+
+{{#[../../helpers/eq] type 'PER_HOUR'}}
+	<label class="assignment-creation--label -required" for="payments-perHourPrice">Per Hour Rate</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{perHourPrice}}" name="payments-perHourPrice" id="payments-perHourPrice" />
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-maxNumberOfHours">Hours Allowed</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{maxNumberOfHours}}" name="payments-maxNumberOfHours" id="payments-maxNumberOfHours" />
+	</div>
+{{/[../../helpers/eq]}}
+
+{{#[../../helpers/eq] type 'PER_UNIT'}}
+	<label class="assignment-creation--label -required" for="payments-perUnitPrice">Per Unit Rate</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{perUnitPrice}}" name="payments-perUnitPrice" id="payments-perUnitPrice" />
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-maxNumberOfUnits">Unit Allowed</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{maxNumberOfUnits}}" name="payments-maxNumberOfUnits" id="payments-maxNumberOfUnits" />
+	</div>
+{{/[../../helpers/eq]}}
+
+{{#[../../helpers/eq] type 'BLENDED_PER_HOUR'}}
+	<label class="assignment-creation--label -required" for="payments-initialPerHourPrice">Initial Per Hour Rate</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{initialPerHourPrice}}" name="payments-initialPerHourPrice" id="payments-initialPerHourPrice" />
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-initialNumberOfHours">Initial Hours Allowed</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{initialNumberOfHours}}" name="payments-initialNumberOfHours" id="payments-initialNumberOfHours" />
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-additionalPerHourPrice">Additional Per Hour Rate</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{additionalPerHourPrice}}" name="payments-additionalPerHourPrice" id="payments-additionalPerHourPrice" />
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-maxBlendedNumberOfHours">Additional Hours Allowed</label>
+	<div class="assignment-creation--field">
+		<input type="text" value="{{maxBlendedNumberOfHours}}" name="payments-maxBlendedNumberOfHours" id="payments-maxBlendedNumberOfHours" />
+	</div>
+{{/[../../helpers/eq]}}
+
+{{#[../../helpers/unlesseq] type 'INTERNAL'}}
+	<label class="assignment-creation--label -required" for="payments-mode">Fees Paid by</label>
+	<div class="assignment-creation--field">
+		{{> ../../funcs/templates/radio name="payments-mode" value="company" text="Company" isChecked=isCompanyMode }}
+		{{> ../../funcs/templates/radio name="payments-mode" value="worker" text="Worker" isChecked=isWorkerMode }}
+	</div>
+
+	<label class="assignment-creation--label -required" for="payments-terms">Payment Terms</label>
+	<div class="assignment-creation--field">
+		<select class="wm-select" name="payments-terms" id="payments-terms">
+			<option value="0" {{#[../../helpers/eq] terms 0}}selected{{/[../../helpers/eq]}}>Immediate</option>
+			<option value="7" {{#[../../helpers/eq] terms 7}}selected{{/[../../helpers/eq]}}>7 Days (Best Practice)</option>
+			<option value="15" {{#[../../helpers/eq] terms 15}}selected{{/[../../helpers/eq]}}>15 Days</option>
+			<option value="21" {{#[../../helpers/eq] terms 21}}selected{{/[../../helpers/eq]}}>21 Days</option>
+			<option value="30" {{#[../../helpers/eq] terms 30}}selected{{/[../../helpers/eq]}}>30 Days</option>
+			<option value="40" {{#[../../helpers/eq] terms 40}}selected{{/[../../helpers/eq]}}>40 Days</option>
+		</select>
+	</div>
+
+	<table class="assignment-creation--payments-table">
+		<thead>
+			<tr>
+				<th>Your Cost</th>
+				<th>Transaction Fee</th>
+				<th>Worker Nets</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>${{companyPrice}}</td>
+				<td>{{fee}}%</td>
+				<td>${{workerPrice}}</td>
+			</tr>
+		</tbody>
+	</table>
+{{/[../../helpers/unlesseq]}}

@@ -1,0 +1,71 @@
+<div class="wm-search-filter">
+	<div class="wm-search-filter-element">
+		<div class="wm-search-filter-search">
+			<div class="wm-search-filter-search-icon">
+				<i class="wm-icon-search"></i>
+			</div>
+			<div class="wm-search-filter-row wm-search-filter-input">
+				<input id="input-text" type="text" placeholder="{{{placeholderText}}}">
+				<input id="tags-input" placeholder="Filter">
+			</div>
+		</div>
+		<div class="wm-search-filter-filters">
+			<div class="wm-search-filter-icon">
+				<i class="wm-icon-filter"></i>
+			</div>
+			<div class="wm-search-filter-row">
+				<div class="wm-search-filter-dropdowns">
+					{{#unless hideDateRange}}
+						<div class="wm-dropdown-filter date-filter" id="daterange">
+							<label>Dates</label>
+						</div>
+					{{/unless}}
+					{{#each filters}}
+						<div class="wm-dropdown-filter" id="{{name}}">
+							<label>{{title}}</label>
+						</div>
+					{{/each}}
+					<div class="wm-dropdown-filter wm-dropdown-filter-overflow">
+						<ul>
+							<li></li>
+							<li></li>
+							<li></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="wm-dropdown-section">
+			<input type="text" class="wm-search-tags" placeholder="Search or Select" />
+		</div>
+		<div class="wm-search-filter--advanced-facet">
+		</div>
+		<div class="wm-search-filter-datepicker">
+			<label for="datetype">Date</label>
+			<select class="wm-select" name="datetype">
+				<option value="0">Scheduled Date</option>
+				<option value="1">Created Date</option>
+				<option value="2">Sent Date</option>
+				<option value="3">Completed Date</option>
+				<option value="4">Approved Date</option>
+				<option value="5">Paid Date</option>
+				<option value="6">Last Modified Date</option>
+				<option value="7">Index Date</option>
+			</select>
+			<label>Range</label>
+			<select class="wm-select" name="rangetype">
+				<option value="custom">Custom Range</option>
+				<option value="today">Today</option>
+				<option value="7days">Last 7 days</option>
+				<option value="30days">Last 30 days</option>
+			</select>
+			<div class="wm-search-filter-datepicker--inputs">
+				<input name="from" />
+				<span>to</span>
+				<input name="to" />
+			</div>
+			{{> button text="Close" classlist="close-date"}}
+			{{> button text="Apply" classlist="apply-date -primary"}}
+		</div>
+	</div>
+</div>

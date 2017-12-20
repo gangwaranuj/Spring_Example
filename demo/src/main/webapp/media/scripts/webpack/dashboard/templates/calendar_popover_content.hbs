@@ -1,0 +1,27 @@
+<table id="calendar-popover-content">
+	<tbody>
+		<tr>
+			<td>
+				{{#unless custom}}
+					<a href={{detail_url}}>{{title}}</a>
+				{{/unless}}
+				{{#if id}}
+					<small class="meta">({{id}})</small>
+				{{/if}}
+			</td>
+			{{#unless custom}}
+				<td>{{status}}</td>
+			{{/unless}}
+			<td>{{scheduled_date}}</td>
+			<td>{{resource_full_name}}</td>
+			{{#if isWorkerCompany}}
+				{{#unless hidePricing}}
+					<td>{{price}}</td>
+				{{/unless}}
+			{{else}}
+				<td>{{price}}</td>
+			{{/if}}
+			<td>{{address}}</td>
+		</tr>
+	</tbody>
+</table>

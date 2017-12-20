@@ -1,0 +1,4024 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:p="http://www.springframework.org/schema/p"
+	   xmlns:util="http://www.springframework.org/schema/util"
+	   xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd ">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<util:map id="reporting_context" map-class="org.apache.commons.collections.bidimap.DualHashBidiMap"
+			  key-type="com.workmarket.thrift.work.display.ReportingReportType">
+		<entry key="WORK_ASSIGNMENTS" value-ref="workReportingContext"/>
+	</util:map>
+
+	<util:map id="work_report_column_types" map-class="org.apache.commons.collections.bidimap.DualHashBidiMap"
+			  key-type="com.workmarket.thrift.work.report.WorkReportColumnType">
+		<entry key="WORK_TITLE" value="work.title"/>
+		<entry key="WORK_DESCRIPTION" value="work.description"/>
+		<entry key="WORK_INSTRUCTIONS" value="work.instructions"/>
+		<entry key="WORK_ADDRESSONSITEFLAG" value="work.addressOnsiteFlag"/>
+		<entry key="WORK_SCHEDULERANGEFLAG" value="work.scheduleRangeFlag"/>
+		<entry key="WORK_SCHEDULEFROM" value="work.scheduleFrom"/>
+		<entry key="WORK_SCHEDULETHROUGH" value="work.scheduleThrough"/>
+		<entry key="WORK_EXTERNAL_ID_DISPLAYNAME" value="work.workUniqueId.displayname"/>
+		<entry key="WORK_EXTERNAL_ID_VALUE" value="work.workUniqueId.value"/>
+		<!-- Location contact information -->
+		<entry key="WORK_CONTACTNAME" value="locationContactName"/>
+		<entry key="WORK_CONTACTPHONE" value="locationContactPhone"/>
+		<entry key="WORK_CONTACTEMAIL" value="locationContactEmail"/>
+		<!-- Buyer support contact information -->
+		<entry key="WORK_SUPPORTNAME" value="supportContactName"/>
+		<entry key="WORK_SUPPORTPHONE" value="supportContactPhone"/>
+		<entry key="WORK_SUPPORTEMAIL" value="supportContactEmail"/>
+
+		<entry key="WORK_CREATEDON" value="work.createdOn"/>
+		<entry key="WORK_MODIFIEDON" value="work.modifiedOn"/>
+		<entry key="WORK_WORKSTATUSTYPE_CODE" value="workStatusTypeCode"/>
+		<entry key="WORK_WORKNUMBER" value="work.workNumber"/>
+		<entry key="WORK_TYPE" value="work.type"/>
+		<entry key="WORK_PRICINGSTRATEGY" value="work.pricingStrategy"/>
+		<entry key="WORK_FULFILLMENTSTRATEGY_FLATPRICE" value="work.pricingStrategy.flatPrice"/>
+		<entry key="WORK_BUYERFEE" value="buyerFee"/>
+		<entry key="WORK_FULFILLMENTSTRATEGY_WORKPRICE" value="workPrice"/>
+		<entry key="WORK_AMOUNTEARNED" value="amountEarned"/>
+		<entry key="WORK_REFUNDEDAMOUNT" value="work.refundedAmount"/>
+		<entry key="WORK_VOIDEDAMOUNTEARNED" value="work.voidedAmountEarned"/>
+		<entry key="WORK_CLOSEDON" value="work.closedOn"/>
+		<entry key="WORK_DUEON" value="work.dueOn"/>
+		<entry key="WORK_ADDITIONALEXPENSES" value="work.additionalExpenses"/>
+		<entry key="WORK_FULLPRICINGSTRATEGY_PER_HOUR_PRICE" value="perHourPrice"/>
+		<entry key="WORK_FULLPRICINGSTRATEGY_ADDITIONAL_PER_HOUR_PRICE" value="work.fullPricingStrategy.additionalPerHourPrice"/>
+
+		<entry key="WORK_BUYER_ID" value="buyer.userNumber"/>
+		<entry key="WORK_BUYER_FIRST_NAME" value="buyer.firstName"/>
+		<entry key="WORK_BUYER_LAST_NAME" value="buyer.lastName"/>
+		<entry key="WORK_CLIENT_COMPANY_ID" value="work.clientCompany"/>
+		<entry key="WORK_CLIENT_COMPANY_NAME" value="clientCompanyName"/>
+		<entry key="WORK_DESIRED_SKILLS" value="work.desiredSkills"/>
+		<entry key="PENDING_APPROVAL_SPEND_LIMIT_ON_COMPLETE" value="pendingApprovalCost"/>
+
+		<entry key="WORK_RESOURCE_WORK_RESOURCE_STATUS_TYPE_CODE" value="work_resource.workResourceStatusTypeCode"/>
+		<entry key="WORK_WORK_CHANGELOG_COMPLETE_DATE" value="work_milestones.completeDate"/>
+		<entry key="WORK_USER_RESOURCE_FIRST_NAME" value="user.workResourceFirstName"/>
+		<entry key="WORK_USER_RESOURCE_LAST_NAME" value="user.workResourceLastName"/>
+		<entry key="WORK_USER_RESOURCE_NAME" value="workResourceName"/>
+		<entry key="WORK_USER_RESOURCE_ID" value="user.workResourceID"/>
+		<entry key="WORK_ACCEPTANCE_DATE" value="work_milestones.acceptanceDate"/>
+		<entry key="WORK_PAYMENT_DATE" value="work_milestones.paymentDate"/>
+
+		<entry key="WORK_RESOLUTION" value="work.resolution"/>
+
+		<entry key="WORK_ADDRESS1" value="workAddress1"/>
+		<entry key="WORK_ADDRESS2" value="workAddress2"/>
+		<entry key="WORK_CITY" value="workCity"/>
+		<entry key="WORK_STATE" value="workState"/>
+		<entry key="WORK_POSTAL_CODE" value="workPostalCode"/>
+		<entry key="WORK_COUNTRY" value="workCountry"/>
+		<entry key="WORK_INDUSTRY" value="industryName"/>
+		<entry key="WORK_TEMPLATE" value="templateName"/>
+		<entry key="WORK_PROJECT_NAME" value="projectName"/>
+		<entry key="WORK_INVOICE_NUMBER" value="invoice.invoiceNumber"/>
+		<entry key="WORK_INVOICE_SUMMARY_NUMBER" value="invoiceSummaryNumber"/>
+		<entry key="WORK_CURRENT_SUB_STATUSES" value="subStatuses"/>
+		<entry key="WORK_RESOLVED_SUB_STATUSES" value="resolvedSubStatuses"/>
+		<entry key="WORK_PAYMENT_TERMS_DAYS" value="paymentTermsDays"/>
+		<!-- Assigned resource information -->
+		<entry key="ASSIGNED_RESOURCE_CITY" value="assignedResourceCity"/>
+		<entry key="ASSIGNED_RESOURCE_STATE" value="assignedResourceState"/>
+		<entry key="ASSIGNED_RESOURCE_POSTAL_CODE" value="assignedResourcePostalCode"/>
+		<entry key="ASSIGNED_RESOURCE_RATING" value="rating.stars"/>
+		<entry key="ASSIGNED_RESOURCE_APPOINTMENT_DATE" value="assignedResourceAppointmentDate"/>
+		<entry key="ASSIGNED_RESOURCE_HOURS_WORKED" value="assignedWorkResource.hours_worked"/>
+
+		<entry key="WORK_SENT_RESOURCES" value="sentResources"/>
+		<entry key="WORK_DECLINED_RESOURCES" value="declinedResources"/>
+		<entry key="WORK_QUESTIONS_ASKED" value="questionsAsked"/>
+		<entry key="WORK_COUNTER_OFFERS_APPLICATIONS" value="counterOffersApplications"/>
+		<entry key="WORK_ROUTING_TYPE" value="routingType"/>
+
+		<entry key="WORK_CUSTOM_FIELDS" value="workCustomFields"/>
+		<entry key="WORK_CUSTOM_FIELD_ID" value="workCustomField.id"/>
+		<entry key="WORK_SENT_DATE" value="work_milestones.sentDate"/>
+		<entry key="WORK_SPEND_LIMIT" value="spendLimit"/>
+		<entry key="WORK_INITIAL_PRICE" value="initialPrice"/>
+
+		<entry key="WORK_PENDING_BUDGET_INCREASE" value="pendingBudgetIncrease"/>
+		<entry key="WORK_APPROVED_BUDGET_INCREASE" value="approvedBudgetIncrease"/>
+
+		<entry key="WORK_PENDING_SLI_TOTAL" value="pendingSLITotal"/>
+
+		<entry key="WORK_PENDING_SLI" value="pendingSLI"/>
+		<entry key="WORK_APPROVED_SLI" value="approvedSLI"/>
+		<entry key="WORK_REJECTED_SLI" value="rejectedSLI"/>
+
+		<entry key="WORK_APPROVED_BONUS" value="approvedBonus" />
+
+		<entry key="WORK_TOTAL_VALUE" value="totalValue"/>
+
+		<entry key="WORK_LOCATION_ID" value="workLocationNumber"/>
+		<entry key="WORK_LOCATION_NAME" value="workLocationName"/>
+
+		<entry key="WORK_FIRST_CHECKIN" value="firstCheckin"/>
+		<entry key="WORK_LAST_CHECKOUT" value="lastCheckout"/>
+		<entry key="WORK_TIME_ON_SITE" value="timeOnSite"/>
+		<entry key="WORK_CHECKIN_DISTANCE" value="checkinDistance"/>
+		<entry key="WORK_CHECKOUT_DISTANCE" value="checkoutDistance"/>
+
+		<entry key="WORK_PARTS_DESCRIPTION" value="parts.description"/>
+		<entry key="WORK_PARTS_SUPPLIED_BY_RESOURCE" value="parts.suppliedByResource"/>
+		<entry key="WORK_PARTS_DISTRIBUTION_METHOD" value="parts.distributionMethod"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_NUMBER" value="parts.pickupLocationNumber"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_NAME" value="parts.pickupLocationName"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_ADDRESS1" value="parts.pickupLocationAddress1"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_ADDRESS2" value="parts.pickupLocationAddress2"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_CITY" value="parts.pickupLocationCity"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_STATE" value="parts.pickupLocationState"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_POSTAL_CODE" value="parts.pickupLocationPostalCode"/>
+		<entry key="WORK_PARTS_PICKUP_LOCATION_COUNTRY" value="parts.pickupLocationCountry"/>
+		<entry key="WORK_PARTS_PICKUP_TRACKING_NUMBER" value="parts.pickupTrackingNumber"/>
+		<entry key="WORK_PARTS_PICKUP_SHIPPING_PROVIDER" value="parts.pickupShippingProvider"/>
+		<entry key="WORK_PARTS_PICKUP_PART_VALUE" value="parts.pickupPartValue"/>
+		<entry key="WORK_PARTS_RETURN_REQUIRED" value="parts.returnRequired"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_NUMBER" value="parts.returnLocationNumber"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_NAME" value="parts.returnLocationName"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_ADDRESS1" value="parts.returnLocationAddress1"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_ADDRESS2" value="parts.returnLocationAddress2"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_CITY" value="parts.returnLocationCity"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_STATE" value="parts.returnLocationState"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_POSTAL_CODE" value="parts.returnLocationPostalCode"/>
+		<entry key="WORK_PARTS_RETURN_LOCATION_COUNTRY" value="parts.returnLocationCountry"/>
+		<entry key="WORK_PARTS_RETURN_TRACKING_NUMBER" value="parts.returnTrackingNumber"/>
+		<entry key="WORK_PARTS_RETURN_SHIPPING_PROVIDER" value="parts.returnShippingProvider"/>
+		<entry key="WORK_PARTS_RETURN_PART_VALUE" value="parts.returnPartValue"/>
+
+	</util:map>
+
+	<util:map id="work_report_input_types" map-class="org.apache.commons.collections.bidimap.DualHashBidiMap"
+			  key-type="com.workmarket.thrift.work.report.FilteringTypeThrift" value-type="com.workmarket.reporting.mapping.FilteringType">
+		<entry key="WORK_TEXT" value="TEXT"/>
+		<entry key="WORK_DATE_TIME" value="DATE_TIME"/>
+		<entry key="WORK_NUMERIC" value="NUMERIC"/>
+		<entry key="WORK_BIG_DECIMAL" value="BIG_DECIMAL"/>
+		<entry key="WORK_DATE_RANGE" value="DATE_RANGE"/>
+		<entry key="WORK_DATE_BEFORE" value="DATE_BEFORE"/>
+		<entry key="WORK_DATE_AFTER" value="DATE_AFTER"/>
+		<entry key="WORK_NEXT_1_DAY" value="NEXT_1_DAY"/>
+		<entry key="WORK_NEXT_7_DAYS" value="NEXT_7_DAYS"/>
+		<entry key="WORK_NEXT_30_DAYS" value="NEXT_30_DAYS"/>
+		<entry key="WORK_NEXT_60_DAYS" value="NEXT_60_DAYS"/>
+		<entry key="WORK_NEXT_90_DAYS" value="NEXT_90_DAYS"/>
+		<entry key="WORK_LAST_1_DAY" value="LAST_1_DAY"/>
+		<entry key="WORK_LAST_7_DAYS" value="LAST_7_DAYS"/>
+		<entry key="WORK_LAST_30_DAYS" value="LAST_30_DAYS"/>
+		<entry key="WORK_LAST_60_DAYS" value="LAST_60_DAYS"/>
+		<entry key="WORK_LAST_90_DAYS" value="LAST_90_DAYS"/>
+		<entry key="WORK_LAST_365_DAYS" value="LAST_365_DAYS"/>
+		<entry key="WORK_THIS_YEAR_TO_DATE" value="THIS_YEAR_TO_DATE"/>
+		<entry key="WORK_FIELD_VALUE" value="FIELD_VALUE"/>
+		<entry key="WORK_CONTAINS" value="CONTAINS"/>
+		<entry key="WORK_PLEASE_SELECT" value="PLEASE_SELECT"/>
+	</util:map>
+
+	<util:map id="relational_operator_options" map-class="org.apache.commons.collections.bidimap.DualHashBidiMap"
+			  key-type="com.workmarket.thrift.work.report.RelationalOperatorThrift" value-type="com.workmarket.reporting.mapping.RelationalOperator">
+		<entry key="WORK_EQUAL_TO" value="EQUAL_TO"/>
+		<entry key="WORK_NOT_EQUAL_TO" value="NOT_EQUAL_TO"/>
+		<entry key="WORK_GREATER_THAN" value="GREATER_THAN"/>
+		<entry key="WORK_GREATER_THAN_EQUAL_TO" value="GREATER_THAN_EQUAL_TO"/>
+		<entry key="WORK_LESS_THAN" value="LESS_THAN"/>
+		<entry key="WORK_LESS_THAN_EQUAL_TO" value="LESS_THAN_EQUAL_TO"/>
+		<entry key="WORK_PLEASE_SELECT" value="PLEASE_SELECT"/>
+	</util:map>
+
+	<util:map id="html_tag_type_options" map-class="org.apache.commons.collections.bidimap.DualHashBidiMap"
+			  key-type="com.workmarket.thrift.work.display.HtmlTagTypeThrift" value-type="com.workmarket.reporting.mapping.HtmlTagType">
+		<entry key="INPUT_TEXT" value="INPUT_TEXT"/>
+		<entry key="SELECT_OPTION" value="SELECT_OPTION"/>
+		<entry key="MULTI_SELECT_OPTION" value="MULTI_SELECT_OPTION"/>
+		<entry key="DATE" value="DATE"/>
+		<entry key="DATE_TIME" value="DATE_TIME"/>
+		<entry key="TO_FROM_DATES" value="TO_FROM_DATES"/>
+		<entry key="NUMERIC" value="NUMERIC"/>
+		<entry key="NUMERIC_RANGE" value="NUMERIC_RANGE"/>
+		<entry key="DISPLAY" value="DISPLAY"/>
+	</util:map>
+
+	<bean name="enLocale" class="java.util.Locale">
+		<constructor-arg value="en"/>
+	</bean>
+
+	<bean name="locationOrder" class="com.workmarket.domains.model.reporting.LocationOrder">
+		<property name="row" value="1"/>
+		<property name="index" value="1"/>
+		<property name="column" value="1"/>
+	</bean>
+
+	<bean name="displayFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="false"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.DISPLAY"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.DISPLAY"/>
+		</property>
+	</bean>
+
+	<bean name="inputTextFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.INPUT_TEXT"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.TEXT"/>
+		</property>
+	</bean>
+
+	<bean name="inputNumberFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.NUMERIC"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.TEXT"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.GREATER_THAN"/>
+		</property>
+	</bean>
+
+	<bean name="inputNumberRangeFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.NUMERIC_RANGE"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.TEXT"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.GREATER_THAN"/>
+		</property>
+	</bean>
+
+	<!--
+	<bean name="dateFilterFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title" />
+		<property name="checked" value="false" />
+		<property name="htmlTagType"><util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.DATE"/></property>
+		<property name="relationalOperator"><util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO" /></property>
+		<property name="filteringType"><util:constant static-field="com.workmarket.reporting.mapping.FilteringType.DATE_TIME" /></property>
+	</bean>
+ -->
+	<bean name="dateRangeFilterFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.TO_FROM_DATES"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.GREATER_THAN"/>
+		</property>
+		<property name="relationalOperatorOptional">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.LESS_THAN"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.DATE_RANGE"/>
+		</property>
+	</bean>
+
+	<bean name="workStatusCodeFilterFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.MULTI_SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<!-- Note, need to internationalize -->
+		<property name="selectOptions">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="pleaseSelect" p:label="Select Status"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="paid" p:label="Paid"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="sent" p:label="Sent"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="cancelled" p:label="Cancelled"/>
+
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="declined" p:label="All Declined"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="draft" p:label="Draft"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="refunded" p:label="Refunded"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="void" p:label="Void"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="complete" p:label="Pending Approval"/>
+
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="paymentPending" p:label="Invoiced"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="active" p:label="Assigned"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="inprogress" p:label="In Progress"/>
+
+			</list>
+		</property>
+	</bean>
+
+	<!-- TODO dynamically populate from DB table on context load -->
+	<bean name="workPricingStrategyTypeFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<!-- Note, need to internationalize -->
+		<property name="selectOptions">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="pleaseSelect" p:label="Select to Filter"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="FLAT" p:label="Flat"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="PER_HOUR" p:label="Per Hour"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="PER_UNIT" p:label="Per Unit"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="BLENDED_PER_HOUR" p:label="Blended Per Hour"/>
+				<!-- <bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="BLENDED_PER_UNIT" p:label="Blended Per Unit" /> -->
+			</list>
+		</property>
+	</bean>
+
+	<bean name="workCountryFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<property name="selectOptions">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="pleaseSelect" p:label="Select to Filter"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="USA" p:label="United States"/>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="CAN" p:label="Canada"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="workSubStatusFilterInputTag" class="com.workmarket.domains.model.reporting.DynamicFilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.MULTI_SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<property name="selectOptionsSql">
+			<value>SELECT id AS 'key', description AS 'value' FROM work_sub_status_type WHERE deleted = false AND (company_id = :companyId OR custom = false)
+			</value>
+		</property>
+	</bean>
+
+	<bean name="buyerDynamicFilterInputTag" class="com.workmarket.domains.model.reporting.DynamicFilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<property name="selectOptionsSql">
+			<value>SELECT user_number AS 'key', CONCAT(first_name, ' ', last_name) AS 'value' FROM user WHERE company_id = :companyId and user_status_type_code not in ( 'suspended', 'deactivate', 'hold', 'locked')</value>
+		</property>
+	</bean>
+
+	<bean name="resourceDynamicFilterInputTag" class="com.workmarket.domains.model.reporting.DynamicFilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.MULTI_SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<property name="selectOptionsSql">
+			<value>SELECT user_number as 'key', CONCAT(user.first_name, ' ',user.last_name) AS 'value' FROM user JOIN lane_association ON user.id = lane_association.user_id AND lane_association.company_id = :companyId where user.user_status_type_code NOT IN ( 'suspended', 'deactivate', 'hold', 'locked')</value>
+		</property>
+	</bean>
+
+
+	<bean name="projectDynamicFilterInputTag" class="com.workmarket.domains.model.reporting.DynamicFilterInputTag">
+		<property name="name" value="title"/>
+		<property name="checked" value="false"/>
+		<property name="filterable" value="true"/>
+		<property name="htmlTagType">
+			<util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.MULTI_SELECT_OPTION"/>
+		</property>
+		<property name="relationalOperator">
+			<util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO"/>
+		</property>
+		<property name="filteringType">
+			<util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE"/>
+		</property>
+		<property name="selectOptionsSql">
+			<value>SELECT project.name AS 'key', project.name AS 'value' FROM project WHERE company_id = :companyId AND deleted = false ORDER BY project.name
+			</value>
+		</property>
+	</bean>
+
+	<!--<bean name="workTypeFilterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag">
+		<property name="name" value="title" />
+		<property name="checked" value="false" />
+		<property name="htmlTagType"><util:constant static-field="com.workmarket.reporting.mapping.HtmlTagType.SELECT_OPTION"/></property>
+		<property name="relationalOperator"><util:constant static-field="com.workmarket.reporting.mapping.RelationalOperator.EQUAL_TO" /></property>
+		<property name="filteringType"><util:constant static-field="com.workmarket.reporting.mapping.FilteringType.FIELD_VALUE" /></property>
+		<property name="selectOptions">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="W" p:label="Work Assignment" />
+				<bean class="com.workmarket.domains.model.reporting.SelectOption" p:value="WT" p:label="Work Template" />
+			</list>
+		</property>
+	</bean>-->
+
+	<bean name="filterInputTag" class="com.workmarket.domains.model.reporting.FilterInputTag"/>
+
+	<bean name="stringFormat" class="com.workmarket.reporting.format.StringFormat">
+		<!-- Do what On null? -->
+		<!-- strip markup? -->
+	</bean>
+
+	<bean name="aTagFormat" class="com.workmarket.reporting.format.HyperTextFormat">
+		<constructor-arg value="&lt;a href='${baseurl}/assignments/details/*' target='_blank'  &gt;*&lt;/a&gt;"/>
+	</bean>
+
+	<bean name="decimalFormat" class="com.workmarket.reporting.format.WMDecimalFormat"/>
+
+	<bean name="currencyFormat" class="com.workmarket.reporting.format.CurrencyFormat"/>
+
+	<bean name="booleanFormat" class="com.workmarket.reporting.format.BooleanFormat"/>
+
+	<bean name="dateFormat" class="com.workmarket.reporting.format.DateFormat">
+		<!-- Do what On null? -->
+		<!-- strip markup? -->
+	</bean>
+
+	<bean name="striptHtmlFormat" class="com.workmarket.reporting.format.StriptHtmlFormat"/>
+
+	<bean name="dateFilter" class="com.workmarket.reporting.query.DateFilterSqlImpl"/>
+
+	<bean name="numericFilter" class="com.workmarket.reporting.query.NumericFilterSqlImpl"/>
+
+	<bean name="fieldValueFilter" class="com.workmarket.reporting.query.FieldValueFilterSqlImpl"/>
+
+	<!-- Note may want to obfuscate values to/from PHP front end for SQL reasons. -->
+
+	<!-- 	               -->
+	<!-- FIELD DEFINITIONS -->
+	<!-- 	               -->
+
+	<bean name="workCustomFields" class="com.workmarket.domains.model.reporting.CustomFieldEntity">
+		<property name="dbFieldName" value=""/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Custom Fields"/>
+			</map>
+		</property>
+		<property name="keyName" value="workCustomFields"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="1120"/>
+	</bean>
+
+
+	<bean name="work.workUniqueId.displayname" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="work_unique_id.display_name"/>
+		<property name="dbFieldNameAlias" value="externalIdName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Unique External ID Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="work.workUniqueId.displayname"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="left join work_unique_id on work.id = work_unique_id.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="8"/>
+		<property name="joinClass" value="com.workmarket.domains.work.model.WorkUniqueId"/>
+	</bean>
+
+	<bean name="work.workUniqueId.value" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="work_unique_id.id_value"/>
+		<property name="dbFieldNameAlias" value="externalIdValue"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Unique External ID Value"/>
+			</map>
+		</property>
+		<property name="keyName" value="work.workUniqueId.value"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="left join work_unique_id on work.id = work_unique_id.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="9"/>
+		<property name="joinClass" value="com.workmarket.domains.work.model.WorkUniqueId"/>
+	</bean>
+
+	<bean name="clientCompanyName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="client_company.name"/>
+		<property name="dbFieldNameAlias" value="clientCompanyName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Client"/>
+			</map>
+		</property>
+		<property name="keyName" value="clientCompanyName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="left join client_company on work.client_company_id = client_company.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.crm.ClientCompany"/>
+		<property name="orderBy" value="640"/>
+	</bean>
+
+	<bean name="work.buyer.userNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="user_number"/>
+		<property name="dbFieldNameAlias" value="buyerId"/>
+		<property name="dbTable" value="buyer"/>
+		<property name="fieldType" value="varchar(10)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Internal Owner ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="userNumber"/>
+		<property name="filterInputTag" ref="buyerDynamicFilterInputTag"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="LEFT JOIN user AS buyer ON buyer.id = work.buyer_user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="630"/>
+	</bean>
+
+	<bean name="work.buyer.firstName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="first_name"/>
+		<property name="dbFieldNameAlias" value="buyerFirstName"/>
+		<property name="dbTable" value="buyer"/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Internal Owner First Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="firstName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="LEFT JOIN user AS buyer ON buyer.id = work.buyer_user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="480"/>
+	</bean>
+
+	<bean name="work.buyer.lastName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="last_name"/>
+		<property name="dbFieldNameAlias" value="buyerLastName"/>
+		<property name="dbTable" value="buyer"/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Internal Owner Last Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="lastName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="LEFT JOIN user AS buyer ON buyer.id = work.buyer_user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="550"/>
+	</bean>
+
+	<bean name="work_milestones.sentDate" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="sent_on"/>
+		<property name="dbTable" value="work_milestones"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Sent Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="sentDate"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="left join work_milestones on work.id = work_milestones.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="120"/>
+		<property name="toolTip">
+			<value>The date the assignment was first sent to resources.</value>
+		</property>
+	</bean>
+
+
+	<bean name="work_milestones.completeDate" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="complete_on"/>
+		<property name="dbTable" value="work_milestones"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Complete Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="completeDate"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="left join work_milestones on work.id = work_milestones.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="140"/>
+		<property name="toolTip">
+			<value>The date the resource submitted the assignment for approval.</value>
+		</property>
+	</bean>
+
+	<bean name="initialCheckin" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(select work_resource_time_tracking.checked_in_on from work_resource left  join work_resource_time_tracking on work_resource.id = work_resource_time_tracking.work_resource_id where  work_resource.work_resource_status_type_code = 'active' AND work_resource.assigned_to_work = true and work_resource.work_id = work.id order by work_resource_time_tracking.created_on ASC limit 1)"/>
+		<property name="dbFieldNameAlias" value="initialCheckin"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="First Check In"/>
+			</map>
+		</property>
+		<property name="keyName" value="initialCheckin"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="250"/>
+		<property name="toolTip">
+			<value>The date and time of the resource's first check in for the assignment.</value>
+		</property>
+	</bean>
+
+	<bean name="work_milestones.acceptanceDate" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="accepted_on"/>
+		<property name="dbTable" value="work_milestones"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Acceptance Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="acceptanceDate"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="11"/>
+					<property name="join" value="left join work_milestones on work.id = work_milestones.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="130"/>
+		<property name="toolTip">
+			<value>The date the resource accepted the assignment.</value>
+		</property>
+	</bean>
+
+	<bean name="work_milestones.paymentDate" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="paid_on"/>
+		<property name="dbTable" value="work_milestones"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Payment Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="paymentDate"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="12"/>
+					<property name="join" value="left join work_milestones on work.id = work_milestones.work_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="190"/>
+		<property name="toolTip">
+			<value>The date the assignment was paid.</value>
+		</property>
+	</bean>
+
+	<bean name="work.createdOn" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="created_on"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Created Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="createdOn"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="210"/>
+		<property name="toolTip">
+			<value>The date the assignment was created. This may be when it was saved as a draft, and could be far in advance of when it was sent to resources.
+			</value>
+		</property>
+	</bean>
+
+	<bean name="work.modifiedOn" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="modified_on"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Last Modified"/>
+			</map>
+		</property>
+		<property name="keyName" value="modifiedOn"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="290"/>
+	</bean>
+
+	<bean name="work.title" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="title"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Title"/>
+			</map>
+		</property>
+		<property name="keyName" value="title"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format">
+			<bean name="titleLinkFormat" class="com.workmarket.reporting.format.TitleLinkFormat">
+				<constructor-arg value="${baseurl}/assignments/details/"/>
+			</bean>
+		</property>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="10"/>
+		<property name="referencedEntities">
+			<list>
+				<ref bean="work.workNumber"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="work.description" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="description"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Description"/>
+			</map>
+		</property>
+		<property name="keyName" value="description"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="striptHtmlFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="20"/>
+	</bean>
+
+	<bean name="work.desiredSkills" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="desired_skills"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Skills"/>
+			</map>
+		</property>
+		<property name="keyName" value="desiredSkills"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="50"/>
+	</bean>
+
+	<bean name="work.instructions" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="instructions"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Special Instructions"/>
+			</map>
+		</property>
+		<property name="keyName" value="instructions"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="striptHtmlFormat"/>
+		<property name="orderBy" value="30"/>
+	</bean>
+
+	<bean name="work.addressOnsiteFlag" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address_onsite_flag"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(1)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Onsite work?"/>
+			</map>
+		</property>
+		<property name="keyName" value="addressOnsiteFlag"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+	</bean>
+
+	<bean name="work.locationOrder" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address_idxxx"/>
+		<property name="dbTable" value="address"/>
+		<property name="fieldType" value=""/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Address Line 1"/>
+			</map>
+		</property>
+		<property name="keyName" value=""/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="320"/>
+	</bean>
+
+	<!-- deprecating this.  its awkward, and not needed. -->
+	<bean name="work.scheduleRangeFlag" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="schedule_is_range_flag"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(1)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Schedule is range flag"/>
+			</map>
+		</property>
+		<property name="keyName" value="scheduleRangeFlag"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+	</bean>
+
+	<bean name="work.scheduleFrom" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="schedule_from"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Assignment Window Start"/>
+			</map>
+		</property>
+		<property name="keyName" value="scheduleFrom"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="150"/>
+	</bean>
+
+	<!-- also eliminating this for confusion. -->
+
+	<bean name="work.scheduleThrough" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="schedule_through"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Assignment Window End"/>
+			</map>
+		</property>
+		<property name="keyName" value="scheduleThrough"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="170"/>
+	</bean>
+
+
+	<!-- TODO - make this the buyer's name, not ID -->
+	<bean name="" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="buyer_user_idxxx"/>
+		<property name="dbTable" value="user"/>
+		<property name="fieldType" value=""/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Buyer"/>
+			</map>
+		</property>
+		<property name="keyName" value=""/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="40"/>
+	</bean>
+
+	<bean name="workStatusTypeCode" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value=" CASE work.work_status_type_code
+				WHEN 'active' THEN IF( (assignedResource.checkedin_flag = true
+				OR (work.checkin_required_flag = false AND work.checkin_call_required = false AND IFNULL(assignedResource.checkedin_flag, false) = false
+				AND work.schedule_from &lt;= sysdate())), 'inprogress', 'active')
+				WHEN 'cancelledWithPay' THEN 'cancelled'
+				WHEN 'cancelledPayPending' THEN 'cancelled'
+				ELSE work.work_status_type_code END "/>
+		<property name="dbFieldNameAlias" value="workStatusTypeCode"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(15)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Current Status"/>
+			</map>
+		</property>
+		<property name="keyName" value="workStatusTypeCode"/>
+		<property name="filterInputTag" ref="workStatusCodeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="110"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="31"/>
+					<property name="join"
+							  value="left join work_resource AS assignedResource on work.id = assignedResource.work_id AND assignedResource.assigned_to_work = true"/>
+				</bean>
+			</list>
+		</property>
+		<property name="customSql">
+			<bean class="com.workmarket.reporting.query.WorkStatusCodeCustomSql"/>
+		</property>
+	</bean>
+
+	<bean name="work.workNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="work_number"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(12)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Assignment ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="workNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="aTagFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="0"/>
+	</bean>
+
+	<!-- not being used.  TODO - filter out templates from all reports. -->
+	<bean name="work.type" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="type"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(10)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Type"/>
+			</map>
+		</property>
+		<property name="keyName" value="type"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+	</bean>
+
+	<bean name="work.pricingStrategy" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pricing_strategy_type"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="varchar(20)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pricing Type"/>
+			</map>
+		</property>
+		<property name="keyName" value="pricingStrategy"/>
+		<property name="filterInputTag" ref="workPricingStrategyTypeFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="390"/>
+		<property name="toolTip">
+			<value>This field will indicate whether the assignment is flat fee, hourly, blended hourly, per unit, or internal.</value>
+		</property>
+	</bean>
+
+	<bean name="perHourPrice" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value=" CASE work.pricing_strategy_type
+				WHEN 'PER_HOUR' THEN work.per_hour_price
+				WHEN 'BLENDED_PER_HOUR' THEN work.initial_per_hour_price ELSE NULL END"/>
+		<property name="dbFieldNameAlias" value="perHourPrice"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Per Hour Price (Initial)"/>
+			</map>
+		</property>
+		<property name="keyName" value="perHourPrice"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="400"/>
+	</bean>
+
+	<bean name="work.fullPricingStrategy.additionalPerHourPrice" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="additional_per_hour_price"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Per Hour Price (Additional)"/>
+			</map>
+		</property>
+		<property name="keyName" value="fullPricingStrategy.additionalPerHourPrice"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="410"/>
+	</bean>
+
+	<bean name="assignedWorkResource.hours_worked" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="hours_worked"/>
+		<property name="dbTable" value="assignedWorkResource"/>
+		<property name="fieldType" value="int(11)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Hours Worked"/>
+			</map>
+		</property>
+		<property name="keyName" value="hours_worked"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="53"/>
+					<property name="join"
+							  value="left join work_resource assignedWorkResource on work.id = assignedWorkResource.work_id AND assignedWorkResource.assigned_to_work = TRUE"/>
+				</bean>
+			</list>
+		</property>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="420"/>
+	</bean>
+
+	<bean name="work.pricingStrategy.flatPrice" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="flat_price"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="decimal(17,8)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Flat Price"/>
+			</map>
+		</property>
+		<property name="keyName" value="pricingStrategy.flatPrice"/>
+		<property name="filterInputTag" ref="inputNumberRangeFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="abstractFilter" ref="numericFilter"/>
+		<property name="orderBy" value="440"/>
+	</bean>
+
+
+	<bean name="buyerFee" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value=" IF (work.work_status_type_code IN ('paymentPending','paid', 'cancelled', 'cancelledPayPending', 'cancelledWithPay'), work.buyer_fee, NULL)"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="dbFieldNameAlias" value="buyerFee"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Final Fee"/>
+			</map>
+		</property>
+		<property name="keyName" value="buyerFee"/>
+		<property name="filterInputTag" ref="inputNumberRangeFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="abstractFilter" ref="numericFilter"/>
+		<property name="orderBy" value="430"/>
+		<property name="toolTip">
+			<value>The amount of the Work Market fee, if the assignment is closed.</value>
+		</property>
+	</bean>
+
+	<bean name="amountEarned" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value=" IF (work.work_status_type_code IN ('paymentPending','paid', 'cancelled', 'cancelledPayPending', 'cancelledWithPay'), work.amount_earned, NULL)"/>
+		<property name="dbTable" value=""/>
+		<property name="dbFieldNameAlias" value="amount_earned"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Final Resource Earnings"/>
+			</map>
+		</property>
+		<property name="keyName" value="amountEarned"/>
+		<property name="filterInputTag" ref="inputNumberRangeFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="abstractFilter" ref="numericFilter"/>
+		<property name="orderBy" value="450"/>
+		<property name="toolTip">
+			<value>The amount the resource earned, if the assignment is closed.</value>
+		</property>
+	</bean>
+	<bean name="work.refundedAmount" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="refunded_amount"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Refunded Amount"/>
+			</map>
+		</property>
+		<property name="keyName" value="refundedAmount"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="500"/>
+	</bean>
+	<bean name="work.voidedAmountEarned" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="voided_amount_earned"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Voided Amount Earned"/>
+			</map>
+		</property>
+		<property name="keyName" value="voidedAmountEarned"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="540"/>
+	</bean>
+
+
+	<bean name="spendLimit" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="CASE work.pricing_strategy_type WHEN 'FLAT' THEN work.flat_price + work.additional_expenses + work.bonus WHEN 'PER_HOUR' THEN (work.per_hour_price * work.max_number_of_hours) + work.additional_expenses + work.bonus WHEN 'PER_UNIT' THEN (work.per_unit_price * work.max_number_of_units) + work.additional_expenses + work.bonus WHEN 'BLENDED_PER_HOUR' THEN ((work.initial_per_hour_price * work.initial_number_of_hours) + (work.additional_per_hour_price * work.max_blended_number_of_hours)) + work.additional_expenses + work.bonus WHEN 'BLENDED_PER_UNIT' THEN ((work.initial_per_unit_price * work.initial_number_of_units) + (work.additional_per_unit_price * work.max_blended_number_of_units)) + work.additional_expenses + work.bonus WHEN 'INTERNAL' THEN 0 ELSE NULL END"/>
+		<property name="dbFieldNameAlias" value="spendLimit"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Current Cost"/>
+			</map>
+		</property>
+		<property name="keyName" value="spendLimit"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="460"/>
+		<property name="toolTip">
+			<value>This is the total cost for the assignment, at the time of the report. If the assignment is closed, this is identical to the Final Cost.</value>
+		</property>
+	</bean>
+
+	<bean name="initialPrice" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IF (EXISTS (Select id from work_price WHERE work_id = work.id), (Select CASE pricing_strategy_type WHEN 'FLAT' THEN flat_price + additional_expenses WHEN 'PER_HOUR' THEN (per_hour_price * max_number_of_hours) + additional_expenses WHEN 'PER_UNIT' THEN (per_unit_price * max_number_of_units) + additional_expenses WHEN 'BLENDED_PER_HOUR' THEN ((initial_per_hour_price * initial_number_of_hours) + (additional_per_hour_price * max_blended_number_of_hours)) + additional_expenses WHEN 'BLENDED_PER_UNIT' THEN ((initial_per_unit_price * initial_number_of_units) + (additional_per_unit_price * max_blended_number_of_units)) + additional_expenses WHEN 'INTERNAL' THEN 0 ELSE NULL END AS spend_limit FROM work_price WHERE work_id = work.id ORDER BY created_on ASC LIMIT 1),
+CASE work.pricing_strategy_type WHEN 'FLAT' THEN work.flat_price + work.additional_expenses WHEN 'PER_HOUR' THEN (work.per_hour_price * work.max_number_of_hours) + work.additional_expenses WHEN 'PER_UNIT' THEN (work.per_unit_price * work.max_number_of_units) + work.additional_expenses WHEN 'BLENDED_PER_HOUR' THEN ((work.initial_per_hour_price * work.initial_number_of_hours) + (work.additional_per_hour_price * work.max_blended_number_of_hours)) + work.additional_expenses WHEN 'BLENDED_PER_UNIT' THEN ((work.initial_per_unit_price * work.initial_number_of_units) + (work.additional_per_unit_price * work.max_blended_number_of_units)) + work.additional_expenses WHEN 'INTERNAL' THEN 0 ELSE NULL END)"/>
+		<property name="dbFieldNameAlias" value="initialPrice"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Initial Cost"/>
+			</map>
+		</property>
+		<property name="keyName" value="initialPrice"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="490"/>
+		<property name="toolTip">
+			<value>This is the total cost for the assignment, at the time it was created.</value>
+		</property>
+	</bean>
+
+	<bean name="pendingApprovalCost" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value=" IF (work.work_status_type_code = 'complete',
+			IF (work.override_price IS NOT NULL, work.override_price + (work.override_price * IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100),
+			CASE 	work.pricing_strategy_type
+			WHEN 'FLAT' THEN work.flat_price + COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0) +
+						((work.flat_price + COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0)) *
+						IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+			WHEN 'PER_HOUR' THEN (work.per_hour_price * COALESCE(wr.hours_worked,0) + COALESCE(wr.bonus, 0)) + COALESCE(wr.additional_expenses, 0) +
+						(((work.per_hour_price * COALESCE(wr.hours_worked,0)) + COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0)) *
+						IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+			WHEN 'PER_UNIT' THEN (work.per_unit_price * COALESCE(wr.units_processed,0)) + COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0) +
+						(((work.per_unit_price * COALESCE(wr.units_processed,0)) + COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0)) *
+						IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+			WHEN 'BLENDED_PER_HOUR' THEN
+				((work.initial_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, work.initial_number_of_hours, wr.hours_worked))
+				+ (work.additional_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, COALESCE(wr.hours_worked,0) - work.initial_number_of_hours, 0))
+				+ COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0) +
+				((work.initial_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, work.initial_number_of_hours, wr.hours_worked))
+				+ (work.additional_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, COALESCE(wr.hours_worked,0) - work.initial_number_of_hours, 0))
+				+ COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0)) *
+				IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+			WHEN 'BLENDED_PER_UNIT' THEN
+				(work.initial_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, work.initial_number_of_units, wr.units_processed))
+				+ (work.additional_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, COALESCE(wr.units_processed,0) - work.initial_number_of_units, 0))
+				+ COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0) +
+				((work.initial_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, work.initial_number_of_units, wr.units_processed))
+				+ (work.additional_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, COALESCE(wr.units_processed,0) - work.initial_number_of_units, 0))
+				+ COALESCE(wr.additional_expenses, 0) + COALESCE(wr.bonus, 0) *
+				IF (work.account_pricing_type_code = 'transactional', COALESCE(legacy_work_fee_configuration.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+			WHEN 'INTERNAL' THEN 0 ELSE NULL END), NULL)"/>
+		<property name="dbTable" value=""/>
+		<property name="dbFieldNameAlias" value="proposed_spend_limit"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pending Approval Cost With Fee"/>
+			</map>
+		</property>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="55"/>
+					<property name="join"
+							  value="left join work_resource wr on wr.work_id = work.id AND wr.assigned_to_work = true AND wr.work_resource_status_type_code = 'active'"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="inner join account_register on work.company_id = account_register.company_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="12"/>
+					<property name="join" value="LEFT JOIN legacy_work_fee_configuration ON legacy_work_fee_configuration.work_id = work.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="keyName" value="pendingApprovalCost"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="abstractFilter" ref="numericFilter"/>
+		<property name="orderBy" value="560"/>
+		<property name="toolTip">
+			<value>This is the total cost submitted by the resource, including additional expenses and fee, for assignments currently pending approval.</value>
+		</property>
+	</bean>
+
+	<bean name="workPrice" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value=" IF (work.work_status_type_code IN ('paymentPending','paid', 'cancelled', 'cancelledPayPending', 'cancelledWithPay'), work.buyer_total_cost, NULL)"/>
+		<property name="dbTable" value=""/>
+		<property name="dbFieldNameAlias" value="workPrice"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Final Cost"/>
+			</map>
+		</property>
+		<property name="keyName" value="workPrice"/>
+		<property name="filterInputTag" ref="inputNumberRangeFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="abstractFilter" ref="numericFilter"/>
+		<property name="orderBy" value="580"/>
+		<property name="toolTip">
+			<value>This is the total cost for the assignment, if it is closed.</value>
+		</property>
+	</bean>
+
+	<!-- budget increases -->
+
+	<bean name="pendingBudgetIncrease" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(Select CASE pricing_strategy_type
+		WHEN 'FLAT' THEN flat_price + additional_expenses + bonus
+		WHEN 'PER_HOUR' THEN (per_hour_price * max_number_of_hours) + additional_expenses + bonus
+		WHEN 'PER_UNIT' THEN (per_unit_price * max_number_of_units) + additional_expenses + bonus
+		WHEN 'BLENDED_PER_HOUR' THEN ((initial_per_hour_price * initial_number_of_hours) + (additional_per_hour_price * max_blended_number_of_hours)) + additional_expenses + bonus
+		WHEN 'BLENDED_PER_UNIT' THEN ((initial_per_unit_price * initial_number_of_units) + (additional_per_unit_price * max_blended_number_of_units)) + additional_expenses + bonus
+		WHEN 'INTERNAL' THEN 0
+		ELSE NULL END AS budget_increase FROM work_negotiation WHERE work_id = work.id AND approval_status = 0 AND type='budget' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="pendingBudgetIncrease"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pending Budget Increases"/>
+			</map>
+		</property>
+		<property name="keyName" value="pendingBudgetIncrease"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="620"/>
+		<property name="toolTip" value="This is the amount of additional earnings that has been requested by the resource, but not yet approved"/>
+	</bean>
+
+	<bean name="approvedBudgetIncrease" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(Select CASE pricing_strategy_type
+WHEN 'FLAT' THEN flat_price + additional_expenses
+WHEN 'PER_HOUR' THEN (per_hour_price * max_number_of_hours) + additional_expenses + bonus
+WHEN 'PER_UNIT' THEN (per_unit_price * max_number_of_units) + additional_expenses + bonus
+WHEN 'BLENDED_PER_HOUR' THEN ((initial_per_hour_price * initial_number_of_hours) + (additional_per_hour_price * max_blended_number_of_hours)) + additional_expenses + bonus
+WHEN 'BLENDED_PER_UNIT' THEN ((initial_per_unit_price * initial_number_of_units) + (additional_per_unit_price * max_blended_number_of_units)) + additional_expenses + bonus
+WHEN 'INTERNAL' THEN 0
+ELSE NULL END AS budget_increase FROM work_negotiation WHERE work_id = work.id AND approval_status = 1 AND type='budget' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="approvedBudgetIncrease"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Approved Budget Increases"/>
+			</map>
+		</property>
+		<property name="keyName" value="approvedBudgetIncrease"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="660"/>
+		<property name="toolTip"
+				  value="This is the amount of expense reimbursements that has been requested by the resource, and approved by the assignment owner."/>
+	</bean>
+
+	<!-- expense reimbursements -->
+
+	<bean name="pendingSLITotal" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT IF(budgetNegotiation.id IS NOT NULL,
+					(SELECT CASE budgetNegotiation.pricing_strategy_type
+						WHEN 'FLAT' THEN budgetNegotiation.flat_price + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'PER_HOUR' THEN (budgetNegotiation.per_hour_price * budgetNegotiation.max_number_of_hours) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'PER_UNIT' THEN (budgetNegotiation.per_unit_price * budgetNegotiation.max_number_of_units) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'BLENDED_PER_HOUR' THEN ((budgetNegotiation.initial_per_hour_price * budgetNegotiation.initial_number_of_hours) + (budgetNegotiation.additional_per_hour_price * budgetNegotiation.max_blended_number_of_hours)) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'BLENDED_PER_UNIT' THEN ((budgetNegotiation.initial_per_unit_price * budgetNegotiation.initial_number_of_units) + (budgetNegotiation.additional_per_unit_price * budgetNegotiation.max_blended_number_of_units)) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'INTERNAL' THEN 0  + COALESCE(expenseNegotiation.additional_expenses, 0) ELSE 0 + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0) END),
+
+					(SELECT CASE work.pricing_strategy_type
+						WHEN 'FLAT' THEN work.flat_price + COALESCE(expenseNegotiation.additional_expenses, 0)
+						WHEN 'PER_HOUR' THEN (work.per_hour_price * work.max_number_of_hours) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'PER_UNIT' THEN (work.per_unit_price * work.max_number_of_units) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'BLENDED_PER_HOUR' THEN ((work.initial_per_hour_price * work.initial_number_of_hours) + (work.additional_per_hour_price * work.max_blended_number_of_hours)) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'BLENDED_PER_UNIT' THEN ((work.initial_per_unit_price * work.initial_number_of_units) + (work.additional_per_unit_price * work.max_blended_number_of_units)) + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0)
+						WHEN 'INTERNAL' THEN 0  + COALESCE(expenseNegotiation.additional_expenses, 0) ELSE 0  + COALESCE(expenseNegotiation.additional_expenses, 0) + COALESCE(expenseNegotiation.bonus, 0) END)))"/>
+		<property name="dbFieldNameAlias" value="pendingSLITotal"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pending Total Assignment Budget"/>
+			</map>
+		</property>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="55"/>
+					<property name="join"
+							  value="LEFT JOIN (SELECT work_id, MAX(work_negotiation.id) As negotiationId FROM work_negotiation WHERE approval_status = 0 AND TYPE='budget' GROUP BY work_id) budget ON work.id = budget.work_id
+									LEFT JOIN (SELECT work_id, MAX(work_negotiation.id) As negotiationId FROM work_negotiation WHERE approval_status = 0 AND TYPE='expense' GROUP BY work_id) expense ON work.id = expense.work_id
+									LEFT JOIN (SELECT work_id, MAX(work_negotiation.id) As negotiationId FROM work_negotiation WHERE approval_status = 0 AND TYPE='bonus' GROUP BY work_id) bonus ON work.id = bonus.work_id
+									LEFT JOIN work_negotiation budgetNegotiation on budgetNegotiation.id = budget.negotiationId
+									LEFT JOIN work_negotiation expenseNegotiation on expenseNegotiation.id = expense.negotiationId
+									LEFT JOIN work_negotiation bonusNegotiation on bonusNegotiation.id = bonus.negotiationId"/>
+				</bean>
+			</list>
+		</property>
+		<property name="keyName" value="pendingSLITotal"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="590"/>
+		<property name="toolTip"
+				  value="This is the new total amount requested, if the resource's budget increase and expense reimbursement requests are approved."/>
+	</bean>
+
+
+
+	<bean name="pendingSLI" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(SELECT additional_expenses as spend_limit FROM work_negotiation WHERE work_id = work.id AND approval_status = 0 AND type='expense' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="pendingSLI" />
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map><entry key-ref="enLocale" value="Pending Added Expenses" /></map>
+		</property>
+		<property name="keyName" value="pendingSLI" />
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat" />
+		<property name="orderBy" value="650"/>
+		<property name="toolTip">
+			<value>This is the amount of additional earnings that has been requested by the resource, but not yet approved</value>
+		</property>
+	</bean>
+
+	<bean name="approvedSLI" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT additional_expenses AS spend_limit FROM work_negotiation WHERE work_id = work.id AND approval_status = 1 AND type='expense' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="approvedSLI"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Approved Expense Reimbursements"/>
+			</map>
+		</property>
+		<property name="keyName" value="approvedSLI"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="680"/>
+		<property name="toolTip"
+				  value="This is the amount of expense reimbursements that have been requested by the resource, and approved by the assignment owner."/>
+	</bean>
+
+	<bean name="rejectedSLI" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT additional_expenses AS spend_limit FROM work_negotiation WHERE work_id = work.id AND approval_status = 2 AND type='expense' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="rejectedSLI"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Rejected Expense Reimbursements"/>
+			</map>
+		</property>
+		<property name="keyName" value="rejectedSLI"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="710"/>
+		<property name="toolTip"
+				  value="This is the amount of expense reimbursements that have been requested by the resource, and rejected by the assignment owner."/>
+	</bean>
+
+	<bean name="approvedBonus" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT bonus FROM work_negotiation WHERE work_id = work.id AND approval_status = 1 AND type='bonus' ORDER BY created_on desc LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="approvedBonus"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Approved Bonuses"/>
+			</map>
+		</property>
+		<property name="keyName" value="approvedBonus"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="750"/>
+		<property name="toolTip"
+				  value="This is the amount of bonuses that have been approved by the assignment owner"/>
+	</bean>
+
+	<bean name="totalValue" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IF (work.work_status_type_code = 'complete',
+		IF(work.override_price IS NOT NULL, work.override_price,
+	CASE work.pricing_strategy_type
+		WHEN 'FLAT' THEN
+			work.flat_price
+			+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+			+ COALESCE(wr.bonus, 0)
+			+ ((work.flat_price
+				+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+				+ COALESCE(wr.bonus, 0))
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+		WHEN 'PER_HOUR' THEN
+			(work.per_hour_price * COALESCE(wr.hours_worked,0))
+			+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+			+ COALESCE(wr.bonus, 0)
+			+ (((work.per_hour_price * COALESCE(wr.hours_worked, 0))
+				+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+				+ COALESCE(wr.bonus, 0))
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+		WHEN 'PER_UNIT' THEN
+			(work.per_unit_price * COALESCE(wr.units_processed,0))
+			+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+			+ COALESCE(wr.bonus, 0)
+			+ (((work.per_unit_price * COALESCE(wr.units_processed,0))
+				+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+				+ COALESCE(wr.bonus, 0))
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+		WHEN 'BLENDED_PER_HOUR' THEN
+			((work.initial_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, work.initial_number_of_hours, wr.hours_worked))
+		  + (work.additional_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, COALESCE(wr.hours_worked,0) - work.initial_number_of_hours, 0))
+		  + IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+		  + COALESCE(wr.bonus, 0)
+		  + ((work.initial_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, work.initial_number_of_hours, wr.hours_worked))
+		  	+ (work.additional_per_hour_price * IF(COALESCE(wr.hours_worked,0) > work.initial_number_of_hours, COALESCE(wr.hours_worked,0) - work.initial_number_of_hours, 0))
+		  	+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+		  	+ COALESCE(wr.bonus, 0))
+		  	* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+		WHEN 'BLENDED_PER_UNIT' THEN
+			((work.initial_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, work.initial_number_of_units, wr.units_processed))
+		  + (work.additional_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, COALESCE(wr.units_processed,0) - work.initial_number_of_units, 0))
+		  + IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+		  + COALESCE(wr.bonus, 0)
+		  + ((work.initial_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, work.initial_number_of_units, wr.units_processed))
+		  	+ (work.additional_per_unit_price * IF(COALESCE(wr.units_processed,0) > work.initial_number_of_units, COALESCE(wr.units_processed,0) - work.initial_number_of_units, 0))
+		  	+ IF(COALESCE(wr.additional_expenses, 0) > 0, LEAST(COALESCE(wr.additional_expenses, 0), work.additional_expenses), COALESCE(work.additional_expenses, 0))
+		  	+ COALESCE(wr.bonus, 0)) *
+		  	IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+
+		WHEN 'INTERNAL' THEN 0 ELSE NULL END),
+
+		IF (work.work_status_type_code IN ('active', 'declined', 'draft', 'sent', 'void'),
+		 CASE 	work.pricing_strategy_type
+		 WHEN 'FLAT' THEN work.flat_price + work.additional_expenses + work.bonus + ((work.flat_price + work.additional_expenses + work.bonus)
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+		 WHEN 'PER_HOUR' THEN (work.per_hour_price * work.max_number_of_hours) + work.additional_expenses + work.bonus +
+				(((work.per_hour_price * work.max_number_of_hours) + work.additional_expenses + work.bonus)
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+		 WHEN 'PER_UNIT' THEN (work.per_unit_price * work.max_number_of_units) + work.additional_expenses + work.bonus +
+				(((work.per_unit_price * work.max_number_of_units) + work.additional_expenses + work.bonus)
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+		 WHEN 'BLENDED_PER_HOUR' THEN ((work.initial_per_hour_price * work.initial_number_of_hours) + (work.additional_per_hour_price * work.max_blended_number_of_hours)) + work.additional_expenses + work.bonus +
+				((((work.initial_per_hour_price * work.initial_number_of_hours) + (work.additional_per_hour_price * work.max_blended_number_of_hours)) + work.additional_expenses + work.bonus)
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+		 WHEN 'BLENDED_PER_UNIT' THEN ((work.initial_per_unit_price * work.initial_number_of_units) + (work.additional_per_unit_price * work.max_blended_number_of_units)) + work.additional_expenses + work.bonus +
+				((((work.initial_per_unit_price * work.initial_number_of_units) + (work.additional_per_unit_price * work.max_blended_number_of_units)) + work.additional_expenses + work.bonus)
+				* IF (work.account_pricing_type_code = 'transactional', COALESCE(fee.percentage, COALESCE(account_register.current_work_fee_percentage,0)),0) / 100)
+		 WHEN 'INTERNAL' THEN 0
+		 ELSE NULL END,
+		(COALESCE(work.buyer_total_cost, 0))))"/>
+		<property name="dbFieldNameAlias" value="totalWorkValue"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Assignment Value"/>
+			</map>
+		</property>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="55"/>
+					<property name="join"
+							  value="left join work_resource wr on wr.work_id = work.id AND wr.assigned_to_work = true AND wr.work_resource_status_type_code = 'active'"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="10"/>
+					<property name="join" value="inner join account_register on work.company_id = account_register.company_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="12"/>
+					<property name="join" value="left join legacy_work_fee_configuration as fee ON fee.work_id = work.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="keyName" value="totalValue"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="730"/>
+		<property name="toolTip" value="This is the total assignment value that includes amount paid to the resource(s) and all Work Market fees."/>
+	</bean>
+
+	<bean name="work.closedOn" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="closed_on"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Close Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="closedOn"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="160"/>
+	</bean>
+
+	<bean name="work.dueOn" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="due_on"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Due Date"/>
+			</map>
+		</property>
+		<property name="keyName" value="dueOn"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="orderBy" value="200"/>
+	</bean>
+
+	<bean name="work.additionalExpenses" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="additional_expenses"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Additional Expenses Paid"/>
+			</map>
+		</property>
+		<property name="keyName" value="additionalExpenses"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="orderBy" value="700"/>
+		<property name="toolTip">
+			<value>This is the final amount of additional earnings paid to the resource.</value>
+		</property>
+	</bean>
+
+
+	<!-- don't display IDs, display human readables.  removing.  -->
+	<bean name="work.clientCompany" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="client_company_id"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="int(11)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Client Company Id"/>
+			</map>
+		</property>
+		<property name="keyName" value="clientCompany"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+	</bean>
+
+	<bean name="paymentTermsDays" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IF(work.payment_terms_enabled = 1, work.payment_terms_days, 0)"/>
+		<property name="dbFieldNameAlias" value="paymentTermsDays"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="int(11)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Payment Terms"/>
+			</map>
+		</property>
+		<property name="keyName" value="paymentTermsDays"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="100"/>
+	</bean>
+
+	<bean name="subStatuses" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT GROUP_CONCAT(s.description) FROM work_sub_status_type_association a INNER JOIN work_sub_status_type s ON s.id = a.work_sub_status_type_id WHERE a.work_id = work.id AND a.deleted = FALSE AND a.resolved = FALSE AND s.client_visible = TRUE AND s.deleted = FALSE)"/>
+		<property name="dbFieldNameAlias" value="subStatuses"/>
+		<property name="dbTable" value=""/>
+		<property name="alternateDbFieldName" value="wssta.work_sub_status_type_id"/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Current Labels"/>
+			</map>
+		</property>
+		<property name="keyName" value="subStatuses"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="53"/>
+					<property name="join"
+							  value="left join work_sub_status_type_association wssta on work.id = wssta.work_id AND wssta.resolved = FALSE AND wssta.deleted = FALSE"/>
+				</bean>
+			</list>
+		</property>
+		<property name="filterInputTag" ref="workSubStatusFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="1060"/>
+	</bean>
+
+	<bean name="resolvedSubStatuses" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(SELECT GROUP_CONCAT(s.description) FROM work_sub_status_type_association a INNER JOIN work_sub_status_type s ON s.id = a.work_sub_status_type_id WHERE a.work_id = work.id AND a.deleted = FALSE AND a.resolved = TRUE AND s.client_visible = TRUE AND s.deleted = FALSE)"/>
+		<property name="dbFieldNameAlias" value="resolvedSubStatuses"/>
+		<property name="dbTable" value=""/>
+		<property name="alternateDbFieldName" value="wsstar.work_sub_status_type_id"/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resolved Labels"/>
+			</map>
+		</property>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="53"/>
+					<property name="join"
+							  value="left join work_sub_status_type_association wsstar on work.id = wsstar.work_id AND wsstar.resolved = TRUE AND wsstar.deleted = FALSE"/>
+				</bean>
+			</list>
+		</property>
+		<property name="keyName" value="resolvedSubStatuses"/>
+		<property name="filterInputTag" ref="workSubStatusFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="orderBy" value="1070"/>
+	</bean>
+
+	<bean name="sentResources" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(SELECT COUNT(*) FROM work_resource WHERE work_id = work.id)"/>
+		<property name="dbFieldNameAlias" value="sentResources"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="int"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="# of Resources Routed"/>
+			</map>
+		</property>
+		<property name="keyName" value="sentResources"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="1080"/>
+	</bean>
+
+	<bean name="declinedResources" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(SELECT COUNT(*) FROM work_resource WHERE work_resource_status_type_code = 'declined' AND work_id = work.id)"/>
+		<property name="dbFieldNameAlias" value="declinedResources"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="int"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="# of Resources Declined"/>
+			</map>
+		</property>
+		<property name="keyName" value="declinedResources"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="1090"/>
+	</bean>
+
+	<bean name="questionsAsked" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(SELECT COUNT(*) FROM work_question_answer_pair WHERE work_id = work.id)"/>
+		<property name="dbFieldNameAlias" value="questionsAsked"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="int"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="# of Questions Asked"/>
+			</map>
+		</property>
+		<property name="keyName" value="questionsAsked"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="1100"/>
+	</bean>
+
+	<bean name="counterOffersApplications" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(SELECT COUNT(*) FROM work_negotiation WHERE type IN ('negotiation', 'apply') and work_id = work.id)"/>
+		<property name="dbFieldNameAlias" value="counterOffersApplications"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="int"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="# of Counter Offers / Applications"/>
+			</map>
+		</property>
+		<property name="keyName" value="counterOffersApplications"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="1110"/>
+	</bean>
+
+	<bean name="routingType" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			SELECT DISTINCT case
+			WHEN assign_to_first_resource = 1
+			THEN 'First to accept'
+			ELSE 'Apply' END)"
+				/>
+		<property name="dbFieldNameAlias" value="routingType"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(20)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Routing Type"/>
+			</map>
+		</property>
+		<property name="keyName" value="routingType"/>
+		<property name="filterInputTag" ref="filterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="1130"/>
+	</bean>
+
+	<bean name="firstCheckin" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			select work_resource_time_tracking.checked_in_on
+			from work_resource_time_tracking
+			left join work_resource
+			on work_resource_time_tracking.work_resource_id = work_resource.id
+			where work_resource.work_id = work.id
+			and work_resource.assigned_to_work = true
+			order by checked_in_on asc
+			limit 1
+		)"/>
+		<property name="dbFieldNameAlias" value="firstCheckin"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="First Checkin"/>
+			</map>
+		</property>
+		<property name="keyName" value="firstCheckin"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="240"/>
+	</bean>
+
+	<bean name="lastCheckout" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			select work_resource_time_tracking.checked_out_on
+			from work_resource_time_tracking
+			left join work_resource
+			on work_resource_time_tracking.work_resource_id = work_resource.id
+			where work_resource.work_id = work.id
+			and work_resource.assigned_to_work = true
+			order by checked_out_on desc
+			limit 1
+		)"/>
+		<property name="dbFieldNameAlias" value="lastCheckout"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Last Checkout"/>
+			</map>
+		</property>
+		<property name="keyName" value="lastCheckout"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="260"/>
+	</bean>
+
+	<bean name="timeOnSite" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			SELECT IF(
+				SUM(
+					time_to_sec(
+						timediff(
+							work_resource_time_tracking.checked_out_on,work_resource_time_tracking.checked_in_on
+						)
+					)
+				) &lt; 0, 'Error - Check in before check out',
+				CONCAT(
+					TRUNCATE(SUM(
+					time_to_sec(
+						timediff(
+							work_resource_time_tracking.checked_out_on,work_resource_time_tracking.checked_in_on
+						)
+					)) / 60, 0) , 'm')
+				) AS timeOnSite
+			FROM 	work_resource_time_tracking
+			INNER 	JOIN work_resource ON work_resource.id = work_resource_time_tracking.work_resource_id
+			WHERE 	work_resource.work_id = work.id
+			AND 	work_resource.assigned_to_work = true
+		)"/>
+		<property name="dbFieldNameAlias" value="timeOnSite"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Time on Site (Minutes)"/>
+			</map>
+		</property>
+		<property name="keyName" value="timeOnSite"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="300"/>
+	</bean>
+
+	<bean name="checkinDistance" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			SELECT work_resource_time_tracking.distance
+				FROM work_resource_time_tracking
+				LEFT JOIN work_resource
+					ON work_resource_time_tracking.work_resource_id = work_resource.id
+				WHERE work_resource.work_id = work.id
+					AND work_resource.assigned_to_work = true
+				ORDER BY checked_in_on ASC
+				LIMIT 1
+		)"/>
+		<property name="dbFieldNameAlias" value="checkinDistance"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Checkin Distance (miles)"/>
+			</map>
+		</property>
+		<property name="keyName" value="checkinDistance"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="230"/>
+	</bean>
+
+	<bean name="checkoutDistance" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="(
+			SELECT work_resource_time_tracking.distance_out
+				FROM work_resource_time_tracking
+				LEFT JOIN work_resource
+					ON work_resource_time_tracking.work_resource_id = work_resource.id
+				WHERE work_resource.work_id = work.id
+					AND work_resource.assigned_to_work = true
+				ORDER BY checked_out_on desc
+				LIMIT 1
+		)"/>
+		<property name="dbFieldNameAlias" value="checkoutDistance"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Checkout Distance (miles)"/>
+			</map>
+		</property>
+		<property name="keyName" value="checkoutDistance"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="270"/>
+	</bean>
+
+	<bean name="work.resolution" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="resolution"/>
+		<property name="dbTable" value="work"/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resolution"/>
+			</map>
+		</property>
+		<property name="keyName" value="resolution"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="280"/>
+	</bean>
+
+	<bean name="workLocationNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="location.location_number"/>
+		<property name="dbFieldNameAlias" value="workLocationNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="workLocationNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="20"/>
+					<property name="join" value="left join location on work.client_location_id = location.id"/>
+				</bean>
+			</list>
+		</property>
+
+		<property name="joinClass" value="com.workmarket.domains.model.Location"/>
+		<property name="orderBy" value="220"/>
+	</bean>
+
+	<bean name="workLocationName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="location.name"/>
+		<property name="dbFieldNameAlias" value="workLocationName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="workLocationName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="20"/>
+					<property name="join" value="left join location on work.client_location_id = location.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Loaction"/>
+		<property name="orderBy" value="310"/>
+	</bean>
+
+	<bean name="workAddress1" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address.line1"/>
+		<property name="dbFieldNameAlias" value="workAddress1"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(200)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Address Line 1"/>
+			</map>
+		</property>
+		<property name="keyName" value="workAddress1"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="20"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="330"/>
+	</bean>
+
+	<bean name="workAddress2" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address.line2"/>
+		<property name="dbFieldNameAlias" value="workAddress2"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Address Line 2"/>
+			</map>
+		</property>
+		<property name="keyName" value="workAddress2"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="21"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="340"/>
+	</bean>
+
+	<bean name="workCity" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address.city"/>
+		<property name="dbFieldNameAlias" value="workCity"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="City"/>
+			</map>
+		</property>
+		<property name="keyName" value="workCity"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="22"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="350"/>
+	</bean>
+
+	<bean name="workState" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="workState.short_name"/>
+		<property name="dbFieldNameAlias" value="workState"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="State/Province"/>
+			</map>
+		</property>
+		<property name="keyName" value="workState"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="23"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="23"/>
+					<property name="join" value="left join state as workState on workState.id = address.state"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="360"/>
+	</bean>
+
+	<bean name="workPostalCode" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address.postal_code"/>
+		<property name="dbFieldNameAlias" value="workPostalCode"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(9)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Postal Code"/>
+			</map>
+		</property>
+		<property name="keyName" value="workPostalCode"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="24"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="380"/>
+	</bean>
+
+	<bean name="workCountry" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="address.country"/>
+		<property name="dbFieldNameAlias" value="workCountry"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(5)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Country"/>
+			</map>
+		</property>
+		<property name="keyName" value="workCountry"/>
+		<property name="filterInputTag" ref="workCountryFilterInputTag"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="24"/>
+					<property name="join" value="left join address on work.address_id = address.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Address"/>
+		<property name="orderBy" value="370"/>
+	</bean>
+
+	<bean name="industryName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="industry.name"/>
+		<property name="dbFieldNameAlias" value="industryName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(200)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Industry"/>
+			</map>
+		</property>
+		<property name="keyName" value="industryName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="25"/>
+					<property name="join" value="left join industry on work.industry_id = industry.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Industry"/>
+		<property name="orderBy" value="60"/>
+	</bean>
+
+	<bean name="templateName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="work_template.template_name"/>
+		<property name="dbFieldNameAlias" value="templateName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Template"/>
+			</map>
+		</property>
+		<property name="keyName" value="templateName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="26"/>
+					<property name="join" value="left join work AS work_template on work.work_template_id = work_template.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.work.model.WorkTemplate"/>
+		<property name="orderBy" value="70"/>
+	</bean>
+
+	<bean name="projectName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="project.name"/>
+		<property name="dbFieldNameAlias" value="projectName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Project"/>
+			</map>
+		</property>
+		<property name="keyName" value="projectName"/>
+		<property name="filterInputTag" ref="projectDynamicFilterInputTag"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="27"/>
+					<property name="join" value="left join project_work_association on work.id = project_work_association.work_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="28"/>
+					<property name="join" value="left join project on project.id = project_work_association.project_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.work.model.project.Project"/>
+		<property name="orderBy" value="670"/>
+	</bean>
+
+	<bean name="invoice.invoiceNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="invoice_number"/>
+		<property name="dbTable" value="invoice"/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Invoice"/>
+			</map>
+		</property>
+		<property name="keyName" value="invoiceNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="29"/>
+					<property name="join" value="left join invoice on work.invoice_id = invoice.id AND invoice.deleted = 0"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.invoice.Invoice"/>
+		<property name="orderBy" value="90"/>
+	</bean>
+
+	<bean name="invoiceSummaryNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="bundle.invoice_number"/>
+		<property name="dbFieldNameAlias" value="invoiceSummaryNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Invoice Bundle Id"/>
+			</map>
+		</property>
+		<property name="keyName" value="invoiceSummaryNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="29"/>
+					<property name="join" value="left join invoice workInvoice on work.invoice_id = workInvoice.id AND workInvoice.deleted = 0"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="30"/>
+					<property name="join" value="left join invoice_summary_detail ON invoice_summary_detail.invoice_id = workInvoice.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="31"/>
+					<property name="join" value="left join invoice bundle ON bundle.id = invoice_summary_detail.invoice_summary_id AND bundle.type = 'bundle'"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.invoice.Invoice"/>
+		<property name="orderBy" value="80"/>
+	</bean>
+
+	<bean name="user.workResourceID" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="user_number"/>
+		<property name="dbTable" value="user"/>
+		<property name="fieldType" value="varchar(20)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="workResourceID"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join work_resource on work.id = work_resource.work_id AND work_resource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join user on user.id = work_resource.user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="470"/>
+	</bean>
+
+	<bean name="workResourceName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="CONCAT(user.first_name,' ',user.last_name)"/>
+		<property name="dbFieldNameAlias" value="workResourceName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(512)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="workResourceName"/>
+		<property name="filterInputTag" ref="inputTextFilterInputTag"/>
+		<property name="abstractFilter" ref="fieldValueFilter"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join work_resource on work.id = work_resource.work_id AND work_resource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join user on user.id = work_resource.user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="510"/>
+		<property name="customSql">
+			<bean class="com.workmarket.reporting.query.ResourceNameCustomSql"/>
+		</property>
+		<property name="toolTip">
+			<value>Enter comma seperated list of names to filter by resource name</value>
+		</property>
+	</bean>
+
+	<bean name="user.workResourceFirstName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="first_name"/>
+		<property name="dbTable" value="user"/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource First Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="workResourceFirstName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join work_resource on work.id = work_resource.work_id AND work_resource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join user on user.id = work_resource.user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="520"/>
+	</bean>
+
+	<bean name="user.workResourceLastName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="last_name"/>
+		<property name="dbTable" value="user"/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource Last Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="workResourceLastName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format">
+			<bean name="lastNameFormat" class="com.workmarket.reporting.format.LastNameFormat">
+				<constructor-arg value="/profile/"/>
+			</bean>
+		</property>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join work_resource on work.id = work_resource.work_id AND work_resource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join user on user.id = work_resource.user_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="530"/>
+		<property name="referencedEntities">
+			<list>
+				<ref bean="user.workResourceID"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean name="assignedResourceCity" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IFNULL(profileAddress.city, postal_code.city)"/>
+		<property name="dbFieldNameAlias" value="assignedResourceCity"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource Address - City"/>
+			</map>
+		</property>
+		<property name="keyName" value="assignedResourceCity"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="31"/>
+					<property name="join"
+							  value="left join work_resource AS assignedResource on work.id = assignedResource.work_id AND assignedResource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="32"/>
+					<property name="join" value="left join profile on profile.user_id = assignedResource.user_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="33"/>
+					<property name="join" value="left join address AS profileAddress on profileAddress.id = profile.address_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="33"/>
+					<property name="join" value="left join postal_code on postal_code.id = profile.postal_code_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="570"/>
+	</bean>
+
+	<bean name="assignedResourceState" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IFNULL(profileState.short_name, postal_code_state.short_name)"/>
+		<property name="dbFieldNameAlias" value="assignedResourceState"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource Address - State/Province"/>
+			</map>
+		</property>
+		<property name="keyName" value="assignedResourceState"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="34"/>
+					<property name="join"
+							  value="left join work_resource AS assignedResource on work.id = assignedResource.work_id AND assignedResource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="35"/>
+					<property name="join" value="left join profile on profile.user_id = assignedResource.user_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="36"/>
+					<property name="join" value="left join address AS profileAddress on profileAddress.id = profile.address_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="36"/>
+					<property name="join" value="left join state AS profileState on profileState.id = profileAddress.state"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="36"/>
+					<property name="join" value="left join postal_code on postal_code.id = profile.postal_code_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="36"/>
+					<property name="join" value="left join state postal_code_state on postal_code_state.id = postal_code.state_province"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="600"/>
+	</bean>
+
+	<bean name="assignedResourcePostalCode" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="IFNULL(profileAddress.postal_code, profile.postal_code_id)"/>
+		<property name="dbFieldNameAlias" value="assignedResourcePostalCode"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(9)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource Address - Postal Code"/>
+			</map>
+		</property>
+		<property name="keyName" value="assignedResourcePostalCode"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="37"/>
+					<property name="join"
+							  value="left join work_resource AS assignedResource on work.id = assignedResource.work_id AND assignedResource.assigned_to_work = true"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="38"/>
+					<property name="join" value="left join profile on profile.user_id = assignedResource.user_id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="39"/>
+					<property name="join" value="left join address AS profileAddress on profileAddress.id = profile.address_id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="610"/>
+	</bean>
+
+	<bean name="rating.stars" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="round(rating.value/20,0)"/>
+		<property name="dbFieldNameAlias" value="stars"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(10)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Rating for this Assignment (out of 5 stars)"/>
+			</map>
+		</property>
+		<property name="keyName" value="rating.stars"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="40"/>
+					<property name="join"
+							  value="left join rating on work.id = rating.work_id AND rating.rater_company_id = work.company_id AND rating.deleted = false"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.Rating"/>
+		<!-- <property name="sortOrder" value="1" /> -->
+		<property name="orderBy" value="690"/>
+	</bean>
+
+	<bean name="assignedResourceAppointmentDate" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="assignedResource.appointment_from"/>
+		<property name="dbTable" value=""/>
+		<property name="dbFieldNameAlias" value="assignedResourceAppointmentDate"/>
+		<property name="fieldType" value="datetime"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Scheduled Time"/>
+			</map>
+		</property>
+		<property name="keyName" value="assignedResourceAppointmentDate"/>
+		<property name="filterInputTag" ref="dateRangeFilterFilterInputTag"/>
+		<property name="abstractFilter" ref="dateFilter"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="dateFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join"
+							  value="left join work_resource AS assignedResource on work.id = assignedResource.work_id AND assignedResource.assigned_to_work = true"/>
+				</bean>
+			</list>
+		</property>
+		<property name="joinClass" value="com.workmarket.domains.model.WorkResource"/>
+		<property name="orderBy" value="180"/>
+	</bean>
+
+	<bean name="supportContactName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="concat(buyerSupportContact.first_name, ' ', buyerSupportContact.last_name)"/>
+		<property name="dbFieldNameAlias" value="supportContactName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Support Contact Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="supportContactName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join user AS buyerSupportContact on work.buyer_support_user_id = buyerSupportContact.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join profile AS supportContactProfile on supportContactProfile.user_id = buyerSupportContact.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="720"/>
+	</bean>
+
+	<bean name="supportContactPhone" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="supportContactProfile.work_phone"/>
+		<property name="dbFieldNameAlias" value="supportContactPhone"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(15)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Support Contact Phone"/>
+			</map>
+		</property>
+		<property name="keyName" value="supportContactPhone"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join user AS buyerSupportContact on work.buyer_support_user_id = buyerSupportContact.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="99"/>
+					<property name="join" value="left join profile AS supportContactProfile on supportContactProfile.user_id = buyerSupportContact.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="740"/>
+	</bean>
+
+	<bean name="supportContactEmail" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="buyerSupportContact.email"/>
+		<property name="dbFieldNameAlias" value="supportContactEmail"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Support Contact Email"/>
+			</map>
+		</property>
+		<property name="keyName" value="supportContactEmail"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join user AS buyerSupportContact on work.buyer_support_user_id = buyerSupportContact.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="760"/>
+	</bean>
+
+	<bean name="locationContactName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="concat(client_contact.first_name, ' ', client_contact.last_name)"/>
+		<property name="dbFieldNameAlias" value="locationContactName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location Contact Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="locationContactName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join client_contact on work.client_contact_id = client_contact.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="770"/>
+	</bean>
+
+	<bean name="locationContactPhone" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(Select phone.phone from phone left join client_contact_phone_association on phone.id = client_contact_phone_association.phone_id where client_contact_phone_association.client_contact_id = work.client_contact_id ORDER BY phone.created_on DESC LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="locationContactPhone"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(25)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location Contact Phone"/>
+			</map>
+		</property>
+		<property name="keyName" value="locationContactPhone"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="780"/>
+	</bean>
+
+	<bean name="locationContactEmail" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName"
+				  value="(Select email.email from email left join client_contact_email_association on email.id = client_contact_email_association.email_id where client_contact_email_association.client_contact_id = work.client_contact_id ORDER BY email.created_on DESC LIMIT 1)"/>
+		<property name="dbFieldNameAlias" value="locationContactEmail"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(255)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location Contact Email"/>
+			</map>
+		</property>
+		<property name="keyName" value="locationContactEmail"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="orderBy" value="790"/>
+	</bean>
+
+
+	<bean name="parts.description" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.description"/>
+		<property name="dbFieldNameAlias" value="partDescription"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="text"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Description"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.description"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="810"/>
+	</bean>
+
+	<bean name="parts.suppliedByResource" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.supplied_by_resource"/>
+		<property name="dbFieldNameAlias" value="partSuppliedByResource"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(1)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Supplied By Resource"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.suppliedByResource"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="booleanFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="900"/>
+	</bean>
+
+	<bean name="parts.distributionMethod" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.distribution_method_type"/>
+		<property name="dbFieldNameAlias" value="partDistributionMethod"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(10)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Distribution Method"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.distributionMethod"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="800"/>
+	</bean>
+
+	<bean name="parts.pickupLocationNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupLocation.location_number"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="950"/>
+	</bean>
+
+	<bean name="parts.pickupLocationName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupLocation.name"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="980"/>
+	</bean>
+
+	<bean name="parts.pickupLocationAddress1" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupAddress.line1"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationAddress1"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(200)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location Address 1"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationAddress1"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1000"/>
+	</bean>
+
+	<bean name="parts.pickupLocationAddress2" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupAddress.line2"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationAddress2"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location Address 2"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationAddress2"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1010"/>
+	</bean>
+
+	<bean name="parts.pickupLocationCity" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupAddress.city"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationCity"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location City"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationCity"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="940"/>
+	</bean>
+
+	<bean name="parts.pickupLocationState" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="partsPickupState.short_name"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationState"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location State/Province"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationState"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join state AS partsPickupState on  pickupAddress.state = partsPickupState.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1040"/>
+	</bean>
+
+	<bean name="parts.pickupLocationPostalCode" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupAddress.postal_code"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationPostalCode"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(9)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location Postal Code"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationPostalCode"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1050"/>
+	</bean>
+
+	<bean name="parts.pickupLocationCountry" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="pickupAddress.country"/>
+		<property name="dbFieldNameAlias" value="partsPickupLocationCountry"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(45)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Location Country"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupLocationCountry"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS pickupLocation on part.depart_location_id = pickupLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS pickupAddress on pickupLocation.address_id = pickupAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="930"/>
+	</bean>
+
+	<bean name="parts.pickupTrackingNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.tracking_number"/>
+		<property name="dbFieldNameAlias" value="partsPickupTrackingNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Tracking #"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupTrackingNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="910"/>
+	</bean>
+
+	<bean name="parts.pickupShippingProvider" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.shipping_provider_code"/>
+		<property name="dbFieldNameAlias" value="partsPickupShippingProvider"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(15)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Shipping Provider"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupShippingProvider"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="970"/>
+	</bean>
+
+	<bean name="parts.pickupPartValue" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.pickup_part_value"/>
+		<property name="dbFieldNameAlias" value="partsPickupPartValue"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pickup Part Value"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.pickupPartValue"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="960"/>
+	</bean>
+
+	<bean name="parts.returnRequired" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.return_required"/>
+		<property name="dbFieldNameAlias" value="partsReturnRequired"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(1)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Required"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnRequired"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="booleanFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="850"/>
+	</bean>
+
+	<bean name="parts.returnLocationNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnLocation.location_number"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location ID"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="830"/>
+	</bean>
+
+	<bean name="parts.returnLocationName" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnLocation.name"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationName"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location Name"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationName"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="870"/>
+	</bean>
+
+	<bean name="parts.returnLocationAddress1" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnAddress.line1"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationAddress1"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(200)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location Address 1"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationAddress1"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1020"/>
+	</bean>
+
+	<bean name="parts.returnLocationAddress2" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnAddress.line2"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationAddress2"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location Address 2"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationAddress2"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="1030"/>
+	</bean>
+
+	<bean name="parts.returnLocationCity" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnAddress.city"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationCity"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location City"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationCity"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="840"/>
+	</bean>
+
+	<bean name="parts.returnLocationState" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnState.short_name"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationState"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(100)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location State/Province"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationState"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join state AS returnState on returnAddress.state = returnState.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="880"/>
+	</bean>
+
+	<bean name="parts.returnLocationPostalCode" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnAddress.postal_code"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationPostalCode"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(9)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location Postal Code"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationPostalCode"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="890"/>
+	</bean>
+
+	<bean name="parts.returnLocationCountry" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="returnAddress.country"/>
+		<property name="dbFieldNameAlias" value="partsReturnLocationCountry"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(45)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Location Country"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnLocationCountry"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join location AS returnLocation on part.return_location_id = returnLocation.id"/>
+				</bean>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join address AS returnAddress on returnLocation.address_id = returnAddress.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="990"/>
+	</bean>
+
+	<bean name="parts.returnTrackingNumber" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.return_tracking_number"/>
+		<property name="dbFieldNameAlias" value="partsReturnTrackingNumber"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(50)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Tracking #"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnTrackingNumber"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="820"/>
+	</bean>
+
+	<bean name="parts.returnShippingProvider" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.return_shipping_provider_code"/>
+		<property name="dbFieldNameAlias" value="partsReturnShippingProvider"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="varchar(15)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Shipping Provider"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnShippingProvider"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="stringFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="920"/>
+	</bean>
+
+	<bean name="parts.returnPartValue" class="com.workmarket.domains.model.reporting.Entity">
+		<property name="dbFieldName" value="part.return_part_value"/>
+		<property name="dbFieldNameAlias" value="partsReturnPartValue"/>
+		<property name="dbTable" value=""/>
+		<property name="fieldType" value="decimal(11,2)"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Return Part Value"/>
+			</map>
+		</property>
+		<property name="keyName" value="parts.returnPartValue"/>
+		<property name="filterInputTag" ref="displayFilterInputTag"/>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="format" ref="currencyFormat"/>
+		<property name="sqlJoin">
+			<list>
+				<bean class="com.workmarket.domains.model.reporting.SqlJoin">
+					<property name="sortOrder" value="50"/>
+					<property name="join" value="left join part on work.part_id = part.id"/>
+				</bean>
+			</list>
+		</property>
+		<property name="orderBy" value="860"/>
+	</bean>
+
+
+	<!--                 -->
+	<!-- FIELD GROUPINGS -->
+	<!--                 -->
+
+	<!-- DATES -->
+	<bean name="entities1" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="work_milestones.sentDate"/>
+				<ref bean="work_milestones.acceptanceDate"/>
+				<ref bean="work_milestones.completeDate"/>
+				<ref bean="work.scheduleFrom"/>
+				<ref bean="work.scheduleThrough"/>
+				<ref bean="assignedResourceAppointmentDate"/>
+				<ref bean="work.closedOn"/>
+				<ref bean="work_milestones.paymentDate"/>
+				<ref bean="work.dueOn"/>
+				<ref bean="work.createdOn"/>
+				<ref bean="work.modifiedOn"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ASSIGNMENT BASICS -->
+	<bean name="entities2" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="work.workNumber"/>
+				<ref bean="work.title"/>
+				<!--ref bean="work.description"/-->
+				<!--ref bean="work.instructions"/-->
+				<ref bean="work.desiredSkills"/>
+				<ref bean="industryName"/>
+				<ref bean="templateName"/>
+				<ref bean="invoice.invoiceNumber"/>
+				<ref bean="invoiceSummaryNumber"/>
+				<ref bean="paymentTermsDays"/>
+				<ref bean="workStatusTypeCode"/>
+				<ref bean="workCustomFields"/>
+				<ref bean="work.workUniqueId.displayname"/>
+				<ref bean="work.workUniqueId.value"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ASSIGNMENT ADDRESS -->
+	<bean name="entities3" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="workLocationName"/>
+				<ref bean="workLocationNumber"/>
+				<ref bean="workAddress1"/>
+				<ref bean="workAddress2"/>
+				<ref bean="workCity"/>
+				<ref bean="workState"/>
+				<ref bean="workPostalCode"/>
+				<ref bean="workCountry"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- PRICING -->
+	<bean name="entities4" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="work.pricingStrategy"/>
+				<ref bean="workPrice"/>
+				<ref bean="buyerFee"/>
+				<ref bean="amountEarned"/>
+				<ref bean="perHourPrice"/>
+				<ref bean="work.fullPricingStrategy.additionalPerHourPrice"/>
+				<ref bean="assignedWorkResource.hours_worked"/>
+				<ref bean="work.additionalExpenses"/>
+				<ref bean="spendLimit"/>
+				<ref bean="initialPrice"/>
+				<ref bean="pendingApprovalCost"/>
+				<ref bean="pendingBudgetIncrease"/>
+				<ref bean="approvedBudgetIncrease"/>
+				<ref bean="pendingSLITotal"/>
+				<ref bean="pendingSLI"/>
+				<ref bean="approvedSLI"/>
+				<ref bean="rejectedSLI"/>
+				<ref bean="approvedBonus"/>
+				<ref bean="totalValue"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- RESOURCE DETAILS -->
+	<bean name="entities5" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="user.workResourceID"/>
+				<ref bean="workResourceName"/>
+				<!--ref bean="user.workResourceFirstName"/-->
+				<!--ref bean="user.workResourceLastName"/-->
+				<ref bean="assignedResourceCity"/>
+				<ref bean="assignedResourceState"/>
+				<ref bean="assignedResourcePostalCode"/>
+				<ref bean="rating.stars"/>
+				<ref bean="work.resolution"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- CLIENT/END USER INFO -->
+	<bean name="entities6" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="work.buyer.userNumber"/>
+				<ref bean="work.buyer.firstName"/>
+				<ref bean="work.buyer.lastName"/>
+				<ref bean="clientCompanyName"/>
+				<ref bean="projectName"/>
+				<ref bean="supportContactName"/>
+				<ref bean="supportContactPhone"/>
+				<ref bean="supportContactEmail"/>
+				<ref bean="work.addressOnsiteFlag"/>
+				<ref bean="locationContactName"/>
+				<ref bean="locationContactPhone"/>
+				<ref bean="locationContactEmail"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- SUBSTATUS -->
+	<bean name="entities7" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="subStatuses"/>
+				<ref bean="resolvedSubStatuses"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- ROUTING -->
+	<bean name="entities8" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="sentResources"/>
+				<ref bean="declinedResources"/>
+				<ref bean="questionsAsked"/>
+				<ref bean="counterOffersApplications"/>
+				<ref bean="routingType"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Checkins -->
+	<bean name="entities9" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<ref bean="firstCheckin"/>
+				<ref bean="checkinDistance"/>
+				<ref bean="lastCheckout"/>
+				<ref bean="checkoutDistance"/>
+				<ref bean="timeOnSite"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Parts -->
+	<bean name="entities10" class="org.springframework.beans.factory.config.ListFactoryBean">
+		<property name="sourceList">
+			<list>
+				<!-- <ref bean="parts.description"/> -->
+				<ref bean="parts.suppliedByResource"/>
+				<ref bean="parts.distributionMethod"/>
+				<ref bean="parts.pickupLocationNumber"/>
+				<ref bean="parts.pickupLocationName"/>
+				<ref bean="parts.pickupLocationAddress1"/>
+				<ref bean="parts.pickupLocationAddress2"/>
+				<ref bean="parts.pickupLocationCity"/>
+				<ref bean="parts.pickupLocationState"/>
+				<ref bean="parts.pickupLocationPostalCode"/>
+				<ref bean="parts.pickupLocationCountry"/>
+				<ref bean="parts.pickupTrackingNumber"/>
+				<ref bean="parts.pickupShippingProvider"/>
+				<ref bean="parts.pickupPartValue"/>
+				<ref bean="parts.returnRequired"/>
+				<ref bean="parts.returnLocationNumber"/>
+				<ref bean="parts.returnLocationName"/>
+				<ref bean="parts.returnLocationAddress1"/>
+				<ref bean="parts.returnLocationAddress2"/>
+				<ref bean="parts.returnLocationCity"/>
+				<ref bean="parts.returnLocationState"/>
+				<ref bean="parts.returnLocationPostalCode"/>
+				<ref bean="parts.returnLocationCountry"/>
+				<ref bean="parts.returnTrackingNumber"/>
+				<ref bean="parts.returnShippingProvider"/>
+				<ref bean="parts.returnPartValue"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Begin buckets -->
+	<bean name="work_entityBucket1" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities1"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Dates"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket1"/>
+	</bean>
+
+	<bean name="work_entityBucket2" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities2"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Basic Information"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket2"/>
+	</bean>
+
+	<bean name="work_entityBucket3" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities3"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Location"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket3"/>
+	</bean>
+
+	<bean name="work_entityBucket4" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities4"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Pricing"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket4"/>
+	</bean>
+
+	<bean name="work_entityBucket5" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities5"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Resource"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket5"/>
+	</bean>
+
+	<bean name="work_entityBucket6" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities6"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Client/End User"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket6"/>
+	</bean>
+
+	<bean name="work_entityBucket7" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities7"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Labels"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket7"/>
+	</bean>
+
+	<bean name="work_entityBucket8" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities8"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Routing"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket8"/>
+	</bean>
+	<bean name="work_entityBucket9" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities9"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Check In Data"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket9"/>
+	</bean>
+	<bean name="work_entityBucket10" class="com.workmarket.domains.model.reporting.EntityBucket">
+		<property name="entities" ref="entities10"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Parts"/>
+			</map>
+		</property>
+		<property name="locationOrder" ref="locationOrder"/>
+		<property name="keyName" value="work_entityBucket10"/>
+	</bean>
+
+	<!-- end buckets -->
+
+	<bean name="workReportingContext" class="com.workmarket.domains.model.reporting.WorkReportingContext" scope="prototype">
+		<property name="entityBuckets">
+			<list>
+				<ref bean="work_entityBucket1"/>
+				<ref bean="work_entityBucket2"/>
+				<ref bean="work_entityBucket3"/>
+				<ref bean="work_entityBucket4"/>
+				<ref bean="work_entityBucket5"/>
+				<ref bean="work_entityBucket6"/>
+				<ref bean="work_entityBucket7"/>
+				<ref bean="work_entityBucket8"/>
+				<ref bean="work_entityBucket9"/>
+				<ref bean="work_entityBucket10"/>
+			</list>
+		</property>
+		<property name="filterBucket" ref="filterBucket"/>
+		<property name="displayNameM">
+			<map>
+				<entry key-ref="enLocale" value="Work Assignments"/>
+			</map>
+		</property>
+		<property name="sortOrder" value="1"/>
+	</bean>
+
+	<bean name="filterBucket" class="com.workmarket.domains.model.reporting.FilterBucket"/>
+
+	<bean name="workReportGeneratorService" class="com.workmarket.reporting.service.WorkReportGeneratorServiceImpl" scope="prototype">
+		<property name="abstractQueryBuilder" ref="genericQueryBuilderSqlImpl"/>
+		<property name="reportHandler" ref="csvReportHandler"/>
+		<property name="reportingContext" ref="workReportingContext"/>
+	</bean>
+
+	<bean name="csvReportHandler" class="com.workmarket.reporting.output.CSVGenericReportHandler">
+		<property name="batchReportDirectory" value="${reporting.csv.file.location}"/>
+	</bean>
+
+	<bean name="genericQueryBuilderSqlImpl" class="com.workmarket.reporting.query.GenericQueryBuilderSqlImpl">
+		<property name="startRow" value="0"/>
+		<property name="pageSize" value="10"/>
+	</bean>
+
+</beans>

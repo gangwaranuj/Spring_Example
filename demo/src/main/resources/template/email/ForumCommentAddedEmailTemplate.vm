@@ -1,0 +1,25 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+    <img src="${baseurl}/media/images/forums-icon.png" width="24px" height="16px">
+    A new comment was added to ${template.parent.title}
+</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+    <p style="margin: 0px 0px 20px 0px">
+        Hello ${toUser.firstName},<br/>
+        <br/>
+		${template.creatorFullName} added a comment to the post <a href="${baseurl}/forums/post/${template.comment.rootId}"><strong>${template.parent.title}:</strong></a>
+    </p>
+
+    <p style="margin: 20px;padding:20px;background-color: #f5f5f5;">
+		#set( $rawNote = $display.br($escape.html($template.comment.comment)) )
+        <em>${rawNote}</em>
+    </p>
+
+    <a href="${baseurl}/forums/post/${template.comment.rootId}/#commentBox${template.comment.id}"> View Comment </a>
+
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

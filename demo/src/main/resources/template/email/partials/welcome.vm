@@ -1,0 +1,51 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Welcome to WorkMarket</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 10px 0px 0px 0px">
+				Hello ${toUser.firstName},<br/>
+			</p>
+
+				<p>Welcome to WorkMarket! We're excited to have you on the platform.</p>
+
+			<div style="font-weight: bold; font-size: 13px; border-bottom: 1px solid #ededed; background-color: #ffffff; padding: 4px 0;">Here to find work?</div>
+
+			<ul style="list-style: none outside none; margin-left:-20px;">
+				<li><span style="font-weight: bold;">1. Complete your profile</span><br/>
+					<a href="${baseurl}/profile-edit/skills">Add skills</a> and <a href="${baseurl}/profile-edit/employment">a professional summary</a> to your profile to position yourself for work.</li><br/>
+
+				<li><span style="font-weight: bold;">2. Join groups</span><br/>
+					Visit WorkMarket and <a href="${baseurl}/search-groups">browse groups</a> created by clients and other people like you. Find groups related to assignments and apply for membership.</li><br/>
+
+				<li><span style="font-weight: bold;">3. Add your W-9, choose your financial account and get paid</span><br/>
+					Make sure you <a href="${baseurl}/account/tax">fill out a W-9</a> and <a href="${baseurl}/funds/accounts/new">link a financial account</a> before you get paid. Withdraw into your bank account, PayPal or <a href="${baseurl}/funds/accounts/gcc">request a WorkMarket Visa Card</a>.</li>
+			</ul>
+
+			<div style="font-weight: bold; font-size: 13px; border-bottom: 1px solid #ededed; background-color: #ffffff; padding: 4px 0;">Ready to send assignments?</div>
+
+			<ul style="list-style: none outside none; margin-left:-20px;">
+				<li><span style="font-weight: bold;">1. Discover who's on WorkMarket</span><br/>
+					<a href="${baseurl}/invitations/send">Invite contractors</a> and <a href="${baseurl}/search">search for workers</a> already on WorkMarket.</li><br/>
+
+				<li><span style="font-weight: bold;">2. Configure WorkMarket for your business</span><br/>
+					<a href="${baseurl}/mmw">Manage your settings</a> and build templates, set up custom fields, and configure the platform to meet your business needs.</li><br/>
+
+				<li><span style="font-weight: bold;">3. Fund your account</span><br/>
+					<a href="${baseurl}/funds/add">Add funds</a> to send assignments or link a bank account and <a href="${baseurl}/settings/manage/paymenterms">set up payment terms</a>.</li>
+			</ul>
+
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/">Log in to WorkMarket</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+		</div>
+	</td>
+</tr>

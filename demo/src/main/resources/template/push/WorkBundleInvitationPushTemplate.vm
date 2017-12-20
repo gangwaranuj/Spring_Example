@@ -1,0 +1,4 @@
+{
+"message": "New Bundle: ${template.workTitle} ${template.bundleData.overview.dates.from} - ${template.bundleData.overview.dates.to}#if($showPrice) at ${template.bundleData.overview.budget}#end",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

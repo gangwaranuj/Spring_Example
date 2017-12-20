@@ -1,0 +1,252 @@
+{
+	"companyResource": {
+		"ownerAndResourceOrActiveResource": {
+			"sent": ["ask_question", "negotiation", ["add_resources", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar"]],
+			"active": ["budget_increase", "reimbursement", "bonus", "negotiate_schedule", ["delegate", "abandon", "-", "reprice", "copy", "cancel", "-", "print_option", "calendar"]],
+			"activeInBundle": ["budget_increase", "reimbursement", "bonus", "negotiate_schedule", ["delegate", "abandon_bundle_work", "-", "reprice", "copy", "cancel", "-", "print_option", "calendar"]],
+			"complete": ["copy", ["print_option", "calendar"]],
+			"paidOrPaymentPending": ["copy", ["print_option", "calendar"]],
+			"cancelled": ["copy", "print_option"],
+			"declinedOrException": ["copy", "-", "void", "print_option"],
+			"bundle": {
+				"sent": ["ask_question", ["add_resources"]],
+				"active": [],
+				"complete": [],
+				"paidOrPaymentPending": [],
+				"cancelled": [],
+				"declinedOrException": []
+			}
+		},
+		"adminOrInternalAndNotActiveResourceAndNotResource": {
+			"draft": {
+				"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "delete", "print_option"]],
+				"default": ["add_resources", ["edit", "reprice", "reschedule", "activate_now", "-", "copy", "delete", "print_option"]]
+			},
+			"sent": {
+				"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar"]],
+				"default": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar"]]
+			},
+			"active": {
+				"masqueradeAndInternalAndInternalAssignment": [["reassign_internal", "unassign", "-", "edit", "negotiate_schedule", "reprice", "-", "copy", "cancel", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": [["edit", "negotiate_schedule", "reprice", "-", "copy", "cancel", "unassign", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": [["reassign_internal", "unassign", "-", "edit", "negotiate_schedule", "reprice", "-", "copy", "cancel", "-", "print_option", "calendar"]],
+				"default": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "reprice", "-", "copy", "cancel", "unassign", "-", "print_option", "calendar"]]
+			},
+			"complete": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "calendar"]],
+				"default": ["copy", ["budget_increase", "reimbursement", "bonus", "print_option", "calendar"]]
+			},
+			"paymentPendingAndNotLockedInvoices": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "stop_payment", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "calendar", "stop_payment", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "stop_payment"]],
+				"default": ["copy", ["print_option", "calendar", "stop_payment"]]
+			},
+			"paidOrPaymentPending": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "calendar"]],
+				"default": ["copy", ["print_option", "calendar"]]
+			},
+			"cancelled": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option"]],
+				"default": ["copy", ["print_option"]]
+			},
+			"declinedOrException": {
+				"masqueradeAndInternalAndInternalAssignment": [["edit", "-", "copy", "void", "-", "print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": [["copy", "void", "-", "print_option", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": [["edit", "-", "copy", "void", "-", "print_option"]],
+				"default": ["copy", "void", "-", "print_option"]
+			},
+			"default": {
+				"masqueradeAndInternal": ["copy", "print_option", ["print_option", "calendar", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"default": [["copy", "print_option"]]
+			},
+			"bundle": {
+				"draft": {
+					"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": ["add_resources", ["masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["add_resources"]],
+					"default": [["add_resources"]]
+				},
+				"sent": {
+					"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": ["add_resources", ["masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["add_resources"]],
+					"default": [["add_resources"]]
+				},
+				"active": {
+					"masqueradeAndInternalAndInternalAssignment": [["masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["unassign", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [],
+					"default": [["unassign"]]
+				},
+				"complete": {
+					"masqueradeAndInternalAndInternalAssignment": [["-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [],
+					"default": []
+				},
+				"cancelled": {
+					"masqueradeAndInternalAndInternalAssignment": [["masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [],
+					"default": []
+				},
+				"declinedOrException": {
+					"masqueradeAndInternalAndInternalAssignment": [["masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [],
+					"default": []
+				},
+				"default": {
+					"masqueradeAndInternalAndInternalAssignment": [["masquerade_owner", "masquerade_resource"]],
+					"default": []
+				}
+			}
+		},
+		"sent": [["ask_question", "negotiate"]],
+		"active": {
+			"masqueradeAndInternal": [["print_option", "calendar"]],
+			"default": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "-", "delegate", "abandon", "-", "print_option", "calendar"]],
+			"defaultInBundle": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "-", "delegate", "abandon_bundle_work", "-", "print_option", "calendar"]]
+		},
+		"default": [["print_option"]],
+		"bundle": {
+			"sent": [["ask_question"]],
+			"active": {
+				"masqueradeAndInternal": [],
+				"default": []
+			},
+			"default": []
+		}
+	},
+	"notCompanyResource": {
+		"ownerAndResourceOrActiveResource": {
+			"sent": ["ask_question", "negotiate", ["add_resources", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+			"active": ["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "reprice", ["delegate", "abandon", "-", "blockclient", "unblockclient", ["copy", "cancel", "-", "print_option", "calendar"]]],
+			"activeInBundle": ["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "reprice", ["delegate", "abandon_bundle_work", "-", "blockclient", "unblockclient", ["copy", "cancel", "-", "print_option", "calendar"]]],
+			"complete": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient"]],
+			"paidOrPaymentPending": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient"]],
+			"cancelled": ["print_option", "copy", ["blockclient", "unblockclient"]],
+			"declinedOrException": [["copy", "-", "void", "print_option", "-", "blockclient", "unblockclient"]],
+			"bundle": {
+				"sent": ["ask_question", ["add_resources", "-", "blockclient", "unblockclient"]],
+				"active": [["blockclient", "unblockclient"]],
+				"complete": [["blockclient", "unblockclient"]],
+				"paidOrPaymentPending": [["blockclient", "unblockclient"]],
+				"cancelled": [["blockclient", "unblockclient"]],
+				"declinedOrException": [["blockclient", "unblockclient"]]
+			}
+		},
+		"adminOrInternalAndNotActiveResourceAndNotResource": {
+			"draft": {
+				"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "blockclient", "unblockclient"]],
+				"default": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "delete", "print_option", "-", "blockclient", "unblockclient"]]
+			},
+			"sent": {
+				"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["add_resources", ["assign", "-", "edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+				"default": ["add_resources", ["edit", "reprice", "reschedule", "-", "copy", "void", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]]
+			},
+			"active": {
+				"masqueradeAndInternalAndInternalAssignment": [["edit", "negotiate_schedule", "-", "copy", "cancel", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": [["negotiate_schedule", "-", "copy", "cancel", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": [["edit", "negotiate_schedule", "reprice", "-", "copy", "cancel", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+				"default": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "reprice", "-", "copy", "cancel", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]]
+			},
+			"complete": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+				"default": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient"]]
+			},
+			"paidOrPaymentPending": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "calendar", "-", "blockclient", "unblockclient", "-"]],
+				"default": ["copy", ["print_option", "calendar", "-", "blockclient", "unblockclient"]]
+			},
+			"cancelled": {
+				"masqueradeAndInternalAndInternalAssignment": ["copy", ["edit", "-", "print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": ["copy", ["print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": ["copy", ["edit", "-", "print_option", "-", "blockclient", "unblockclient"]],
+				"default": ["copy", ["print_option", "-", "blockclient", "unblockclient"]]
+			},
+			"declinedOrException": {
+				"masqueradeAndInternalAndInternalAssignment": [["edit", "-", "copy", "void", "-", "print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"masqueradeAndInternal": [["copy", "void", "-", "print_option", "-", "blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"internalAssignment": [["edit", "-", "copy", "void", "-", "print_option", "-", "blockclient", "unblockclient"]],
+				"default": [["copy", "void", "-", "print_option", "-", "blockclient", "unblockclient"]]
+			},
+			"default": {
+				"masqueradeAndInternal": ["copy", "print_option", ["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource", "reindex_assignment"]],
+				"default": ["copy", "print_option", ["blockclient", "unblockclient"]]
+			},
+			"bundle": {
+				"draft": {
+					"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": ["add_resources", ["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": ["add_resources", ["blockclient", "unblockclient"]],
+					"default": ["add_resources", ["blockclient", "unblockclient"]]
+				},
+				"sent": {
+					"masqueradeAndInternalAndInternalAssignment": ["add_resources", ["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": ["add_resources", ["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": ["add_resources", ["blockclient", "unblockclient"]],
+					"default": ["add_resources", ["blockclient", "unblockclient"]]
+				},
+				"active": {
+					"masqueradeAndInternalAndInternalAssignment": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["blockclient", "unblockclient"]],
+					"default": [["blockclient", "unblockclient"]]
+				},
+				"complete": {
+					"masqueradeAndInternalAndInternalAssignment": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["blockclient", "unblockclient"]],
+					"default": [["blockclient", "unblockclient"]]
+				},
+				"cancelled": {
+					"masqueradeAndInternalAndInternalAssignment": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["blockclient", "unblockclient"]],
+					"default": [["blockclient", "unblockclient"]]
+				},
+				"declinedOrException": {
+					"masqueradeAndInternalAndInternalAssignment": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"masqueradeAndInternal": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"internalAssignment": [["blockclient", "unblockclient"]],
+					"default": [["blockclient", "unblockclient"]]
+				},
+				"default": {
+					"masqueradeAndInternal": [["blockclient", "unblockclient", "-", "masquerade_owner", "masquerade_resource"]],
+					"default": [["blockclient", "unblockclient"]]
+				}
+			}
+		},
+		"sent": [["ask_question", "negotiate", "-", "blockclient", "unblockclient"]],
+		"active": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "-", "delegate", "abandon", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+		"activeInBundle": [["budget_increase", "reimbursement", "bonus", "negotiate_schedule", "-", "delegate", "abandon_bundle_work", "-", "print_option", "calendar", "-", "blockclient", "unblockclient"]],
+		"completeOrPaid": ["print_option", ["blockclient", "unblockclient"]],
+		"default": ["print_option", ["blockclient", "unblockclient"]],
+		"bundle": {
+			"sent": [["ask_question", "-", "blockclient", "unblockclient"]],
+			"active": [["blockclient", "unblockclient"]],
+			"completeOrPaid": [["blockclient", "unblockclient"]],
+			"default": [["blockclient", "unblockclient"]]
+		}
+	}
+}

@@ -1,0 +1,31 @@
+			<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Your assignment has been approved</h1>
+
+			<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+				<p style="margin: 0px 0px 20px 0px">
+					#if ($onBehalfOfUser && $onBehalfOfUser.firstName)
+                        Great Work ${onBehalfOfUser.firstName}!<br/>
+					#else
+                        Great Work ${toUser.firstName}!<br/>
+					#end
+					<br/>
+					<a href="${baseurl}/assignments/details/${template.work.workNumber}">${template.workTitle} (ID:${template.work.workNumber})</a> has been approved for payment.
+				</p>
+
+                #if ($template.fastFundsEnabled)
+                    <p style="margin: 0px 0px 20px 0px">
+                    <table cellspacing="0" cellpadding="0" border="0">
+                        <tbody>
+                        <tr>
+                            <td style="background-color: #5BC75D; text-align: center; padding: 2px 7px 4px;">
+                                <a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #FFFFFF; display: block; padding: 6px 7px 4px;" href="${baseurl}/payments/invoices/receivables/upcoming-due">GET PAID NOW</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    </p>
+                    <p>This assignment is eligible for Fast Funds, login to get paid today.</p>
+				#end
+			</div>
+	</td>
+</tr>
+#parse("template/email/partials/do-not-reply.vm")

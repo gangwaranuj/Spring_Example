@@ -1,0 +1,167 @@
+.standard-nav-button {
+	height: 1em;
+	width: 1em;
+	padding: @small-space;
+	display: block;
+	cursor: pointer;
+	background: white;
+}
+
+.back-button {
+	.standard-nav-button;
+	color: white;
+	border-radius: 50%;
+}
+
+.home-button {
+	.standard-nav-button;
+	color: white;
+	border-radius: 50%;
+}
+
+.nav-logo {
+	display: block;
+	width: 7em;
+	height: 1em;
+}
+
+.bullhorn {
+	display: block;
+	width: 2em;
+	height: 1.5em;
+}
+
+.wmpanel-button {
+	.standard-nav-button;
+	border-radius: 50%;
+	z-index: 1000;
+	.transitions(.2s right ease-in);
+	path {
+		fill: @orange;
+	}
+	&.active-nav-button {
+		right: 75%;
+		background: @orange;
+		position: fixed !important;
+		margin: 0 !important;
+
+		-webkit-transition-delay: 0s;
+		-moz-transition-delay: 0s;
+		-o-transition-delay: 0s;
+		transition-delay: 0s;
+
+		path {
+			fill: white;
+		}
+	}
+}
+
+.minus-icon, .plus-icon {
+	width: 1em;
+	height: 1em;
+}
+
+.briefcase-icon {
+	height: 3.5em;
+	width: 3.5em;
+}
+
+.paper-clip-icon {
+	height: 1.2em;
+	width: 1.2em;
+}
+
+.red-x-icon, .green-checkmark-icon {
+	height: 0.8em;
+	width: 1em;
+	float: left;
+	padding: 0 0.1em;
+	margin-top: 0.2em;
+}
+
+.exclamationmark-icon {
+	height: 2em;
+	width: 2em;
+	float: left;
+}
+
+.x-button {
+	height: 1.7em;
+	width: 1.7em;
+}
+
+.lightbulb {
+	height: 2em;
+	width: 2em;
+}
+
+.home-icon {
+	display: block;
+	height: 1em;
+	width: 1em;
+}
+
+.trash-icon {
+	height: 2.4em;
+	width: 2em;
+}
+
+.attachment-icon {
+	height: 3.3em;
+	width: 3.3em;
+}
+
+.back-icon {
+	height: 2.3em;
+	width: 2.3em;
+}
+
+.select-down-arrow-icon {
+	height:1em;
+	width:1em;
+}
+
+.stopwatch-icon {
+	height: 3em;
+	width: 3em;
+}
+
+.tack-icon {
+	height: 2em;
+	width: 2em;
+}
+
+.panel-icon {
+	display: block;
+	height: 1em;
+	width: 1em;
+}
+
+.information-icon {
+	height: 4.5em;
+	width: 4.5em;
+	padding: 0.3em;
+}
+
+.signout-icon {
+	height: 1em;
+	width: 1em;
+	vertical-align: middle;
+}
+
+.rocket-icon {
+	height: 7em;
+	width: 7em;
+}
+
+.details-toggle-icon {
+	height: 1em;
+	width: 1em;
+	float: left;
+	padding-right: .5em;
+}
+
+.survey-icon {
+	height: 1.1em;
+	width: 1.2em;
+}

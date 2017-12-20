@@ -1,0 +1,16 @@
+.page-lms {
+	@include scaffolding;
+
+	.worker-details {
+		@include clearfix;
+		padding: 0.5em;
+
+		.wm-avatar {
+			float: left;
+		}
+		.overview {
+			padding-left: 1em;
+			float: left;
+		}
+	}
+}

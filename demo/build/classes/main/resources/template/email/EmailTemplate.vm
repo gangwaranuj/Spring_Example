@@ -1,0 +1,81 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>WorkMarket</title>
+</head>
+<body>
+
+<a name="top" id="top"></a>
+<table width="100%" width="800" border="0" cellspacing="0" cellpadding="0" bgcolor="#eee">
+	<tr>
+		<td align="center">
+			<table width="600" border="0" cellspacing="0" cellpadding="0" style="margin-left: auto; margin-right: auto; text-align: left;">
+				<tr>
+					<td>
+						<div style="width: 540px; padding: 30px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+						</div>
+					</td>
+				</tr>
+				<tr valign="top">
+					<td>
+						<div style="width: 540px; padding: 20px 30px 0 30px; background-color:#fff; text-align: center; border-radius: 6px 6px 0 0;">
+							<img src="file:///Users/michaelmayes/workspace/application/backend/src/main/webapp/media/images/WorkMarket_logo_trans.jpg" alt="WorkMarket" height="50">
+							<br/>
+							<br/>
+							<img src="file:///Users/michaelmayes/workspace/application/backend/src/main/webapp/media/images/email/pixel-grey.gif" width="540" height="1">
+						</div>
+						<div style="width: 540px; padding: 30px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px; background-color:#fff;">
+
+							<h1 style="font-weight: 700; font-size: 16px; margin: 0px 0px 10px 0px; color: #000">Worker has checked in</h1>
+							<p style="margin: 0px 0px 20px 0px">
+								Hello ${toUser.firstName},<br/>
+								<br/>
+								${template.resource.firstName} ${template.resource.lastName} has checked in.
+								<br/>
+							</p>
+
+							<h1 style="font-weight: 700; font-size: 14px; margin: 0px 0px 10px 0px">Assignment Details</h1>
+							<br/>
+								<strong>${template.work.title}</strong><br/>
+								ID: ${template.work.workNumber}<br/>
+								<br/>
+								Description:<br/>
+								$!{template.work.description}<br/>
+								Location: ${template.address}<br/>
+								Date and Time: ${template.date}<br/>
+								Price: ${template.price}<br/>
+
+							<a href="${baseurl}/profile/${template.resource.userNumber}">View Full Profile</a>.
+							<br/>
+							<a href="${baseurl}/assignments/details/${template.work.workNumber}">View assignment details</a>
+						</div>
+
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<td>
+						<div style="width: 600px;">
+							<img src="file:///Users/michaelmayes/workspace/application/backend/src/main/webapp/media/images/email-footer.jpg" width="" height="">
+						</div>
+					</td>
+				</tr>
+
+				<tr valign="top">
+					<td>
+						<div style="width: 600px; padding: 10px; color: #aaa; font-size: 11px; line-height: 14px; font-family: Helvetica Neue, Helvetica, Arial, sans-serif;">
+							<p style="margin: 0px 0px 15px 0">
+								<a style="color: #888" target="_blank" href="http://twitter.com/workmarket">@workmarket</a>
+								<a href="${baseurl}/mysettings/notifications" style="color: #888">Click here to update your notification settings</a>.
+							</p>
+						</div>
+					</td>
+				</tr>
+
+			</table>
+		</td>
+	</tr>
+</table>
+
+</body>
+</html>

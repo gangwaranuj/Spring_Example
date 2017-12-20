@@ -1,0 +1,4 @@
+<option value="" {{#if this.options.isOptional}}disabled{{/if}} {{#if this.isSomeChecked}}selected{{/if}}>{{this.selectedOption}}</option>
+{{#each this.options}}
+	<option value="{{this.attributes.value}}" {{#if this.attributes.checked}}selected{{/if}}>{{this.attributes.value}}</option>
+{{/each}}

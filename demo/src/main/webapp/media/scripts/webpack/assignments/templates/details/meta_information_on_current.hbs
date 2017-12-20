@@ -1,0 +1,10 @@
+<div class="deliverables-currently-previewed-information">
+	<i class="wm-icon-information-filled"></i>
+	<p>{{this.imageName}}</p>
+	<p>Submitted on {{this.submittedOnTime}} by {{this.uploadedBy}}.</p>
+	{{#if this.isRejected}}
+		<br>
+		<p>Rejected by {{this.rejectedBy}} on {{this.rejectedOn}}</p>
+		<p>Reason: <br> <em> {{this.rejectionReason}} </em> </p>
+	{{/if}}
+</div>

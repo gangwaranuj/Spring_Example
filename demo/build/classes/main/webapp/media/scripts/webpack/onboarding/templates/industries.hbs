@@ -1,0 +1,22 @@
+<div class="industry-wrapper">
+<label class="onboarding-label expertise-label" for="industries">Industry <span>*</span></label>
+<select class="industries" name="industries" data-float-label data-onboarding>
+	<option class="industry" value="">Select an Industry</option>
+	{{#each this.industries}}
+		<option class="industry" value={{this.attributes.id}} {{#if this.attributes.checked}}selected{{/if}}>{{this.attributes.name}}</option>
+	{{/each}}
+</select>
+</div>
+
+<div class="job-title-wrapper">
+	<label class="onboarding-label expertise-label" for="jobTitle">Job Title <span>*</span></label>
+	<input class="jobtitle-autocomplete" type="text" name="jobTitle" value="{{this.jobTitle.name}}" data-onboarding />
+</div>
+
+{{> ./skills }}
+
+<div class="wm-modal--footer">
+	<button class="button -back" data-slide="prev" data-track="Industries/Back">Back</button>
+	<button class="button -continue tooltipped-w" aria-label="" disabled="disabled" data-slide="next" data-track="Industries/Continue">Continue</button>
+	{{> ../../funcs/templates/spinner}}
+</div>

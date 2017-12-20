@@ -1,0 +1,11 @@
+
+			<p style="margin: 0px">
+				Hello ${toUser.fullName},</p>
+
+			#set( $rawMessage = $display.br($escape.html($template.message)) )
+			<p>${rawMessage}</p>
+			
+		</div>
+		
+	</td>
+</tr>

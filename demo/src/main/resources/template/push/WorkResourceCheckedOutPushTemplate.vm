@@ -1,0 +1,4 @@
+{
+"message": "${template.resource.firstName} ${template.resource.lastName} has checked out of the assignment: ${template.work.title}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

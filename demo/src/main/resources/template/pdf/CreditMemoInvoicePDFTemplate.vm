@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html>
+	#parse("template/email/partials/invoice-head.vm")
+<body>
+
+<header>
+    <table width="100%" style="padding-top:20px;">
+        <tr>
+            <td width="50%"><img src="${logoURL}"/></td>
+            <td width="50%" style="text-align: right;">
+                <div>
+                    <h3>Bill to: ${template.invoice.company.effectiveName}</h3>
+                    #set( $rawAddress = ${template.companyFormattedAddress} )
+                    <br/>${rawAddress}
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <h3 style="color:#000000;">
+        WorkMarket Credit Memo
+        <br/>
+    </h3>
+
+</header>
+<br/>
+<br/>
+<hr/>
+<table class="header">
+    <tr>
+        <th>Issue Date:</th>
+        <td>$date.format('MM/dd/yyyy', ${template.invoice.createdOn})</td>
+    </tr>
+    <tr>
+        <th>Invoice Number:</th>
+        <td>${template.invoice.invoiceNumber} - (${template.originalInvoice.invoiceNumber})</td>
+    </tr>
+    <tr>
+        <th>Amount:</th>
+        <td>$number.currency(${template.invoice.balance})</td>
+    </tr>
+</table>
+<hr/>
+
+
+<h4 style="padding:10px 0px 5px 0px">Invoice Details</h4>
+<table class="invoices">
+    <thead>
+    <tr>
+        <th>Description</th>
+        <th>Invoice #</th>
+        <th>Created On</th>
+        <th>Amount</th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>${template.originalInvoice.description}</td>
+            <td>${template.originalInvoice.invoiceNumber}</td>
+            <td>$date.format('MM/dd/yyyy', ${template.originalInvoice.createdOn})</td>
+            <td>${template.originalInvoice.balance}</td>
+        </tr>
+
+        <tr>
+            <td>${template.invoice.description}</td>
+            <td>${template.invoice.invoiceNumber}</td>
+            <td>$date.format('MM/dd/yyyy', ${template.invoice.createdOn})</td>
+            <td>-${template.invoice.balance}</td>
+        </tr>
+    <tr>
+        <td><h3>Total</h3></td>
+        <td><h3>$number.currency(${template.total})</h3></td>
+
+    </tr>
+    </tbody>
+</table>
+
+	#parse("template/email/partials/invoice-footer.vm")
+
+</body>
+</html>

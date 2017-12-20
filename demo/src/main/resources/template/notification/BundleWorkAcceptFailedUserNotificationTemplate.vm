@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Failed to accept ${template.worker.fullName} for bundle: ${template.work.title} assignment: ${template.title} - ${template.message}</a>

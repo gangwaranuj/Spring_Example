@@ -1,0 +1,5 @@
+#if(${template.workNote})
+	<a href="/assignments/details/${template.work.workNumber}#notes">${template.exception}: ${template.workTitle} (ID: ${template.work.workNumber})</a>
+#else
+	<a href="/assignments/details/${template.work.workNumber}">${template.exception}: ${template.workTitle} (ID: ${template.work.workNumber})</a>
+#end

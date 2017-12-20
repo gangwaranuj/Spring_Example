@@ -1,0 +1,20 @@
+<div class="wm-modal" data-modal>
+	{{#each this.slides}}
+		<div id="{{this.id}}" class="wm-modal--slide {{#if this.isActive}}-active{{/if}}">
+			<div class="wm-modal--toolbar">
+				<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+				<h1 class="wm-modal--header">
+					<span class="wm-modal--title">{{{this.title}}}</span>
+				</h1>
+			</div>
+			<div class="wm-modal--content">
+				<small>If the talent pool is public, the worker will receive an invitation via email with information regarding your talent pool. If the talent pool is private, the worker will be added immediately.</small>
+				<select class="bulk-group-select" name="bulk-group-select"></select>
+			</div>
+			<div class="wm-modal--footer">
+				<button class="button -primary profile-card--invite-group bulk">Send Invites</button>
+				<button class="button" data-modal-close>Close</button>
+			</div>
+		</div>
+	{{/each}}
+</div>

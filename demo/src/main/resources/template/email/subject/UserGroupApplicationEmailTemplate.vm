@@ -1,0 +1,8 @@
+#if (${template.overrideRequested})
+	#set($suffix = "(Override Requested)")
+#elseif (${template.hasRequirements})
+	#set($suffix = "(Meets Requirements)")
+#else
+	#set($suffix = "")
+#end
+${template.resource.firstName} ${template.resource.lastName} applied to your talent pool ${suffix}

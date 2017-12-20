@@ -1,0 +1,17 @@
+<label class="assignment-creation--label -required" for="routing-assignToFirstToAccept">Post to the Public Marketplace</label>
+<div class="assignment-creation--field">
+	{{> settings-switch name="routing-assignToFirstToAccept" value="true" checked=assignToFirstToAccept on="Yes" off="No" }}
+	<small>Selecting this option will make the assignment visible to any worker or vender on Work Market.</small>
+</div>
+
+<label class="assignment-creation--label -required" for="routing-resourceNumbers">Talent <small>(Workers or Vendors)</small></label>
+<div class="assignment-creation--field">
+	<select class="wm-select" name="routing-resourceNumbers" id="routing-resourceNumbers" multiple></select>
+	{{> checkbox name="routing-talentFirstToAccept" text="Assign to first applicant that meets requirements" }}
+</div>
+
+<label class="assignment-creation--label -required" for="routing-talentPools">Talent Pools</label>
+<div class="assignment-creation--field">
+	<select class="wm-select" name="routing-talentPools" id="routing-talentPools" multiple></select>
+	{{> checkbox name="routing-talentPoolsFirstToAccept" text="Assign to first applicant that meets requirements" }}
+</div>

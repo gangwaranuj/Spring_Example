@@ -1,0 +1,20 @@
+<td><label class="span3 {{#if this.isRequiredCustomField}}required{{/if}}">{{this.model.name}}</label></td>
+
+<td>
+	<input type="hidden" name="customFieldGroupSet[{{this.model.groupIndex}}].fields[{{this.model.index}}].id" value="{{this.model.id}}"/>
+	<textarea data-icon="check-{{this.model.index}}" {{#if this.isDisabled}}disabled="disabled"{{/if}} maxlength="1000" name="customFieldGroupSet[{{this.model.groupIndex}}].fields[{{this.model.index}}].value" value="{{this.model.value}}" class="field_value {{#if this.isRequiredCustomFieldAndTypeWorker}}required{{/if}}">{{this.model.value}}</textarea>
+
+	{{#if this.model.isAdmin}}
+		{{#if this.model.isRequired}}
+			{{#[../../../helpers/eq] this.model.type 'resource'}}
+				<small class="meta">Required</small>
+			{{/[../../../helpers/eq]}}
+		{{/if}}
+	{{/if}}
+
+	<a class="cf-link tooltipped tooltipped-n dn" target="_blank" href="{{this.model.value}}" aria-label="Open Link in New Tab">
+		<i class="link-lock wm-icon-lock-circle muted"></i>
+	</a>
+</td>
+
+<td><i id="check-{{this.model.index}}"></i></td>

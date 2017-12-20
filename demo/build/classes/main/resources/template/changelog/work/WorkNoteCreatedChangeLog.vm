@@ -1,0 +1,1 @@
+${template.actorFullName} added a #if(${template.note.isPrivate})private#{else}public#{end} note: ${template.note.content}

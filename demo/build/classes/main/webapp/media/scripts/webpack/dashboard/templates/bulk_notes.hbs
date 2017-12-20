@@ -1,0 +1,36 @@
+<form action="/assignments/add_notes" method="post" id="add-note-form" class="form-stacked">
+
+	<input type="hidden" name="assignment_ids" id="assignment_ids"/>
+	<input type="hidden" name="is_select_all" id="is_select_all"/>
+
+	<div class="clearfix">
+		<div class="input">
+			<textarea name="multiple_content" id="multiple_content" rows="5" class="span8"></textarea>
+		</div>
+	</div>
+
+	<div class="clearfix">
+		<div class="input">
+			<ul class="inputs-list">
+				<li>
+					<label>
+						<input type="radio" name="is_private_multiple" value="0" checked="true"/>
+						Everyone on assignment can see
+					</label>
+				</li>
+				<li>
+					<label>
+						<input type="radio" name="is_private_multiple" value="1"/>
+						Private: Only my company can see
+					</label>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="wm-action-container">
+		<button class="button" data-modal-close>Close</button>
+		<button class="button" id="submit_add_notes">Add Note</button>
+	</div>
+
+</form>

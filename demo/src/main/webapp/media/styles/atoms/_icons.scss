@@ -1,0 +1,135 @@
+$icon-base-color: $grey;
+$icon-highlight-color: $light-grey;
+
+$icon-active-base-color: $white;
+$icon-active-highlight-color: $orange;
+
+/////////////////
+// Icon Mixins //
+/////////////////
+
+@mixin shipping-icon($base, $highlight) {
+	.icon--base { fill: grayscale($base); }
+	.icon--highlight { fill: grayscale($highlight); }
+	.active > & {
+		.icon--base { fill: $base; }
+		.icon--highlight { fill: $highlight; }
+	}
+}
+
+//////////////////
+// Icon Extends //
+//////////////////
+
+%nav-icon {
+	[class*="__shadow"] { opacity: 0.3; }
+	.icon--base {
+		fill: $icon-base-color;
+
+		.active > & { fill: $icon-active-base-color; }
+	}
+	.icon--highlight {
+		fill: $icon-highlight-color;
+
+		.active > & { fill: $icon-active-highlight-color; }
+	}
+}
+
+/////////////////
+// Icon Styles //
+/////////////////
+
+svg[class^="icon-"], svg[class*=" icon-"] {
+	height: 1em;
+	width: 1em;
+}
+
+
+i[class^="wm-icon"], i[class*=" wm-icon"] {
+	display: inline-block;
+}
+
+
+.icon-work-wave {
+	.active > &, &:hover {
+		.-inactive { display: block; }
+		.-active { display: none; }
+	}
+	.-inactive { display: none; }
+	.-active { display: block; }
+	.-outline { fill: #D3D3D3; }
+}
+
+.logo-work-market {
+	fill: $dark-grey;
+	width: 9em;
+	height: 2em;
+	display: block;
+
+	&.-orange {
+		fill: $orange;
+	}
+	&.-white {
+		fill: $white;
+	}
+}
+
+.icon-follow {
+	.icon--base { fill: $white; }
+	.icon--highlight { fill: $blue; }
+}
+
+.icon-wm {
+	.icon--base { fill: $icon-active-base-color; }
+	.icon--highlight { fill: $icon-active-highlight-color; }
+}
+
+.icon-graph {
+	.icon--base {
+		fill: $icon-base-color;
+
+		.active & { fill: $icon-highlight-color; }
+	}
+	.icon--highlight {
+		fill: $icon-highlight-color;
+
+		.active & { fill: $icon-active-highlight-color; }
+	}
+}
+
+// Nav Icons
+.icon-users {
+	@extend %nav-icon;
+
+	.active > & {
+		.icon--base { fill: $icon-active-highlight-color; }
+		.icon--highlight { fill: $icon-active-base-color; }
+	}
+}
+
+.icon-work { @extend %nav-icon; }
+.icon-payments { @extend %nav-icon; }
+.icon-chart { @extend %nav-icon; }
+.icon-phone { @extend %nav-icon; }
+
+.icon-mobile {
+	.icon--base { fill: $dark-grey; }
+	.icon--highlight { fill: $white; }
+}
+
+.icon-truck {
+	.-is-return { display: none; }
+}
+
+
+.icon-information {
+	fill: $white;
+	background-color: $light-grey;
+	@include circle;
+	padding: 0.2em;
+}
+
+.icon-dhl { @include shipping-icon($dhl-yellow, $dhl-red); }
+.icon-fedex { @include shipping-icon($fedex-purple, $fedex-orange); }
+.icon-ups { @include shipping-icon($ups-brown, $ups-yellow); }
+.icon-usps { @include shipping-icon($usps-blue, $usps-blue); }

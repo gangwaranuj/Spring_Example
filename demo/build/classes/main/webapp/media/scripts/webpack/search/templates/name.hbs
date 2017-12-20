@@ -1,0 +1,24 @@
+<div>
+	<p>
+		{{#if workNumber}}
+			<a href="/assignments/details/{{workNumber}}">{{workTitle}}</a> <small>({{workSchedule}})</small><br/>
+		{{else}}
+			<strong>{{workTitle}}</strong>
+		{{/if}}
+
+		{{{[../../helpers/resourceLabels] resourceLabels}}}
+
+		{{#if isOwner}}
+			{{#if companyName}}
+				{{companyName}}<br/>
+			{{/if}}
+		{{/if}}
+		<small></small>
+	</p>
+
+	{{#if ratingReview}}
+		<blockquote>
+			<span>{{ratingReview}}</span>
+		</blockquote>
+	{{/if}}
+</div>

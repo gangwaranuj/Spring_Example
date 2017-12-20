@@ -1,0 +1,47 @@
+<div class="bundle_accordion" id="assignmentsAccordion">
+	<img class="accordion-icon" src="/media/images/live_icons/assignments/overview.svg">
+	<div class="accordion-heading media-body">
+		<a id="accordion_assignments" data-toggle="collapse" href="#assignments_new">
+			<h4>Assignments  <i class="toggle-icon pull-right icon-minus-sign"></i></h4>
+		</a>
+	</div>
+	<div id="assignments_new" class="accordion-body collapse in">
+		<table id="bundle_list">
+			<thead>
+				<tr>
+					<th class="long">Title</th>
+					<th class="medium">Location</th>
+					<th class="medium">Start Date</th>
+					<th class="medium">Budget</th>
+					<th class="short">Status</th>
+					{{#if isEligibleToTakeAction}}
+						<th class="short">Actions</th>
+					{{else}}
+						<th class="short"></th>
+					{{/if}}
+				</tr>
+			</thead>
+			<tbody>
+				{{#each assignments}}
+					<tr>
+						<td><a href="/assignments/details/{{this.attributes.workNumber}}">{{this.attributes.title}}</a></td>
+						<td>{{this.attributes.location}}</td>
+						<td>{{this.attributes.due}}</td>
+						<td>{{this.attributes.budget}}</td>
+						<td>{{this.attributes.status}}</td>
+						<td>
+							{{#if ../this.isEligibleToTakeAction}}
+								<a class="delete" id="confirm-unbundle-template" data-work="{{this.collection.options.parentId}}/{{this.attributes.workNumber}}" href="#">unbundle</a>
+									{{#[../../../helpers/eq] this.attributes.status 'sent'}}
+										{{#if ../../../this.isWorkActive}}
+											<a class="accept" data-work="{{this.collection.options.parentId}}/{{this.attributes.workNumber}}" href="#">accept</a>
+										{{/if}}
+									{{/[../../../helpers/eq]}}
+							{{/if}}
+						</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	</div>
+</div>

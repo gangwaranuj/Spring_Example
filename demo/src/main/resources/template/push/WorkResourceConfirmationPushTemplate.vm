@@ -1,0 +1,4 @@
+{
+"message": "Assignment confirmation required for ${template.work.title}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

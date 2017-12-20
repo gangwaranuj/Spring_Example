@@ -1,0 +1,17 @@
+To import the First Data key:
+
+	% sudo keytool -importkeystore -trustcacerts -deststorepass <password> -destkeypass <password> -destkeystore </path/to/keystore> -srckeystore WS1001250858._.1.ks -srcstorepass azs2KMTDOZ -destalias fdggwsclient -alias fdggwsclient
+
+On the Mac:
+
+	keystore: $JAVA_HOME/lib/security/cacerts
+	password: changeit
+
+
+Trying some other things:
+
+	% keytool -importkeystore -srckeystore WS1001250858._.1.ks -srcstorepass azs2KMTDOZ -alias fdggwsclient
+	% keytool -import -trustcacerts -file WS1001250858._.1.pem -alias ca
+	% keytool -list -v
+
+@see http://blogs.sun.com/andreas/entry/no_more_unable_to_find

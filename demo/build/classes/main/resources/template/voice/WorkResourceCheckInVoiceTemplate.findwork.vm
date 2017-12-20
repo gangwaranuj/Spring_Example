@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Gather action='${baseurl}${callbackUri}'>
+		<Say voice='woman'>
+			To update an assignment status, please enter an active assignment ID followed by the #.
+		</Say>
+	</Gather>
+	<Redirect>${baseurl}${callbackUri}?Digits=TIMEOUT&amp;Digits=TIMEOUT</Redirect>
+</Response>

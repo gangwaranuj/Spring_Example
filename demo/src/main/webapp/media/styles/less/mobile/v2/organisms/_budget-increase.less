@@ -1,0 +1,56 @@
+.budget-increase-page {
+	height: 100%;
+	color: @dark-gray;
+
+	.show {
+		background-color: @light-gray;
+	}
+	.x-button {
+		margin: 1em !important;
+	}
+
+	.nav h1 {
+		float: left;
+	}
+
+	.important {
+		padding-bottom: 2em;
+	}
+
+	h1, h2, h3, h4 {
+		text-align: left;
+	}
+
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+		padding: 0 @small-space;
+		.grid:first-child {
+			padding-top: @medium-space;
+		}
+	}
+
+	input, textarea {
+		margin-bottom: 1em;
+		border-color: @medium-gray;
+		&:focus {
+			border-color: @orange;
+		}
+	}
+
+	input[type='submit'] {
+		.default-button;
+	}
+
+	.pricing-summary-container {
+		margin: 1em 0;
+		.border-radius(5px);
+		background: @light-gray;
+		padding: 0.5em;
+
+		h3 {
+			margin-top: 0;
+		}
+	}
+}
+

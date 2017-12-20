@@ -1,0 +1,1 @@
+${template.negotiation.requestedBy.fullName} requested to reschedule: ${template.workTitle}

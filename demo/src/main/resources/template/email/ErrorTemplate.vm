@@ -1,0 +1,26 @@
+<p style="font-family:arial;font-size:14px;">
+	${template.message}
+	<br /><br />
+	<strong>Host name:</strong> ${template.hostName}<br/>
+	<strong>Time:</strong> ${template.timestamp} UTC<br/>
+	<br />
+	#if (${template.authenticated})
+	<strong>User email:</strong> <a href="${template.baseUrl}/admin/manage/profiles/index/${template.userNumber}">${template.userEmail}</a><br />
+	<strong>User number:</strong> ${template.userNumber}<br />
+	<strong>Company name:</strong> <a href="${template.baseUrl}/admin/manage/company/overview/${template.companyId}">${template.companyName}</a><br />
+	<strong>Company ID:</strong> ${template.companyId}<br />
+	<br />
+	#end
+	<strong>IP:</strong> ${template.userIP}<br />
+	<strong>User Agent:</strong> ${template.userAgent}<br />
+	<br />
+	<strong>Referrer:</strong> ${template.referrer}<br />
+	<strong>Request URL:</strong> ${template.requestUrl}<br />
+</p>
+<hr />
+#set( $rawStackTrace = $display.br($template.stackTrace) )
+<span style="font-size:12px;font-family: console;">${rawStackTrace}</span>
+
+<hr />
+#set( $rawRequestTrace = $display.br($template.requestTrace) )
+<span style="font-size:12px;font-family: console;">${rawRequestTrace}</span>

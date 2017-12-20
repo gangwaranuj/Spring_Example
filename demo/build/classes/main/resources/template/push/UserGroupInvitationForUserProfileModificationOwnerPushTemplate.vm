@@ -1,0 +1,4 @@
+{
+"message": "${template.resource.fullName} made one or more profile changes. ${template.resource.firstName} is now pending approval for the talent pool: ${template.userGroupName}",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

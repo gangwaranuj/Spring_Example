@@ -1,0 +1,17 @@
+***************
+*** 4,10 ****
+  wmshipment.host: "shipment-lopes.dev.workmarket.com"
+  wmlocation.host: "location-pachelbel.dev.workmarket.com"
+  wmsso.host: "sso-vandross.dev.workmarket.com"
+- wmnotification.host: "notification-dawg.dev.workmarket.com"
+  wmsearchtracking.host: "searchtracking-wagner.dev.workmarket.com"
+  wmmedia.host: "media-nimoy.dev.workmarket.com"
+  wmskillrecommender.host: "skillrecommender-broonzy.dev.workmarket.com"
+--- 4,10 ----
+  wmshipment.host: "shipment-lopes.dev.workmarket.com"
+  wmlocation.host: "location-pachelbel.dev.workmarket.com"
+  wmsso.host: "sso-vandross.dev.workmarket.com"
++ wmnotification.host: "localhost:8081"
+  wmsearchtracking.host: "searchtracking-wagner.dev.workmarket.com"
+  wmmedia.host: "media-nimoy.dev.workmarket.com"
+  wmskillrecommender.host: "skillrecommender-broonzy.dev.workmarket.com"

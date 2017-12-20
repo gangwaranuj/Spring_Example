@@ -1,0 +1,1 @@
+Reminder: $!{template.invitation.invitingUser.fullName} invited you to be a contractor for $!{template.invitation.invitingUser.company.effectiveName}

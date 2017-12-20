@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}#deliverables">Deliverable late for ${template.workTitle}</a>

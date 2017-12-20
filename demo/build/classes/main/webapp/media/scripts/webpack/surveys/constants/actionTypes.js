@@ -1,0 +1,3 @@
+export const ADD_SURVEY = 'ADD_SURVEY';
+export const REMOVE_SURVEY = 'REMOVE_SURVEY';
+export const TOGGLE_REQUIRED = 'TOGGLE_REQUIRED';

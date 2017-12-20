@@ -1,0 +1,48 @@
+$tags: (
+	border-width: 1px,
+	icon: (
+		spacing: 2px
+	)
+);
+
+.selectize-control.plugin-remove_button [data-value] .remove {
+	border: none;
+}
+.wm-tags {
+	&.selectize-control {
+		&.plugin-remove_button {
+			.remove {
+				font-size: 1.5em;
+				line-height: 0.8;
+			}
+		}
+	}
+
+	.selectize-input {
+		background-color: transparent;
+
+		&:not(.focus) {
+			&:hover::after {
+				@include icon(edit);
+				position: absolute;
+				top: 50%;
+				right: #{map-fetch($tags, icon, spacing) + map-get($tags, border-width)};
+				transform: translateY(-50%);
+				padding: calc(0.5em - #{map-fetch($tags, icon, spacing) + map-get($tags, border-width)});
+				color: $white;
+				background-color: $light-grey;
+				border-radius: $base-border-radius - 1;
+			}
+			&:not(:hover) {
+				border-color: transparent;
+			}
+
+			.remove {
+				display: none;
+			}
+			[data-value] {
+				padding-right: 0.5em !important; // override selectize plugin
+			}
+		}
+	}
+}

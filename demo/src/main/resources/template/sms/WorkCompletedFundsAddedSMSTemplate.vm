@@ -1,0 +1,4 @@
+Assignment Closed:
+${template.workTitle} -
+Funds added #if($showPricing): ${number.currency($template.work.fulfillmentStrategy.amountEarned)} #end-
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

@@ -1,0 +1,36 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px
+0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">WorkMarket Visa Card Requested</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+	<p>
+		Congratulations! You have taken the first step and requested your WorkMarket Visa Card.<br/><br/>
+		In 7-10 business days, you will receive your card in the mail. Then all you'll have to do is call the number on the card to activate it.
+	</p>
+	<p>
+		<strong>Two ways to withdraw your funds:</strong>
+		<ul>
+			<li>
+				To receive funds faster, <a href="https://www.workmarket.com/funds/accounts">activate automatic withdrawal</a>.
+				WorkMarket will then automatically withdraw your funds to your card once you're paid.
+				Assignments paid before 4pm EST will be made available by 4:30pm EST same business day.
+			</li>
+			<li>
+				You can withdraw funds manually to your WorkMarket Visa Card by logging into WorkMarket.
+				Requests made before 4pm EST will be made available by 4:30pm EST same business day
+			</li>
+		</ul>
+	</p>
+
+
+	<p>
+		For more information about your card and the approval process, you can contact Visa Card Help at
+		1-866-395-9200 or <a href="https://www.globalcashcard.com/benefits/cardholder_benefits
+		.cfm">visit their website</a>.
+		Additionally, <a href="http://j.mp/16V5MH7">see our help article for more on the WorkMarket Visa Card.</a>
+	</p>
+
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

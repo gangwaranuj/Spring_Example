@@ -1,0 +1,290 @@
+#navbar {
+	background-color: #111111;
+	position: relative;
+	z-index: $header-index;
+
+	a {
+		color: $grey;
+		outline: none;
+	}
+
+	.navbar-inner {
+		@include container;
+		padding-left: 1em;
+		padding-right: 1em;
+	}
+	.nav {
+		float: left;
+
+		&.pull-right {
+			float: right;
+
+			& > li {
+				position: relative;
+				padding: 0;
+				float: left;
+
+				&:nth-child(2) {
+					margin: 0.7em 1em 0 0.7em;
+					font-size: 1.2em;
+				}
+			}
+		}
+		& > li {
+			display: inline-block;
+			padding: 1em;
+		}
+	}
+	.nav-menu {
+		position: relative;
+
+		&.active {
+			color: $white;
+
+			&::after {
+				@include triangle(up, $white, 0.5em);
+				position: absolute;
+				bottom: -1em;
+				left: calc(50% - 0.5em);
+			}
+		}
+	}
+	.dropdown-toggle-user {
+		display: block;
+		width: 2em;
+		margin-top: 0.5em;
+
+		img {
+			width: 100%;
+		}
+	}
+	.nav-home {
+		display: block;
+		text-align: center;
+		color: transparent;
+		position: relative;
+
+		&::before {
+			@include icon(house);
+			color: $white;
+			position: absolute;
+			font-size: 1.5em;
+			left: calc(50% - 0.5em);
+			top: -0.2em;
+		}
+		&.active {
+			color: transparent;
+
+			&::before {
+				color: $white;
+			}
+		}
+	}
+	.search-query {
+		margin-bottom: 0;
+		padding-left: 1.7em;
+		border-radius: 1em;
+		outline: none;
+	}
+	.navbar-search {
+		position: relative;
+		float: left;
+		margin-top: 0.5em;
+		margin-left: 5em;
+		min-width: 20em;
+
+		i {
+			position: absolute;
+			top: 0.15em;
+			left: 0.2em;
+			font-size: 1.5em;
+		}
+	}
+	.header--funds {
+		.icon-payments {
+			& + .icon-payments {
+				bottom: 0.8em;
+			}
+		}
+	}
+
+	.dropdown {
+		&.open {
+			.dropdown-menu {
+				display: block;
+
+				&::before {
+					position: absolute;
+					display: block;
+					content: "";
+					height: 2em;
+					top: -2em;
+					width: 100%;
+				}
+				&::after {
+					@include triangle(up, #333, 0.5em);
+					position: absolute;
+					top: -0.5em;
+					right: 1.5em;
+				}
+			}
+		}
+		.dropdown-menu {
+			position: absolute;
+			right: -1em;
+			background-color: #333;
+			box-shadow: none;
+			top: 4em;
+			padding: 0.5em 0 0;
+		}
+		li:not(:empty) {
+			display: block;
+			padding: 0.5em 1em;
+		}
+		.divider {
+			border-top: 1px solid #111;
+			border-bottom: 1px solid #333;
+		}
+		.settings {
+			float: right;
+		}
+		.no-notifications {
+			text-align: center;
+			padding: 1em;
+		}
+		.notification-footer {
+			display: block;
+			font-size: 0.8em;
+		}
+		[class^="icon-"], [class*=" icon-"] {
+			display: inline-block;
+			margin-top: -0.1em;
+		}
+		.icon-tasks::before {
+			@include icon(assignments);
+		}
+		.icon-user {
+			font-size: 0.8em;
+			margin-right: 2.5em;
+		}
+	}
+	#bullhorn + .dropdown-menu {
+		top: 3em;
+	}
+}
+
+// Sitewide Header
+// Modifies standard nav and menus
+// Alert bar for locked accounts
+
+$subnavColor: rgb(248, 248, 248);
+
+#navbar .dropdown .dropdown-menu a {
+	color: #515151;
+	text-shadow: none;
+	margin-bottom: 0;
+}
+
+#navbar {
+	.no-notifications {
+		font-size: 11px;
+		color: #c9c9c9;
+		padding-left: 5px;
+		padding-right: 5px;
+		a {
+			font-weight: normal;
+			color: #0084B4 !important;
+			&:hover {
+				text-decoration: none;
+				color: #5b93b2 !important;
+			}
+		}
+	}
+
+	.notification_count {
+		padding: 0 3px;
+		position: relative;
+		right: 8px;
+		top: -9px;
+	}
+
+	.dropdown .dropdown-menu {
+		border-style: solid;
+		border-color: #999;
+		border-color: rgba(0, 0, 0, 0.2);
+		border-width: 0 1px 1px;
+		background-color: #333;
+
+		.divider {
+			border-top: 1px solid #222;
+			border-bottom: 1px solid #444;
+		}
+
+		a {
+			color: #e8e8e8;
+			text-shadow: none;
+			margin-bottom: 0;
+
+			&:hover {
+				color: $white;
+				background-color: transparent;
+				background-image: none;
+			}
+		}
+	}
+
+	.dropdown .dropdown-notifications {
+		min-width: 300px;
+
+		li > a {
+			text-shadow: none;
+			padding: 0;
+			margin-bottom: 0;
+		}
+
+		.divider {
+			margin: 1px 1px;
+		}
+
+		.meta {
+			font-size: 10px;
+			color: $charcoal-grey;
+			position: relative;
+			right: 5px;
+			bottom: 20px;
+			height: 0;
+			float: right;
+
+			#notification_status {
+				padding-top: 4px;
+				padding-left: 7px;
+			}
+		}
+
+		.notification-footer {
+			padding: 0;
+			text-align: center;
+		}
+
+		#see-all {
+			background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(255, 255, 255, 0));
+			background-color: rgba(255, 255, 255, 0);
+		}
+
+		.settings {
+			font-size: 11px;
+			font-weight: normal;
+			color: #0084B4;
+			margin-left: 181px;
+			&:hover {
+				color: #5b93b2;
+				text-decoration: none;
+			}
+		}
+
+		.header {
+			font-size: 11px;
+			padding-left: 8px;
+		}
+	}
+}

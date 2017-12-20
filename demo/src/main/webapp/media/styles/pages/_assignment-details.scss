@@ -1,0 +1,329 @@
+.page-assignment-details {
+	.description-container ul { list-style-type: disc; }
+	.description-container p { margin: 0 !important; }
+	.parts-partial-on-details {	padding: 0 2em; }
+
+	.assignment-messages {
+		@include new-form-inputs;
+		@include new-form-textarea;
+		@include reset-box-sizing;
+		@include new-typography;
+		position: relative;
+
+		.button { float: right; }
+
+		&--filters {
+			border-bottom: $default-border;
+			display: flex;
+			justify-content: space-around;
+			margin-bottom: 1em;
+			padding-bottom: 0.5em;
+		}
+		&--message-prompt {
+			@include clearfix;
+			padding: 1em 1em 0;
+			display: none;
+			background-color: map-get($message, "content-background-color");
+			margin-bottom: 1em;
+			border-radius: map-get($message, "border-radius");
+
+			&.-active { display: block; }
+
+			.button { display: none; }
+			.wm-checkbox {
+				float: left;
+				padding: 0.5em;
+				background-color: $white;
+				border: $default-border;
+				border-radius: $base-border-radius;
+
+				&--text {
+					max-width: none;
+				}
+			}
+		}
+		&--new-question-content,
+		&--new-message-content {
+			& ~ .button { display: block; }
+		}
+		&--empty {
+			margin-bottom: 1em;
+			padding: 2em;
+			text-align: center;
+			line-height: 1.5;
+
+			.wm-avatar {
+				font-size: 1.5em;
+				display: inline-block;
+				vertical-align: middle;
+			}
+		}
+		&--feed {
+			max-height: 30em;
+			overflow: auto;
+			margin-bottom: 1em;
+		}
+	}
+
+	.message-thread { margin-bottom: 1em; }
+
+	.assignment-workers {
+		@include new-form-inputs;
+		@include new-form-textarea;
+		@include new-unordered-lists;
+		@include reset-box-sizing;
+		@include new-typography;
+		&--toolbar {
+		    display: flex;
+   			justify-content: space-between;
+		}
+		&--sort-container {
+			display: flex;
+			align-items: center;
+			margin-bottom: 1em;
+		}
+		&--sort-type,
+		&--sort-dir,
+		&--filter-number {
+			&.selectize-control {
+				margin-left: 0.5em;
+				margin-bottom: 0;
+			}
+			input[type="text"] {
+				display: none;
+			}
+		}
+		&--filter-number {
+			width: 5em;
+		}
+		&--sort-type {
+			width: span(4);
+			flex-grow: 2;
+		}
+		&--sort-dir {
+			width: 4.2em;
+		}
+
+		.limit-container {
+			display: flex;
+			align-items: center;
+			margin-right: 1em;
+		}
+		&--sort-options {
+			float: left;
+		}
+		&--talent-filter {
+			display: inline-block;
+			float: right;
+			position: relative;
+			padding-right: 10px;
+		}
+		&--feed {
+			clear: both;
+		}
+		.vendor-count, .worker-count {
+			position: absolute;
+			background: $orange;
+			height: 18px;
+			min-width: 16px;
+			padding: 0 3px 0 2px;
+			text-align: center;
+			top: -8px;
+			z-index: 50;
+			border-radius: 10px;
+			color: $white;
+			font-size: 10px;
+		}
+		.vendor-count {
+			left: 89%;
+		}
+		.worker-count {
+			left:34%;
+		}
+	}
+
+	#assets {
+		.remove {
+			cursor: pointer;
+		}
+	}
+
+	.content {
+		.wm-tab--content {
+			border: $default-border;
+			border-top: 0;
+		}
+	}
+
+	.documents .non-required-deliverable .asset-name {
+		width: 23em;
+	}
+
+	.follow {
+		width: auto;
+		height: auto;
+		right: 0;
+		background: none;
+		margin-top: 1em;
+
+		i {
+			font-size: inherit;
+			color: inherit;
+		}
+	}
+
+	#ratings {
+		padding-bottom: 8px;
+		.stackWorkResourceLabels {
+			margin-bottom: 4px;
+			float: left;
+			clear: both;
+		}
+	}
+
+	.sidebar {
+		.media {
+			[class^="icon-"], [class*=" icon-"] {
+				float: left;
+				margin-right: 0.5em;
+				padding: 0.2em 0;
+			}
+		}
+		.assign-drop {
+			height: 2.5em;
+			background-color: #ffffff;
+			border-radius: 4px;
+			border: .5px solid #cccccc;
+			padding: 0.1em 0.5em;
+			i { text-decoration: none; }
+		}
+		.more-actions {
+			color: $grey;
+			i { margin-top: 0.7em; }
+			.caret {
+				margin-top: 1.3em;
+				margin-left: 0.2em;
+			}
+		}
+		.resource-info {
+			@include span(9);
+		}
+		.worker-avatar {
+			@include span(3 omega);
+		}
+		.wm-avatar {
+			display: inline-block;
+			font-size: 4em;
+		}
+	}
+
+	.icon-team-agent {
+		height: 1.4em;
+		width: 1.4em;
+		padding: 0.1em;
+	}
+
+	.link-lock {
+		font-size: 1.5em;
+		cursor: pointer;
+	}
+
+	.tax-summary {
+		border: none;
+
+		td {
+			padding: 4px 1px;
+			border-bottom: 1px solid $light-grey;
+
+			.tax_to_diff, .tax_to_report {
+				font-weight: bold;
+			}
+		}
+
+		td.irs {
+			background-color: $light-grey;
+		}
+		.taxrate .tooltip-text {
+			position: relative;
+			bottom: 2px;
+		}
+		.tax_percent {
+			height: 10px;
+			font-size: 11px;
+			top: -1px;
+			position: relative;
+			text-align: right;
+		}
+	}
+
+	.profile-card--actions {
+		.button {
+			font-size: 0.8em;
+		}
+	}
+
+	.workers-count {
+		font-weight: bold;
+		margin-bottom: 2em;
+	}
+
+	.workers-map {
+		table-layout: fixed;
+	}
+
+	.worker-scroll{
+		overflow: auto;
+		height: 500px;
+		display: block;
+	}
+
+	#workers-map {
+		.wm-spinner {
+			@include center;
+		}
+	}
+
+	.assignments-action-container {
+		margin-top: 0;
+		margin-bottom: 1em;
+		padding: 0.7em 0.4em;
+		text-align: center;
+	}
+
+	#approve_assignment_form {
+		.wm-action-container {
+			text-align: center;
+		}
+	}
+
+	#pane-custom-fields {
+		.field_value {
+			width: 100%;
+			max-width: none;
+			height: 5em;
+
+			&:empty {
+				height: 2em;
+			}
+		}
+	}
+
+	&--offline-payment-notice {
+		padding: 0 20px 0 34px;
+	}
+
+	.conflict-row {
+		background-color: $off-white;
+	}
+	.conflict-text {
+		font-size: 18px;
+		line-height: 22px;
+	}
+	.conflict-assignment {
+		margin-left: 8px;
+	}
+	.conflict-time {
+		margin-right: 8px;
+		float: right;
+	}
+}

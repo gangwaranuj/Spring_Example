@@ -1,0 +1,199 @@
+.details-page {
+	.details-wrap {
+		background: @light-gray;
+		margin-bottom: 1em;
+
+		.border-radius(@base-border-radius * 2);
+
+		.pricing-summary {
+			margin: 0 !important;
+		}
+		.validation-container {
+			padding: @medium-space;
+		}
+	}
+
+	.wrap {
+		background: white;
+		padding: 1em 0.7em;
+		p {
+			color: @dark-gray;
+		}
+		ul {
+			list-style-type: none;
+			padding: 0;
+		}
+		small {
+			margin: @medium-space 0;
+			display: inline-block;
+		}
+	}
+
+	.content {
+		list-style: none;
+
+		.assignment-title {
+			margin: 0.5em 0 0;
+			color: @medium-gray;
+
+			.assignment-title-name {
+				padding: 0;
+				font-size: @normal-font-size;
+				word-wrap: break-word;
+			}
+
+			.work-number {
+				font-size: 80%;
+			}
+		}
+
+		.company-info {
+			padding: @small-space 0;
+			font-size: @small-font-size;
+			color: @dark-gray;
+		}
+
+		.description-text {
+			text-align: left;
+		}
+		.details {
+			cursor: pointer;
+			background-color: transparent;
+			color: @medium-gray;
+			.border-radius(3px);
+			.unit {
+				padding: 0;
+				.border-radius(3px);
+				margin-top: 1em;
+			}
+			a {
+				text-decoration: none;
+			}
+			button {
+				background-color: @orange;
+				color: white;
+			}
+		}
+		h5 {
+			text-align: left;
+			color: @dark-gray;
+			margin: 1em 0 .7em;
+		}
+		h3 {
+			color: @gray;
+			.border-radiuses (2px, 0, 0, 2px);
+			padding: @small-space 1em;
+			margin: 0;
+			text-align: left;
+		}
+		h4 {
+			padding: 0.7em 1em .5em;
+			color: #58595d;
+			background: white;
+			display: inline-block;
+			margin: 0 0 0 -0.5em;
+			border-radius: 3px;
+		}
+	}
+	.show {
+		.paper;
+		background: white;
+	}
+}
+
+.response-buttons {
+	.full-site {
+		color: @orange;
+		text-decoration: underline;
+	}
+}
+
+.assignment-status {
+	background: @orange;
+	color: white;
+	margin: 0;
+	padding: 0.4em 1em;
+	.status-name {
+		font-weight: bold;
+	}
+	.payment-info {
+		float: right;
+	}
+}
+
+.contacts {
+	text-align: left;
+	padding: 0 1em 1em;
+	a {
+		text-decoration: none;
+		color: @orange;
+		border-bottom: 1px dotted @orange;
+	}
+}
+
+.instructions {
+	margin: 0;
+	text-align: left;
+	padding: .5em 0.7em !important;
+}
+
+#time-place {
+	text-align: left;
+	clear: both;
+	p, span {
+		padding: 0 2.6em;
+		color: @dark-gray;
+		font-family: @bold-font;
+	}
+}
+
+.timetracking-container {
+	background: @light-gray;
+	.border-radius(@base-border-radius * 2);
+	padding: 1em;
+	margin-bottom: 1em;
+	.stopwatch-icon {
+		float: right;
+	}
+	#time-tracking {
+		margin: 0 auto !important;
+		.time-tracking-pair {
+			font-size: 0.85em;
+			color: @dark-gray;
+		}
+	}
+	h4 {
+		margin: 0.7em auto 0 !important
+	}
+}
+
+#checkin-warning {
+	color: @error;
+}
+
+.vip {
+	margin: 0;
+	font-size: @normal-font-size;
+	color: @dark-gray;
+}
+
+#map-circle {
+	.pulse;
+}
+
+.flat-price-paper {
+	float: right;
+	margin: -2em 1em 0 0;
+	padding: 0.9em 0.3em 0.6em .3em;
+	.border-radius(@base-border-radius);
+	color: @green;
+	.paper;
+	background: white;
+	font-family: @bold-font;
+	.tack-icon {
+		position: relative;
+		float: left;
+		margin-top: -2.4em;
+		margin-left: 2.8em;
+	}
+}

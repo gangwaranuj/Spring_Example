@@ -1,0 +1,78 @@
+<td class="invoice-check check">
+	<input type="checkbox" name="ids[]" value="{{this.model.invoiceId}}"/>
+</td>
+<td class="bundle-details" colspan="3">
+	<table>
+		<tbody>
+		<tr class="bundle-row">
+			<td class="invoice-detail span6">
+				<strong
+					{{#unless this.model.isReceivables}}
+						{{#unless this.model.editable}} class="tooltipped tooltipped-n" aria-label="One or more of the invoices in this bundle have been locked, and invoices can no longer be removed from it or paid individually"{{/unless}}
+					{{/unless}}
+					>
+					{{#unless this.isReceivables}}
+						{{#unless this.model.editable}}<i class="wm-icon-lock-circle"></i>{{/unless}}
+					{{/unless}}
+					{{this.model.invoiceDescription}}
+				</strong>
+				<br/>{{this.model.invoiceNumber}} &mdash; {{this.model.numberOfInvoices}} Invoices
+				<dl class="help-block">
+					<ul class="invoice-actions">
+						<li><a href="/payments/invoices/print/{{this.model.invoiceId}}" {{#if this.model.editable}} data-confirmation-message="Are you sure you want to print the invoice bundle? Once printed, the invoice will be locked and can only be unlocked by an authorized users." {{/if}} class="print-invoice-outlet" target="_blank">Print</a></li>
+						<li><a href="/payments/invoices/email/{{this.model.invoiceId}}" {{#if this.model.editable}} data-confirmation-message="Are you sure you want to email the invoice bundle? Once emailed, the invoice will be locked and can only be unlocked by an authorized users." {{/if}} class="email-invoice-outlet">Email</a></li>
+						<li><a href="/payments/invoices/export/{{this.model.invoiceId}}">Export CSV</a></li>
+						{{#unless this.model.editable}}
+							{{#if this.invoiceStatusTypeCodePending}}
+								<li><a class="js-unlock-invoice" data-invoice="{{this.model.invoiceId}}" href="javascript:void(0);">Unlock</a></li>
+							{{/if}}
+						{{/unless}}
+						{{#unless this.invoiceStatusTypeCodePaid}}
+							<li><a href="/payments/invoices/pay?ids[]={{this.model.invoiceId}}" class="pay-invoice-outlet button">Pay</a></li>
+						{{/unless}}
+						{{#unless this.model.invoiceIsBundled}}
+							{{#unless this.model.pendingPaymentFulfillment}}
+								{{#unless this.invoiceStatusTypeCodeVoid}}
+									{{#unless this.isReceivables}}
+										{{#if this.mmwAutoPayEnabled}}
+											<li><span class="label ml tooltipped tooltipped-n" aria-label="This bundle will auto pay on its due date if funds are available on your account.">Auto Pay</span></li>
+										{{/if}}
+									{{/unless}}
+								{{/unless}}
+							{{/unless}}
+						{{/unless}}
+					</ul>
+				</dl>
+			</td>
+			<td class="invoice-status span3">
+				{{#if this.invoiceStatusTypeCodePaid}}
+					{{#if this.invoiceFulfillmentStatusIsPending}}
+						<em>Processing</em>
+					{{/if}}
+				{{/if}}
+				{{#unless this.invoiceFulfillmentStatusIsPending}}
+					{{#if this.invoiceStatusTypeCodePaid}}Paid{{/if}}
+				{{/unless}}
+				{{#unless this.invoiceFulfillmentStatusIsPending}}
+					{{#if this.invoiceStatusTypeCodeVoid}}Void{{/if}}
+				{{/unless}}
+
+				{{#unless this.invoiceFulfillmentStatusIsPending}}
+					{{#unless this.invoiceStatusTypeCodeVoid}}
+						{{#unless this.invoiceStatusTypeCodePaid}}
+							<small>
+								Due: {{[../../helpers/formattedDate] this.model.invoiceDueDate}}
+								<br/><span class="text-error">{{[../../helpers/invoiceDueDateStatus] this.model.invoiceDueDate}}</span>
+							</small>
+						{{/unless}}
+					{{/unless}}
+				{{/unless}}
+			</td>
+			<td class="invoice-amount amount nowrap span2">{{[../../helpers/formatCurrency] this.model.invoiceBalance}}<br/></td>
+		</tr>
+		{{#each this.model.bundledInvoices}}
+			<tr>{{> _single-row-invoice this}}</tr>
+		{{/each}}
+		</tbody>
+	</table>
+</td>

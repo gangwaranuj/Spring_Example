@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Gather action='${baseurl}${callbackUri}'>
+		<Say voice='woman'>
+			Status updated. Press the # for the main menu. If you're done, just hang up.
+		</Say>
+	</Gather>
+</Response>

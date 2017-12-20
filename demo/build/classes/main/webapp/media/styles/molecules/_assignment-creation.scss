@@ -1,0 +1,743 @@
+$assignment-creation: (
+	content-z-index: 1,
+	sidebar-columns: 3,
+	main-columns: 9
+);
+
+.assignment-creation-modal {
+	font-size: $base-font-size;
+	.wm-modal {
+		&--control {
+			background: $light-grey;
+
+			&.-primary {
+				background: $light-green;
+
+				&:hover {
+					background: $green;
+				}
+			}
+
+			&.-save-template {
+				background: $light-blue;
+
+				&:hover {
+					background: $blue;
+				}
+			}
+
+			&.-disabled {
+				background: $light-grey;
+				pointer-events: none;
+				opacity: 1; // overrides some page-specific styling
+
+				&:hover {
+					background: $light-grey;
+				}
+			}
+		}
+
+		&--viewport {
+			&.-fixed-scroll {
+				overflow: hidden;
+			}
+		}
+	}
+}
+
+%assignment-creation-tab {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1em;
+	border-bottom: $default-border;
+	cursor: pointer;
+	z-index: #{map-fetch($assignment-creation, content-z-index) + 1};
+
+	&.-active {
+		background-color: $white;
+	}
+
+	&.-error {
+		background-color: $red;
+		color: $white;
+	}
+}
+
+.assignment-creation {
+	@include container;
+	margin: #{map-fetch($modal, content, padding) * -1};
+
+	&--button {
+		margin-right: 0.5em;
+	}
+
+	small {
+		&.-required {
+			&::before {
+				display: inline-block;
+				content: "*";
+				color: $orange;
+				margin-left: 2px;
+			}
+			&::after {
+				display: none;
+			}
+		}
+	}
+
+	&--sidebar {
+		float: left;
+		width: #{span(map-get($assignment-creation, sidebar-columns)) + gutter()};
+		background-color: $off-white;
+		overflow: auto;
+		height: calc(90.5vh - #{map-fetch($modal, toolbar, height)} - #{map-fetch($modal, control, height)});
+
+		.selectize-control {
+			position: relative;
+			top: 0.45em;
+			left: 0.7em;
+			width: 10.23em;
+		}
+	}
+
+	&--main {
+		@include span(map-get($assignment-creation, main-columns) omega);
+		position: relative;
+		z-index: map-fetch($assignment-creation, content-z-index);
+		box-shadow: 0 0 1em $grey;
+		height: calc(90.5vh - #{map-fetch($modal, toolbar, height)} - #{map-fetch($modal, control, height)});
+		overflow-y: scroll;
+		overflow-x: hidden;
+	}
+
+	&--tab {
+		@extend %assignment-creation-tab;
+
+		&.-active-switcher {
+			color: $orange;
+			border-color: $orange;
+			box-shadow: -4px 0px 10px $orange;
+		}
+	}
+
+	&--module-close {
+		position: relative;
+		width: 1.8em;
+		height: 1.2em;
+		padding-left: 0.4em;
+		padding-top: 0.1em;
+	}
+
+	&--module-switcher {
+		position: absolute;
+		left: 2em;
+		top: 20em;
+		box-shadow: $default-box-shadow;
+		background-color: $white;
+		padding: 1.5em;
+		z-index: map-fetch($assignment-creation, content-z-index) + 1;
+		border: $default-border;
+		width: 42.2em;
+		border-radius: 0.4em;
+	}
+
+	&--module-switcher-close {
+		position: absolute;
+		top: 0.5em;
+		right: 0.5em;
+		cursor: pointer;
+	}
+
+	&--module-toggle {
+		display: inline-block;
+		width: 13em;
+
+		&.-toggle-all {
+			display: block;
+		}
+	}
+
+	&--close-tab {
+		float: right;
+	}
+
+	&--templates {
+		@extend %assignment-creation-tab;
+		font-size: inherit;
+		line-height: inherit;
+		font-weight: inherit;
+		height: 55px;
+
+		.assignment-creation & {
+			margin-bottom: 0;
+		}
+
+		&.-hide {
+			display: none;
+		}
+	}
+
+	&--copies {
+		@extend %assignment-creation-tab;
+		font-size: inherit;
+		line-height: inherit;
+		font-weight: inherit;
+		height: 55px;
+
+		.assignment-creation & {
+			margin-bottom: 0;
+		}
+
+		&.-hide {
+			display: none;
+		}
+	}
+
+	&--modules {
+		@extend %assignment-creation-tab;
+		font-size: inherit;
+		line-height: inherit;
+		font-weight: inherit;
+
+		.assignment-creation & {
+			margin-bottom: 0;
+		}
+	}
+
+	&--header-wrapper {
+		height: 4em;
+		width: 53.7em;
+		position: relative;
+	}
+
+	.assignment-creation & {
+		&--header {
+			padding: 0.5em 1rem;
+			background-color: $off-white;
+			font-weight: map-get($font-weight, light);
+			margin: 0;
+			z-index: 2;
+			width: inherit;
+
+			&.-active {
+				position: absolute;
+
+				// transitional period from active to scrolled/parked
+				&.-parked {
+					position: absolute;
+					bottom: 0;
+				}
+			}
+
+			&.-parked {
+				position: absolute;
+				bottom: 0;
+			}
+
+			&:not(:empty) {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	&--subheading {
+		@include heading-title;
+		@include span(12 omega);
+	}
+
+	&--content {
+		@include container;
+		padding: 1rem;
+	}
+
+	&--section {
+		position: relative;
+	}
+
+	&--subsection-header {
+		padding-bottom: 0.5em;
+		border-bottom: $default-border;
+		margin-bottom: 2em;
+		margin-top: 2.1em;
+	}
+
+	&--container{
+		display:flex;
+	}
+
+	&--button {
+		flex-basis: 45%;
+	}
+	&--toggle-button {
+		flex-basis: auto;
+	}
+
+	&--field {
+		//@include span(8 omega);
+		width: 67%;
+
+		[data-component-identifier="wm-currency-field__wrapper"] {
+			[data-component-identifier="wm-currency-field__currency-symbol"], hr, span, label {
+				display: none;
+			}
+			> div:nth-of-type(1) { 
+				font-size: 14px !important;
+				width: 100% !important;
+				height: 42px !important;
+				display: inline-block !important;
+				position: relative !important;
+				background-color: transparent !important;
+				transition: height 200ms cubic-bezier(0.23, 1, 0.32, 1) 0ms !important;
+			}
+			input {
+				border-radius: 4px;
+				height: 2em !important;
+				padding: 0.5em !important;
+				margin: 0 !important;
+				border: 1px solid #cecece !important;
+				background-color: #ffffff !important;
+				transition: none !important;
+				display: block !important;
+				box-shadow: none !important;
+			}
+		}
+
+		.wysiwyg {
+			margin-bottom: #{$base-element-bottom-spacing / 2};
+		}
+
+		[name^="schedule-"] {
+			+ .ui-datepicker-trigger {
+				display: none;
+			}
+		}
+		.ui-datepicker-trigger {
+			margin: 0.4em;
+			width: auto;
+		}
+		.quill {
+			p {
+				margin: 0 !important;
+			}
+		}
+
+		small {
+			display: block;
+			margin-bottom: $base-element-bottom-spacing;
+		}
+
+		// Extra specificity is due to how we are loading in quarks on the dashboard
+		// page. Once we flatten quark specificity and make them global, we can
+		// de-specify this selector.
+		.assignment-creation & {
+			[name="schedule-startDate"],
+			[name="schedule-endDate"],
+			[name="schedule-checkInContactName"],
+			[name="location-addressLine1"],
+			[name="location-city"],
+			[name="location-country"],
+			[name="location-contact-firstName"],
+			[name="location-secondaryContact-firstName"],
+			[name="location-contact-workPhone"],
+			[name="location-new-client-phone"],
+			[name="location-secondaryContact-workPhone"] {
+				@include span(6);
+			}
+			[disabled] {
+				background-color: $disabled-color;
+			}
+			[name="schedule-checkInContactPhone"],
+			[name="location-addressLine2"],
+			[name="location-type"],
+			[name="location-contact-lastName"],
+			[name="location-secondaryContact-lastName"] {
+				@include span(6 omega);
+			}
+			[name="title"] {
+				margin-bottom: 0;
+			}
+			[name="location-state"],
+			[name="location-contact-workPhoneExtension"],
+			[name="location-new-client-phone-ext"],
+			[name="location-secondaryContact-workPhoneExtension"] {
+				@include span(3);
+			}
+			[name="location-zip"] {
+				@include span(3 omega);
+			}
+			.schedule-start-time,
+			.schedule-end-time {
+				@include span(6 omega);
+			}
+		}
+	}
+	.map {
+		height: 18em;
+		width: 66%;
+		float: right;
+		margin-bottom: $base-element-bottom-spacing;
+		border-radius: $base-border-radius;
+	}
+
+	&--list {
+		@include span(12 omega);
+
+		.deliverables {
+			&--numberOfFiles,
+			&--number {
+				@include span(2);
+				display: flex;
+				align-items: center;
+
+				[name="deliverables-number"] {
+					@include span(8);
+					margin-bottom: 0;
+				}
+			}
+			&--type {
+				@include span(3);
+			}
+			&--add {
+				@include span(2 omega);
+			}
+			// Extra specificity is due to how we are loading in quarks on the dashboard
+			// page. Once we flatten quark specificity and make them global, we can
+			// de-specify this selector.
+			.assignment-creation & {
+				&--description {
+					@include span(5);
+				}
+			}
+		}
+	}
+
+	&--list-item--details {
+		background-color: $off-white;
+		padding: #{$base-element-bottom-spacing};
+		margin-bottom: #{$base-element-bottom-spacing / 2};
+	}
+
+	&--list-item {
+		background-color: $off-white;
+		padding: 1em;
+		display: flex;
+		margin-bottom: #{$base-element-bottom-spacing / 2};
+
+		.deliverables {
+			&--title {
+				@include ellipsis;
+				flex-grow: 1;
+			}
+			&--remove {
+				color: $blue;
+				cursor: pointer;
+			}
+		}
+	}
+
+	&--label {
+		//@include span(4);
+		width: 33%;
+		clear: both;
+		font-weight: bold;
+		margin-top: 0.4em;
+	}
+
+	&--instructions-privacy {
+		.wm-checkbox--text {
+			white-space: normal;
+			padding-left: 2em;
+			font-size: $tiny-font-size;
+			position: relative;
+
+			&::before {
+				@include icon(lock-circle);
+				@include center(vertical);
+				left: 0.5em;
+			}
+		}
+	}
+
+	&--confirmation-time {
+		display: inline-flex;
+		align-items: center;
+
+		// Extra specificity is due to how we are loading in quarks on the dashboard
+		// page. Once we flatten quark specificity and make them global, we can
+		// de-specify this selector.
+		.assignment-creation & [name="schedule-confirmationLeadTime"] {
+			@include span(2);
+		}
+	}
+
+	&--radio-group {
+		margin-bottom: $base-element-bottom-spacing;
+	}
+
+	&--payments-table {
+		th, td {
+			text-align: center;
+		}
+		td {
+			font-size: 2em;
+			font-weight: bold;
+		}
+	}
+
+	&--requirementSets {
+		.assignment-creation--list-item {
+			background-color: $light-grey;
+			@include ellipsis;
+			flex-grow: 1;
+			margin-bottom: 0;
+		}
+
+		.assignment-creation--list-item--details {
+			background-color: $off-white;
+			margin-bottom: 0;
+		}
+	}
+
+	&--documents {
+
+		.uploader-input {
+			display: block;
+			visibility: hidden;
+			opacity: 0;
+			-ms-filter: 'alpha(opacity=0)';
+			height: 0;
+			width: 0;
+			cursor: pointer;
+		}
+		.uploader-button {
+			margin-right: 1.1em;
+		}
+		.qq-upload-button {
+			position: absolute !important;
+			top: 75% !important;
+			left: 25% !important;
+		}
+		.qq-upload-drop-area-active {
+			background: $light-grey !important;
+			display: inherit !important;
+		}
+		.qq-upload-drop-area {
+			position: relative !important;
+			display: flex !important;
+			width: 100% !important;
+			height: 140px !important;
+			text-align: center !important;
+			border: 2px $grey dashed !important;
+			align-items: center !important;
+			justify-content: center !important;
+			color: $grey !important;
+			background-color: transparent !important;
+			span {
+				display: inline !important;
+				position: relative !important;
+				font-size: inherit !important;
+				color: $blue;
+				font-weight: bold;
+			}
+		}
+		.wm-icon-upload {
+			font-size: 4em !important;
+		}
+
+		#attach_assets_to_assignment {
+			    border: 10px;
+				box-sizing: border-box;
+				display: inline-block;
+				font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+				-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+				cursor: pointer;
+				text-decoration: none;
+				margin: 0px;
+				padding: 0px;
+				outline: none;
+				font-size: inherit;
+				font-weight: inherit;
+				transform: translate(0px, 0px);
+				position: relative;
+				height: 36px;
+				line-height: 36px;
+				width: 100%;
+				border-radius: 2px;
+				transition: all 450ms cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+				background-color: rgb(255, 255, 255);
+				text-align: center;
+				color: $grey;
+				box-shadow: rgba(0, 0, 0, 0.117647) 0px 1px 6px, rgba(0, 0, 0, 0.117647) 0px 1px 4px;
+		}
+	}
+
+	.document-uploader {
+
+		$uploader-root: ".document-uploader";
+
+		&--document-list {
+			padding-top: 1em;
+		}
+
+		&--document-list-item {
+			border-top: $default-border;
+			padding-top: 1.25em;
+			padding-bottom: 1.75em;
+			color: $charcoal-grey;
+
+			&.-clear {
+				clear: both;
+			}
+		}
+
+		&--filename {
+			font-weight: map-get($font-weight, semi-bold);
+			padding-bottom: 1.1em;
+		}
+
+		&--icon {
+			width: 6.5em;
+			height: 6.5em;
+			border-radius: $base-border-radius;
+			border: $default-border;
+			margin-right: 1em;
+			text-align: center;
+			overflow: hidden;
+			transition: all 68ms linear;
+			float: left;
+
+			&:hover {
+
+				#{$uploader-root}--thumbnail {
+					filter: brightness(0.5);
+
+					&.-no-thumb {
+						filter: none;
+					}
+				}
+
+				#{$uploader-root}--file-options {
+					top: -3em;
+				}
+			}
+
+			&.-stacked {
+				margin-bottom: 1.75em;
+			}
+		}
+
+		&--thumbnail {
+			height: 100%;
+			width: 100%;
+			opacity: 1;
+			background-position: center;
+			background-size: cover;
+			border-radius: $base-border-radius;
+			position: relative;
+		}
+
+		&--file-options {
+			background-color: rgba(74, 82, 84, 0.68);
+			height: 3em;
+			width: 100%;
+			position: relative;
+			top: 1em;
+			display: inline-block;
+			border-radius: 0.6em 0.6em 0.1em 0.1em;
+			transition: top 50ms ease;
+		}
+
+		&--option {
+			height: 2.1em;
+			width: 2.5em;
+			margin-left: 0.59em;
+			margin-top: 0.4em;
+			border-radius: 0.3em;
+			opacity: 1;
+
+			&.-download {
+				margin-left: -0.1em;
+				margin-right: -0.2em;
+			}
+
+			&.-no-thumb {
+				position: absolute;
+				margin: 0;
+				height: 2.9em;
+				width: 2.9em;
+				left: 50%;
+				top: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.-background {
+				fill: $white;
+			}
+
+			.-foreground {
+				fill: $grey;
+			}
+
+			&:hover {
+
+				.-background {
+					fill: $green;
+				}
+
+				.-foreground {
+					fill: $white;
+				}
+			}
+
+			&.-download-only {
+				margin: 0;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+		}
+
+		&--progress-bar {
+			width: 4.3em;
+			height: 0.6em;
+			margin: 2.2em auto 0 auto;
+			background-color: rgba(222, 222, 222, 0.68);;
+			border: $default-border;
+		}
+
+		&--progress-bar-inner {
+			height: 100%;
+			background-color: $green;
+			width: 0;
+		}
+
+		&--uploading {
+			color: $grey;
+			font-size: $tiny-font-size;
+			margin-top: 0.6em;
+		}
+
+		&--options {
+			float: left;
+			width: 43.9em;
+			padding-top: 0.7em;
+		}
+
+		& {
+			&--label {
+				float: left;
+				padding-top: 0.5em;
+			}
+		}
+
+		& {
+			&--field,
+			&--field[type="text"] {
+				width: 23em;
+				float: right;
+			}
+		}
+	}
+}

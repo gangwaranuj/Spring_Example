@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Spend limit increase request for assignment: ${template.workTitle} approved</a>

@@ -1,0 +1,5 @@
+<a data-ajax="false" href="/groups/${template.userGroup.id}">${template.resource.fullName} made one or more profile changes. ${template.resource.firstName} is now pending approval for the talent pool: ${template.userGroupName}</a>
+
+
+
+

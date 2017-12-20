@@ -1,0 +1,5 @@
+{
+"message": "Assignment ${template.workTitle} paid",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}
+

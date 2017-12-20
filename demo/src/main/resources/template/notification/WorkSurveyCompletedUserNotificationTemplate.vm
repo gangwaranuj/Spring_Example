@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/lms/view/details/${template.attempt.assessmentUserAssociation.assessment.id}">${template.attempt.assessmentUserAssociation.user.fullName} Completed survey: ${template.attempt.assessmentUserAssociation.assessment.name}</a>

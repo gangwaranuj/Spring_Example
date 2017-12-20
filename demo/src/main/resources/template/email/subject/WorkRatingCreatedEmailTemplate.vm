@@ -1,0 +1,5 @@
+#if( ${template.work} )
+${template.rating.ratingCompany.effectiveName} rated you: ${template.workTitle}
+#else
+${template.rating.ratingCompany.effectiveName} rated you
+#end

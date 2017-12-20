@@ -1,0 +1,11 @@
+.work-feed {
+	&--filters {
+		label {
+			padding-top: 0.5em;
+			margin-right: 0.5em;
+		}
+		input[type="radio"] {
+			margin-top: -2px;
+		}
+	}
+}

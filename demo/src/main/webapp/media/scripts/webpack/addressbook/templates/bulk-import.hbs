@@ -1,0 +1,43 @@
+<form id="form-import">
+	<div id="custom_form_message">
+		<div class="message alert alert-error error dn">
+			<a class="close">x</a>
+			<div></div>
+		</div>
+	</div>
+	<div>
+		This import functionality enables you to quickly upload multiple locations and contacts
+		<div id="import-locations-help" class="alert alert-info">
+			<strong>Step 1:</strong> Download the sample CSV for either <a href="/download/Sample%20Locations.csv" download="Locations_sam.csv">Locations</a> or
+			<a href="/download/Sample%20Contact.csv" download="contacts_sample.csv">Contacts</a>
+			<br>
+			<br>
+			<strong>Step 2:</strong> Replace the sample CSV data with your locations or contacts data. Please do not remove the column headers
+			<br>
+			<br>
+			<strong>Step 3:</strong> Select either Locations or Contacts radio button and then upload your CSV file
+		</div>
+		<a class="fr" href="http://help.workmarket.com/customer/portal/articles/1430361-how-to-bulk-upload-locations-and-contacts">Learn more in our help center!</a>
+	</div>
+	<br>
+
+	<div>Are you importing contacts or locations?</div><br>
+	<input class="controls" type="radio" name="import_type" value="location"> <strong>Locations</strong> </input>
+	<input class="controls" type="radio" name="import_type" value="contact" style="margin-left: 20px"> <strong>Contacts</strong> </input>
+	<div id="addressbook-import-uploader">
+		<noscript>
+			<input type="file" name="qqfile" id="qqfile"/>
+		</noscript>
+	</div>
+
+	<div id="addressbook-import-uploaded">
+		<a class="uploaded"></a>
+	</div>
+
+	<a class="remove-upload dn">remove</a>
+
+	<div class="wm-action-container">
+		<button type="button" class="button" data-modal-close >Cancel</button>
+		<button type="button"  class="button" id="submit_upload_content" disabled>Import</button>
+	</div>
+</form>

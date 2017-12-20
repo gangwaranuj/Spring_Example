@@ -1,0 +1,64 @@
+$filter: (
+	element-size: $small-element-height,
+	font-size: $small-font-size,
+	border-width: $base-border-width,
+	default: (
+		color: $charcoal-grey,
+		background-color: $white,
+		border-color: $light-grey
+	),
+	hover: (
+		color: $white,
+		background-color: $light-green,
+		border-color: $light-green
+	),
+	active: (
+		color: $white,
+		background-color: $green,
+		border-color: $green
+	)
+);
+
+@mixin filter-color($state) {
+	color: map-fetch($filter, $state, color);
+	background-color: map-fetch($filter, $state, background-color);
+	border-color: map-fetch($filter, $state, border-color);
+}
+
+.filter {
+	@include reset-element;
+	display: inline-block;
+	margin-bottom: $base-element-bottom-spacing;
+	line-height: 1;
+
+	input {
+		display: none;
+	}
+
+	&--skin {
+		@include filter-color(default);
+		border-radius: $base-border-radius;
+		outline: none;
+		padding: element-padding($filter) element-padding($filter, 1.5);
+		line-height: 1;
+		cursor: pointer;
+		border-width: map-get($filter, border-width);
+		border-style: $base-border-style;
+		font-size: map-get($filter, font-size);
+
+		&:hover {
+			@include filter-color(hover);
+		}
+		&:active,
+		&.-active,
+		input:checked + & {
+			@include filter-color(active);
+		}
+
+		&::before {
+			display: inline-block;
+			margin-right: 0.3em;
+			vertical-align: middle;
+		}
+	}
+}

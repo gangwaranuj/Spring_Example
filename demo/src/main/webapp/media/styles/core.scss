@@ -1,0 +1,197 @@
+// Make sure the charset is set appropriately
+// @charset "UTF-8";
+
+// App Config - this is where most of the magic will happen
+// -----------------------------------------------------------------------------
+@import "config";
+
+// CSS Normalize
+// -----------------------------------------------------------------------------
+@import "normalize-scss/sass/_normalize";
+
+// Vendor Libraries
+// -----------------------------------------------------------------------------
+@import "material-design-lite/src/material-design-lite";
+@import "susy/sass/susy";
+@import "mathsass/dist/math";
+@import "vendor/font-awesome/font-awesome";
+@import "primer-tooltips/index.scss";
+@import "vendor/tooltipster/tooltipster";
+
+// Web fonts
+// -----------------------------------------------------------------------------
+@import "fonts/icons";
+@import "fonts/icons-social";
+@import "fonts/icons-custom";
+
+// Utils - Helper classes and mixins
+// -----------------------------------------------------------------------------
+@import "utils/sticky-footer";
+@import "utils/functions/elements";
+@import "utils/functions/maps";
+@import "utils/functions/math";
+@import "utils/functions/units";
+@import "utils/mixins/misc";
+@import "utils/mixins/animations";
+@import "utils/mixins/hamburger";
+@import "utils/mixins/triangle";
+@import "legacy";
+
+// Patches - Custom styling for vendor libraries
+// -----------------------------------------------------------------------------
+@import "patches/bootstrap";
+@import "patches/colorbox";
+@import "patches/dataTables";
+@import "patches/datepicker";
+@import "patches/google-places-autocomplete";
+@import "patches/introjs";
+@import "patches/material-design-lite";
+@import "patches/progressbar";
+@import "patches/qq-uploader";
+@import "patches/quill";
+@import "patches/selectize";
+@import "patches/tooltipped";
+@import "patches/videojs";
+@import "patches/uservoice";
+
+// Scaffolding - Base setup across the site
+// -----------------------------------------------------------------------------
+@import "scaffolding/app";
+
+// Quarks - These are basic HTML element styles
+// -----------------------------------------------------------------------------
+@import "quarks/form-elements/textareas";
+@import "quarks/action-menu";
+@import "quarks/data-float-label";
+@import "quarks/lists";
+@import "quarks/table";
+@import "quarks/typography";
+
+// Atoms - Combinations of a few quarks, small regions of a view, specific to
+// individual tasks
+// -----------------------------------------------------------------------------
+@import "atoms/form-elements/_forms";
+@import "atoms/form-elements/wm-action-container";
+@import "atoms/form-elements/wm-slider";
+@import "atoms/action-items";
+@import "atoms/activity";
+@import "atoms/avatar";
+@import "atoms/badge";
+@import "atoms/buttons";
+@import "atoms/completion-bar";
+@import "atoms/filter";
+@import "atoms/follow";
+@import "atoms/heading-title";
+@import "atoms/icons";
+@import "atoms/label";
+@import "atoms/pagination";
+@import "atoms/progress-bar";
+@import "atoms/radio-button";
+@import "atoms/search-form";
+@import "atoms/search";
+@import "atoms/status-indicator";
+@import "atoms/switch";
+@import "atoms/settings-switch";
+@import "atoms/tags";
+@import "atoms/tracking-number";
+@import "atoms/tile";
+@import "atoms/toggle";
+@import "atoms/third-party-logo";
+@import "atoms/wm-alert";
+@import "atoms/wm-branding";
+@import "atoms/wm-checkbox";
+@import "atoms/wm-file-input";
+@import "atoms/wm-radio";
+@import "atoms/wm-spinner";
+@import "atoms/wm-tabs";
+
+// Molecules - Combinations of quarks and atoms, medium to large regions of a
+// view, not bound to any specific page
+// -----------------------------------------------------------------------------
+@import "molecules/nav/nav-drawer";
+@import "molecules/add_media_modal";
+@import "molecules/app-header";
+@import "molecules/assignment-creation";
+@import "molecules/assignment-routing";
+@import "molecules/bulk-custom-field-popup";
+@import "molecules/cart";
+@import "molecules/deliverables";
+@import "molecules/dispatcher_apply-accept_modal";
+@import "molecules/documents";
+@import "molecules/footer";
+@import "molecules/form-stacked";
+@import "molecules/gallery";
+@import "molecules/message";
+@import "molecules/modal";
+@import "molecules/notification";
+@import "molecules/page-container";
+@import "molecules/parts-table";
+@import "molecules/profile-card";
+@import "molecules/profile";
+@import "molecules/promotion";
+@import "molecules/question-pair";
+@import "molecules/score-card";
+@import "molecules/scorecard-old";
+@import "molecules/search-controls";
+@import "molecules/search-filter";
+@import "molecules/search-results";
+@import "molecules/sidebar-card";
+@import "molecules/site-header";
+@import "molecules/table";
+@import "molecules/table-rich-row";
+@import "molecules/user-profile-popup";
+@import "molecules/user-profile";
+@import "molecules/vendor-search-status";
+@import "molecules/wm-dropdown";
+@import "molecules/wm-progress-indicator";
+@import "molecules/work-feed";
+@import "molecules/fullscreen";
+@import "molecules/search-filter-ui";
+
+// Templates - Styling for a collection of pages
+// -----------------------------------------------------------------------------
+@import "templates/admin";
+@import "templates/assignments";
+@import "templates/forums";
+@import "templates/payments";
+@import "templates/projects";
+
+// Pages - Page specific styling
+// -----------------------------------------------------------------------------
+@import "pages/address-book";
+@import "pages/api";
+@import "pages/assignment-add";
+@import "pages/assignment-bulk-send";
+@import "pages/assignment-bundle";
+@import "pages/assignment-contact";
+@import "pages/assignment-details";
+@import "pages/assignment-upload";
+@import "pages/assignment";
+@import "pages/campaign-new";
+@import "pages/dashboard";
+@import "pages/dashboard-map";
+@import "pages/funds";
+@import "pages/group-detail";
+@import "pages/home";
+@import "pages/lms";
+@import "pages/old-dashboard";
+@import "pages/onboarding";
+@import "pages/payments";
+@import "pages/profile";
+@import "pages/profile-companies";
+@import "pages/profile-industries";
+@import "pages/project-details";
+@import "pages/public";
+@import "pages/public-work";
+@import "pages/reports";
+@import "pages/requirement-sets";
+@import "pages/search";
+@import "pages/search-groups";
+@import "pages/settings-labels";
+@import "pages/settings-notifications";
+@import "pages/workerservices-promo";
+@import "pages/styleguide";
+@import "pages/test-search";
+@import "pages/worker";
+@import "pages/worker-services";
+@import "pages/webhooks";

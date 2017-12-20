@@ -1,0 +1,4 @@
+{
+"message": "Spend limit increase request for assignment: ${template.work.title} approved",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

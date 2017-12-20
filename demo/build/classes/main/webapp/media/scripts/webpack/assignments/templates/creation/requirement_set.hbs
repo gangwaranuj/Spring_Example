@@ -1,0 +1,9 @@
+<div class="cart-item" data-item="requirement-set">
+	<span>
+		{{#unless this.requirementSet.required}}
+			<i class="wm-icon-trash icon-large muted" data-action="trash"></i>
+		{{/unless}}
+	</span>
+	<span><strong>{{this.requirementSet.name}}</strong></span>
+	<input type="hidden" name="requirementSetIds" value="{{this.requirementSet.id}}" />
+</div>

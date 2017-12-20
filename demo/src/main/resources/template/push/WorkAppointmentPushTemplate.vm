@@ -1,0 +1,4 @@
+{
+"message": "Assignment ${template.workTitle} is upcoming on ${template.getDate}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

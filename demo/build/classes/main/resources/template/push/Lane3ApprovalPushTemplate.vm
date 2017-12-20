@@ -1,0 +1,4 @@
+{
+"message": "You are now approved to work with other companies",
+"action": "${baseurl}/search-groups"
+}

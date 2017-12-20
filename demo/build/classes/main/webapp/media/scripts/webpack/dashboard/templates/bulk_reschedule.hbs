@@ -1,0 +1,43 @@
+<form class="form-inline" id="bulk_reschedule_form" onsubmit="return false;">
+
+	<div class="control-group">
+		<label class="radio inline">
+			<input type="radio" value="1" name="scheduling" id="scheduling2">
+			<span>Schedule <strong>time</strong></span>
+		</label>
+
+		<label class="radio inline">
+			<input type="radio" checked="checked" value="0" name="scheduling" id="scheduling1">
+			<span>Schedule <strong>time window</strong></span>
+		</label>
+	</div>
+
+	<div class="reschedule-inputs">
+		<div class="control-group">
+			<input type="text" value="" placeholder="Select Date" class="span2 hasDatePicker" name="from" id="reschedule-from">
+			<input type="text" value="" placeholder="Select Time" class="span2" name="fromtime" id="reschedule-from-time" autocomplete="off">
+			<div id="reschedule-variable-time">
+				<span>to</span>
+				<br/>
+				<input type="text" value="" placeholder="Select Date" class="span2 hasDatePicker" name="to" id="reschedule-to">
+				<input type="text" value="" placeholder="Select Time" class="span2" name="totime" id="reschedule-to-time" autocomplete="off">
+			</div>
+		</div>
+		<span>
+			All times are in the timezone of the assignment.
+		</span>
+		<br /><br />
+	</div>
+
+	<div class="control-group">
+		<label class="control-label" for="label_note">Note:</label>
+		<div class="controls">
+			<textarea  id="label_note"></textarea>
+		</div>
+	</div>
+
+	<div class="wm-action-container">
+		<button class="button" data-modal-close>Close</button>
+		<button type="button" class="button" id="reschedule_assignments">Reschedule</button>
+	</div>
+</form>

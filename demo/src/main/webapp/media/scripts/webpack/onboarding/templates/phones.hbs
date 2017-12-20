@@ -1,0 +1,16 @@
+{{#each this.phones}}
+	<li class="phone">
+		<div class="phone--area" data-float-label="{{[../../helpers/translate] "country"}}">
+			<select class="wm-select" name="code">
+				<option value="">{{[../../helpers/translate] "country"}}</option>
+				{{#each ../countryCodes}}
+					<option value="{{this.id}}" label="{{this.callingCodeId}}" {{#[../../helpers/eq] ../this.attributes.code this.id}}selected{{/[../../helpers/eq]
+ 					}}>{{this.name}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<div class="phone-number-error" data-float-label="{{[../../helpers/translate] "phoneNumber"}}">
+			<input class="phone--number" name="number" type="tel" value="" maxlength="25"/>
+		</div>
+	</li>
+{{/each}}

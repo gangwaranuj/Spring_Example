@@ -1,0 +1,4 @@
+{
+"message": "#if (${template.isWorkApplyNegotiation()})Application #{else}Counteroffer #{end}approved: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

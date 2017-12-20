@@ -1,0 +1,11 @@
+<div class="control-group">
+	<label for="{{this.lowerLabel}}" class="control-label">{{this.label}}</label>
+	<div class="controls">
+		<select id="{{this.lowerLabel}}" class="input-block-level" data-selections="{{this.selectionType}}">
+			<option class="prompt">- Select -</option>
+			{{#each this.collection.models}}
+				<option value="{{this.attributes.id}}" {{#if this.disabled}}disabled{{/if}}>{{this.attributes.name}}</option>
+			{{/each}}
+		</select>
+	</div>
+</div>

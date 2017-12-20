@@ -1,0 +1,182 @@
+// Mixins
+.nav-button {
+	display: none;
+	float: left;
+	margin-left: 0.5em;
+
+	&:first-child {
+		margin-left: 0;
+	}
+
+	.popup-content & {
+		display: none !important;
+	}
+
+	svg {
+		pointer-events: all;
+	}
+}
+
+// Styles
+.nav {
+	position: relative;
+	background-color: @light-gray;
+	min-height: 3em;
+	font-size: 1em;
+	& > .unit {
+		padding: 10px 10px 0 10px !important;
+	}
+	.left-side {
+		float: left;
+	}
+	.right-side {
+		float: right;
+	}
+	.nav-logo {
+		.nav-button;
+		margin-top: 0.3em;
+
+		.home & {
+			display: block;
+		}
+		.error-page & {
+			display: none;
+		}
+	}
+	.bullhorn-container {
+		.nav-button;
+		padding: 0.1em;
+
+		.home &,
+		.available-page &,
+		.details-page &,
+		.list-page & {
+			display: block;
+		}
+
+		.push-bubble {
+			background: @orange;
+			.border-radius(4px);
+			display: inline-block;
+			float: left;
+			color: white;
+			.text-shadow(@text-shadow);
+			font-size: 0.5em;
+			font-family: @bold-font;
+			padding: 0.2em 0.5em;
+			margin-top: 0.2em;
+
+			&:empty {
+				visibility: hidden;
+			}
+		}
+		.bullhorn {
+			display: inline;
+		}
+		.error-page & {
+			display: none;
+		}
+	}
+	.back-button {
+		.nav-button;
+		display: block;
+		font-size: 1em;
+		position: relative;
+		z-index: 1;
+
+		.notifications-page & {
+			margin-left: 0.5em;
+		}
+		.home & {
+			display: none;
+		}
+		.error-page & {
+			display: none;
+		}
+	}
+	.home-button {
+		.nav-button;
+		font-size: 1em;
+
+		.details-page & {
+			display: block;
+		}
+		.error-page & {
+			display: none;
+		}
+	}
+	.wmpanel-button {
+		.nav-button;
+		font-size: 1em;
+
+		.list-page &,
+		.available-page &,
+		.home &,
+		.details-page & {
+			display: block;
+		}
+		.error-page & {
+			display: none;
+		}
+	}
+	.title {
+		@header-offset: 0.2em;
+
+		text-align: center;
+		color: @gray;
+		margin: @header-offset auto ((1em + @header-offset) * -1);
+		font-size: 1.3em;
+		left: 0;
+		line-height: 1;
+
+		.home & {
+			display: none;
+		}
+	}
+	.diamond {
+		@diamond-scale: 1.5em;
+
+		width: @diamond-size;
+		height: @diamond-size;
+		font-size: @diamond-scale;
+		background: @light-gray;
+		display: none;
+		position: absolute;
+		top: 98%;
+		left: 1.4em;
+		margin-top: (@diamond-size / 4) * -1;
+		.rotate(-45deg);							// Rotate
+		.transform-origin (0 100%);		// Rotate Origin
+
+		#login-header & {
+			background-color: white;
+		}
+		.home &,
+		.notifications-page &,
+		.error-page & {
+			display: block;
+		}
+	}
+
+	.unit {
+		.x-button {
+			 position: relative;
+			 float: right;
+			 margin: -2em 1em 0 0;
+		 }
+	}
+	a {
+		text-decoration: none;
+	}
+
+	h1 {
+		font-size: @normal-font-size;
+		margin: 1em 0 0.5em;
+	}
+
+	h3 {
+		font-size: @normal-font-size;
+		font-family: @bold-font;
+		margin: .8em 0 0;
+	}
+}

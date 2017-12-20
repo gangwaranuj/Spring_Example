@@ -1,0 +1,3 @@
+${display.truncate($work.description, 140)}
+
+${baseurl}${assignment_details_url}${work.workNumber}

@@ -1,0 +1,9 @@
+<a href="/assignments">
+Your Reprice Assignments action has completed.
+#if ($template.succeeded > 0)
+Successfully changed the pricing on ${template.succeeded} assignment#if ($template.succeeded > 1)s#end.
+#end
+#if ($template.failed > 0)
+Failed to change the pricing on ${template.failed} assignment#if ($template.failed > 1)s#end.
+#end
+</a>

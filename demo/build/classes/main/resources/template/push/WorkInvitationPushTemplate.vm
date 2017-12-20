@@ -1,0 +1,4 @@
+{
+"message": "New: ${template.workTitle} - ${template.address} (${template.distanceInMilesToWork} miles) - ${template.date}#if($showPrice) - ${template.price}#end",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

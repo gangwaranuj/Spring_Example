@@ -1,0 +1,5 @@
+#if($template.singleInvoice)
+You have an assignment invoice coming due
+#else
+Review your upcoming invoices
+#end

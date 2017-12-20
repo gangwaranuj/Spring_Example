@@ -1,0 +1,619 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TalentPoolCreateForm /> Rendering should render basic form 1`] = `
+<div
+  data-radium={true}
+  style={
+    Object {
+      "height": "100%",
+      "overflowX": "hidden",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "#f7961d",
+        "height": "110px",
+        "position": "absolute",
+        "width": "100%",
+        "zIndex": "10",
+      }
+    }
+  >
+    <WMSubheader
+      inset={false}
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "bottom": "17%",
+            "color": "#ffffff",
+            "float": "left",
+            "position": "absolute",
+          }
+        }
+      >
+        Create Talent Pool
+      </h2>
+      <div
+        data-radium={true}
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "float": "right",
+            "paddingTop": "0.5em",
+          }
+        }
+      >
+        <WMFontIcon
+          className="material-icons"
+          color="#ffffff"
+          id="talent-pool-drawer-close"
+          style={
+            Object {
+              "margin": "0.75em",
+            }
+          }
+        >
+          
+        </WMFontIcon>
+      </div>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "clear": "both",
+          }
+        }
+      />
+    </WMSubheader>
+  </div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "height": "calc(100% - 110px)",
+        "position": "absolute",
+        "top": "110px",
+        "width": "100%",
+      }
+    }
+  >
+    <WMPaper
+      style={
+        Object {
+          "padding": "1em",
+        }
+      }
+    >
+      <form
+        data-radium={true}
+      >
+        <WMFormRow
+          id="name"
+          labelText="Name"
+          required={true}
+        >
+          <WMTextField
+            fullWidth={true}
+            name="name"
+            onChange={[Function]}
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="industry"
+          labelText="Industry"
+          required={true}
+        >
+          <WMSelectField
+            fullWidth={true}
+            name="industry"
+            onChange={[Function]}
+            valid={true}
+            value={0}
+          >
+            <WMMenuItem
+              primaryText="Sales, Event, and Promotional Marketing"
+              value={1045}
+            />
+          </WMSelectField>
+        </WMFormRow>
+        <WMFormRow
+          id="skills"
+          labelText="Skills"
+        >
+          <WMAutocompleteChips
+            allowFreeText={false}
+            chipLabelKey="name"
+            chipMetaKey="id"
+            chips={
+              Immutable.List [
+              ]
+            }
+            dataSource={Array []}
+            dataSourceConfig={
+              Object {
+                "text": "name",
+                "value": "id",
+              }
+            }
+            hintText="Type Skill..."
+            name="skills"
+            onAddChip={[Function]}
+            onRemoveChip={[Function]}
+            onUpdateInput={[Function]}
+            readOnly={false}
+            style={
+              Object {
+                "color": "blue",
+                "flex": "1",
+              }
+            }
+            underlineShow={true}
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="owner"
+          labelText="Owner"
+          required={true}
+        >
+          <WMSelectField
+            fullWidth={true}
+            name="owner"
+            onChange={[Function]}
+            valid={true}
+            value={0}
+          >
+            <WMMenuItem
+              primaryText="API API"
+              value="19262"
+            />
+          </WMSelectField>
+        </WMFormRow>
+        <WMFormRow
+          id="description"
+          labelText="Description"
+          required={true}
+        >
+          <WMTextField
+            fullWidth={true}
+            multiLine={true}
+            name="description"
+            onChange={[Function]}
+            style={
+              Object {
+                "marginBottom": "1em",
+              }
+            }
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="type"
+          labelText="Type"
+          required={true}
+        >
+          <WMRadioButtonGroup
+            name="openMembership"
+            onChange={[Function]}
+            valueSelected={true}
+          >
+            <WMRadioButton
+              label="Visible to workers (public)"
+              name="openMembership"
+              value="true"
+            />
+            <WMRadioButton
+              label="Only visible to my company (private)"
+              name="openMembership"
+              style={
+                Object {
+                  "marginBottom": "1em",
+                }
+              }
+              value="false"
+            />
+          </WMRadioButtonGroup>
+        </WMFormRow>
+        <WMFormRow
+          id="public-options"
+          labelText="Public Options"
+        >
+          <div>
+            <WMCheckbox
+              checked={false}
+              disabled={false}
+              id="requiresApproval"
+              label="Review Applicants Manually"
+              name="requiresApproval"
+              onCheck={[Function]}
+            />
+            <WMCheckbox
+              checked={false}
+              disabled={false}
+              id="searchable"
+              label="Allow workers to discover Talent Pool in marketplace"
+              name="searchable"
+              onCheck={[Function]}
+              style={
+                Object {
+                  "marginBottom": "1em",
+                }
+              }
+            />
+          </div>
+        </WMFormRow>
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row-reverse",
+            }
+          }
+        >
+          <WMRaisedButton
+            backgroundColor="#5eb65f"
+            id="saveTalentPool"
+            label="Create Talent Pool"
+            labelColor="#ffffff"
+            onClick={[Function]}
+            style={
+              Object {
+                "margin": "1em 0 0 1em",
+              }
+            }
+          />
+          <WMRaisedButton
+            id="cancelTalentPoolCreate"
+            label="Cancel"
+            labelColor="#1890e0"
+            onClick={[Function]}
+            style={
+              Object {
+                "marginTop": "1em",
+              }
+            }
+          />
+        </div>
+      </form>
+    </WMPaper>
+  </div>
+</div>
+`;
+
+exports[`<TalentPoolCreateForm /> Rendering should render correctly when org units enabled 1`] = `
+<div
+  data-radium={true}
+  style={
+    Object {
+      "height": "100%",
+      "overflowX": "hidden",
+      "position": "relative",
+      "width": "100%",
+    }
+  }
+>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "background": "#f7961d",
+        "height": "110px",
+        "position": "absolute",
+        "width": "100%",
+        "zIndex": "10",
+      }
+    }
+  >
+    <WMSubheader
+      inset={false}
+    >
+      <h2
+        data-radium={true}
+        style={
+          Object {
+            "bottom": "17%",
+            "color": "#ffffff",
+            "float": "left",
+            "position": "absolute",
+          }
+        }
+      >
+        Create Talent Pool
+      </h2>
+      <div
+        data-radium={true}
+        onClick={[Function]}
+        style={
+          Object {
+            "cursor": "pointer",
+            "float": "right",
+            "paddingTop": "0.5em",
+          }
+        }
+      >
+        <WMFontIcon
+          className="material-icons"
+          color="#ffffff"
+          id="talent-pool-drawer-close"
+          style={
+            Object {
+              "margin": "0.75em",
+            }
+          }
+        >
+          
+        </WMFontIcon>
+      </div>
+      <div
+        data-radium={true}
+        style={
+          Object {
+            "clear": "both",
+          }
+        }
+      />
+    </WMSubheader>
+  </div>
+  <div
+    data-radium={true}
+    style={
+      Object {
+        "height": "calc(100% - 110px)",
+        "position": "absolute",
+        "top": "110px",
+        "width": "100%",
+      }
+    }
+  >
+    <WMPaper
+      style={
+        Object {
+          "padding": "1em",
+        }
+      }
+    >
+      <form
+        data-radium={true}
+      >
+        <WMFormRow
+          id="name"
+          labelText="Name"
+          required={true}
+        >
+          <WMTextField
+            fullWidth={true}
+            name="name"
+            onChange={[Function]}
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="industry"
+          labelText="Industry"
+          required={true}
+        >
+          <WMSelectField
+            fullWidth={true}
+            name="industry"
+            onChange={[Function]}
+            valid={true}
+            value={0}
+          >
+            <WMMenuItem
+              primaryText="Sales, Event, and Promotional Marketing"
+              value={1045}
+            />
+          </WMSelectField>
+        </WMFormRow>
+        <WMFormRow
+          id="orgunits"
+          labelText="Org Units"
+          required={true}
+        >
+          <WMSelectFieldChips
+            chips={
+              Immutable.List [
+                Object {
+                  "id": "org-001",
+                  "isSticky": true,
+                  "label": "Org A",
+                  "meta": "org-001",
+                  "value": "org-001",
+                },
+              ]
+            }
+            fullWidth={true}
+            name="orgunits"
+            onChange={[Function]}
+          >
+            <WMStackedMenuItem
+              disabled={true}
+              primaryText="Org A"
+              secondaryText={null}
+              secondaryTextPlacement="above"
+              value="org-001"
+            />
+            <WMStackedMenuItem
+              disabled={false}
+              primaryText="Org B"
+              secondaryText="Org A > "
+              secondaryTextPlacement="above"
+              value="org-002"
+            />
+            <WMStackedMenuItem
+              disabled={false}
+              primaryText="Org C"
+              secondaryText="Org A > Org B > "
+              secondaryTextPlacement="above"
+              value="org-003"
+            />
+          </WMSelectFieldChips>
+        </WMFormRow>
+        <WMFormRow
+          id="skills"
+          labelText="Skills"
+        >
+          <WMAutocompleteChips
+            allowFreeText={false}
+            chipLabelKey="name"
+            chipMetaKey="id"
+            chips={
+              Immutable.List [
+              ]
+            }
+            dataSource={Array []}
+            dataSourceConfig={
+              Object {
+                "text": "name",
+                "value": "id",
+              }
+            }
+            hintText="Type Skill..."
+            name="skills"
+            onAddChip={[Function]}
+            onRemoveChip={[Function]}
+            onUpdateInput={[Function]}
+            readOnly={false}
+            style={
+              Object {
+                "color": "blue",
+                "flex": "1",
+              }
+            }
+            underlineShow={true}
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="owner"
+          labelText="Owner"
+          required={true}
+        >
+          <WMSelectField
+            fullWidth={true}
+            name="owner"
+            onChange={[Function]}
+            valid={true}
+            value={0}
+          >
+            <WMMenuItem
+              primaryText="API API"
+              value="19262"
+            />
+          </WMSelectField>
+        </WMFormRow>
+        <WMFormRow
+          id="description"
+          labelText="Description"
+          required={true}
+        >
+          <WMTextField
+            fullWidth={true}
+            multiLine={true}
+            name="description"
+            onChange={[Function]}
+            style={
+              Object {
+                "marginBottom": "1em",
+              }
+            }
+          />
+        </WMFormRow>
+        <WMFormRow
+          id="type"
+          labelText="Type"
+          required={true}
+        >
+          <WMRadioButtonGroup
+            name="openMembership"
+            onChange={[Function]}
+            valueSelected={true}
+          >
+            <WMRadioButton
+              label="Visible to workers (public)"
+              name="openMembership"
+              value="true"
+            />
+            <WMRadioButton
+              label="Only visible to my company (private)"
+              name="openMembership"
+              style={
+                Object {
+                  "marginBottom": "1em",
+                }
+              }
+              value="false"
+            />
+          </WMRadioButtonGroup>
+        </WMFormRow>
+        <WMFormRow
+          id="public-options"
+          labelText="Public Options"
+        >
+          <div>
+            <WMCheckbox
+              checked={false}
+              disabled={false}
+              id="requiresApproval"
+              label="Review Applicants Manually"
+              name="requiresApproval"
+              onCheck={[Function]}
+            />
+            <WMCheckbox
+              checked={false}
+              disabled={false}
+              id="searchable"
+              label="Allow workers to discover Talent Pool in marketplace"
+              name="searchable"
+              onCheck={[Function]}
+              style={
+                Object {
+                  "marginBottom": "1em",
+                }
+              }
+            />
+          </div>
+        </WMFormRow>
+        <div
+          data-radium={true}
+          style={
+            Object {
+              "display": "flex",
+              "flexDirection": "row-reverse",
+            }
+          }
+        >
+          <WMRaisedButton
+            backgroundColor="#5eb65f"
+            id="saveTalentPool"
+            label="Create Talent Pool"
+            labelColor="#ffffff"
+            onClick={[Function]}
+            style={
+              Object {
+                "margin": "1em 0 0 1em",
+              }
+            }
+          />
+          <WMRaisedButton
+            id="cancelTalentPoolCreate"
+            label="Cancel"
+            labelColor="#1890e0"
+            onClick={[Function]}
+            style={
+              Object {
+                "marginTop": "1em",
+              }
+            }
+          />
+        </div>
+      </form>
+    </WMPaper>
+  </div>
+</div>
+`;

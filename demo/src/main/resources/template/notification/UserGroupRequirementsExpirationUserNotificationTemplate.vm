@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/groups/${template.userGroup.id}">A requirement has expired for talent pool: ${template.userGroupName} and your membership is pending your review</a>

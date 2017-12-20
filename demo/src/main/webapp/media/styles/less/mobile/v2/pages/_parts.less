@@ -1,0 +1,154 @@
+// PAGE STYLES
+
+.parts-page ._partsRoot_ {
+	padding: 1em;
+}
+
+.parts-table--part-information {
+	h3 {
+		margin-bottom: .5em;
+		padding: 0;
+		text-align: left;
+	}
+}
+
+.parts-table--part-header {
+	padding: 0 0.5em;
+	color: @dark-gray;
+}
+
+.parts-table--part-creation {
+	overflow: hidden;
+	display: none;
+	position: relative;
+
+	[class^="parts-table--"]:not([class$="--hidden-dollar-sign"]) {
+		margin: .5em 0;
+		font-size: 1em;
+		border: 1px solid @medium-gray;
+	}
+}
+
+.parts-table--part-links {
+	padding: 0 .5em;
+}
+
+.parts-table--part-link {
+	display: block;
+	background-color: lighten(@medium-gray, 20%);
+	padding: .7em .8em;
+	margin: 1em 0;
+	height: 1.5em;
+	clear: both;
+	overflow: hidden;
+	position: relative;
+	.border-radius(4px);
+
+	.parts-table--link-bit {
+		display: inline-block;
+		vertical-align: middle;
+		font-family: @default-font;
+		width: 35%;
+		float: left;
+		background-color: lighten(@medium-gray, 20%);
+		word-wrap: normal;
+		word-break: normal;
+	}
+}
+
+.details-page .parts-page .tell .parts-table--link-bit {
+	font-size: .9em;
+	&:first-child {
+		margin-top: 0.3em;
+		color: @dark-gray;
+	}
+	&.-status {
+		font-size: .7em;
+	}
+	&:nth-child(2) {
+		margin-left: -.5em;
+	}
+	&:nth-child(3) {
+		height: 1.5em;
+		overflow: hidden;
+		word-break: break-all;
+		margin-top: .5em;
+	}
+}
+
+.details-page .parts-page .tell {
+	h3 { padding: 0; }
+}
+
+
+
+.parts-table--tracking-status,
+.details-page .parts-page .tell .parts-table--tracking-status {
+	text-transform: uppercase;
+	font-family: @bold-font;
+	margin-left: -3em;
+	font-size: .8em;
+	margin-top: 0.3em;
+
+	@parts-pending: #b5366f;
+	@parts-not-shipped: #e68229; // mix($red, $orange)
+	@parts-in-transit: #3296bc;
+	@parts-delivered: #5eb65f;
+	@parts-unrecognized: #acca43;
+	@parts-not-available: #787878;
+
+	&.-pending {
+		color: @parts-pending;
+	}
+	&.-not-shipped {
+		color: @parts-not-shipped;
+	}
+	&.-in-transit {
+		color: @parts-in-transit;
+	}
+	&.-delivered {
+		color: @parts-delivered;
+	}
+	&.-unrecognized {
+		color: @parts-unrecognized;
+	}
+	&.-not-available {
+		color: @parts-not-available;
+	}
+}
+
+.parts-table--total-price {
+	padding: 0 1em;
+	text-align: right;
+	color: @dark-gray;
+
+	hr {
+		margin: 2em 0 -.5em;
+	}
+}
+
+.parts-table--add.button {
+	padding: 0.3em;
+	background-color: @medium-gray;
+	color: lighten(@medium-gray, 15%);
+	text-transform: uppercase;
+}
+
+.parts-table--add.button:enabled {
+	background-color: @bright-green;
+	color: @white;
+}
+
+.parts-table--address {
+	text-transform: capitalize;
+}
+
+#partsSent .-is-supplied-by-worker .parts-table--part-creation {
+	display: none;
+}
+
+
+#partsReturn .-active-worker-exists .parts-table--part-creation,
+.-is-company .parts-table--part-creation {
+	display: block;
+}

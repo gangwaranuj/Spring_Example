@@ -1,0 +1,45 @@
+<table class="table table-striped">
+	<thead>
+	<tr>
+		<th>Feature</th>
+		<th>Open invite</th>
+		<th>Users</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	{{#each this.data }}
+		<tr data-feature-name="{{ this.venue.displayName }}">
+			<td><a class="beta-feature">{{ this.venue.displayName }}</a></td>
+			{{#if this.isOpenSignup }}
+			<td>Yes</td>
+			{{else}}
+			<td>No</td>
+			{{/if}}
+			<td>
+				<p>
+					{{#if this.companies.length }}
+						<b>Companies: </b>
+						{{#each this.companies }}
+							{{ this.companyName }}{{#unless @last}}, {{/unless}}
+						{{/each}}
+					{{else}}
+						No participating companies
+					{{/if}}
+				</p>
+				<p>
+					{{#if this.soleProprietors.length }}
+						<b>Individuals: </b>
+						{{#each this.soleProprietors }}
+							{{ this.userFullName }}{{#unless @last}}, {{/unless}}
+						{{/each}}
+					{{else}}
+						No participating individuals
+					{{/if}}
+				</p>
+			</td>
+			<td><a class="beta-feature-action">Action</a></td>
+		</tr>
+	{{/each}}
+	</tbody>
+</table>

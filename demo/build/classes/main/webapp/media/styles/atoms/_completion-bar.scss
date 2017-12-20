@@ -1,0 +1,23 @@
+.completion-bar--name {
+	float: left;
+}
+
+.completion-bar--value {
+	float: right;
+}
+
+.completion-bar--bar {
+	clear: both;
+	height: 3px;
+	background-color: $green;
+
+	.completion-bar.-good & {
+		background-color: $green;
+	}
+	.completion-bar.-ok & {
+		background-color: #cc0;
+	}
+	.completion-bar.-bad & {
+		background-color: $red;
+	}
+}

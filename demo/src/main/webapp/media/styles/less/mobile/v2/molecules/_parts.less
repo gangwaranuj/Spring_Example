@@ -1,0 +1,100 @@
+///////////////////////////////////////
+// Parts and Logistics Table Styles //
+/////////////////////////////////////
+
+// BRAND COLORS
+@usps-blue: #0060A0;
+@ups-yellow: #FFCE6B;
+@ups-brown: #4F2700;
+@fedex-orange: #F67900;
+@fedex-purple: #472A93;
+@dhl-red: #D80000;
+@dhl-yellow: #FFCD00;
+
+// MIXINS
+.shipping-icon(@base, @highlight) {
+	.icon--base { fill: @base; }
+	.icon--highlight { fill: @highlight; }
+	.active & {
+		.icon--base { fill: @base; }
+		.icon--highlight { fill: @highlight; }
+	}
+}
+
+// ICONS
+.parts-page {
+	.clicker {
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		margin: 0.6em;
+	}
+
+	.icon-truck {
+		height: 2.5em;
+		width: 2.5em;
+		float: left;
+		margin: -0.7em 0.6em 0 0;
+	}
+
+	.icon-fedex {
+		height: 3em;
+		width: 3em;
+		margin: -.8em 0;
+		display: none;
+		.shipping-icon(@fedex-purple, @fedex-orange);
+	}
+
+	.-fedex .icon-fedex {
+		display: block;
+	}
+
+	.icon-ups {
+		height: 2em;
+		width: 2em;
+		margin: -0.2em 0;
+		display: none;
+		.shipping-icon(@ups-brown, @ups-yellow);
+	}
+
+	.-ups .icon-ups {
+		display: block;
+	}
+
+	.icon-usps {
+		height: 2.6em;
+		width: 2.6em;
+		margin: -.6em 0;
+		display: none;
+		.shipping-icon(@usps-blue, @usps-blue);
+	}
+
+	.-usps .icon-usps {
+		display: block;
+	}
+
+	.icon-dhl {
+		height: 3em;
+		width: 3em;
+		margin: -0.8em 0;
+		display: none;
+		.shipping-icon(@dhl-yellow, @dhl-red);
+	}
+
+	.-dhl .icon-dhl {
+		display: block;
+	}
+
+	.icon-truck {
+		height: 2.6em;
+		width: 2.6em;
+		margin: -0.5em 0;
+		display: none;
+		.-is-return { display: none; }
+	}
+
+	.-untracked .icon-truck {
+		display: block;
+	}
+}

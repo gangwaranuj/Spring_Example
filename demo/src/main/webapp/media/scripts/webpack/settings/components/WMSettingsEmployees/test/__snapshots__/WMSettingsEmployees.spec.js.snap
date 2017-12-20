@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WMSettingsEmployees /> Rendering :: renders correctly 1`] = `
+<WMCard
+  expandable={true}
+  onExpandChange={[Function]}
+  style={
+    Object {
+      "backgroundColor": "white",
+      "margin": "auto",
+      "marginBottom": "2em",
+      "width": "700px",
+    }
+  }
+>
+  <WMCardHeader
+    actAsExpander={true}
+    style={
+      Object {
+        "alignItems": "center",
+        "display": "flex",
+      }
+    }
+    subtitle="Add or upload the employees that will be performing work on behalf of your company."
+    textStyle={
+      Object {
+        "order": 2,
+        "paddingRight": 0,
+      }
+    }
+    title="Add Your Employees"
+    titleStyle={
+      Object {
+        "color": "#1890e0",
+        "fontSize": "20px",
+        "fontWeight": 500,
+      }
+    }
+  >
+    <img
+      alt="Add Employees Icon"
+      id="wm-settings-employees__icon"
+      src="undefined/images/settings/employees.svg"
+      style={
+        Object {
+          "height": "100px",
+          "margin": "0 20px",
+          "order": 1,
+          "width": "100px",
+        }
+      }
+    />
+  </WMCardHeader>
+</WMCard>
+`;

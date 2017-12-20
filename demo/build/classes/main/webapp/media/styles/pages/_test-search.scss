@@ -1,0 +1,41 @@
+.page-test-search {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-textarea;
+
+	.left-nav ~ #outer-container { //remove this when making it responsive
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.main.container {              //remove this when making it responsive
+		min-width: 730px;
+		padding: 0;
+
+	}
+
+	.count-overview {
+		text-align: center;
+		color: $grey;
+		margin-bottom: 1em;
+	}
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+	}
+	.content {
+		@include span(9 omega);
+		margin-bottom: 2em;
+	}
+
+	.results-spinner {
+		padding: 25% 0 25% 47%;
+	}
+
+	@media (max-width: 930px) {
+		.profile-card--view-profile {
+			left: -10%;
+		}
+	}
+}

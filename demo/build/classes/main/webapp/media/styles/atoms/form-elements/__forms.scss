@@ -1,0 +1,127 @@
+@mixin form-state($color, $outline-color: lighten($color, 20%), $background-color: $color) {
+	box-shadow: none; // Legacy
+	color: $color;
+	border-color: $outline-color;
+	background-color: rgba($background-color, 0.05);
+
+	@include placeholder {
+		color: $color;
+		font-weight: map-get($font-weight, light);
+	}
+}
+
+@mixin form-element {
+	border-radius: $base-border-radius;
+	width: 100%;
+	height: 2em;
+	color: $form-element-color;
+	padding: element-padding();
+	margin-bottom: $form-element-spacing;
+	border: $default-border;
+	background-color: $form-element-background-color;
+
+	&:focus {
+		@include form-state($charcoal-grey, $orange, $orange);
+		@include placeholder {
+			font-weight: map-get($font-weight, semi-bold);
+		}
+		box-shadow: 0 0 8px rgba($orange, 0.5);
+	}
+	.-invalid & { @include form-state($red); }
+
+	// Legacy
+	font-size: inherit;
+	@include transition(none);
+	line-height: inherit;
+	display: block;
+	box-shadow: none;
+	font-family: inherit;
+
+	&.mdl-textfield__input {
+		border: none;
+		border-bottom: 1px solid $input-text-bottom-border-color;
+		border-radius: initial;
+		height: auto;
+		display: block;
+		font-size: $input-text-font-size;
+		font-family: $performance_font;
+		margin: 0;
+		padding: $input-text-padding 0;
+		width: $input-text-width;
+		background: none;
+		text-align: left;
+		color: inherit;
+
+		&:focus {
+			box-shadow: none;
+		}
+
+		&[type="number"] {
+			-moz-appearance: textfield;
+		}
+
+		&[type="number"]::-webkit-inner-spin-button,
+		&[type="number"]::-webkit-outer-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		.mdl-textfield.is-focused & {
+			outline: none;
+		}
+
+		.mdl-textfield.is-invalid & {
+			border-color: $input-text-error-color;
+			box-shadow: none;
+		}
+
+		fieldset[disabled] .mdl-textfield &,
+		.mdl-textfield.is-disabled & {
+			background-color: transparent;
+			border-bottom: 1px dotted $input-text-disabled-color;
+			color: $input-text-disabled-text-color;
+		}
+	}
+}
+
+@mixin new-form-inputs {
+	[type="text"], [type="email"], [type="url"], [type="tel"], [type="number"] { @include form-element; }
+}
+
+@mixin new-form-boxes {
+	[type="radio"], [type="checkbox"] { margin-bottom: 1em; }
+}
+
+@mixin new-form-textarea {
+	textarea {
+		@include form-element;
+		max-width: 100%;
+		min-height: 6em;
+	}
+}
+
+@mixin new-form-label {
+	label[for] {
+		display: block;
+		cursor: pointer;
+		font-weight: inherit;
+		line-height: inherit;
+		font-size: inherit;
+		margin-bottom: 1em;
+	}
+}
+
+.mdl-textfield__label {
+	margin: 0;
+	line-height: initial;
+	font-weight: initial;
+}
+
+.-required {
+	&::after {
+		display: inline-block;
+		content: "*";
+		color: $orange;
+		margin-left: 2px;
+	}
+}

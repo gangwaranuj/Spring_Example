@@ -1,0 +1,1 @@
+${fromUser.fullName} reminds you to complete your assignment: ${template.workTitle}

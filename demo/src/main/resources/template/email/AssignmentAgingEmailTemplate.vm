@@ -1,0 +1,68 @@
+
+
+            <h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Aging Assignments Alert $date.format('EEE, d MMM yyyy', ${template.alertDate}) </h1>
+
+            <div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">  
+
+			<p style="margin: 0px 0px 20px 0px">
+				Below is your daily aging assignment email with assignments older that 15 days from today.
+			</p>
+
+			<table cellspacing="0" cellpadding="5" border="1" border-color="#DDDDDD" style="border:1px solid #DDDDDD; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 11px; padding:0; border-collapse:collapse; ">
+                <thead>
+                <tr style="text-align:left;">
+                    <th style="font-weight: bold; border-bottom: 1px solid #DDDDDD; background-color=#F9F9F9">WM ID</th>
+                    <th style="font-weight: bold; border-bottom: 1px solid #DDDDDD; background-color=#F9F9F9" width="40%">Assignment</th>
+                    <th style="font-weight: bold; border-bottom: 1px solid #DDDDDD; background-color=#F9F9F9">Sent Date</th>
+                    <th style="font-weight: bold; border-bottom: 1px solid #DDDDDD; background-color=#F9F9F9">Start Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                    #foreach( $work in ${template.assignmentList} )
+                    <tr style="vertical-align:top;">
+                        <td>$work.workNumber</td>
+                        <td>
+                            <strong><a href="${baseurl}/assignments/details/$work.workNumber" target="_blank">$work.title</a></strong><br/>
+                            #if ($work.customFields)
+                                #foreach( $customField in $work.customFields )
+                                    <span style="color:#333">$customField.fieldName : $customField.fieldValue</span><br/>
+                                #end
+                            #end
+
+                            #if ($work.workStatusTypeCode == "inprogress")
+                                <span style="color:#333">In Progress</span>
+                            #elseif ($work.workStatusTypeCode == "active")
+                                <span style="color:#333">Assigned</span>
+                            #elseif ($work.workStatusTypeCode == "sent")
+                                <span style="color:#333">Sent</span>
+                            #end
+                            <br/>
+                            #if ($work.clientCompanyName)
+                                <span style="color:#333">Client: $work.clientCompanyName</span><br/>
+                            #end
+                        </td>
+                        <td>$date.format('MM/dd/yy', $work.sentOn)</td>
+                        <td>$date.format('MM/dd/yy', $work.scheduleFrom)</td>
+                    </tr>
+                	#end
+                </tbody>
+            </table>
+            <br/>
+			<table cellspacing="0" cellpadding="0" border="0" style="border:1px solid #DDDDDD; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 13px; padding:0;">
+			<tbody>
+			<tr>
+			<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+			<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments?ref=nav#status/sent/managing">View Assignments</a>
+
+			</td>
+			</tr>
+			</tbody>
+			</table>
+
+		</div>
+
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

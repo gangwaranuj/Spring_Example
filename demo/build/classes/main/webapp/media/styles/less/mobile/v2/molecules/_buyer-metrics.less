@@ -1,0 +1,27 @@
+.buyer-metrics-page {
+	p {
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		span {
+			color: @blue;
+			font-weight: bold;
+		}
+		.good-text {
+			color: @green;
+		}
+		.bad-text {
+			color: @error;
+		}
+	}
+
+	.bargraph-icon {
+		.details-toggle-icon;
+		path {
+			fill: @gray;
+			&:nth-child(even) {
+				.opacity(.6);
+			}
+		}
+	}
+}

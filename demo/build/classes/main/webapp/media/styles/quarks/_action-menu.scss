@@ -1,0 +1,50 @@
+$action-menu-color: $grey;
+
+.action-menu {
+	select + &.selectize-control {
+		display: inline-block;
+
+		&.single {
+			.selectize-input {
+				padding: 0.4em;
+				color: $action-menu-color;
+
+				&::before {
+					@include icon(gear);
+					float: left;
+					background-color: transparent;
+					position: static;
+					min-height: 0;
+					width: auto;
+					margin-right: 0.2em;
+				}
+				&::after {
+					float: right;
+					position: static;
+					clear: none;
+					margin-top: 0.4em;
+				}
+
+				&.dropdown-active {
+					cursor: pointer;
+				}
+
+				.item, input {
+					display: none !important;
+				}
+			}
+			.selectize-dropdown {
+				width: auto !important; // Important flag overrides selectize JS positioning
+
+				&:not(.-left) {
+					right: auto !important;
+					left: -0.5em;
+				}
+				&.-left {
+					right: 0;
+					left: auto !important;
+				}
+			}
+		}
+	}
+}

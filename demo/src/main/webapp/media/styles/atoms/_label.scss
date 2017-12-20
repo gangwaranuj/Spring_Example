@@ -1,0 +1,78 @@
+$label: (
+	element-size: $small-element-height,
+	font-size: $small-font-size
+);
+
+@mixin label($state: $neutral-color) {
+	@if (type-of($state) == color) {
+		background-color: $state;
+	} @else {
+		background-color: map-fetch($assignment-states, $state, color);
+
+		&::before {
+			content: map-fetch($assignment-states, $state, content);
+		}
+	}
+}
+
+.wm-label {
+	@include reset-element;
+	@include label;
+	display: inline-block;
+	padding: element-padding($label) element-padding($label, 1.5);
+	font-weight: map-get($font-weight, bold);
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	border-radius: $base-border-radius;
+	font-size: map-get($label, font-size);
+	color: $white;
+
+	// Bootstrap override
+	&:empty {
+		display: inline-block;
+	}
+
+	&::before {
+		display: block;
+	}
+
+	&.-neutral {
+		@include label($neutral-color);
+	}
+	&.-success {
+		@include label($success-color);
+	}
+	&.-notice {
+		@include label($notice-color);
+	}
+	&.-warning {
+		@include label($warning-color);
+	}
+	&.-danger {
+		@include label($danger-color);
+	}
+	&.-draft {
+		@include label(draft);
+	}
+	&.-sent {
+		@include label(sent);
+	}
+	&.-assigned {
+		@include label(assigned);
+	}
+	&.-in-progress {
+		@include label(in-progress);
+	}
+	&.-pending-approval {
+		@include label(pending-approval);
+	}
+	&.-invoiced {
+		@include label(invoiced);
+	}
+	&.-paid {
+		@include label(paid);
+	}
+	&.-cancelled {
+		@include label(cancelled);
+	}
+}

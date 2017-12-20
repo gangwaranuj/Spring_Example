@@ -1,0 +1,428 @@
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:sec="http://www.springframework.org/schema/security"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd">
+
+
+	<sec:global-method-security pre-post-annotations="enabled" secured-annotations="enabled">
+	</sec:global-method-security>
+
+	<sec:http security="none" pattern="/index"/>
+	<sec:http security="none" pattern="/download/**"/>
+	<sec:http security="none" pattern="/WEB-INF/views/web/pages/marketing/year-in-data.jsp"/>
+	<sec:http security="none" pattern="/media/**"/>
+	<sec:http security="none" pattern="/favicon.ico"/>
+	<sec:http security="none" pattern="/crossdomain.xml"/>
+	<sec:http security="none" pattern="/robots.txt"/>
+	<sec:http security="none" pattern="/callbacks/twilio/**"/>
+	<sec:http security="none" pattern="/callbacks/acxiom/**"/>
+	<sec:http security="none" pattern="/callbacks/aftership/**"/>
+	<sec:http security="none" pattern="/saml/web/**"/>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/api/**" use-expressions="true" disable-url-rewriting="true" auto-config="false" entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+	</sec:http>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/v1/**" use-expressions="true" disable-url-rewriting="true" auto-config="false" entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+	</sec:http>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/v2/**" use-expressions="true" disable-url-rewriting="true" auto-config="false" entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+	</sec:http>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/v3/**" use-expressions="true" disable-url-rewriting="true" auto-config="false" entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+	</sec:http>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/worker/v2/**" use-expressions="true" disable-url-rewriting="true" auto-config="false"
+						entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+		<sec:intercept-url pattern="/worker/v2/signin" access="permitAll" />
+		<sec:intercept-url pattern="/worker/v2/**" access="permitAll" />
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="publicWorkRequestFilter" after="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+		<sec:custom-filter ref="sessionHijackingFilter" after="SECURITY_CONTEXT_FILTER"/>
+	</sec:http>
+
+	<!-- TODO API - Paths -->
+	<sec:http pattern="/employer/v2/**" use-expressions="true" disable-url-rewriting="true" auto-config="false"
+						entry-point-ref="restAuthenticationEntryPoint" create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+		<sec:intercept-url pattern="/employer/v2/signin" access="permitAll" />
+		<sec:intercept-url pattern="/employer/v2/**" access="permitAll" />
+
+		<sec:custom-filter ref="apiBaseFilter" position="FIRST" />
+		<sec:custom-filter ref="customRestLoginFilter" position="FORM_LOGIN_FILTER" />
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="publicWorkRequestFilter" after="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customRestLogoutFilter" position="LOGOUT_FILTER"/>
+		<sec:custom-filter ref="sessionHijackingFilter" after="SECURITY_CONTEXT_FILTER"/>
+		<sec:custom-filter position="CONCURRENT_SESSION_FILTER" ref="concurrencyFilter" />
+	</sec:http>
+
+	<sec:http use-expressions="true" disable-url-rewriting="true" auto-config="false" entry-point-ref="loginUrlAuthenticationEntryPoint"
+			  create-session="never">
+		<sec:expression-handler ref="expressionHandler"/>
+		<sec:request-cache ref="httpSessionRequestCache"/>
+
+		<!-- TODO Find a less verbose method of doing this -->
+		<sec:intercept-url pattern="/mobile/welcome" access="permitAll"/>
+		<sec:intercept-url pattern="/companies/**" access="permitAll"/>
+		<sec:intercept-url pattern="/login" access="permitAll"/>
+		<sec:intercept-url pattern="/login/facebook" access="permitAll"/>
+		<sec:intercept-url pattern="/login/google" access="permitAll"/>
+		<sec:intercept-url pattern="/calendar/callback" access="permitAll"/>
+		<sec:intercept-url pattern="/login/linkedin" access="permitAll"/>
+		<sec:intercept-url pattern="/login/social_no_link" access="permitAll"/>
+		<sec:intercept-url pattern="/findwork" access="permitAll"/>
+		<sec:intercept-url pattern="/resend_confirmation_email/**" access="permitAll"/>
+		<sec:intercept-url pattern="/v2/resend_confirmation_email/**" access="permitAll"/>
+		<sec:intercept-url pattern="/signup" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/creatework" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/worker" access="permitAll" />
+		<sec:intercept-url pattern="/signup/findwork_step2" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/linkedIn" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/facebook" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/google" access="permitAll"/>
+		<sec:intercept-url pattern="/signup/save_linkedin" access="permitAll"/>
+		<sec:intercept-url pattern="/signup_step2" access="permitAll"/>
+		<sec:intercept-url pattern="/signup-submit/creatework" access="permitAll"/>
+		<sec:intercept-url pattern="/signup-submit/worker" access="permitAll" />
+		<sec:intercept-url pattern="/social/signup/google" access="permitAll"/>
+		<sec:intercept-url pattern="/social/signup/facebook" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/linkedin" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/facebook" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/google" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/social_no_link" access="permitAll"/>
+		<sec:intercept-url pattern="/social/signup/linkedIn" access="permitAll"/>
+		<sec:intercept-url pattern="/social/signup/save_linkedin" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/linkedin_step2" access="permitAll"/>
+		<sec:intercept-url pattern="/social/login/linkedin_finish" access="permitAll"/>
+		<sec:intercept-url pattern="/thankyou" access="permitAll"/>
+		<sec:intercept-url pattern="/user/send_forgot_password" access="permitAll"/>
+		<sec:intercept-url pattern="/user/**" access="permitAll"/>
+		<sec:intercept-url pattern="/health_test/**" access="permitAll"/>
+		<sec:intercept-url pattern="/error/**" access="permitAll"/>
+		<sec:intercept-url pattern="/register/**" access="permitAll"/>
+		<sec:intercept-url pattern="/assignment_status/**" access="permitAll"/>
+		<sec:intercept-url pattern="/signin/*" access="permitAll"/>
+		<sec:intercept-url pattern="/login-status" access="permitAll"/>
+		<sec:intercept-url pattern="/login-error" access="permitAll"/>
+		<sec:intercept-url pattern="/login-message" access="permitAll"/>
+		<sec:intercept-url pattern="/industry-list" access="permitAll"/>
+		<sec:intercept-url pattern="/unfollow/*" access="permitAll"/>
+		<sec:intercept-url pattern="/public-freelancers" access="permitAll"/>
+		<sec:intercept-url pattern="/apidocs" access="permitAll"/>
+		<sec:intercept-url pattern="/apidocs/**" access="permitAll"/>
+
+		<sec:intercept-url pattern="/indeed/xml" access="permitAll" />
+
+		<sec:intercept-url pattern="/groups/reindex_members/**" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+
+		<sec:intercept-url pattern="/settings/manage/template*/**" access="isAuthenticated() and hasAnyRole('ACL_ADMIN','ACL_MANAGER')"/>
+		<sec:intercept-url pattern="/settings/manage/label*/**" access="isAuthenticated() and hasAnyRole('ACL_ADMIN','ACL_MANAGER')"/>
+		<sec:intercept-url pattern="/settings/manage/*custom*/**" access="isAuthenticated() and hasAnyRole('ACL_ADMIN','ACL_MANAGER')"/>
+		<sec:intercept-url pattern="/mmw/**" access="isAuthenticated() and hasAnyRole('PERMISSION_ACCESSMMW')"/>
+		<sec:intercept-url pattern="/users/**" access="isAuthenticated() and hasAnyRole('PERMISSION_ACCESSMMW')"/>
+		<sec:intercept-url pattern="/relationships/addtolane3" access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/relationships/removefromlane*" access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/relationships/**" access="isAuthenticated() and hasAnyRole('PERMISSION_ACCESSMMW')"/>
+		<sec:intercept-url pattern="/lms/manage/tests*" access="isAuthenticated()"/>
+		<sec:intercept-url pattern="/lms/manage/**" access="isAuthenticated() and hasAnyRole('PERMISSION_ASSESSMENTS')"/>
+		<sec:intercept-url pattern="/reports/custom/**" access="isAuthenticated() and hasAnyRole('ACL_ADMIN','ACL_MANAGER')"/>
+
+		<sec:intercept-url pattern="/realtime/admin*" access="hasRole('ROLE_INTERNAL')"/>
+		<sec:intercept-url pattern="/endpoints" access="hasRole('ROLE_INTERNAL')"/>
+
+		<sec:intercept-url pattern="/admin/usermanagement/masquerade" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+		<sec:intercept-url pattern="/admin/usermanagement/masquerade/start" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+		<sec:intercept-url pattern="/admin/usermanagement/masquerade/stop" access="authenticated"/>
+		<sec:intercept-url pattern="/admin/usermanagement/reindex_work/**" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+		<sec:intercept-url pattern="/admin/usermanagement/reindex_user/**" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+		<sec:intercept-url pattern="/admin/usermanagement/suggest*" access="hasAnyRole('ROLE_WM_ADMIN','ROLE_MASQUERADE')"/>
+		<sec:intercept-url pattern="/admin/usermanagement/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_EMPLOYEE_MGMT')"/>
+		<sec:intercept-url pattern="/admin/manage/users/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_USERCO_SEARCH','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/manage/company/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_USERCO_SEARCH')"/>
+		<sec:intercept-url pattern="/admin/manage/profiles/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES','ROLE_WM_USERCO_SEARCH')"/>
+		<sec:intercept-url pattern="/admin/concerns/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/locks/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/licenses/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/certifications/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/insurance/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/tags/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/screening/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/manage/screenings/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_QUEUES')"/>
+		<sec:intercept-url pattern="/admin/accounting/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_ACCOUNTING')"/>
+		<sec:intercept-url pattern="/admin/manage/subscriptions/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_ACCOUNTING','ROLE_WM_SUBS_REPORTS','ROLE_WM_SUBS_APPROVE')"/>
+		<sec:intercept-url pattern="/admin/mailinglist/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_EMAIL')"/>
+		<sec:intercept-url pattern="/admin/interestedusers/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_EMAIL')"/>
+		<sec:intercept-url pattern="/admin/reporting/**" access="isAuthenticated() and hasAnyRole('ROLE_WM_ADMIN','ROLE_WM_GENERAL')"/>
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_INTERNAL')"/>
+
+		<sec:intercept-url pattern="/forums/**" access="isAuthenticated()" />
+
+		<sec:intercept-url pattern="/" access="permitAll"/>
+		<sec:intercept-url pattern="/**" access="isAuthenticated()"/>
+
+		<!-- <sec:anonymous /> -->
+		<sec:custom-filter before="FIRST" ref="metadataGeneratorFilter"/>
+		<sec:custom-filter after="BASIC_AUTH_FILTER" ref="samlFilter"/>
+
+		<sec:custom-filter ref="customLoginFilter" position="FORM_LOGIN_FILTER"/>
+		<sec:custom-filter ref="customLinkedInLoginFilter" after="FORM_LOGIN_FILTER"/>
+		<sec:custom-filter ref="rememberMeFilter" position="REMEMBER_ME_FILTER"/>
+		<sec:custom-filter ref="switchUserProcessingFilter" position="SWITCH_USER_FILTER"/>
+		<sec:custom-filter ref="authenticatedUserInitializer" before="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="publicWorkRequestFilter" after="FILTER_SECURITY_INTERCEPTOR"/>
+		<sec:custom-filter ref="securityContextCleanupFilter" after="SESSION_MANAGEMENT_FILTER"/>
+		<sec:custom-filter ref="customLogoutFilter" position="LOGOUT_FILTER"/>
+		<sec:custom-filter ref="sessionHijackingFilter" after="SECURITY_CONTEXT_FILTER"/>
+	</sec:http>
+
+	<bean id="org.springframework.security.authenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg>
+			<list>
+				<ref bean="usernamePasswordAuthProvider" />
+				<ref bean="rememberMeAuthenticationProvider" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="linkedInAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg>
+			<list>
+				<ref bean="linkedInAuthProvider" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<bean id="samlAuthenticationManager" class="org.springframework.security.authentication.ProviderManager">
+		<constructor-arg>
+			<list>
+				<ref bean="samlAuthenticationProvider" />
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- Oauth2 Token authentication -->
+	<bean id="bearerTokenExtractor" class="org.springframework.security.oauth2.provider.authentication.BearerTokenExtractor"/>
+
+	<!-- Username / password authentication -->
+
+	<bean id="loginUrlAuthenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+		<constructor-arg index="0" value="/login"/>
+	</bean>
+
+	<bean id="restAuthenticationEntryPoint" class="com.workmarket.api.v2.worker.security.RestAuthenticationEntryPoint" />
+
+	<bean id="customLoginFilter" class='com.workmarket.domains.authentication.filters.CustomLoginFilter'>
+		<property name="authenticationManager" ref="org.springframework.security.authenticationManager"/>
+		<property name="authenticationSuccessHandler" ref="loginSuccessHandler"/>
+		<property name="authenticationFailureHandler" ref="loginFailureHandler"/>
+		<property name="authenticationDetailsSource" ref="wrappedAuthDetailsProvider"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+	</bean>
+
+	<bean id="customLinkedInLoginFilter" class='com.workmarket.domains.authentication.filters.CustomLinkedInLoginFilter'>
+		<property name="authenticationManager" ref="linkedInAuthenticationManager"/>
+		<property name="authenticationSuccessHandler" ref="loginSuccessHandler"/>
+		<property name="authenticationFailureHandler" ref="loginFailureHandler"/>
+		<property name="authenticationDetailsSource" ref="wrappedAuthDetailsProvider"/>
+		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+	</bean>
+
+	<bean id="customRestLoginFilter" class="com.workmarket.domains.authentication.filters.CustomLoginFilter" >
+		<property name="authenticationManager" ref="org.springframework.security.authenticationManager"/>
+		<property name="authenticationSuccessHandler" ref="restLoginSuccessHandler"/>
+		<property name="authenticationFailureHandler" ref="restLoginFailureHandler"/>
+		<property name="authenticationDetailsSource" ref="wrappedAuthDetailsProvider"/>
+		<property name="rememberMeServices" ref="rememberMeServices"/>
+		<property name="sessionAuthenticationStrategy" ref="sessionAuthenticationStrategy" />
+	</bean>
+
+	<bean id="usernamePasswordAuthProvider" class="com.workmarket.domains.authentication.providers.UsernamePasswordAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+	</bean>
+
+	<bean id="linkedInAuthProvider" class="com.workmarket.domains.authentication.providers.LinkedInAuthenticationProvider">
+		<property name="userDetailsService" ref="userDetailsService"/>
+	</bean>
+
+	<bean id="wrappedAuthDetailsProvider" class="com.workmarket.domains.authentication.providers.WrappedWebAuthenticationDetailsProvider"/>
+
+	<bean id="httpSessionRequestCache" class="org.springframework.security.web.savedrequest.HttpSessionRequestCache">
+		<property name="requestMatcher" ref="nonAjaxRequestMatcher"/>
+	</bean>
+	<bean id="nonAjaxRequestMatcher" class="com.workmarket.domains.authentication.web.NonAjaxRequestMatcher"/>
+
+	<bean id="userDetailsService" class="com.workmarket.domains.authentication.services.ExtendedUserDetailsService"/>
+	<bean id="loginSuccessHandler" class="com.workmarket.domains.authentication.handlers.LoginAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/home"/>
+		<property name="requestCache" ref="httpSessionRequestCache"/>
+	</bean>
+	<bean id="loginFailureHandler" class="com.workmarket.domains.authentication.handlers.LoginAuthenticationFailureHandler">
+		<property name="defaultFailureUrl" value="/login?error"/>
+	</bean>
+
+	<bean id="restLoginSuccessHandler" class="com.workmarket.api.v2.worker.security.RestLoginSuccessHandler"/>
+	<bean id="restLoginFailureHandler" class="com.workmarket.api.v2.worker.security.RestLoginFailureHandler"/>
+
+	<!-- Remember me -->
+	<bean id="rememberMeFilter" class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+		<constructor-arg index="0" ref="org.springframework.security.authenticationManager"/>
+		<constructor-arg index="1" ref="rememberMeServices"/>
+	</bean>
+
+	<bean id="rememberMeAuthenticationProvider" class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+		<constructor-arg index="0" value="s901fYtM1P48W]8"/>
+	</bean>
+
+	<bean id="rememberMeServices" class="org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices">
+		<constructor-arg index="0" value="s901fYtM1P48W]8"/>
+		<constructor-arg index="1" ref="userDetailsService"/>
+		<constructor-arg index="2" ref="persistentTokenRepository"/>
+	</bean>
+
+	<bean id="persistentTokenRepository" class="org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl">
+		<property name="dataSource">
+			<ref bean="dataSourceWorkmarket"/>
+		</property>
+	</bean>
+	<!-- -->
+
+	<!-- "Masquerade" filter -->
+
+	<bean id="masqueradeFailureHandler" class="com.workmarket.domains.authentication.handlers.MasqueradeAuthenticationFailureHandler"/>
+	<bean id="masqueradeSuccessHandler" class="com.workmarket.domains.authentication.handlers.MasqueradeAuthenticationSuccessHandler">
+		<property name="defaultTargetUrl" value="/home"/>
+	</bean>
+	<bean id="masqueradeUserDetailsChecker" class="com.workmarket.domains.authentication.web.MasqueradeUserDetailsChecker"/>
+
+	<bean id="switchUserProcessingFilter" class="org.springframework.security.web.authentication.switchuser.SwitchUserFilter">
+		<property name="userDetailsService" ref="userDetailsService"/>
+		<property name="userDetailsChecker" ref="masqueradeUserDetailsChecker"/>
+		<property name="switchUserUrl" value="/admin/usermanagement/masquerade/start"/>
+		<property name="exitUserUrl" value="/admin/usermanagement/masquerade/stop"/>
+		<property name="usernameParameter" value="user"/>
+		<property name="failureHandler" ref="masqueradeFailureHandler"/>
+		<property name="successHandler" ref="masqueradeSuccessHandler"/>
+	</bean>
+
+
+	<!-- Logout -->
+	<bean id="customLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg index="0" value="/" />
+		<constructor-arg index="1">
+			<list>
+				<ref bean="rememberMeServices"/>
+				<ref bean="logoutHandler"/>
+			</list>
+		</constructor-arg>
+		<property name="filterProcessesUrl" value="/logout"/>
+	</bean>
+
+	<bean id="customRestLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter">
+		<constructor-arg index="0">
+			<bean class="com.workmarket.api.v2.worker.security.RestLogoutSuccessHandler" />
+		</constructor-arg>
+		<constructor-arg index="1">
+			<list>
+				<ref bean="rememberMeServices"/>
+				<ref bean="logoutHandler"/>
+			</list>
+		</constructor-arg>
+		<property name="logoutRequestMatcher" ref="restLogoutPathRequestMatcher" />
+	</bean>
+
+	<bean id="logoutHandler" class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler">
+		<property name="invalidateHttpSession" value="true"/>
+	</bean>
+
+	<bean id="restLogoutPathRequestMatcher" class="org.springframework.security.web.util.matcher.AntPathRequestMatcher">
+		<constructor-arg value="/v2/signout"/>
+	</bean>
+	<!-- -->
+
+
+	<!-- Tie-in to AuthenticationService -->
+
+	<bean id="sessionHijackingFilter" class="com.workmarket.domains.authentication.filters.SessionHijackingFilter"/>
+	<bean id="authenticatedUserInitializer" class="com.workmarket.domains.authentication.filters.AuthenticatedUserInitializerFilter"/>
+	<bean id="publicWorkRequestFilter" class="com.workmarket.domains.authentication.filters.PublicWorkRequestFilter"/>
+	<bean id="securityContextCleanupFilter" class="com.workmarket.domains.authentication.filters.SecurityContextCleanupFilter"/>
+
+	<!-- Expression Handling Customizations - "Feature Flags" -->
+
+	<bean id="expressionHandler" class="com.workmarket.domains.authentication.handlers.CustomMethodSecurityExpressionHandler">
+		<property name="featureEvaluator" ref="featureEvaluator"/>
+		<property name="privacyEvaluator" ref="privacyEvaluator"/>
+	</bean>
+
+	<bean id="featureEvaluator" class="com.workmarket.domains.authentication.features.FeatureEvaluatorImpl">
+		<property name="config" ref="featureEvaluatorConfiguration"/>
+	</bean>
+
+	<bean id="featureEvaluatorConfiguration" class="com.workmarket.domains.authentication.features.FeatureEvaluatorConfiguration"/>
+
+	<bean id="privacyEvaluator" class="com.workmarket.domains.authentication.services.PrivacyEvaluatorImpl"/>
+
+	<bean id="sessionAuthenticationStrategy" class="org.springframework.security.web.authentication.session.SessionFixationProtectionStrategy" />
+
+	<bean id="concurrencyFilter"
+				class="org.springframework.security.web.session.ConcurrentSessionFilter">
+		<property name="sessionRegistry" ref="sessionRegistry" />
+		<property name="expiredUrl" value="/session-expired.htm" />
+	</bean>
+</beans>

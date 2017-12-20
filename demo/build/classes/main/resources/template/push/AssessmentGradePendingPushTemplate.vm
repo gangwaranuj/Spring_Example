@@ -1,0 +1,4 @@
+{
+"message": "${template.attempt.assessmentUserAssociation.user.fullName} completed the test: ${template.attempt.assessmentUserAssociation.assessment.name} and requires a grade",
+"action": "${baseurl}/lms/grade/${template.attempt.assessmentUserAssociation.assessment.id}"
+}

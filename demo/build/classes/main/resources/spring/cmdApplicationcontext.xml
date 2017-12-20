@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+			http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.2.xsd">
+
+	<!-- ========================= RESOURCE DEFINITIONS ========================= -->
+
+	<context:property-placeholder
+		location="classpath:/config/config-common.properties"
+		ignore-unresolvable="true" />
+
+	<context:mbean-export  registration="replaceExisting"/>
+
+    <context:annotation-config />
+    <context:component-scan base-package="com.workmarket.search"/>
+    <context:component-scan base-package="com.workmarket.service.business"/>
+    <context:component-scan base-package="com.workmarket.service.infra"/>
+    <context:component-scan base-package="com.workmarket.service.search"/>
+    <context:component-scan base-package="com.workmarket.service.external"/>
+    <context:component-scan base-package="com.workmarket.dao"/>
+    <context:component-scan base-package="com.workmarket.common.template"/>
+    <context:component-scan base-package="com.workmarket.data.solr.indexer"/>
+
+	<import resource="services/search.xml" />
+
+	 <!-- Reporting context -->
+	<import resource="work-reporting-application-context.xml"  />
+
+	<bean name="solrUserDAO" class="com.workmarket.dao.search.user.SolrUserDAOImpl"/>
+	<bean name="solrUserDocumentMapper" class="com.workmarket.data.solr.indexer.user.SolrUserDocumentMapper"/>
+
+	<import resource="datasource.xml" />
+	<import resource="sessionfactory.xml" />
+	<import resource="transactionmanager.xml" />
+
+	<import resource="aop.xml" />
+
+	<import resource="jms.xml"/>
+	<import resource="jmslisteners.xml"/>
+	<import resource="jmsembedded.xml"/>
+
+	<import resource="services/adapters.xml" />
+	<import resource="services/linkedin.xml" />
+	<import resource="services/mail.xml" />
+	<import resource="services/metrics.xml" />
+	<import resource="services/rest.xml" />
+	<import resource="services/velocity.xml" />
+
+	<bean name="userSolrUpdater" class="com.workmarket.data.solr.indexer.user.UserSolrUpdater">
+		<constructor-arg ref="solrUserDocumentMapper"/>
+		<constructor-arg ref="userSolrServer"/>
+        <constructor-arg ref="solrUserDAO"/>
+	</bean>
+
+	<bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="10" />
+		<property name="maxPoolSize" value="50" />
+		<property name="queueCapacity" value="10000" />
+	</bean>
+
+	<task:annotation-driven />
+</beans>

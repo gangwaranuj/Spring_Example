@@ -1,0 +1,4 @@
+Appointment Upcoming:
+${template.getDate} - 
+${template.workTitle} -
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

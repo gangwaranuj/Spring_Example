@@ -1,0 +1,4 @@
+{
+"message": "${template.resource.fullName} has been added to your talent pool: ${template.userGroupName}",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

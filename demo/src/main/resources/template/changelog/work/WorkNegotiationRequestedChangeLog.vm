@@ -1,0 +1,7 @@
+#if (${template.negotiation.scheduleNegotiation} && ${template.negotiation.priceNegotiation})
+	${template.negotiation.requestedBy.fullName} offered an alternate price and date. (Original Date and Time: ${template.date}, Offered Date and Time: ${template.negotiationDate}) (Original Price: ${template.price}, Offered Price: ${template.negotiation.pricingStrategy})
+#elseif (${template.negotiation.scheduleNegotiation})
+	${template.negotiation.requestedBy.fullName} offered an alternate date. (Original Date and Time: ${template.date}, Offered Date and Time: ${template.negotiationDate})
+#elseif (${template.negotiation.priceNegotiation})
+	${template.negotiation.requestedBy.fullName} offered an alternate price. (Original Price: ${template.price}, Offered Price: ${template.negotiation.pricingStrategy})
+#end

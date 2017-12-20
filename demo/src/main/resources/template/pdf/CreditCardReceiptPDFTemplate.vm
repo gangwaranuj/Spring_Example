@@ -1,0 +1,152 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+## NOTE: Any changes to this file should be mirrored in credit_card_receipt.jsp
+<html>
+<head>
+	<title>Credit Card Receipt</title>
+	<style type="text/css">
+		body {
+			font-family: Arial, Helvetica, sans-serif;
+			font-size: 12px;
+		}
+
+		table {
+			border-collapse: collapse;
+		}
+
+		td {
+			padding: 0px;
+		}
+
+		.container {
+			width: 100%;
+		}
+
+		.container tr td {
+			padding: 10px 5px;
+		}
+
+		.border_bottom {
+			border-bottom: 1px solid #000;
+		}
+
+		.large_text {
+			font-size: 16px;
+			font-weight: bold;
+		}
+
+		.orange_text {
+			color: #fea029;
+		}
+
+		.cc_details td {
+			padding: 10px;
+		}
+
+		.txn_details {
+			width: 100%;
+			margin-top: 10px;
+		}
+
+		.txn_details td, .txn_details th {
+			padding: 10px;
+		}
+
+		.txn_details thead tr th {
+			border: 1px solid #bababa;
+			font-weight: bold;
+		}
+
+		.txn_details tbody tr td {
+			border: 1px solid #bababa;
+			border-top: 0px;
+		}
+
+		.txn_details tfoot tr td {
+			font-weight: bold;
+			font-size: 16px;
+		}
+	</style>
+</head>
+
+<body>
+<table class="container">
+	<tr>
+		<td width="70%"><img src="${logoURL}"/></td>
+		<td align="right" valign="top" class="large_text">RECEIPT</td>
+	</tr>
+	<tr>
+		<td class="border_bottom orange_text large_text">
+			Receipt for Credit Card Funding
+		</td>
+		<td class="border_bottom">
+			Thank you for using WorkMarket
+		</td>
+	</tr>
+	<tr>
+		<td class="border_bottom">
+			<table class="cc_details">
+				<tr>
+					<td><strong>Transaction Date:</strong></td>
+					<td>${template.date}</td>
+				</tr>
+				<tr>
+					<td><strong>Transaction ID:</strong></td>
+					<td>${template.creditCardTransaction.id}</td>
+				</tr>
+				<tr>
+					<td><strong>Amount:</strong></td>
+					<td>${template.total}</td>
+				</tr>
+				<tr>
+					<td><strong>Credit Card:</strong></td>
+					<td>${template.creditCardTransaction.cardName}</td>
+				</tr>
+			</table>
+		</td>
+		<td class="border_bottom">
+			<strong>Billing Address</strong><br />
+			<br />
+			${template.fullName}<br />
+			${template.creditCardTransaction.address1}<br />
+			#if ( $template.creditCardTransaction.address2 )
+				${template.creditCardTransaction.address2}<br />
+			#end
+			${template.creditCardTransaction.city} ${template.creditCardTransaction.state} ${template.creditCardTransaction.postalCode}<br />
+			${template.creditCardTransaction.country}
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<strong>Details</strong>
+			<table class="txn_details">
+				<thead>
+				<tr>
+					<th>Description</th>
+					<th align="right">Amount</th>
+				</tr>
+				</thead>
+				<tbody>
+				#foreach ($row in $template.rows)
+				<tr>
+					<td>${row.description}</td>
+					<td align="right">${row.amount}</td>
+				</tr>
+				#end
+				</tbody>
+				<tfoot>
+				<tr>
+					<td align="right">Total</td>
+					<td align="right">${template.total}</td>
+				</tr>
+				</tfoot>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">NOTE:<br />
+			The charge for WorkMarket will appear on your credit card<br />
+			statement as "<a href="http://www.workmarket.com">WORKMARKET, INC</a>".</td>
+	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,28 @@
+$slider: (
+	element-size: $tiny-element-height,
+	horizontal-padding: 8px
+);
+
+.wm-slider {
+	margin-bottom: $base-element-bottom-spacing;
+	font-size: 1em;
+	line-height: 1;
+	display: flex;
+	flex-wrap: wrap;
+
+	&::before {
+		display: block;
+		content: attr(data-slider-value);
+		order: 2;
+	}
+
+	.mdl-slider__container {
+		order: 3;
+		width: 100%;
+	}
+
+	&--title {
+		order: 1;
+		margin-right: 0.5em;
+	}
+}

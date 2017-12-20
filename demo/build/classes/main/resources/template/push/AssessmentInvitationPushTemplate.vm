@@ -1,0 +1,4 @@
+{
+"message": "${template.companyName} invited you to take a test: ${template.assessment.name}",
+"action": "${baseurl}/lms/view/details/${template.assessment.id}"
+}

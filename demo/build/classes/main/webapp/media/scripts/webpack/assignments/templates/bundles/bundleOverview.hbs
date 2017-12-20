@@ -1,0 +1,30 @@
+<!--check that overview is passed in properly here-->
+<div class="row">
+	<div class="well-b2 span3">
+		<h3 class="text-center">Assignments</h3>
+		<div class="lead text-center well-content" id="assignments">
+			{{overview.assignments}}
+		</div>
+	</div>
+
+	<div class="well-b2 span6">
+		<h3 class="text-center">Date Range</h3>
+		<div class="lead text-center well-content" id="date_range">
+			{{overview.dates.from}} <i class="icon-arrow-right muted"></i> {{overview.dates.to}}
+		</div>
+	</div>
+
+	<div class="well-b2 span3">
+		<h3 class="text-center">Total Budget</h3>
+		<div class="lead text-center well-content" id="total_budget">
+			{{overview.budget}}
+		</div>
+	</div>
+
+	<div class="well-b2 span3">
+		<h3 class="text-center">Owner</h3>
+		<div class="lead text-center well-content" id="owner">
+			{{overview.owner}}
+		</div>
+	</div>
+</div>

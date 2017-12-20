@@ -1,0 +1,8 @@
+{
+	"companyResource": {
+		"ownerAndResourceOrActiveResource": {
+			"sent": ["ask_question", "negotiation", ["add_resources", "-", "edit"]],
+			"active": ["add_resources", ["print", "cancel"]]
+		}
+	}
+}

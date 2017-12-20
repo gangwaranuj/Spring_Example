@@ -1,0 +1,41 @@
+.attachments-page {
+	text-decoration: none;
+	.empty-assets-message {
+		text-align: center;
+		margin: 2em @medium-space;
+		.error;
+	}
+	.button {
+		background-color: @green;
+		color: white;
+		display: block;
+		.box-sizing(border-box);
+		text-align: center;
+		text-decoration: none;
+		margin: 0 0 @medium-space;
+	}
+	.back-to-details {
+		background-color: white;
+		margin-top: -30px;
+		color: @gray;
+	}
+	.attachment-label {
+		text-align: center;
+		background: @light-orange;
+		.border-radiuses (5px, 0, 0, 5px);
+		padding: @small-space 0 @small-space;
+		color: white;
+		.text-shadow(@text-shadow);
+	}
+	.attachment-item {
+		padding: @medium-space 0;
+		background: white;
+		.border-radius(@base-border-radius);
+		margin: -18px 0 0;
+		border-left: 2px solid @light-orange;
+		border-right: 2px solid @light-orange;
+		border-bottom: 2px solid @light-orange;
+		text-align: center;
+		color: @gray;
+	}
+}

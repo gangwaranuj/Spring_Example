@@ -1,0 +1,18 @@
+html, body {
+	height: 100%;
+}
+
+#outer-container {
+	min-height: 100%;
+	margin-bottom: $site-footer-height * -1;
+
+	&:after {
+		content: "";
+		display: block;
+		height: $site-footer-height;
+	}
+}
+
+.footer {
+	height: $site-footer-height;
+}

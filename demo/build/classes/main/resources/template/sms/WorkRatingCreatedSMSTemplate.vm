@@ -1,0 +1,9 @@
+#if( ${template.work} )
+    ${template.rating.ratingCompany.effectiveName}
+    rated you on the assignment
+    ${template.work.title}
+    (ID:${template.work.workNumber})
+#else
+    ${template.rating.ratingCompany.effectiveName}
+    rated you.
+#end

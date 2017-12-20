@@ -1,0 +1,4 @@
+{
+"message": "You have invoices coming due",
+"action": "${baseurl}/payments/invoices"
+}

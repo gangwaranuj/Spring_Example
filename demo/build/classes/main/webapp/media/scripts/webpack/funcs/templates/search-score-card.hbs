@@ -1,0 +1,19 @@
+<div class="score-card profile-card--score-card">
+	<h2 class="score-card--title" data-score-all="{{satisfaction}}%">Satisfaction</h2>
+	<div class="score-card--details">
+		{{> completion classlist="score-card--overall" name="Satisfaction" min=0 max=100 unit="%" value=satisfaction}}
+		<span class="completion-bar--name">On-Time</span>
+		<span class="completion-bar--value">{{ontime}}%</span>
+		{{> progress-bar size="small" width=ontime }}
+		<span class="completion-bar--name">Deliverables</span>
+		<span class="completion-bar--value">{{deliverables}}%</span>
+		{{> progress-bar size="small" width=deliverables }}
+		{{#[../../helpers/eq] this.isDispatch true}}
+			<span class="score-card--metrics" data-score="{{paidassign}}">Paid Assign</span>
+		{{else}}
+			<span class="score-card--metrics" data-score="{{paidassign}}">Paid Assign <span>({{paidassignforcompany}} for you)</span></span>
+		{{/[../../helpers/eq]}}
+		<span class="score-card--metrics" data-score="{{cancelled}}">Cancelled</span>
+		<span class="score-card--metrics" data-score="{{abandoned}}">Abandoned</span>
+	</div>
+</div>

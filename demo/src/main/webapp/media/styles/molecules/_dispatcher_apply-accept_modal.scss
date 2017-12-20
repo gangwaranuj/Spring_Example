@@ -1,0 +1,30 @@
+.dispatcher_apply-accept_modal {
+	img {
+		width: auto;
+	}
+
+	table {
+		width: 100%;
+	}
+
+	[type="text"] {
+		width: auto;
+		display: initial;
+	}
+
+	input[readonly] {
+		background-color: $light-grey;
+	}
+
+	table tr, table td {
+		border-style: none;
+	}
+
+	&#apply-form [ref=configuration] > fieldset, &#apply-form [ref=configuration] > fieldset > label + div {
+		margin-left: 1em;
+	}
+
+	.resource-apply-toggle {
+		margin: 1.5em 0;
+	}
+}

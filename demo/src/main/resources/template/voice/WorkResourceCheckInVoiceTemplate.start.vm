@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Gather action='${baseurl}${callbackUri}'>
+		<Say voice='woman'>
+			You have reached the WorkMarket IVR platform. Please enter your WorkMarket user ID followed by the #.
+		</Say>
+	</Gather>
+	<Redirect>${baseurl}${callbackUri}?Digits=TIMEOUT</Redirect>
+</Response>

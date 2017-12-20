@@ -1,0 +1,129 @@
+@mixin clean-link {
+	text-decoration: none;
+}
+
+@mixin heading-title {
+	@include reset-element;
+	border-bottom: $default-border;
+	padding-bottom: 0.5em;
+
+	&[data-badge]::after {
+		background-color: $orange;
+	}
+
+	// Legacy
+	margin-top: 0;
+}
+
+@mixin new-typography {
+	small {
+		font-size: em($small-font-size);
+		color: $grey;
+	}
+
+	p {
+		margin: 0 0 $base-element-bottom-spacing 0;
+
+		&:empty {
+			margin-bottom: 0;
+		}
+	}
+
+	code {
+		display: block;
+	}
+
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		line-height: $base-line-height;
+		font-weight: normal;
+
+		&:not(:empty) {
+			margin-bottom: #{$base-element-bottom-spacing / 2};
+		}
+	}
+	h1 {
+		font-size: 1.6em;
+	}
+	h2 {
+		font-size: 1.2em;
+	}
+
+	a:not(.button) {
+		@include clean-link;
+	}
+}
+
+@mixin typography {
+	small {
+		color: $grey;
+		font-weight: map-get($font-weight, semi-bold);
+		font-size: $tiny-font-size;
+	}
+
+	p {
+		margin: 0 0 $base-element-bottom-spacing 0;
+
+		&:empty {
+			margin-bottom: 0;
+		}
+	}
+
+	strong {
+		font-weight: map-get($font-weight, semi-bold);
+	}
+
+	code {
+		display: block;
+	}
+
+	// Don't extract this into a placeholder selector, it gets huge.
+	h1, h2, h3, h4, h5, h6 {
+		margin: 0;
+		line-height: $base-line-height;
+
+		&:not(:empty) {
+			margin-bottom: #{$base-element-bottom-spacing / 2};
+		}
+	}
+	h1 {
+		font-size: map-get($heading, large);
+		font-weight: map-get($font-weight, normal);
+	}
+	h2 {
+		font-size: map-get($heading, medium);
+		font-weight: map-get($font-weight, semi-bold);
+	}
+	h3 {
+		font-size: map-get($heading, small);
+		font-weight: map-get($font-weight, semi-bold);
+	}
+	h4 {
+		font-size: map-get($heading, small);
+		font-weight: map-get($font-weight, normal);
+	}
+	h5, h6 {
+		font-size: map-get($heading, small);
+		font-weight: map-get($font-weight, light);
+	}
+
+	a {
+		@include clean-link;
+
+		&:hover, &:focus {
+			@include clean-link;
+		}
+		&[href] {
+			font-weight: map-get($font-weight, semi-bold);
+			color: $base-link-color;
+
+			&:hover {
+				color: $alternate-link-color;
+			}
+			&[disabled] {
+				color: $disabled-color;
+				pointer-events: none;
+			}
+		}
+	}
+}

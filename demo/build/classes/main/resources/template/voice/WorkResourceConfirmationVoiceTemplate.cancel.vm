@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+        <![CDATA[
+		    Your cancellation is confirmed.
+		    ${template.work.buyer.fullName} will be notified.
+        ]]>
+    </Say>
+</Response>

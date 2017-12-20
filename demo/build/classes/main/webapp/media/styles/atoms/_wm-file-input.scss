@@ -1,0 +1,27 @@
+.wm-file-input {
+	@include button-base;
+	text-align: center;
+
+	[type="file"] {
+		display: none;
+	}
+}
+
+.wm-file-input--name {
+	position: absolute;
+	top: 100%;
+	width: 100%;
+	left: 0;
+	padding-top: 0.2em;
+	color: $base-text-color;
+	font-size: 0.8em;
+
+	.-inline & {
+		top: auto;
+		left: 100%;
+		padding-top: 0;
+		width: auto;
+		white-space: nowrap;
+		padding-left: 1em;
+	}
+}

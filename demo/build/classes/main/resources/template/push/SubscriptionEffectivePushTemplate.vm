@@ -1,0 +1,4 @@
+{
+"message": "Your subscription contract with WorkMarket is in effect as of $date.format('MMM dd, yyyy', ${template.subscriptionConfiguration.effectiveDate})",
+"action": "${baseurl}/mmw/subscription"
+}

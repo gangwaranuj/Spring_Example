@@ -1,0 +1,26 @@
+<div class="alert alert-success">
+	<strong>Vendor Search Listing Status:</strong>
+	{{#if isInVendorSearch}}
+		<span class="label label-success">LISTED</span>
+		<a class="vendor-search-status--remove" href="javascript:void(0);">Remove from Search</a>
+	{{else}}
+		<span class="label label-warning">NOT LISTED</span>
+	{{/if}}
+
+    {{#if isBuyer}}
+      <p> Your company will be listed as a vendor in search results, once you meet the below criteria.</p>
+    {{else}}
+	    <p>Did you know you can list your <em>company</em> as a vendor in search results, not just your employees? Get listed now and expand your opportunities.</p>
+    {{/if}}
+	<ul class="vendor-search-status--requirements">
+		<li class="vendor-search-status--requirement
+            {{#if hasAtLeastOneWorker}}wm-icon-checkmark{{else}}wm-icon-x{{/if}}">Have at least one user available for work
+            (<a href="/users/add_user">add an employee</a>)
+        </li>
+		<li class="vendor-search-status--requirement
+            {{#if hasAtLeastOneDispatcher}}wm-icon-checkmark{{else}}wm-icon-x{{/if}}">Have at least one user with <em>Team Agent</em> role
+            (<a href="/users">update roles</a>)
+        </li>
+	</ul>
+	<button class="button -primary vendor-search-status--list"{{#unless canList}} disabled{{/unless}}>List in Vendor Search</button>
+</div>

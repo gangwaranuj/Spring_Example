@@ -1,0 +1,33 @@
+//////////////////////////////////////
+// Clickable Tracking Number Styles //
+/////////////////////////////////////
+
+%tracking-number-link {
+	border-radius: 10px;
+	display: inline-block;
+	padding: .2em .7em;
+	font-size: .9em;
+	cursor: pointer;
+	color: $white;
+	background-color: fade-out($usps-blue, .3);
+	text-decoration: none;
+
+	&:hover {
+		background-color: fade-out($usps-blue, .1);
+		text-decoration: none;
+	}
+}
+
+.parts-table {
+	.parts-table--tracking-label {
+		@extend %tracking-number-link;
+		&.-untracked {
+			cursor: default;
+			pointer-events: none;
+			&:hover {
+				background-color: fade-out($usps-blue, .3);
+				text-decoration: none;
+			}
+		}
+	}
+}

@@ -1,0 +1,2 @@
+${template.actorFullName} #if(${template.newApprovalStatus} == 'APPROVED')approved#{else}declined#{end} an offered
+#if(${template.timeNegotiation} == true)date#{else}price#{end}

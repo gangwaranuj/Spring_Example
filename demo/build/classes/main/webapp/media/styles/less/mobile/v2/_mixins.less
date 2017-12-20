@@ -1,0 +1,307 @@
+.checkbox {
+	-webkit-appearance: checkbox;
+	-moz-appearance: checkbox;
+	-ms-appearance: checkbox;
+	-o-appearance: checkbox;
+}
+
+.transitions (@string) {
+	-webkit-transition: @string;
+	-moz-transition: @string;
+	-ms-transition: @string;
+	-o-transition: @string;
+	transition: @string;
+}
+
+.box-sizing (@type: border-box) {
+	-webkit-box-sizing: @type;
+	-moz-box-sizing: @type;
+	box-sizing: @type;
+}
+
+.placeholder (@attr, @value) {
+	&::-webkit-input-placeholder { // WebKit browsers
+		@attr: @value;
+	}
+	:-moz-placeholder { // Mozilla Firefox 4 to 18
+		@attr: @value;
+	}
+	::-moz-placeholder { // Mozilla Firefox 19+
+		@attr: @value;
+	}
+	:-ms-input-placeholder { // Internet Explorer 10+
+		@attr: @value;
+	}
+}
+
+.box-shadow (@string) {
+	-webkit-box-shadow: @string;
+	-moz-box-shadow: @string;
+	-o-box-shadow: @string;
+	-ms-box-shadow: @string;
+	box-shadow: @string;
+}
+
+.fake-button (@color) {
+	.box-shadow(0 2px 0px 1px @color)
+}
+
+.border-radius (@radius: @base-border-radius) {
+	-webkit-border-radius: @radius;
+	-moz-border-radius: @radius;
+	border-radius: @radius;
+}
+
+.border-radius-bottom (@bottomleft: 0, @bottomright: 0) {
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius: @bottomleft;
+	-moz-border-radius-bottomright: @bottomright;
+	-moz-border-radius-bottomleft: @bottomleft;
+	border-bottom-right-radius: @bottomright;
+	border-bottom-left-radius: @bottomleft;
+}
+
+.border-radius-bottom (@topleft: 0, @topright: 0) {
+	-webkit-border-top-right-radius: @topright;
+	-webkit-border-top-left-radius: @topleft;
+	-moz-border-radius-topright: @topright;
+	-moz-border-radius-topleft: @topleft;
+	border-top-right-radius: @topright;
+	border-top-left-radius: @topleft;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+	-webkit-border-top-right-radius: @topright;
+	-webkit-border-bottom-right-radius: @bottomright;
+	-webkit-border-bottom-left-radius: @bottomleft;
+	-webkit-border-top-left-radius: @topleft;
+
+	-moz-border-radius-topright: @topright;
+	-moz-border-radius-bottomright: @bottomright;
+	-moz-border-radius-bottomleft: @bottomleft;
+	-moz-border-radius-topleft: @topleft;
+
+	border-top-right-radius: @topright;
+	border-bottom-right-radius: @bottomright;
+	border-bottom-left-radius: @bottomleft;
+	border-top-left-radius: @topleft;
+
+	-moz-background-clip: padding;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+}
+
+.brightness (@percentage) {
+	-webkit-filter: brightness(@percentage);
+	filter: brightness(@percentage);
+}
+
+.pulse {
+	animation-name: pulse;
+	-webkit-animation-name: pulse;
+
+	animation-duration: 1.5s;
+	-webkit-animation-duration: 1.5s;
+
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.9);
+		opacity: 0.7;
+	}
+	50% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		transform: scale(0.9);
+		opacity: 0.7;
+	}
+}
+
+@-webkit-keyframes pulse {
+	0% {
+		-webkit-transform: scale(0.95);
+		opacity: 0.7;
+	}
+	50% {
+		-webkit-transform: scale(1);
+		opacity: 1;
+	}
+	100% {
+		-webkit-transform: scale(0.95);
+		opacity: 0.7;
+	}
+}
+
+.opacity (@opacity) {
+	@ieOpacity: @opacity * 100;
+	// If you don't use this order, IE8-as-IE7 doesn't apply the opacity, although IE8 and a pure IE7 do.
+	-ms-filter: ~"progid:DXImageTransform.Microsoft.Alpha(Opacity=@{ieOpacity})"; // IE 8
+	filter: ~"alpha(opacity=@{ieOpacity})"; // IE 5-7
+	opacity: @opacity;
+}
+
+.rotate (@deg) {
+	-webkit-transform: rotate(@deg);
+	-moz-transform: rotate(@deg);
+	-ms-transform: rotate(@deg);
+	-o-transform: rotate(@deg);
+}
+
+.transform-origin (@twonums) {
+	-webkit-transform-origin: @twonums;
+	-moz-transform-origin: @twonums;
+	-ms-transform-origin: @twonums;
+	-o-transform-origin: @twonums;
+	transform-origin: @twonums;
+}
+
+.transform(@string) {
+	-webkit-transform: @string;
+	-moz-transform: @string;
+	-ms-transform: @string;
+	-o-transform: @string;
+}
+
+.linearBg (@color1, @color2, @backup) {
+	// fallback
+	background-color: @backup;
+	background-repeat: repeat-y;
+
+	// Safari 4-5, Chrome 1-9
+	background: -webkit-gradient(linear, left top, right top, from(@color1), to(@color2));
+
+	// Safari 5.1, Chrome 10+
+	background: -webkit-linear-gradient(left, @color1, @color2);
+
+	// Firefox 3.6+
+	background: -moz-linear-gradient(left, @color1, @color2);
+
+	// IE 10
+	background: -ms-linear-gradient(left, @color1, @color2);
+
+	// Opera 11.10+
+	background: -o-linear-gradient(left, @color1, @color2);
+}
+
+.text-shadow (@string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+	text-shadow: @string;
+}
+
+.user-select (@string) {
+	-webkit-user-select: @string;
+	-moz-user-select: @string;
+	-ms-user-select: @string;
+	user-select: @string;
+}
+
+.paper {
+	background: white;
+	background: -moz-linear-gradient(left, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 10%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.75) 90%, rgba(255, 255, 255, 0.75) 100%);
+	background: -o-linear-gradient(left, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 10%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.75) 90%, rgba(255, 255, 255, 0.75) 100%);
+	background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 10%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.75) 90%, rgba(255, 255, 255, 0.75) 100%);
+	background: linear-gradient(left, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.75) 10%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.75) 90%, rgba(255, 255, 255, 0.75) 100%);
+	border: 1px solid white;
+	.box-shadow(0 1px 1px rgba(0,0,0,.1))
+}
+
+.floating {
+	animation-name: floating;
+	-webkit-animation-name: floating;
+
+	animation-duration: 1.5s;
+	-webkit-animation-duration: 1.5s;
+
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes floating {
+	0% {
+		transform: translateY(0%);
+	}
+	50% {
+		transform: translateY(8%);
+	}
+	100% {
+		transform: translateY(0%);
+	}
+}
+
+@-webkit-keyframes floating {
+	0% {
+		-webkit-transform: translateY(0%);
+	}
+	50% {
+		-webkit-transform: translateY(8%);
+	}
+	100% {
+		-webkit-transform: translateY(0%);
+	}
+}
+
+.stripes (@primary-color, @complimentary-color) {
+	background: repeating-linear-gradient(45deg, @primary-color, @primary-color 10px, @complimentary-color 10px, @complimentary-color 20px);
+}
+
+.clearfix {
+	&:after {
+		visibility: hidden;
+		display: block;
+		font-size: 0;
+		content: " ";
+		clear: both;
+		height: 0;
+	}
+}
+
+.flickering-flame {
+	animation-name: flickering-flame;
+	-webkit-animation-name: flickering-flame;
+
+	animation-duration: 5s;
+	-webkit-animation-duration: 5s;
+
+	animation-iteration-count: infinite;
+	-webkit-animation-iteration-count: infinite;
+}
+
+@keyframes flickering-flame {
+	0% {
+		fill: @light-orange;
+	}
+	25% {
+		fill: @yellow;
+	}
+	50% {
+		fill: lighten(@teal, 40%);
+	}
+	75% {
+		fill: @yellow;
+	}
+	100% {
+		fill: @light-orange;
+	}
+}
+
+@-webkit-keyframes flickering-flame {
+	0% {
+		fill: @light-orange;
+	}
+	25% {
+		fill: @yellow;
+	}
+	50% {
+		fill: lighten(@teal, 40%);
+	}
+	75% {
+		fill: @yellow;
+	}
+	100% {
+		fill: @light-orange;
+	}
+}

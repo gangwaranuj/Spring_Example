@@ -1,0 +1,32 @@
+html, body {
+	font-family: @default-font;
+	height: 100%;
+
+	//	min-height: @iphone-4s-y;
+	line-height: @line-height;
+	background-color: white;
+	-webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+	text-align: center;
+	font-weight: normal;
+}
+
+hr {
+	border: 0;
+	height: 0;
+	border-top: 1px solid rgba(0, 0, 0, 0.1);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.list-page {
+	min-height: 100%;
+	margin-bottom: 0;
+
+	&:after {
+		content: "";
+		display: block;
+		height: 0;
+	}
+}

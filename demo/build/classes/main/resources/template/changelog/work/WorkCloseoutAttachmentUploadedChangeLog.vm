@@ -1,0 +1,1 @@
+${template.actorFullName} uploaded an attachment: <a href="${template.attachmentUrl}">${template.attachmentName}</a>

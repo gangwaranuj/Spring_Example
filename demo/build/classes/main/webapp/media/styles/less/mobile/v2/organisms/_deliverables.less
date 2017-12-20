@@ -1,0 +1,496 @@
+.deliverables-page {
+
+	.content {
+		margin: 0.5em;
+	}
+
+	.ribbon-icon {
+		width: 4.2em;
+		float: right;
+		position: relative;
+		top: -7.3em;
+		margin-bottom: -4em;
+		right: -0.1em;
+		text {
+			fill: white;
+			font-family: @default-font;
+			font-size: .9em;
+		}
+	}
+
+	.status-container {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 4em;
+		margin: -1px;
+	}
+
+	.deliverable-header {
+		margin-bottom: 1em;
+	}
+
+	.general-instructions {
+		margin-bottom: 0.2em;
+	}
+
+	.instructions-help {
+		font-style: italic;
+		font-size: 1em;
+		color: @gray;
+		margin: 1em 0.5em 1em 0.5em;
+	}
+
+	.deliverable-thumbnail {
+		width: 100%;
+		height: 100%;
+	}
+
+	.tap-help {
+		text-align: center;
+		margin: 1em;
+	}
+
+	.icon-position {
+		display: block;
+		margin: auto;
+		width: 100%;
+		margin-top: 2em;
+	}
+
+	.deliverables-wrap {
+		background: @light-gray;
+		.border-radius(@base-border-radius * 2);
+		margin-bottom: 1.4em;
+		float: left;
+		width: 100%;
+		h3 {
+			width: 100%;
+			text-align: left;
+			padding-left: 0.5em;
+		}
+
+		.deliverable-table {
+			display: inline-table;
+			width: 100%;
+		}
+
+		.help {
+			text-align: center;
+			font-size: 0.9em;
+			margin: 1em;
+			color: @gray;
+		}
+
+		.deliverable-block {
+			height: 0;
+			width: 50%;
+			display: inline-table;
+		}
+
+		.checklist-img {
+			height: 15px;
+			width: 15px;
+			margin-right: 1em;
+		}
+
+		.deliverable-border {
+		  	position: relative;
+			display: block;
+			margin-left: 0.15em;
+			height: 7em;
+			width: 95%;
+			.box-sizing(border-box);
+			.border-radius(@base-border-radius * 2);
+			overflow: hidden;
+			border: 1px solid #cbcbcb;
+
+			&.empty {
+				border: 1px dashed @red;
+			}
+
+			.green-checkmark-icon {
+				position: absolute;
+				top: 0;
+				right: 0em;
+				width: 2em;
+				height: 2em;
+				padding: 0.2em 1em 0 0;
+			}
+		}
+
+		.missing-deliverables {
+			color: red;
+			font-size: 1.1em;
+			margin-left: 0.5em;
+			.updated-deliv-count{
+				color: @blue;
+			}
+		}
+
+		.upload-button {
+			.button;
+			.fake-button(darken(@gray, 10%));
+			background-color: @gray;
+			font-size: 1.1em;
+			color: white;
+			.upload-icon {
+				width: 25px;
+				height: 25px;
+				float: left;
+				margin: 0.1em -0.85em 0 0;
+			}
+		}
+	}
+
+	//icons for toggles
+	.info-icon {
+		.details-toggle-icon;
+		path {
+			fill: @gray;
+		}
+		.i-path {
+			fill: white;
+		}
+	}
+
+	.dollarsign-icon {
+		.details-toggle-icon;
+		path {
+			fill: @gray;
+		}
+	}
+
+	.clock-icon {
+		.details-toggle-icon;
+		margin-left: 1em;
+	}
+	.range-time {
+		.clock-icon {
+			.details-toggle-icon;
+			margin-left: -1.6em;
+		}
+	}
+
+	.checkmark-icon {
+		.details-toggle-icon;
+	}
+
+	.gear-icon {
+		.details-toggle-icon;
+	}
+
+	.asterisk-icon {
+		.details-toggle-icon;
+		path {
+			fill: @gray;
+		}
+		.opacity(.7);
+		margin: 0 0 0 0.9em;
+	}
+
+	.survey-icon {
+		.details-toggle-icon;
+	}
+
+	.surveys {
+
+		ul {
+			margin: 0;
+			li {
+				text-align: left;
+				padding: 0.2em 0;
+				.required {
+					color: @error;
+				}
+			}
+		}
+
+		.take-survey {
+			float: right;
+			color: @blue;
+		}
+	}
+}
+
+.deliverables-live-icon {
+	height: 3em;
+	width: 3em;
+	float: left;
+
+	&.file-type-icon {
+		height: 3.5em;
+		position: relative;
+		left: 0.15em;
+	}
+
+	.deliverables-signoff-icon,
+	.deliverables-other-icon,
+	.deliverables-document-icon,
+	.deliverables-photo-icon,
+	.deliverables-uploaded-attachment-icon {
+		display: none;
+	}
+	.-photos-instance & > .deliverables-photo-icon {
+		display: block;
+	}
+	.-other-instance & > .deliverables-document-icon {
+		display: block;
+	}
+	.-survey-instance & > .deliverables-other-icon {
+		display: block;
+	}
+	.-sign_off-instance & > .deliverables-signoff-icon {
+		display: block;
+	}
+	.-csv-instance & > .deliverables-csv-icon {
+		display: block;
+	}
+	.-pdf-instance & > .deliverables-pdf-icon {
+		display: block;
+	}
+	.-doc-instance & > .deliverables-doc-icon {
+		display: block;
+	}
+
+	.icon-instance {
+		display: inline-block;
+		float: left;
+		padding: 0.2em 0.3em 0;
+	}
+}
+
+
+.deliverable-border, .deliverable-border-preview {
+	.filename {
+		color: @gray;
+		text-align: center;
+		font-size: 0.7em;
+		text-overflow: ellipsis;
+	}
+}
+
+.deliverable-border-preview {
+	width: 95%;
+	.deliverables-live-icon {
+		margin-top: 4em;
+		height: 4em;
+		width: 4em;
+		float: none;
+		.-photos-instance & > .deliverables-photo-icon {
+			display: block;
+		}
+		.-other-instance & > .deliverables-document-icon {
+			display: block;
+		}
+		.-survey-instance & > .deliverables-other-icon {
+			display: block;
+		}
+		.-sign_off-instance & > .deliverables-signoff-icon {
+			display: block;
+		}
+	}
+
+	.filename {
+		font-size: 0.9em;
+	}
+
+	.green-checkmark-icon {
+		display: none;
+	}
+}
+
+
+
+
+#review-deliverable-popup {
+	.deliverable-title {
+		padding-left: 0.6em;
+		text-align: left;
+		color: #717a82;
+		margin: 0.2em auto -1.2em;
+		font-size: 1.3em;
+		left: 0;
+		line-height: 1;
+	}
+
+	.deliverable-cancel {
+		float: right;
+		font-size: 1.4em;
+		font-weight: 100;
+		padding-right: 0.2em;
+	}
+
+	h3, h4 {
+		text-align: left;
+	}
+
+	form {
+		margin-top: 1em;
+	}
+
+	input, textarea {
+		margin-bottom: 1em;
+	}
+
+	.preview-container {
+		text-align: center;
+		.deliverable-details {
+			color: @gray;
+			margin: 0.5em;
+			font-size: 0.9em;
+		}
+	  	.deliverable-image-container {
+			position: relative;
+			height: 14em;
+			margin-left: -20px;
+			margin-right: -20px;
+			.deliverable-preview {
+				width: 100%;
+				height: 100%;
+				background-size: cover;
+				background-position: center;
+				background-repeat: no-repeat;
+				text-align: right;
+			}
+			.left-arrow-next, .right-arrow-next {
+				width: 1em;
+				position: absolute;
+				top: 35%;
+				padding: 1em;
+			}
+			.left-arrow-next {
+				left: 0;
+			}
+			.right-arrow-next {
+				right: 0;
+			}
+		}
+		.rejected-details {
+			text-align: left;
+			margin-top: 2em;
+			font-size: 0.8em;
+			color: @gray;
+			.rejected-header {
+				color: red;
+			}
+			.rejected-date {
+				padding-bottom: 0.75em;
+			}
+			.ban-icon-svg {
+				width: 1.2em;
+				height: 1.2em;
+				.foreground {
+					fill: red;
+				}
+			}
+		}
+		.ribbon-icon {
+			width: 5.2em;
+			text {
+				fill: white;
+				font-family: @default-font;
+				font-size: .9em;
+			}
+		}
+	  .rejected-popup-container, .updated-popup-container {
+		display: block;
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 6em;
+	  }
+	}
+
+	.upload-replacement-button {
+		.button;
+		.fake-button(darken(@green, 10%));
+		background-color: @green;
+		font-size: 1em;
+		color: white;
+		font-family: inherit;
+		margin-top: 2em;
+		.upload-icon {
+			width: 20px;
+			height: 20px;
+			float: left;
+			margin: 0.3em -0.3em 0 0.4em;
+		}
+	}
+
+	.delete-button {
+		.button;
+		.fake-button(darken(@gray, 10%));
+		background-color: @gray;
+		font-size: 1.1em;
+		color: white;
+		font-family: inherit;
+		margin-top: 2em;
+		.upload-icon {
+			width: 1.2em;
+			height: 1.2em;
+			float: left;
+			margin: 0.3em -0.3em 0 0.4em;
+		}
+	}
+
+	.upload-replacement-button {
+		.button;
+		.fake-button(darken(@green, 10%));
+		background-color: @green;
+		font-size: 1em;
+		color: white;
+		font-family: inherit;
+		margin-top: 2em;
+		.upload-icon {
+			width: 1.2em;
+			height: 1.2em;
+			float: left;
+			margin: 0.3em -0.3em 0 0.4em;
+		}
+	}
+
+	.upload-original-button {
+		.button;
+		.fake-button(darken(@orange, 10%));
+		background-color: @orange;
+		font-size: 1.1em;
+		color: white;
+		font-family: inherit;
+		margin-top: 3em;
+	}
+
+	.upload-button {
+		width: 40%;
+		float: right;
+		&[disabled] {
+			.cancel-button;
+			width: 40%;
+		}
+		.upload-icon {
+			width: 25px;
+			height: 25px;
+			float: left;
+			margin-right: -0.7em;
+		}
+	}
+
+	.download-original-button {
+		.button;
+		.fake-button(darken(@orange, 10%));
+		background-color: @orange;
+		font-size: 1.1em;
+		color: white;
+		font-family: inherit;
+	}
+
+	.close-button {
+		.cancel-button;
+		width: 40%;
+		float: left;
+	}
+
+	#upload-file {
+		font-size: @small-font-size;
+	}
+}

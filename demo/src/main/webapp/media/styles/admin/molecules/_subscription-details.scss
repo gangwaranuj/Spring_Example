@@ -1,0 +1,17 @@
+#subscription_details {
+	#subscription_status {
+		margin-left: 10px;
+	}
+
+	#AddOnsOptions, #discountOptions {
+		.row {
+			margin-bottom: 1em;
+		}
+		select {
+			width: 100%;
+		}
+		label {
+			text-align: right;
+		}
+	}
+}

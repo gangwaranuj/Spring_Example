@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WMWorkerBanner /> Rendering :: renders correctly 1`] = `
+<div
+  style={
+    Object {
+      "marginTop": "-1em",
+      "position": "absolute",
+      "width": "100%",
+      "zIndex": "2",
+    }
+  }
+>
+  <WMMessageBanner
+    hideDismiss={false}
+    status="notice"
+  >
+    You have 
+    14
+     pending talent pool invitations.
+    <WMFlatButton
+      href="/groups/invitations"
+      label="View Invitations"
+      secondary={true}
+      style={
+        Object {
+          "margin": "1em",
+        }
+      }
+    />
+  </WMMessageBanner>
+</div>
+`;

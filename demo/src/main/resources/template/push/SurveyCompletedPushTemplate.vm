@@ -1,0 +1,4 @@
+{
+"message": "${template.attempt.assessmentUserAssociation.user.fullName} Completed survey: ${template.attempt.assessmentUserAssociation.assessment.name}",
+"action": "${baseurl}/lms/view/details/${template.attempt.assessmentUserAssociation.assessment.id}"
+}

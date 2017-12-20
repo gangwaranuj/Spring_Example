@@ -1,0 +1,674 @@
+{{#if facade.blocked}}
+	<div class="alert" style="background-color: #f4f4f4; border: 1px solid #a54f4f; color: #000000; margin-top: 1em">
+		<div style="display: block; float: left">
+			<i class="material-icons" style="top: 0px; margin-top: -3px;">block</i>
+		</div>
+		<span style="display: block; padding-left: 3em;">
+			Your company blocked this worker. Please contact your administrator for more information.
+		</span>
+	</div>
+{{/if}}
+
+<div class="profile--messages">
+	{{#if facade.suspended}}
+		<h4>
+			This user is currently suspended.
+		</h4>
+	{{/if}}
+
+	{{#if facade.deactivated}}
+		<h4>
+			This user is currently deactivated.
+		</h4>
+	{{/if}}
+
+	{{{[../../helpers/hasChangedEmail] facade.owner facade.changedEmail facade.email}}}
+</div>
+
+<header class="profile--header {{profileBackground}}">
+
+	<div class="profile--personal-info">
+		<div class="profile--avatar">
+			{{#if facade.avatarLargeAssetUri}}
+				{{> ../../funcs/templates/avatar src=facade.avatarLargeAssetUri }}
+			{{else}}
+				{{> ../../funcs/templates/avatar hash=facade.userNumber }}
+			{{/if}}
+		</div>
+
+		<div class="profile--name">
+			{{facade.firstName}}
+			<!-- isLane4LimitedVisibility helper -->
+			{{[../../helpers/limitedVisibility] isLane4LimitedVisibility facade.lastName}}
+
+			{{{[../../helpers/laneTypeBadge] facade.laneType false}}}
+		</div>
+
+		<div class="user-personal--job-title">
+			{{#if facade.jobTitle}}
+				{{facade.jobTitle}} |
+			{{/if}}
+			{{facade.companyName}}
+		</div>
+		<address class="profile--address">
+			{{#if facade.address}}
+				{{facade.address.shortAddress}}
+			{{else}}
+				{{#if facade.companyAddress}}
+					{{facade.companyAddress.shortAddress}}
+				{{/if}}
+			{{/if}}
+
+		</address>
+	</div>
+
+	{{#unless isLane4LimitedVisibility}}
+		<div class="profile--contact">
+			<a class="user-contact--email" href="mailto:{{email}}">
+				<i class="icon-envelope"></i>
+				{{facade.email}}
+			</a>
+
+			{{{[../../helpers/showPhoneNumbers] facade.laneType isInternal facade.workPhone facade.workPhoneExtension facade.mobilePhone}}}
+		</div>
+	{{/unless}}
+
+</header>
+
+<section class="profile--details">
+	<!-- Tabs -->
+	<ul class="wm-tabs profile--details-tabs">
+		<li class="wm-tab -active" data-content="#user-overview-{{facade.userNumber}}">
+			Overview
+		</li>
+		<li class="wm-tab" data-content="#user-qualifications-{{facade.userNumber}}">
+			Qualifications
+		</li>
+		<li class="wm-tab ratings-tab" data-content="#user-ratings-{{facade.userNumber}}">
+			Ratings
+		</li>
+		{{#unless facade.owner}}
+			<li class="wm-tab comments-tab" data-content="#user-comments-{{facade.userNumber}}">Comments</li>
+			<li class="wm-tab" data-content="#user-tags-{{facade.userNumber}}" data-badge="{{[../../helpers/resourceCount] facade.privateTags}}">Tags</li>
+		{{/unless}}
+		{{#[../../helpers/hasVideosOrPhotos] facade.video facade.photo}}
+			<li class="wm-tab" data-content="#user-media-{{facade.userNumber}}" data-badge="{{[../../helpers/resourceCount] ImageOutput}}">Media</li>
+		{{/[../../helpers/hasVideosOrPhotos]}}
+	</ul>
+
+	<!-- *** Overview tab *** -->
+	<div class="wm-tab--content -active user-overview" id="user-overview-{{facade.userNumber}}">
+		<div class="user-overview-left">
+			<p>
+				User ID: <strong>{{facade.userNumber}}</strong>
+			</p>
+
+			{{#if facade.laneType}}
+				<p>{{{[../../helpers/laneTypeBadge] facade.laneType true}}}</p>
+			{{/if}}
+
+			<p>URL: <a class="break-word" href="{{baseurl}}/profile/{{facade.userNumber}}">/profile/{{facade.userNumber}}</a></p>
+
+			<!-- Drug test -->
+			{{#if facade.drugTestStatus}}
+				<p class="user-drug-test">
+					<img class="test-status-image" src="{{[../../helpers/drugTestStatusImage] facade.drugTestStatus}}"/>
+					{{[../../helpers/drugTestResult] facade.drugTestStatus facade.priorPassedDrugTest}}
+					{{#if facade.lastBackgroundCheckResponseDate}}
+						<small>{{[../../helpers/formatDate] facade.lastDrugTestResponseDate}}</small>
+					{{else}}
+						<small>{{[../../helpers/formatDate] facade.lastDrugTestRequestDate}}</small>
+					{{/if}}
+					{{{[../../helpers/drugTestActions] facade.owner isInternal facade.drugTestStatus facade.priorPassedDrugTest}}}
+				</p>
+			{{/if}}
+			<!-- Background Check -->
+			{{#if facade.backgroundCheckStatus}}
+				<p class="user-background-check">
+					<img class="test-status-image" src="{{[../../helpers/backgroundCheckStatusImage] facade.backgroundCheckStatus}}"/>
+					{{[../../helpers/backgroundCheckResult] facade.backgroundCheckStatus facade.priorPassedBackgroundCheck}}
+					{{#if facade.lastBackgroundCheckResponseDate}}
+						<small>{{[../../helpers/formatDate] facade.lastBackgroundCheckResponseDate}}</small>
+					{{else}}
+						<small>{{[../../helpers/formatDate] facade.lastBackgroundCheckRequestDate}}</small>
+					{{/if}}
+					{{{[../../helpers/backgroundCheckActions] facade.owner isInternal facade.backgroundCheckStatus facade.priorPassedBackgroundCheck}}}
+				</p>
+			{{/if}}
+		</div>
+
+		<div class="user-overview-right">
+			<p>Since: {{[../../helpers/formatDateShort] facade.createdOn}}</p>
+
+			{{{[../../helpers/taxEntityStatus] facade.taxEntityExists facade.verifiedTaxEntity}}}
+
+			{{#if facade.confirmedBankAccount}}
+				<p>Bank Account: <b>Confirmed</b></p>
+			{{else}}
+				<p>Bank Account: <b>Unconfirmed</b></p>
+			{{/if}}
+
+			{{#if facade.linkedInVerified}}
+				<p>
+					<i class="icon-linkedin icon-gray"></i>
+					<a target="_blank" href="{{facade.linkedInPublicProfileUrl}}">LinkedIn</a>
+				</p>
+			{{/if}}
+
+			{{#if facade.companyWebsite}}
+				<p>
+					<i class="wm-icon-globe-circle"></i>
+					<a target="_blank" href="{{[../../helpers/ensureProtocol] facade.companyWebsite}}">{{facade.companyWebsite}}</a>
+				</p>
+			{{/if}}
+		</div>
+
+
+		{{#if facade.overview}}
+			<p class="overview-description">{{facade.overview}}</p>
+		{{else}}
+			<p class="overview-description">{{facade.companyOverview}}</p>
+		{{/if}}
+
+		<!--Groups-->
+		{{#unless facade.isLane4LimitedVisibility}}
+			<h2>Talent Pools <span class="pull-right wm-badge {{[../../helpers/activeBadge] totalGroups}}">{{totalGroups}}</span></h2>
+			{{#if facade.publicGroups}}
+				<div class="user-public-groups">
+					<p>Your Public Talent Pools:</p>
+					{{#each facade.publicGroups}}
+						<a class="wm-icon-users user-group" href="/groups/{{id}}">{{name}}</a>
+					{{/each}}
+				</div>
+			{{/if}}
+
+			{{#if facade.privateGroups}}
+				<div class="user-private-groups">
+					<p>Your Private Talent Pools:</p>
+					{{#each facade.privateGroups}}
+						<a class="wm-icon-users user-group" href="/groups/{{id}}">{{name}}</a>
+					{{/each}}
+				</div>
+			{{/if}}
+
+			{{#[../../helpers/doesNotBelongToAnyGroup] facade.publicGroups facade.privateGroups}}
+				{{#if facade.owner}}
+					<p>You are not a member of any talent pools. Join talent pools to be eligible for more assignments.</p>
+					<a href="/search-groups" class="button small">Join talent pools</a>
+				{{else}}
+					<p>This worker is not a member of any of your talent pools.</p>
+				{{/if}}
+			{{/[../../helpers/doesNotBelongToAnyGroup]}}
+		{{/unless}}
+
+		<!--Assessments-->
+		<h2>Tests <span class="pull-right wm-badge {{[../../helpers/activeBadge] facade.assessments.length}}">{{facade.assessments.length}}</span></h2>
+
+		{{#if facade.assessments}}
+			<table class="user--tests-table">
+				<tbody>
+					{{#each facade.assessments}}
+						<tr>
+							<td><a href="/lms/grade/{{id}}/{{secondaryId}}">{{name}}</a></td>
+							<td>{{[../../helpers/testStatus] verificationStatus}}</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{else}}
+			<p>This worker has not completed any of your tests or surveys.</p>
+		{{/if}}
+
+		<hr>
+
+		{{#if hasProfileCustomField}}
+			<h2>Custom fields</h2>
+			{{#if profileCustomFields.length}}
+				{{#each profileCustomFields}}
+					<p><strong>{{key}}</strong>: {{value}}</p>
+				{{/each}}
+			{{else}}
+				<p>No custom fields found.</p>
+			{{/if}}
+		{{/if}}
+
+		{{#[../../helpers/canSeeRoles] facade.owner isCompanyAdmin}}
+			<h2>
+				Roles
+				{{#if isCompanyAdmin}}
+					<small><a href="/users/edit_user/{{facade.userNumber}}">Edit</a></small>
+				{{/if}}
+			</h2>
+
+			<p>
+				<strong>Roles:</strong> {{facade.roleNames}}
+			</p>
+			<p>
+				<strong>Role Types:</strong> {{facade.laneAccess}}
+			</p>
+		{{/[../../helpers/canSeeRoles]}}
+
+		{{#[../../helpers/canShowEsignatures] facade.esignatures}}
+			<h2>
+				Signed contracts
+			</h2>
+
+			{{#each facade.esignatures}}
+				<p>
+					<a class="esignature-link" data-templateuuid="{{templateUuid}}" href="#">
+						{{name}}
+					</a>
+				</p>
+			{{/each}}
+		{{/[../../helpers/canShowEsignatures]}}
+
+		{{#[../../helpers/hasHourlyRate] facade.minOnsiteHourlyRate facade.minOffsiteHourlyRate}}
+			<article class="user-hourly-rates">
+				<h2>Hourly Rates</h2>
+				<div>
+					{{#if facade.minOnsiteHourlyRate}}
+						<p>On-Site: <b>{{facade.minOnsiteHourlyRate}}</b></p>
+					{{/if}}
+
+					{{#if facade.minOffsiteHourlyRate}}
+						<p>Off-Site: <b>{{facade.minOffsiteHourlyRate}}</b></p>
+					{{/if}}
+				</div>
+			</article>
+		{{/[../../helpers/hasHourlyRate]}}
+	</div>
+
+	<!-- *** Qualifications tab *** -->
+	<div class="wm-tab--content user-qualifications" id="user-qualifications-{{facade.userNumber}}">
+		<h2>Industries</h2>
+		{{[../../helpers/industriesList] facade.industries}}
+
+		{{#if facade.skills}}
+			<h2>Skills</h2>
+			{{#each facade.skills}}
+				<a class="wm-tag" href="/search?keyword={{name}}">{{name}}</a>
+			{{/each}}
+		{{/if}}
+
+		{{#if facade.specialties}}
+			<h2>Products</h2>
+			{{#each facade.specialties}}
+				<a class="wm-tag" href="/search?keyword={{name}}">{{name}}</a>
+			{{/each}}
+		{{/if}}
+
+		{{#if facade.tools}}
+		<h2>Tools</h2>
+			{{#each facade.tools}}
+				<a class="wm-tag" href="/search?keyword={{name}}">{{name}}</a>
+			{{/each}}
+		{{/if}}
+
+		{{#if facade.certifications}}
+			<h2>Certifications</h2>
+			<table class="user--certifications-table">
+				<tbody>
+					{{#each facade.certifications}}
+						<tr>
+							<td>
+								{{name}}
+								({{description}})
+								{{{[../../helpers/documentVerified] this}}}
+							</td>
+							<td>
+								{{#[../../helpers/canShowAssets] ../facade.owner ../isInternal assets}}
+									{{#each assets}}
+										<span><a href="/asset/download/{{uuid}}" title="Download"><i class="icon-download"></i></a></span>
+									{{/each}}
+								{{/[../../helpers/canShowAssets] }}
+								{{{[../../helpers/canReviewDocument] ../isInternal verificationStatus}}}
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{/if}}
+
+		{{#if facade.licenses}}
+			<h2>Licenses</h2>
+			<table class="user--licenses-table">
+				<tbody>
+				{{#each facade.licenses}}
+					<tr>
+						<td>
+							{{name}}
+							({{description}})
+						</td>
+						<td width="40%">
+							{{{[../../helpers/documentVerified] this}}}
+							{{#[../../helpers/canShowAssets]  ../facade.owner ../isInternal assets}}
+								{{#each assets}}
+									<a href="/asset/download/{{uuid}}" title="Download"><i class="icon-download"></i></a>
+								{{/each}}
+							{{/[../../helpers/canShowAssets] }}
+							{{{[../../helpers/canReviewDocument]  ../isInternal verificationStatus}}}
+							{{{[../../helpers/canEditDocument]  ../isInternal ../facade.id verificationStatus}}}
+						</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		{{/if}}
+
+		{{#if facade.insurance}}
+			<h2>Insurance Coverage</h2>
+			<table class="user--insurance-table">
+				<tbody>
+					{{#each facade.insurance}}
+						<tr>
+							<td>
+								{{name}} - {{notes}}
+								{{{[../../helpers/documentVerified] this}}}
+							</td>
+							<td width="40%">
+								{{#[../../helpers/canShowAssets]  ../facade.owner ../isInternal assets}}
+									{{#each assets}}
+										<a href="/asset/download/{{uuid}}" title="Download"><i class="icon-download"></i></a>
+									{{/each}}
+								{{/[../../helpers/canShowAssets] }}
+								{{{[../../helpers/canReviewDocument]  ../isInternal verificationStatus}}}
+							</td>
+						</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		{{/if}}
+
+		{{#[../../helpers/hasLinkedInPositions] facade.linkedInVerified facade.linkedInPositions}}
+			<h2>Employment</h2>
+			<table class="user--positions-table">
+				<tbody>
+				{{#each facade.linkedInPositions}}
+						<tr>
+							<td>
+								<strong>{{title}}</strong>
+								{{companyName}}
+							</td>
+							<td width="40%">
+								<b>
+									{{#if dateFromMonth}}
+										{{[../../helpers/monthName] dateFromMonth}}
+										{{dateFromYear}}
+									{{else}}
+										{{dateFromYear}}
+									{{/if}}
+									&ndash;
+									{{[../../helpers/positionEndDate] current dateToMonth dateToYear}}
+								</b>
+							</td>
+						</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		{{/[../../helpers/hasLinkedInPositions]}}
+
+		{{#[../../helpers/hasLinkedInPositions] facade.linkedInVerified facade.linkedInEducation}}
+			<h2>Education</h2>
+			<table class="user--education-table">
+				<tbody>
+				{{#each facade.linkedInEducation}}
+					<tr>
+						<td>
+							<strong>{{schoolName}}</strong>
+							{{#if degree}}
+								{{degree}}
+								{{#if fieldOfStudy}}
+									{{fieldOfStudy}}
+								{{/if}}
+							{{/if}}
+						</td>
+						<td width="40%">
+							<b>
+								{{#if dateFromMonth}}
+									{{[../../helpers/monthName] dateFromMonth}}
+									{{dateFromYear}}
+								{{else}}
+									{{dateFromYear}}
+								{{/if}}
+								&ndash;
+								{{[../../helpers/educationEndDate] dateToMonth dateToYear}}
+							</b>
+						</td>
+					</tr>
+				{{/each}}
+				</tbody>
+			</table>
+		{{/[../../helpers/hasLinkedInPositions]}}
+
+		{{#if facade.resumes}}
+			<h2>Resume Download</h2>
+			<ul>
+				{{#each facade.resumes}}
+					{{#each assets}}
+						<li>
+							<i class="icon-file-alt"></i>
+							<a href="/asset/download/{{uuid}}">Download Resume</a>
+						</li>
+					{{/each}}
+				{{/each}}
+			</ul>
+		{{/if}}
+
+		{{#if facade.languages}}
+			<h2>Languages</h2>
+			<ul>
+				{{#each facade.languages}}
+					<li><strong>{{name}}</strong></li>
+				{{/each}}
+			</ul>
+		{{/if}}
+
+		{{#if facade.workingHours}}
+			<h2>Working Hours</h2>
+			<table class="user--working-hours-table">
+				<tbody>
+				{{#each facade.workingHours}}
+					{{#unless deleted}}
+						<tr>
+							<td>{{weekDayName}}</td>
+							<td>
+								<strong>
+									{{#if allDayAvailable}}
+										All Day
+									{{else}}
+										{{[../../helpers/formatTime] fromTime}} - {{[../../helpers/formatTime] toTime}}
+									{{/if}}
+								</strong>
+							</td>
+						</tr>
+					{{/unless}}
+				{{/each}}
+				</tbody>
+			</table>
+		{{/if}}
+	</div>
+
+	<!-- *** Comments tab *** -->
+	{{#unless facade.owner}}
+		<div class="wm-tab--content user-comments" id="user-comments-{{facade.userNumber}}">
+			<h2>Comments</h2>
+			<table class="user-comments--table">
+				<thead>
+					<tr>
+						<th>Date</th>
+						<th>Comment</th>
+						<th>From</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody></tbody>
+			</table>
+			<p class="no-results-copy">You have no comments recorded for this user.</p>
+		</div>
+	{{/unless}}
+
+	<!-- *** Tags tab *** -->
+	{{#unless facade.owner}}
+		<div class="wm-tab--content user-tags" id="user-tags-{{facade.userNumber}}">
+			{{#[../../helpers/canDisplayTags] allowTagging facade.owner facade.isLane4LimitedVisibility}}
+				<h2>Tags</h2>
+				{{#each facade.privateTags}}
+					<span class="wm-tag">{{this}}</span>
+				{{else}}
+					<p class="no-results-copy">There are currently no tags on this profile. Add one below.</p>
+				{{/each}}
+			{{else}}
+				<p class="no-results-copy">Add the worker to your network above to utilize the Tags feature.</p>
+			{{/[../../helpers/canDisplayTags]}}
+		</div>
+	{{/unless}}
+
+	<!-- *** Ratings tab *** -->
+	<div class="wm-tab--content user-ratings" id="user-ratings-{{facade.userNumber}}">
+		<h2>Ratings</h2>
+		{{#unless facade.owner}}
+			<div class="user-ratings-controls pull-right">
+				<button type="button" name="scopeToCompany" value="false" class="button">All Ratings</button>
+				<button type="button" name="scopeToCompany" value="true" class="button">Your Ratings</button>
+			</div>
+			<table class="user-ratings--table">
+				<thead>
+				<tr>
+					<th class="score-card--details"></th>
+					<th class="score-card--details text-center">Overall</th>
+					<th class="score-card--details text-center">Quality</th>
+					<th class="score-card--details text-center">Professionalism</th>
+					<th class="score-card--details text-center">Communication</th>
+				</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="no-results-copy">No ratings information available.</p>
+		{{/unless}}
+	</div>
+
+	<!-- *** Media tab *** -->
+	{{#[../../helpers/hasVideosOrPhotos] facade.video facade.photo}}
+		<div class="wm-tab--content user-media" id="user-media-{{facade.userNumber}}">
+			<section class="gallery">
+				{{#each ImageOutput}}
+					{{#[../../helpers/isAsset] assetResourceType}}
+						{{#[../../helpers/canShowAsset] ../../facade.owner ../../isGroupOwner availability.code}}
+							{{#if media}}
+								<div class="profile_video" id="videoplayer_video_{{@index}}" data-order="{{@index}}"/>
+							{{else}}
+								<a class="gallery--image"
+									data-uri="{{uri}}"
+									data-total="{{@index}}"
+									data-desc="{{description}}"
+									data-code="{{availability.code}}"
+									data-bytes="{{byteCountToDisplaySize}}"
+									data-name="{{name}}"
+									data-id="{{id}}"
+									data-uuid="{{uuid}}"
+									data-type="asset"
+								>
+									<img src="{{[../../helpers/assetsImageUrl] @root.ImageLargeOutput @index}}" default="{{mediaPrefix}}/images/no_picture.png" alt="Photo"/>
+								</a>
+							{{/if}}
+						{{/[../../helpers/canShowAsset]}}
+					{{else}}
+						<li class="filled">
+							<div class="profile_video" id="videoplayer_video_{{@index}}" data-order="{{@index}}"/>
+						</li>
+					{{/[../../helpers/isAsset]}}
+				{{/each}}
+			</section>
+		</div>
+	{{/[../../helpers/hasVideosOrPhotos]}}
+</section>
+
+<!--user scorecard-->
+<aside class="sidebar-card">
+	{{> ../../funcs/templates/score-card showrecent=true values=scoreCard isDispatch=isDispatch}}
+	<button id="show-ratings" class="sidebar-card--button">See Ratings</button>
+</aside>
+
+{{#unless hideActions}}
+	<footer class="profile--footer">
+		{{#unless facade.blocked}}
+			<div class="profile--quick-actions">
+				<label class="switch profile--quick-action tooltipped tooltipped-n" aria-label="Add Comments">
+					<input type="checkbox" name="profile-quick-action" class="switch--checkbox"/>
+					<div data-toggle="collapse" href="#collapseComments-{{facade.userNumber}}" data-parent="#collapse-{{facade.userNumber}}" class="switch--skin"><i class="wm-icon-speech"></i></div>
+				</label>
+				<label class="switch profile--quick-action tags-quick-action tooltipped tooltipped-n" aria-label="Add Tags">
+					<input type="checkbox" name="profile-quick-action" class="switch--checkbox"/>
+					<div data-toggle="collapse" href="#collapseTags-{{facade.userNumber}}" data-parent="#collapse-{{facade.userNumber}}" class="switch--skin"><i class="wm-icon-tag"></i></div>
+				</label>
+				<label class="switch profile--quick-action tests-quick-action tooltipped tooltipped-n" aria-label="Invite to Test">
+					<input type="checkbox" name="profile-quick-action" class="switch--checkbox"/>
+					<div data-toggle="collapse" href="#collapseTests-{{facade.userNumber}}" data-parent="#collapse-{{facade.userNumber}}" class="switch--skin"><i class="wm-icon-test"></i></div>
+				</label>
+				<label class="switch profile--quick-action groups-quick-action tooltipped tooltipped-n" aria-label="Invite to Talent Pool">
+					<input type="checkbox" name="profile-quick-action" class="switch--checkbox"/>
+					<div data-toggle="collapse" href="#collapseGroups-{{facade.userNumber}}" data-parent="#collapse-{{facade.userNumber}}" class="switch--skin"><i class="wm-icon-users"></i></div>
+				</label>
+				<label class="switch profile--quick-action assignment-quick-action tooltipped tooltipped-n" aria-label="Send Assignment">
+					<input type="checkbox" name="profile-quick-action" class="switch--checkbox"/>
+					<div class="switch--skin"><i class="wm-icon-page-out"></i></div>
+				</label>
+			</div>
+		{{/unless}}
+		<div id="collapse-{{facade.userNumber}}" class="profile--quick-actions-content">
+			<div class="accordion-group">
+				<div id="collapseGroups-{{facade.userNumber}}" class="collapse">
+					<div class="collapse--inner">
+						<p>If the talent pool is public, the worker will receive an invitation via email with information regarding your talent pool. If the talent pool is private, the worker will be added immediately.</p>
+						<label>
+							Select Talent Pool:
+							<select class="wm-select group-select"></select>
+						</label>
+						<button class="button -primary profile--invite-group" data-user-number="{{userNumber}}">Invite to Talent Pool</button>
+						<button class="button profile--quick-actions-close">Close</button>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div id="collapseTests-{{facade.userNumber}}" class="collapse">
+					<div class="collapse--inner">
+						<p>The worker will receive a notification informing them of a pending test invitation including any instructions outlined in the tests description.</p>
+						<label>
+							Select Test:
+							<select class="wm-select test-select"></select>
+						</label>
+						<button class="button -primary profile--invite-test" data-user-number="{{userNumber}}">Invite to Test</button>
+						<button class="button profile--quick-actions-close">Close</button>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div id="collapseTags-{{facade.userNumber}}" class="collapse">
+					<div class="collapse--inner">
+						<p>Add tag below...</p>
+						<input class="wm-tags tags-input" name="tags" type="text" placeholder="Add Tags..." value="{{[../../helpers/existingTags] facade.privateTags}}"/>
+						<button class="button -primary profile--add-tag">Save Tags</button>
+						<button class="button profile--quick-actions-close">Close</button>
+					</div>
+				</div>
+			</div>
+			<div class="accordion-group">
+				<div id="collapseComments-{{facade.userNumber}}" class="collapse">
+					<div class="collapse--inner">
+						<textarea class="comment-input" placeholder="Add Comment here..."></textarea>
+						<button class="button -primary profile--add-comment" data-user-number="{{userNumber}}">Add Comment</button>
+						<button class="button profile--quick-actions-close">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+{{/unless}}

@@ -1,0 +1,36 @@
+$notification-padding: 1.5em;
+
+@mixin notification {
+	border-radius: $base-border-radius;
+	position: relative;
+	color: $blue;
+	background-color: lighten($blue, 35%);
+	padding: $notification-padding;
+	border: $default-border;
+
+	.wm-icon-x {
+		position: absolute;
+		top: $notification-padding / 2;
+		right: $notification-padding / 2;
+		color: $white;
+		@include circle;
+		background-color: $light-grey;
+		cursor: pointer;
+		font-size: 0.6em;
+		padding: 0.5em;
+	}
+
+	&--more {
+		font-weight: bold;
+
+		&::after {
+			@include icon(information);
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+}
+
+.notification {
+	@include notification;
+}

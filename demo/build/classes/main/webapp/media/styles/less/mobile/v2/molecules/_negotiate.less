@@ -1,0 +1,79 @@
+.negotiate {
+	height: 100%;
+	.nav h1 {
+		float: left;
+	}
+	.wrap {
+		height: 100%;
+		min-height: @iphone-4s-y;
+		padding: 0 @small-space;
+		.grid:first-child {
+			padding-top: @medium-space;
+		}
+	}
+	.inner-tag {
+		label {
+			float: left;
+		}
+		.sub-header {
+			float: left;
+			font-size: @tiny-font-size;
+			color: @gray;
+			margin-top: -1em;
+			clear: left;
+		}
+		.half {
+			float: left;
+			.box-sizing (border-box);
+			&:nth-child(2) {
+				clear: both;
+				padding-right: 0.15em;
+			}
+			&:last-child {
+				padding-left: 0.15em;
+			}
+		}
+	}
+	.one-third {
+		float: right;
+		.box-sizing (border-box);
+	}
+	.nine-tenths {
+		width: 90%;
+		float: right;
+		.box-sizing (border-box);
+		margin-top: @small-space;
+		color: @orange;
+	}
+	.missingForm {
+		border: 2px solid @error;
+	}
+	input {
+		padding: 0.3em;
+		font-size: @small-font-size;
+		border: 1px solid #717a82;
+		margin-bottom: @medium-space;
+	}
+	input[type='submit'] {
+		.default-button;
+	}
+	input[type='radio'], label {
+		margin-bottom: @small-space;
+	}
+	textarea {
+		margin-bottom: @medium-space;
+	}
+	.checkbox, .ratio {
+		clear: both;
+		float: left;
+		width: 10%;
+	}
+	.header-label {
+		display: block;
+	}
+	.note {
+		font-size: @tiny-font-size;
+		color: @gray;
+		margin-bottom: 1em;
+	}
+}

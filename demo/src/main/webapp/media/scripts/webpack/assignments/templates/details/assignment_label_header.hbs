@@ -1,0 +1,17 @@
+{{#each this.subStatuses}}
+	<span class="label nowrap" {{#if this.colorRgb}} style="background-color:\# {{this.colorRgb}};"{{/if}}>
+		<a href="/assignments#substatus/{{this.id}}/managing">{{this.description}}</a>
+		{{#if ../this.isOwnerOrAdmin}}
+			{{#if this.userResolvable}}
+				<a href="/assignments/remove_label/{{../this.workNumber}}?label_id={{this.id}}" title="Remove Label" class="remove remove_label_action"><i class="icon-remove"></i></a>
+			{{/if}}
+		{{/if}}
+		</span>
+	<span class="separator">/</span>
+{{/each}}
+
+{{#if this.available_labels}}
+	{{#if this.isActiveResourceIsAdminIsOwner}}
+		<a href="/assignments/add_label/{{this.workNumber}}" title="Add Label" class="add_label_action nowrap">Add Label</a>
+	{{/if}}
+{{/if}}

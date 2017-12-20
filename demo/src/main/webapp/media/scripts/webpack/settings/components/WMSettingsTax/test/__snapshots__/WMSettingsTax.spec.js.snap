@@ -1,0 +1,339 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<WMSettingsTax /> Rendering :: renders corrects 1`] = `
+<div>
+  <WMCard
+    expanded={false}
+    onExpandChange={[Function]}
+    style={
+      Object {
+        "backgroundColor": "white",
+        "margin": "auto",
+        "marginBottom": "2em",
+        "width": "700px",
+      }
+    }
+  >
+    <WMCardHeader
+      actAsExpander={true}
+      showExpandableButton={true}
+      style={
+        Object {
+          "alignItems": "center",
+          "display": "flex",
+        }
+      }
+      subtitle="You will need your tax ID and documentation."
+      textStyle={
+        Object {
+          "order": 2,
+        }
+      }
+      title="Set Your Tax Information"
+      titleStyle={
+        Object {
+          "color": "#1890e0",
+          "fontSize": "20px",
+          "fontWeight": 500,
+        }
+      }
+    >
+      <img
+        alt="Tax Icon"
+        id="wm-settings-tax__icon"
+        src="undefined/images/settings/tax.svg"
+        style={
+          Object {
+            "height": "100px",
+            "margin": "0 20px",
+            "order": 1,
+            "width": "100px",
+          }
+        }
+      />
+    </WMCardHeader>
+    <WMCardText
+      expandable={true}
+      style={
+        Object {
+          "margin": "auto",
+          "maxWidth": "550px",
+        }
+      }
+    >
+      <WMFormRow
+        baseStyle={
+          Object {
+            "margin": "1em 0 1em 0",
+          }
+        }
+        data-component-identifier="settings__taxCountry"
+        id="tax_country-wrap"
+        labelText="Country *"
+      >
+        <WMSelectField
+          fullWidth={true}
+          onChange={[Function]}
+          valid={true}
+          value="usa"
+        >
+          <WMMenuItem
+            primaryText="United States"
+            value="usa"
+          />
+          <WMMenuItem
+            primaryText="Canada"
+            value="canada"
+          />
+          <WMMenuItem
+            primaryText="Other"
+            value="other"
+          />
+        </WMSelectField>
+      </WMFormRow>
+      <div>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "1em 0 1em 0",
+            }
+          }
+          data-component-identifier="settings__taxNumberRow"
+          id="tax-number"
+          labelText="Employer ID Number *"
+        >
+          <WMTextField
+            data-component-identifier="settings__taxNumber"
+            errorText=""
+            fullWidth={true}
+            id="tax-number"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value=""
+          />
+        </WMFormRow>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "1em 0 1em 0",
+            }
+          }
+          data-component-identifier="settings__companyTaxNameRow"
+          id="tax-name"
+          labelText="Company Name *"
+        >
+          <WMTextField
+            data-component-identifier="settings__companyTaxName"
+            errorText=""
+            fullWidth={true}
+            id="tax-name"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value=""
+          />
+        </WMFormRow>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "1.5em 0 1em 0",
+            }
+          }
+          data-component-identifier="settings__taxAddressRow"
+          fieldStyle={
+            Object {
+              "margin": "-2em 0 0 0",
+            }
+          }
+          id="tax-address"
+          labelText="Address *"
+        >
+          <WMTextField
+            data-component-identifier="settings__taxAddress"
+            errorText=""
+            floatingLabelText="Street"
+            fullWidth={true}
+            hintText="Street"
+            id="tax-address-street"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value=""
+          />
+        </WMFormRow>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "1em 0 1em 0",
+            }
+          }
+          data-component-identifier="settings__taxAddress2"
+          fieldStyle={
+            Object {
+              "margin": "-2em -0.6em 0 1em",
+            }
+          }
+          id="tax-classification-wrap"
+        >
+          <WMTextField
+            data-component-identifier="settings__taxCity"
+            errorText=""
+            floatingLabelText="City"
+            hintText="City"
+            id="tax-address-city"
+            onBlur={[Function]}
+            onChange={[Function]}
+            style={
+              Object {
+                "margin": "0 1em 0 0",
+              }
+            }
+            value=""
+          />
+          <WMStateProvince
+            floatingLabelText="State"
+            hide="fullText"
+            hintText="State"
+            locale="us"
+            onChange={[Function]}
+            style={
+              Object {
+                "margin": "0 1em 0 0",
+              }
+            }
+            value=""
+          />
+          <WMTextField
+            data-component-identifier="settings__taxPostalCode"
+            errorText=""
+            floatingLabelText="Zip"
+            hintText="Zip"
+            id="tax-address-zip"
+            onBlur={[Function]}
+            onChange={[Function]}
+            value=""
+          />
+        </WMFormRow>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "3em 0 1em 0",
+            }
+          }
+          data-component-identifier="settings__tax-classification"
+          fieldStyle={
+            Object {
+              "margin": "-0.9em 0 0 0",
+            }
+          }
+          id="tax-classification-wrap"
+          labelText="Federal Tax Classification"
+        >
+          <WMRadioButtonGroup
+            fullWidth={true}
+            name="taxEntityTypeCodeGroup"
+            onChange={[Function]}
+            valueSelected="c_corp"
+          >
+            <WMRadioButton
+              label="Limited Liability Company"
+              value="llc-c-corp"
+            />
+            <WMRadioButton
+              label="Sole Proprietor"
+              value="individual"
+            />
+            <WMRadioButton
+              label="C Corporation"
+              value="c_corp"
+            />
+            <WMRadioButton
+              label="S Corporation"
+              value="s_corp"
+            />
+            <WMRadioButton
+              label="Partnership"
+              value="partner"
+            />
+            <WMRadioButton
+              label="Trust/Estate"
+              value="trust"
+            />
+          </WMRadioButtonGroup>
+        </WMFormRow>
+        <WMFormRow
+          baseStyle={
+            Object {
+              "margin": "13em 0 4em 0",
+            }
+          }
+          data-component-identifier="settings__dbaRow"
+          fieldStyle={
+            Object {
+              "margin": "-11em 0 0 0",
+            }
+          }
+          id="dba-wrap"
+          labelText="Do you have a business name or disregarded entity name that is different than the name that you provided above, such as a doing business as (DBA) name?"
+        >
+          <WMRadioButtonGroup
+            data-component-identifier="settings__dbaGroup"
+            id="dba-group"
+            name="dba"
+            onChange={[Function]}
+            valueSelected={false}
+          >
+            <WMRadioButton
+              data-component-identifier="settings__dbaRadio"
+              label="Yes"
+              value={true}
+            />
+            <WMRadioButton
+              data-component-identifier="settings__dbaRadio"
+              label="No"
+              value={false}
+            />
+          </WMRadioButtonGroup>
+        </WMFormRow>
+        <div
+          style={
+            Object {
+              "border": "2px solid rgb(247, 150, 29)",
+              "borderRadius": "9px",
+              "boxSizing": "border-box",
+              "margin": "3em 0 0 -3em",
+              "padding": "1em",
+              "width": "630px",
+            }
+          }
+        >
+          <WMCheckbox
+            checked={false}
+            data-component-identifier="settings__policyAgreement"
+            label="I read and agree to WorkMarket Electronic Communcations Delivery Policy stated in the Terms of Use. I understand that Work Market will provide me with information about my account electronically. I confirm that I can access emails, web pages, and PDF files."
+            onCheck={[Function]}
+          />
+        </div>
+      </div>
+    </WMCardText>
+    <WMCardActions
+      data-component-identifier="settings__actions"
+      expandable={true}
+      style={
+        Object {
+          "borderTop": "1px solid #eee",
+          "display": "flex",
+          "justifyContent": "flex-end",
+          "padding": "15px",
+        }
+      }
+    >
+      <WMRaisedButton
+        data-component-identifier="settings__taxSubmit"
+        disabled={false}
+        label="Next"
+        onClick={[Function]}
+        primary={true}
+      />
+    </WMCardActions>
+  </WMCard>
+</div>
+`;

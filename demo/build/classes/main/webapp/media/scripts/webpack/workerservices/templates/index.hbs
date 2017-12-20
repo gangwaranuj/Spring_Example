@@ -1,0 +1,17 @@
+{{> _worker-service-page-header}}
+
+<section class="worker-services">
+	{{#each availableServices}}
+		<article class="worker-services--service -overview -{{slug}}">
+			{{#if aggregate}}
+				{{> _worker-service-overview-aggregate-header icon=icon copy=title }}
+			{{else}}
+				{{> _worker-service-overview-logo }}
+			{{/if}}
+			<div class="copy">
+				{{{copy}}}
+			</div>
+				{{> _worker-service-overview-actions slug=slug }}
+		</article>
+	{{/each}}
+</section>

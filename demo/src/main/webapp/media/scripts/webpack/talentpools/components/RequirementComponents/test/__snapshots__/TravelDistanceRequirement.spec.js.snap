@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TravelDistanceRequirement /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMFormRow
+  data-component-identifier="requirements_row"
+  id="requirements-abandoned"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <div>
+      Distance
+    </div>
+    <div
+      style={
+        Object {
+          "alignSelf": "flex-end",
+        }
+      }
+    >
+      10
+       miles
+    </div>
+    <div
+      style={
+        Object {
+          "margin": "-1em 0",
+        }
+      }
+    >
+      <WMSlider
+        data-component-identifier="requirements_slider"
+        max={100}
+        min={10}
+        name="maxTravelDistanceValue"
+        onChange={[Function]}
+        step={1}
+        value={10}
+      />
+    </div>
+    <WMGoogleLocationInput
+      changeGoogleAddress={[Function]}
+      data-component-identifier="requirements__travelDistanceLocation"
+      googleInitialized={false}
+      onGoogleAPILoaded={[Function]}
+      value=", , null, "
+    />
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        data-component-identifier="requirements_button"
+        disabled={true}
+        label="Add this requirement"
+        onClick={[Function]}
+        secondary={true}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </div>
+</WMFormRow>
+`;

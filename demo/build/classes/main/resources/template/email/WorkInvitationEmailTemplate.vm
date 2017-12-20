@@ -1,0 +1,134 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #333333; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">${template.work.company.effectiveName}</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 0px 0px">
+		#if ($onBehalfOfUser && $onBehalfOfUser.firstName)
+			Hello ${onBehalfOfUser.firstName},<br/>
+		#elseif ($isCompanyNotification)
+			Hello ${toUser.company.name},<br/>
+		#else
+			Hello ${toUser.firstName},<br/>
+		#end
+		<br/>
+		${template.work.company.effectiveName} sent you an assignment.
+		#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+			<a target="_blank" href="${baseurl}/assignments/details/${template.work.workNumber}">Accept now</a> and get to work!*
+		#else
+			<a target="_blank" href="${baseurl}/assignments/details/${template.work.workNumber}">Apply now</a> and get to work!*
+		#end
+	</p>
+
+	<p style="margin: 20px 0px 5px 0px">
+		<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f9f9f9; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+		<tbody>
+			<tr>
+				<td width = "30%" style="vertical-align:top"><strong>Title</strong></td>
+				<td>${template.workTitle}</td>
+			</tr>
+			<tr>
+			<tr>
+				<td width = "30%" style="vertical-align:top"><strong>Location</strong></td>
+				<td>${template.address} <small>(${template.distanceInMilesToWork} miles from you)</small> </td>
+			</tr>
+			<tr>
+				<td width = "30%" style="vertical-align:top"><strong>Date and Time</strong></td>
+				<td>${template.date}</td>
+			</tr>
+			#if ($showPricing)
+				<tr>
+					<td width = "30%" style="vertical-align:top"><strong>Price & Payment Terms</strong></td>
+					<td>${template.price}
+						#if (${template.work.manageMyWorkMarket.paymentTermsDays} > 0)
+							<br/>
+							Paid ${template.work.manageMyWorkMarket.paymentTermsDays} days after approval
+						#else
+							<br/>
+							Paid immediately after approval
+						#end
+						#if (${template.work.manageMyWorkMarket.disablePriceNegotiation})
+							<br/>
+							<small>Note: price negotiation is not enabled for this assignment</small>
+						#end
+					</td>
+				</tr>
+			#end
+			<tr>
+				<td width = "30%" style="vertical-align:top"><strong>Description</strong></td>
+				<td>$!{template.work.description}</td>
+			</tr>
+			<tr>
+				<td width = "30%" style="vertical-align:top"><strong>Eligibility</strong></td>
+				<td>$!{template.mandatoryRequirementCount} Mandatory
+					#if (${template.mandatoryRequirementCount} == 1)
+						Requirement**
+					#else
+						Requirements**
+					#end
+				</td>
+			</tr>
+			#foreach($field in ${template.customFields})
+				<tr>
+				<td width = "30%" style="vertical-align:top"><strong>$field.workCustomField.name</strong></td>
+				<td>$field.value</td>
+				</tr>
+			#end
+			</tbody>
+		</table>
+	</p>
+	<p style="margin: 0px 0px 5px 0px; font-size:12px; color: #888888">
+		#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+			*Assignment Type: First to Accept - this assignment will go to the first person who accepts.
+		#else
+			*Assignment Type: Apply - submit your application to ${template.work.company.effectiveName}, who will review and select the best candidate. <a style="font-size:11px" href="http://help.workmarket.com/customer/portal/articles/749018-how-to-apply-for-an-available-assignment" target="_blank">Learn more.</a>
+		#end
+	</p>
+	<p style="margin: 0px 0px 20px 0px; font-size:12px; color: #888888">
+		**Mandatory Requirements: You must complete all requirements in order to apply/accept.
+	</p>
+	<p style="text-align: center;">
+		#if ($onBehalfOfUser && $onBehalfOfUser.encryptedId)
+			<img src="${baseurl}/assignment_status/${template.work.workNumber}/${onBehalfOfUser.encryptedId}" alt="Assignment Status" />
+		#else
+			<img src="${baseurl}/assignment_status/${template.work.workNumber}/${toUser.encryptedId}" alt="Assignment Status" />
+		#end
+	</p>
+
+	<p style="margin: 20px 0px">
+		<table cellspacing="10px" cellpadding="0" border="0">
+			<tbody>
+				<tr>
+					<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+						<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/details/${template.work.workNumber}">
+							#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+								Accept Now!
+							#else
+								Apply Now!
+							#end
+						</a>
+					</td>
+					<td style="background-color: #DDDBDB; text-align: center; padding: 2px 7px 4px; margin:0px 10px">
+						<a target="_blank" style="; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #000; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/reject/${template.work.workNumber}">
+							Decline
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</p>
+
+	<p style="margin: 10px 0px; font-size:12px; color: #888888">
+		Apply to/accept and manage assignments from the WorkMarket App. Get it for <a target="_" href="https://play.google.com/store/apps/details?id=com.workmarket.android">Android</a> or <a target="_" href="https://itunes.apple.com/us/app/work-market/id675449493?mt=8&uo=4" target="itunes_store">iOS</a>.<br>Learn more about accepting and working on assignments <a href="http://help.workmarket.com/customer/portal/topics/300940-assignments/articles" target="_blank">here</a>.<br/>
+	</p>
+
+	<p style="margin: 10px 0px; font-size:10px; color: #777">
+		#if ($onBehalfOfUser && $onBehalfOfUser.encryptedId)
+			<a href="${baseurl}/user/blockclient?user=${onBehalfOfUser.encryptedId}&client=${template.companyNumber}">Click here to stop receiving requests from ${template.work.company.effectiveName}</a>. This includes assignments, group invites, and test invites.
+		#else
+			<a href="${baseurl}/user/blockclient?user=${toUser.encryptedId}&client=${template.companyNumber}">Click here to stop receiving requests from ${template.work.company.effectiveName}</a>. This includes assignments, group invites, and test invites.
+		#end
+	</p>
+
+</div>
+
+#parse("template/email/partials/do-not-reply.vm")

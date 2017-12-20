@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		<![CDATA[
+			The following assignment is available.
+			Title: ${template.work.title}.
+			Address: ${template.address}.
+			Date and time: ${template.date}.
+			#if ($showPrice)
+				Payment: ${template.price}.
+			#end
+		    Please visit ${baseurl} to accept or decline this assignment.
+		]]>
+	</Say>
+	<Redirect>${baseurl}${callbackUri}?loop=1</Redirect>
+</Response>

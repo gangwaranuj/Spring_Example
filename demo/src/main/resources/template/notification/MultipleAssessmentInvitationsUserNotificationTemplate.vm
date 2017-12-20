@@ -1,0 +1,3 @@
+#foreach( $assessment in ${template.assessments} )
+	<a data-ajax="false" href="${baseurl}/lms/view/details/${assessment.id}">${template.companyName} invited you to take test: ${assessment.name}</a>
+#end

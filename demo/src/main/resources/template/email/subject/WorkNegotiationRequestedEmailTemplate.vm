@@ -1,0 +1,5 @@
+#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+	${template.negotiation.requestedBy.fullName} submitted a counteroffer: ${template.workTitle}
+#else
+	${template.negotiation.requestedBy.fullName} applied: ${template.workTitle}
+#end

@@ -1,0 +1,30 @@
+			</tbody>
+		</table>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td width="600" align="middle">
+		<div>
+			<img src="${baseurl}/media/images/email-footer.jpg" width="600">
+		</div>
+	</td>
+</tr>
+
+<tr valign="top">
+	<td>
+		<div style="width: 580px; padding: 10px 10px 0px 10px; color: #aaa; font-size: 11px; line-height: 14px; font-family: Helvetica Neue, Arial, sans-serif;">
+			<div style="padding: 0px 0px 15px 0;">
+				<span style="margin-left: 12em; position: relative; top: -1em;">
+					Powered by <a style="color: #888" target="_blank" href="http://twitter.com/workmarket">@workmarket</a> |
+					<a href="${baseurl}/mysettings/notifications" style="color: #888">Change your notifications</a>
+				</span>
+				<img src="${baseurl}/media/images/workmarket_email_logo.png" style="margin-left: 2.9em; opacity: 0.75;">
+			</div>
+		</div>
+	</td>
+</tr>
+
+#if ($toUser && $template.notificationType && $template.notificationType.getCode())
+	<img src="https://www.google-analytics.com/collect?v=1&tid=UA-16961266-1&cid=${toUser.encryptedId}&t=event&ec=email&ea=open&el=${template.notificationType.getCode()}&ni=1"/>
+#end

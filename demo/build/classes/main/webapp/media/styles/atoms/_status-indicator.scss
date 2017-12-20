@@ -1,0 +1,10 @@
+.status-indicator {
+	@include circle;
+	width: 1em;
+	height: 1em;
+	border: $default-border;
+
+	&.-active {
+		background-color: $green;
+	}
+}

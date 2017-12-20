@@ -1,0 +1,36 @@
+#search_results {
+	.star-rating {
+		background-size: 110px 10px;
+		width: 55px;
+
+		&.four {
+			background-position: -11px 0 !important;
+		}
+		&.three {
+			background-position: -22px 0 !important;
+		}
+		&.two {
+			background-position: -33px 0 !important;
+		}
+		&.one {
+			background-position: -44px 0 !important;
+		}
+	}
+	.icon-calendar {
+		float: left;
+	}
+	.created {
+		.meta {
+			margin-left: 1.5em;
+			margin-top: -5px;
+			line-height: 1em;
+
+			.launched {
+				font-size: 0.8em;
+			}
+			.create-date {
+				font-weight: bold;
+			}
+		}
+	}
+}

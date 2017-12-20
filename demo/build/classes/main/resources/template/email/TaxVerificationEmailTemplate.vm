@@ -1,0 +1,43 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+	Tax Information Validation Results</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+<p style="margin: 20px 0px 20px 0px">
+	Hello ${toUser.firstName},<br/>
+	<br/>
+	The result of the I.R.S. validation of the Tax Identification Number you provided on $date.format('EEE, d MMM yyyy', $template.entity.signedOn) was
+	#if(${template.entity.status.code} == 'approved')
+		successfully matched with the I.R.S Tax Information Number database.
+	#else
+		not matched with the I.R.S Tax Information Number database.
+
+		<p>
+			The result indicates that the Tax Information Number
+			#if(${template.entity.status.code} == 'invalid_tin_format' || ${template.entity.status.code} == 'invalid_request')
+				is not a valid TIN.
+			#elseif(${template.entity.status.code} == 'not_issued')
+				provided is not currently issued.
+			#elseif(${template.entity.status.code} == 'not_matched')
+				and Name combination does not match with the I.R.S. records.
+			#elseif(${template.entity.status.code} == 'duplicate_tin')
+				already exists in the WorkMarket system.
+			#elseif(${template.entity.status.code} == 'wrong_type_ssn' ||
+				${template.entity.status.code} == 'wrong_type_ein' ||
+				${template.entity.status.code} == 'wrong_type_both')
+				and Name combination were not found in the I.R.S. records.
+			#end
+			Please update your W-9 from in your WorkMarket account with the correct information.
+			<a href="${baseurl}/account/tax">Edit Your Tax Information</a>
+		</p>
+
+		<p style="font-weight:bold">Please note that you will not be able to withdraw funds from WorkMarket until your tax information
+			has been verified with the I.R.S.</p>
+	#end
+	<br/>
+	<p>Best Regards, <br/> WorkMarket</p>
+	</p>
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

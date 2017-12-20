@@ -1,0 +1,25 @@
+<td>
+	<label class="span3 {{#if this.isRequiredCustomField}}required{{/if}}">{{this.model.name}}</label>
+</td>
+<td>
+{{#if this.isReadOnly}}
+	<input type="text" disabled="disabled" value="{{#if this.model.value}}{{this.model.value}}{{/if}}" class='span5'/>
+	{{else}}
+		<input type="hidden" name="customFieldGroupSet[{{this.model.groupIndex}}].fields[{{this.model.index}}].id" value="{{this.model.id}}"/>
+	<select name="customFieldGroupSet[{{this.model.groupIndex}}].fields[{{this.model.index}}].value" class="span5
+		{{#if this.isRequiredAndTypeWorker}}required{{/if}}
+		" data-icon="check-{{this.model.index}}">
+		<option value="">Select</option>
+		{{#each this.model.options}}
+			<option value="{{this}}" {{#[../../../helpers/eq] this ../this.model.value}}selected="selected"{{/[../../../helpers/eq]}}>{{this}}</option>
+		{{/each}}
+</select>
+{{/if}}
+
+{{#if this.isAdminRequiredAndWorkerField}}
+	<small class="meta">Required</small>
+{{/if}}
+</td>
+<td>
+	<i id="check-{{this.model.index}}"></i>
+</td>

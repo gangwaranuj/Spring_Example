@@ -1,0 +1,304 @@
+<div class="profile-card{{#if this.isVendor}} -vendor{{/if}}">
+		{{#unless this.isVendor}}
+			<div class="profile-card--user-type-banner {{#[../../helpers/eq] this.user.userType "VENDOR"}}-vendor{{/[../../helpers/eq]}} {{#[../../helpers/eq] this.user.userType "WORKER"}}-worker{{/[../../helpers/eq]}}">
+				{{#[../../helpers/eq] this.user.userType "WORKER"}}WORKER{{/[../../helpers/eq]}}
+				{{#[../../helpers/eq] this.user.userType "VENDOR"}}COMPANY{{/[../../helpers/eq]}}
+			</div>
+		{{/unless}}
+    <div class="profile-card--photo" {{#unless this.isVendor}} data-first-name="{{this.user.first_name}}" data-last-name="{{this.user.last_name}}" data-userNumber="{{this.user.userNumber}}" data-userType="{{this.user.userType}}" {{/unless}} {{#if this.isVendor}} data-company-name="{{this.user.company_name}}" data-companyNumber="{{this.user.companyNumber}}"{{/if}}>
+        {{#if this.avatarAssetUri}}{{> ../../funcs/templates/avatar src=this.avatarAssetUri}}{{/if}}
+        {{#unless this.avatarAssetUri}}{{> ../../funcs/templates/avatar hash=this.orUserNumberOrCompanyNumber}}{{/unless}}
+        {{#unless this.isCheckboxBlocked}}
+            {{#unless this.user.blocked}}
+                {{#[../../helpers/eq] this.user.userType "WORKER"}}
+                    {{> ../../funcs/templates/checkbox name="profile" value=this.user.userNumber}}
+                {{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.userType "VENDOR"}}
+                    {{> ../../funcs/templates/checkbox name="profile" value=this.user.userNumber}}
+                {{/[../../helpers/eq]}}
+            {{/unless}}
+        {{/unless}}
+
+        <div class="status">
+            {{#[../../helpers/eq] this.mode this.searchModes.groupDetail}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.member}}<span class="wm-status-label member">MEMBER</span>{{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.memberOverride}}<span class="wm-status-label pending">MEMBER OVERRIDE</span>{{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.pending}}<span class="wm-status-label pending">PENDING</span>{{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.pendingFailed}}<span class="wm-status-label pending">PENDING OVERRIDE</span>{{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.invited}}<span class="wm-status-label invited">INVITED</span>{{/[../../helpers/eq]}}
+                {{#[../../helpers/eq] this.user.derivedStatus this.memberStatus.declined}}<span class="wm-status-label declined">DECLINED</span>{{/[../../helpers/eq]}}
+            {{/[../../helpers/eq]}}
+            {{#if this.user.blocked }}<span class="wm-status-label declined">BLOCKED</span>{{/if}}
+        </div>
+
+        {{#[../../helpers/eq] this.mode this.searchModes.assessment}}
+            {{#[../../helpers/eq] this.user.assessmentStatus this.assessmentStatuses.invited}}
+                <div class="status"><span class="wm-status-label invited">INVITED</span></div>
+            {{/[../../helpers/eq]}}
+        {{/[../../helpers/eq]}}
+
+        {{#[../../helpers/eq] this.mode this.searchModes.assignment}}
+            <div class="status">
+                {{#if this.isExistingWorker}}
+                    {{#if this.isAppliedWorker}}<span class="wm-status-label pending">Applied</span>{{/if}}
+                    {{#unless this.isAppliedWorker}}<span class="wm-status-label invited">Invited</span>{{/unless}}
+                    {{#if this.isDeclinedWorker}}<span class="wm-status-label declined">Declined</span>{{/if}}
+                {{/if}}
+
+                {{#if this.isInvitedVendor}}<span class="wm-status-label invited">Invited</span>{{/if}}
+                {{#if this.isDeclinedVendor}}<span class="wm-status-label declined">Declined</span>{{/if}}
+            </div>
+        {{/[../../helpers/eq]}}
+    </div>
+    <div class="profile-card--details">
+        <h2 class="profile-card--header">
+            {{#if this.isVendor}}<span class="profile-card--name">{{this.company_name}}</span>{{/if}}
+            {{#unless this.isVendor}}
+                <a href="/profile/{{this.user.userNumber}}" class="profile-card--name open-user-profile-popup" data-user-number="{{this.user.userNumber}}" data-user-type="{{this.user.userType}}" data-number="{{this.user.userNumber}}">{{this.user.first_name }} {{this.user.last_name}}</a>
+            {{/unless}}
+            {{#[../../helpers/eq] this.user.lane 0}}<span class="profile-card--badge tooltipped tooltipped-n" aria-label="Employee">E</span>{{/[../../helpers/eq]}}
+            {{#[../../helpers/eq] this.user.lane 1}}<span class="profile-card--badge tooltipped tooltipped-n" aria-label="Employee">E</span>{{/[../../helpers/eq]}}
+            {{#[../../helpers/eq] this.user.lane 2}}<span class="profile-card--badge tooltipped tooltipped-n" aria-label="Invited Contractor">C</span>{{/[../../helpers/eq]}}
+            {{#[../../helpers/eq] this.user.lane 3}}<span class="profile-card--badge tooltipped tooltipped-n" aria-label="Third Party Contractor">3</span>{{/[../../helpers/eq]}}
+            <small>ID: {{#if this.isVendor}}{{this.user.companyNumber}}{{/if}}{{#unless this.isVendor}}{{this.user.userNumber}}{{/unless}}</small>
+        </h2>
+        {{> ../../funcs/templates/search-score-card
+        isDispatch=this.isDispatch
+        score=this.user.score
+        satisfaction=this.user.rating
+        ontime=this.user.ontime_reliability
+        deliverables=this.user.deliverable_on_time_reliability
+        paidassign=this.user.work_completed_count
+        cancelled=this.user.work_cancelled_count
+        paidassignforcompany=this.user.work_completed_company_count
+        abandoned=this.user.abandoned_count
+        }}
+        <ul class="profile-card--address">
+            {{#if this.job_title}}<li class="profile-limited-field"><span {{#if this.jobTitleHighlighted}} class="profile-highlight" {{/if}}>Job Title:</span> {{{this.job_title}}}</li>{{/if}}
+            {{#unless this.isVendor}}<li>{{this.user.company_name}}</li>{{/unless}}
+            <li>
+                {{#if this.isUsa}}
+                    {{this.user.city}}, {{this.user.state}} {{this.user.postal_code}}
+                {{/if}}
+                {{#unless this.isUsa}}
+                    {{this.user.postal_code}} {{this.user.city}} {{this.user.country}}
+                {{/unless}}
+                {{#if this.distance}}{{this.distance}} miles{{/if}}
+            </li>
+            <li>{{#if this.isValidEmail}}{{this.email}}{{/if}}</li>
+        </ul>
+        <ul class="profile-card--secondary">
+            {{#unless this.isVendor}}<li><span>Member since</span> <small>{{this.created_on}}</small></li>{{/unless}}
+            {{#if this.background_check}}
+                <li>
+                    <span class="passed"><i class="wm-icon-checkmark"></i> PASSED</span>
+                    <small>{{this.background_check_date}}</small>
+                </li>
+            {{/if}}
+            {{#if this.background_check_failed}}
+                <li>
+                    <span class="failed"><i class="wm-icon-x"></i> ALERT</span>
+                    <small>{{this.background_check_date}}</small>
+                </li>
+            {{/if}}
+            {{#if this.drug_test}}
+                <li>
+                    <span class="passed"><i class="wm-icon-pill"></i> PASSED</span>
+                    <small>{{this.drug_test_date}}</small>
+                </li>
+            {{/if}}
+            {{#if this.drug_test_failed}}
+                <li>
+                    <span class="failed"><i class="wm-icon-pill"></i> FAILED</span>
+                    <small>{{this.drug_test_date}}</small>
+                </li>
+            {{/if}}
+        </ul>
+
+        <ul class="profile-card--tests">
+            {{#if this.publicWorkers}}<li><span>Team Size</span> <small>{{this.publicWorkers}}</small></li>{{/if}}
+            {{#if this.lastWork}}<li><span>Last Work</span> <small>{{this.lastWork}}</small></li>{{/if}}
+            {{#if this.isVendor}}<li><span>Member since</span> <small>{{this.created_on}}</small></li>{{/if}}
+            {{#if this.groups}}
+                {{#if this.groups.length}}
+                    <div class="card-data">
+                        <span>Talent Pools ({{this.groups.length}}): </span>
+                        <span>{{this.firstGroup}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if this.company_assessments}}
+                {{#if this.company_assessments.length}}
+                    <div class="card-data">
+                        <span>Tests ({{this.company_assessments.length}}): </span>
+                        <span>{{{this.firstCompanyAssessment}}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if this.certifications}}
+                {{#if this.certifications.length}}
+                    <div class="card-data profile-limited-field">
+                        <span {{#if this.certificationNamesHighlighted }} class="profile-highlight" {{/if}}>Certifications ({{this.certifications.length}}): </span>
+                        <span>{{{this.firstCertifications}}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if this.licenses}}
+                {{#if this.licenses.length}}
+                    <div class="card-data profile-limited-field">
+                        <span {{#if this.licensesHighlighted}} class="profile-highlight" {{/if}}>Licenses ({{this.licenses.length}}): </span>
+                        <span>{{{this.firstLicenses}}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if this.insurances}}
+                {{#if this.insurances.length}}
+                    <div class="card-data profile-limited-field">
+                        <span {{#if this.insurancesHighlighted}} class="profile-highlight" {{/if}}>Insurances ({{this.insurances.length}}): </span>
+                        <span>{{{this.firstInsurances}}}</span>
+                    </div>
+                {{/if}}
+            {{/if}}
+            {{#if this.searchHighlights}}
+                {{#each this.searchHighlights}}
+                    <div class="card-data profile-limited-field profile-card--highlights">
+                        <span>{{{this}}}</span>
+                    </div>
+                {{/each}}
+            {{/if}}
+        </ul>
+        <div class="profile-card--eligibility-requirements">
+            {{#if this.eligibility.criteria}}
+                {{#if this.eligibility.criteria.length}}
+                    <h2 class="profile-card--header">
+                        Assignment Eligibility Requirements
+                    </h2>
+                    <ul class="profile-card--eligibility">
+                        {{#each this.eligibility.criteria}}
+                            <li>
+                            <span class="{{#if this.met}}passed{{/if}}{{#unless this.met}}failed{{/unless}} pull-left">
+                                <i class="wm-icon{{#if this.met}}-checkmark{{/if}}{{#unless this.met}}-x{{/unless}}"></i>
+                            </span>
+                                <span class="profile-card--eligibility-item">{{this.name}}</span>
+                            </li>
+                        {{/each}}
+                    </ul>
+                {{/if}}
+            {{/if}}
+        </div>
+    </div>
+    {{#unless this.disableActions}}
+        <div class="profile-card--shade">
+            <div class="profile-card--view-profile wm-icon-eye" data-user-number="{{this.orUserNumberOrCompanyNumber}}" data-user-type="{{this.user.userType}}">View Profile</div>
+            {{#unless this.user.blocked}}
+                <div class="profile-card--actions">
+					{{#[../../helpers/eq] this.user.userType 'VENDOR'}}
+						{{#unless this.user.blocked}}
+							{{#unless this.isCheckboxBlocked}}
+								{{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action send-assignment tooltipped tooltipped-n" text="<i class='wm-icon-page-out'></i>" tooltip="Send Assignment" }}
+							{{/unless}}
+							{{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action tests-quick-action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-test'></i>" value="test" tooltip="Invite to Test"}}
+						{{/unless}}
+					{{/[../../helpers/eq]}}
+                    {{#if this.isDispatch}}
+                        {{#if this.assignToFirstWorker}}
+                            <button
+                                {{#unless this.eligibility.eligible}} class="button -toggle dispatch-accept tooltipped tooltipped-n" aria-label="Worker must meet all requirements" disabled{{/unless}}
+                                {{#if this.eligibility.eligible}}class="button dispatch-accept -toggle"{{/if}}
+                                                                      data-usernumber="{{this.user.userNumber}}"
+                                                                      href="javascript:void(0);">Accept
+                            </button>
+                            {{#unless this.eligibility.eligible}}
+                                <button class="button -toggle dispatch-forward tooltipped tooltipped-n"
+                                        aria-label="Forward to Worker to fulfill missing eligibility requirements"
+                                        data-usernumber="{{this.user.userNumber}}" href="javascript:void(0);">
+                                        Forward
+                                </button>
+                            {{/unless}}
+                        {{/if}}
+                        {{#unless this.assignToFirstWorker}}
+                            <button
+                                {{#[../../helpers/eq] this.isAppliedWorker true}}
+                                class="button -toggle dispatch-apply tooltipped tooltipped-n"
+                                disabled
+                                aria-label="Worker has already applied"
+                                {{else}}
+                                    {{#unless this.eligibility.eligible}}
+                                class="button -toggle dispatch-apply tooltipped tooltipped-n"
+                                aria-label="Worker must meet all requirements"
+                                disabled
+                                    {{/unless}}
+                                    {{#if this.eligibility.eligible}}class="button -toggle dispatch-apply"{{/if}}
+                                {{/[../../helpers/eq]}}
+                                data-usernumber="{{this.user.userNumber}}">Apply
+                            </button>
+                            {{#unless this.isExistingWorker}}
+                                {{#unless this.eligibility.eligible}}
+                                    <button class="button -toggle dispatch-forward tooltipped tooltipped-n"
+                                        aria-label="Forward to Worker to fulfill missing eligibility requirements"
+                                        data-usernumber="{{this.user.userNumber}}" href="javascript:void(0);">
+                                        Forward
+                                    </button>
+                                {{/unless}}
+                            {{/unless}}
+                        {{/unless}}
+                    {{/if}}
+                    {{#unless this.isDispatch}}
+                        {{#[../../helpers/eq] this.mode this.searchModes.groupDetail}}
+                            {{#[../../helpers/eq] this.user.derivedStatus  this.memberStatus.pendingFailed}}
+                                {{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action missingreqs-quick-action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-x'></i>" value="missingreqs" tooltip="Show Missing Talent Pool Requirements"}}
+                            {{/[../../helpers/eq]}}
+                        {{/[../../helpers/eq]}}
+                        {{#unless this.isVendor}}
+                            {{#[../../helpers/eq] this.user.userType 'WORKER'}}
+                                {{#unless this.isCheckboxBlocked}}
+                                    {{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action send-assignment tooltipped tooltipped-n" text="<i class='wm-icon-page-out'></i>" tooltip="Send Assignment" }}
+                                {{/unless}}
+                                {{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action groups-quick-action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-users'></i>" value="group" tooltip="Invite to Talent Pool"}}
+                                {{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action tests-quick-action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-test'></i>" value="test" tooltip="Invite to Test"}}
+                                {{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-speech'></i>" value="comment" tooltip="Add Comments"}}
+                            {{/[../../helpers/eq]}}
+                        {{/unless}}
+						{{#if this.isVendor}}
+							{{#[../../helpers/eq] this.user.userType 'VENDOR'}}
+								{{#unless this.isCheckboxBlocked}}
+									{{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action send-assignment tooltipped tooltipped-n" text="<i class='wm-icon-page-out'></i>" tooltip="Send Assignment" }}
+								{{/unless}}
+								{{> ../../funcs/templates/switch name="profile-card-action" classlist="profile-card--action tests-quick-action tooltipped tooltipped-n" isUnique="true" text="<i class='wm-icon-test'></i>" value="test" tooltip="Invite to Test"}}
+							{{/[../../helpers/eq]}}
+						{{/if}}
+                    {{/unless}}
+                </div>
+            {{/unless}}
+            <div class="profile-card--drawer">
+                <div class="profile-card--missingreqs">
+                    <small class="missing-reqs--template"></small>
+                    <button class="button profile-card--close">Close</button>
+                </div>
+                <div class="profile-card--group">
+                    <small>If the talent pool is public, the worker will receive an invitation via email with information regarding your talent pool. If the talent pool is private, the worker will be added immediately.</small>
+                    <label>
+                        Select Talent Pool:
+                        <select class="wm-select group-select"></select>
+                    </label>
+                    <button class="button -primary profile-card--invite-group profile-card--close" data-user-number="{{this.user.userNumber}}">Invite to Talent Pool</button>
+                    <button class="button profile-card--close">Close</button>
+                </div>
+                <div class="profile-card--test">
+                    <small>The worker will receive a notification informing them of a pending test invitation including any instructions outlined in the tests description.</small>
+                    <label>
+                        Select Test:
+                        <select class="wm-select test-select"></select>
+                    </label>
+                    <button class="button -primary profile-card--invite-test profile-card--close" data-user-number="{{this.user.userNumber}}">Invite to Test</button>
+                    <button class="button profile-card--close">Close</button>
+                </div>
+                <div class="profile-card--comment" data-float-label="Add Comment">
+                    <textarea placeholder="Add Comment here..."></textarea>
+                    <button class="button -primary profile-card--add-comment profile-card--close" data-user-number="{{this.user.userNumber}}">Add Comment</button>
+                    <button class="button profile-card--close">Close</button>
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+</div>

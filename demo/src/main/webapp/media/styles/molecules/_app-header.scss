@@ -1,0 +1,359 @@
+$app-header: (
+	search: (
+		padding: element-padding(),
+		border-width: 1px,
+		icon: (
+			font-size: 1em
+		),
+		submit: (
+			spacing: 1px,
+			font-size: $small-font-size
+		)
+	)
+);
+
+@function app-header-search-submit-spacing() {
+	$size-difference: $base-element-size - map-fetch($app-header, search, submit, font-size);
+	@return em($size-difference / map-fetch($app-header, search, submit, font-size));
+}
+
+%app-header--slider-lines {
+	display: block;
+	width: 1em;
+	height: calc(1em / 7);
+	background: $blue;
+	border-radius: calc(1em / 14);
+	transition: $nav-transition-duration;
+}
+
+%app-header--flex {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+// New Styles
+
+.app-nav {
+	@include scaffolding;
+	@include new-typography;
+	.header-scroll {
+		box-shadow: 0 0 0.25em 0 $off-white;
+	}
+	.app-header {
+		@include clearfix;
+		@include reset-box-sizing;
+		position: fixed;
+		width: 100%;
+		height: 3.65em;
+		min-height: 3.65em;
+		background-color: $white;
+		box-sizing: border-box;
+		transform: translateZ(0);
+		z-index: $nav-index + 1;
+		background-color: $white;
+		color: $grey;
+		#nav-drawer {
+			&--slider {
+				box-sizing: border-box;
+				background-clip: padding-box;
+				cursor: pointer;
+			}
+		}
+		.logo-work-market {
+			position: absolute;
+			left: 50%;
+			transform: translateX(-50%);
+			width: 7.5em;
+			height: 3.65em;
+			fill: $grey;
+		}
+		.wm-dropdown {
+			padding: 0.2em 0em;
+			&--content {
+				right: -10px;
+				top: 35px;
+			}
+			&--menu {
+				list-style: none;
+				margin: 0.5em 0em;
+				li {
+					font-size: 0.85em;
+					border-bottom: 1px solid $off-white;
+					padding: 0.5em 0em;
+					&:last-of-type {
+						border: none;
+					}
+					&:first-of-type {
+						border-bottom: 1px solid $light-grey;
+					}
+					span, a {
+						margin: 0.25em 1.5em;
+					}
+				}
+			}
+		}
+		@media screen and (max-width: 670px) {
+			.logo-work-market {
+				width: 7.5em;
+				left: 35%;
+			}
+		}
+		&--slider-button {
+			@include hamburger($grey);
+			cursor: pointer;
+			user-select: none;
+			line-height: 1;
+			margin: 1.25em;
+			height: 4px !important;
+			width: 1.5em !important;
+			&:before, &:after {
+				width: 1.5em !important;
+				height: 4px !important;
+			}
+			&:before {
+				top: -6px;
+			}
+		}
+		&--left {
+			@extend %app-header--flex;
+			float: left;
+			margin: 0.35em 4em 0.5em 0em;
+			.search {
+				padding: 0.75em;
+			}
+		}
+		&--right {
+			height: 3.65em;
+			@extend %app-header--flex;
+			float: right;
+			@media screen and (max-width: 670px) {
+				font-size: 0.8em;
+			}
+		}
+		&--contact {
+			cursor: pointer;
+			.wm-icon-headset {
+				font-size: 1.25em;
+				padding: 0.2em;
+			}
+			.wm-dropdown {
+				&--content {
+					right: -11px;
+					top: 36px;
+					@media only screen and (max-width: 670px) {
+						right: -9px;
+						top: 29px;
+					}
+				}
+				&--menu {
+					list-style: none;
+					margin: 0.5em 0em;
+					li {
+						span, a {
+							margin: 0.25em 1.5em;
+						}
+						a {
+							margin: 0.25em 0.5em;
+						}
+						i {
+							padding: 0.25em 0em 0.25em 1.5em;
+						}
+					}
+				}
+			}
+		}
+		&--funds {
+			@extend %header-side-right-text;
+			position: relative;
+
+			&:first-child {
+				margin: 0.8em 0.8em 0;
+				color: $grey;
+			}
+			.wm-icon-payments {
+				display: block;
+				text-align: center;
+
+				&::before {
+					font-size: 1em;
+				}
+				&:first-child {
+					color: $grey;
+				}
+				& + .wm-icon-payments {
+					color: $white;
+				}
+			}
+			#available-funds {
+				color: $grey;
+				text-decoration: none;
+				&:hover {
+					color: $grey;
+				}
+			}
+		}
+		&--notifications {
+			position: relative;
+			margin: 0.5em 0.5em 0;
+			cursor: pointer;
+			.wm-notification {
+				color: $grey;
+			}
+			.wm-dropdown {
+				&--content {
+					right: -8px;
+					top: 35px;
+					@media only screen and (max-width: 670px) {
+						right: -6px;
+						top: 29px;
+					}
+				}
+				.dropdown-notifications {
+					.dropdown-menu--header{
+						width: 25em;
+						.row-fluid {
+							a {
+								float: right;
+								width: 30%;
+							}
+							span {
+								float: left;
+								width: 30%;
+							}
+						}
+					}
+					.dropdown-menu--item {
+						a {
+							color: $grey;
+							display: block;
+						}
+						small {
+							color: $orange;
+							display: block;
+							margin: 0.25em 1.5em;
+						}
+						#notification_status {
+							padding: 0.3em;
+						}
+					}
+					.dropdown-menu--footer {
+						#see-all {
+							margin: 0.75em 1.5em;
+						}
+					}
+				}
+			}
+			.wm-icon-bell {
+				font-size: 1.25em;
+			}
+			.no-notifications {
+				text-align: center;
+				margin: 0.5em;
+				&#notifications_missing {
+					border: none;
+				}
+			}
+			.wm-spinner {
+				display: block;
+				margin: 1em auto;
+			}
+		}
+		&--profile {
+			margin: -0.8em 2em -1em 0;
+			cursor: pointer;
+			.wm-dropdown--content {
+				right: -7px;
+				top: 43px;
+				@media only screen and (max-width: 670px) {
+					right: -3px;
+					top: 40px;
+				}
+			}
+			.persona-toggle-container {
+				padding: 0.5em 0;
+			}
+			.persona-toggle {
+				i {
+					display: inline-block;
+				}
+				&.active {
+					color: $orange;
+				}
+			}
+		}
+		&--search {
+			display: flex;
+			a {
+				&:before {
+					font-size: 1.5em;
+				}
+			}
+			.button {
+				border-radius: 0.25em 0.0em 0.0em 0.25em;
+				background-color: $grey;
+				border-color: $grey;
+				box-shadow: none;
+				.button--content {
+					padding: calc(0.5em - 5px) calc(0.5em - 1px);
+				}
+				&:hover {
+					background-color: $orange;
+					border-color: $orange;
+				}
+			}
+			.search {
+				padding: 0;
+				.search--submit {
+					border-radius: 3px;
+					top: 8px;
+					right: -4em;
+					padding: calc(0.45em - 1px);
+					background-color: $blue;
+					font-size: 0.75em;
+					&.-active {
+						right: 3px;
+					}
+				}
+				&--input {
+					border-radius: 0.0em 0.25em 0.25em 0.0em;
+					height: 2.5em;
+					width: 180px;
+				}
+			}
+		}
+	}
+	@media only screen and (max-width: 670px) {
+		&.open ~ .wm-page-container {
+			width: 100%;
+		}
+		& ~ .wm-page-container{
+			padding: 0;
+		}
+		.logo-work-market {
+			display: none;
+		}
+		#header {
+			.app-header--search {
+				display: none;
+			}
+		}
+	}
+	@media only screen and (min-width: 671px) and (max-width: 768px) {
+		&.open ~ .wm-page-container {
+			margin-left: 0;
+		}
+		& ~ .wm-page-container {
+			padding: 0 4em;
+		}
+	}
+	@media only screen and (min-width: 769px) {
+		&.open ~ .wm-page-container {
+			margin-left: 9rem;
+		}
+		& ~ .wm-page-container {
+			padding: 0 4em;
+			transition: margin-left 0.3s ease-out;
+		}
+	}
+}

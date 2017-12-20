@@ -1,0 +1,17 @@
+<div id="reply{{this.id}}" class="forums-reply-box">
+	<div class="forums-user-icon">{{{this.avatarURI}}}</div>
+	<p class="creator-name">{{this.creator}}</p>
+	<p class="forums-post-date"> {{this.createdOn}} </p>
+	<p id="comment{{this.id}}" class="forums-post-comment">{{this.comment}}</p>
+	<div class="forums-post-controls">
+		{{#if this.isInternal}}
+			<a class="admin-post-delete-btn" data-post-id="{{this.id}}">Delete Post</a>
+			<a class="admin-ban-user-btn" data-user-id="{{this.creatorId}}">Ban User</a>
+		{{/if}}
+		{{#unless this.isInternal}}
+			<a class="user-post-delete-btn" data-post-id="{{this.id}}">Delete Post</a>
+		{{/unless}}
+		<a class="user-comment-edit-btn" data-post-id="{{this.id}}">Edit Post</a>
+		<button class="user-post-reply-btn button" id="commentReply{{this.id}}">Reply</button>
+	</div>
+</div>

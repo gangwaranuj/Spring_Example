@@ -1,0 +1,191 @@
+$form-element-padding-right: 0.5em;
+
+$wm-select: (
+	arrow-width: 5px,
+	arrow-background: (
+		width: 1.6em,
+		border: 1px
+	),
+	remove-button: (
+		font-size: 1.35em
+	),
+	item: (
+		horizontal-padding: 0.5em
+	)
+);
+
+%selectize-control {
+	padding: 0.2em 0.5em 0;
+
+	&.has-items {
+		padding: 0.2em map-fetch($wm-select, arrow-background, width) 0 0.2em;
+	}
+	& > div {
+		@include ellipsis;
+		box-sizing: border-box;
+		max-width: 100%;
+		display: block;
+		float: left;
+		margin: 0 0.2em 0.2em 0;
+		padding: 0 map-fetch($wm-select, item, horizontal-padding);
+		height: 1.5em;
+		line-height: 1.5;
+	}
+}
+
+.selectize-control {
+	background-color: $white;
+	border-radius: $base-border-radius;
+
+	.selectize-input.items, .selectize-dropdown-content [data-selectable] {
+		[class^="wm-icon"]:before {
+			display: inline-block;
+		}
+	}
+}
+
+.selectize-dropdown,
+.selectize-input,
+.selectize-input input {
+	font-size: inherit;
+}
+
+.selectize-input {
+	box-shadow: none;
+	display: block;
+	min-height: 2em;
+	line-height: 1;
+	border: $default-border;
+
+	&.focus {
+		box-shadow: 0 0 5px rgba($orange, 0.5);
+		background-color: rgba($orange, 0.05);
+		border-color: $orange;
+		color: $orange;
+	}
+	&.dropdown-active {
+		border-radius: $base-border-radius;
+	}
+
+	.selectize-control & input[type="text"] {
+		height: 1.6em;
+		font-size: 1em;
+	}
+	.selectize-control.single & {
+		@extend %selectize-control;
+		overflow: visible;
+
+		& > div {
+			padding-right: 0;
+		}
+		&.input-active {
+			display: block;
+			background-color: rgba($orange, 0.05);
+		}
+	}
+	.selectize-control.multi & {
+		@extend %selectize-control;
+		overflow: auto;
+
+		& > div {
+			border-radius: $base-border-radius - 1px;
+			background-color: $grey;
+			color: $white;
+
+			&.active {
+				background-color: $orange;
+				color: $white;
+			}
+		}
+	}
+	// Selectize inputs for select dropdowns need the right side toggle box & arrow
+	select + .selectize-control.single &,
+	select + .selectize-control.multi & {
+		padding-right: map-fetch($wm-select, arrow-background, width);
+
+		&::before {
+			display: none;
+		}
+		&::after {
+			@include triangle(down, $grey, map-get($wm-select, arrow-width));
+			position: absolute;
+			top: 50%;
+			// Center the arrow within the background
+			right: calc(#{map-fetch($wm-select, arrow-background, width) / 2} + #{map-fetch($wm-select, arrow-background, border)} - #{map-get($wm-select, arrow-width)});
+			margin-top: -3px;
+		}
+
+		&.focus {
+			&::before {
+				color: $orange;
+			}
+			&::after {
+				@include triangle(down, $orange, map-get($wm-select, arrow-width));
+				margin-top: -3px;
+			}
+		}
+
+		.remove {
+			font-size: map-fetch($wm-select, remove-button, font-size);
+			line-height: 1;
+			padding: 0;
+			width: 1em;
+		}
+	}
+
+	input {
+		display: block !important; // Important flag overrides selectize JS positioning
+		float: left;
+	}
+
+	// Legacy
+	&.items {
+		margin: 0;
+	}
+}
+
+.selectize-control {
+	margin-bottom: $base-element-bottom-spacing;
+
+	&.plugin-remove_button {
+		[data-value] {
+			padding-right: calc(#{map-fetch($wm-select, remove-button, font-size) + map-fetch($wm-select, item, horizontal-padding)} + 1px) !important; // Important flag overrides selectize important styling
+		}
+	}
+}
+
+.selectize-dropdown {
+	border-radius: $base-border-radius;
+	box-shadow: $default-box-shadow;
+	margin: 0.3em -0.5em 0;
+	border: $default-border;
+	min-width: calc(100% + 1em);
+	z-index: $site-footer-index + 1;
+}
+
+.selectize-dropdown-content {
+	padding: 0.5em 0.1em;
+	color: rgba($dark-grey, 0.68);
+	max-height: 24em;
+
+	.active {
+		background-color: rgba($light-grey, 0.12);
+		color: $orange;
+	}
+
+	.selected::after,
+	.active::after {
+		@include icon(checkmark);
+		@include transform(translate(0,-50%));
+		position: absolute;
+		right: 1em;
+		top: 50%;
+		font-size: 0.7em;
+	}
+
+	[data-selectable] {
+		box-sizing: border-box;
+		padding: 0.8rem;
+		position: relative;
+	}
+}

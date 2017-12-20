@@ -1,0 +1,48 @@
+<div class="message{{#if this.responses.length}} -has-response{{/if}}{{#if this.creator.isCurrentUser}} -is-sent{{else}} -is-received{{/if}}{{#if recentlyAdded}}{{#[../../helpers/eq] recentlyAdded.id this.id}} -is-new'{{/[../../helpers/eq]}}{{/if}}" data-id="{{this.id}}">
+	<a class="message--avatar open-user-profile-popup" href="/profile/{{this.creator.id}}" data-number="{{this.creator.id}}">
+		{{#if this.creator.isWorker}}
+			{{> ../templates/avatar type="worker" src=this.creator.thumbnail hash=this.creator.id}}
+		{{else}}
+			{{> ../templates/avatar type="company" src=this.creator.thumbnail hash=this.creator.id}}
+		{{/if}}
+	</a>
+	<div class="message--new-label">New</div>
+	<div class="message--details">
+		<div class="message--meta">
+			<a class="message--name open-user-profile-popup" href="/profile/{{this.creator.id}}" data-number="{{this.creator.id}}">{{this.creator.fullName}}</a> posted{{#if this.onBehalfUser}} in reference to {{this.onBehalfUser.fullName}}{{/if}}:
+			{{#unless this.isQuestion}}
+				{{#if this.isPublic}}
+					{{#[../../helpers/unlesseq] activeFilter 'public-messages'}}
+						<span class="message--privacy tooltipped tooltipped-w" aria-label="This messages is visible to all applied workers.">
+							<i class="wm-icon-globe-circle"></i>
+						</span>
+					{{/[../../helpers/unlesseq]}}
+				{{else}}
+					{{#if this.isPrivileged}}
+						{{#[../../helpers/unlesseq] activeFilter 'privileged-messages'}}
+							<span class="message--privacy tooltipped tooltipped-w" aria-label="This message is visible to the assigned worker.">
+								<i class="wm-icon-add-user-circle"></i>
+							</span>
+						{{/[../../helpers/unlesseq]}}
+					{{else}}
+						{{#if this.isPrivate}}
+							{{#[../../helpers/unlesseq] activeFilter 'private-messages'}}
+								<span class="message--privacy tooltipped tooltipped-w" aria-label="This message is only visible to your company.">
+									<i class="wm-icon-lock-circle"></i>
+								</span>
+							{{/[../../helpers/unlesseq]}}
+						{{/if}}
+					{{/if}}
+				{{/if}}
+			{{/unless}}
+			<span class="message--date">{{this.createdOnDate}}</span>
+		</div>
+		<div class="message--content">
+			<div class="message--text" title="{{this.content}}">{{this.content}}</div>
+		</div>
+	</div>
+	<div class="message--response">
+		<textarea name="new-response-content" class="message--new-response-content" placeholder="Write a reply&hellip;" rows="4"></textarea>
+		<button class="button -primary message--post-response">Reply</button>
+	</div>
+</div>

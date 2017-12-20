@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<bean id="samlFilter" class="org.springframework.security.web.FilterChainProxy">
+		<security:filter-chain-map request-matcher="ant">
+			<security:filter-chain pattern="/saml/login/**" filters="samlEntryPoint"/>
+			<security:filter-chain pattern="/saml/SSO/**" filters="samlWebSSOProcessingFilter"/>
+		</security:filter-chain-map>
+		<property name="firewall">
+			<bean class="com.workmarket.domains.authentication.web.DoNothingHttpFirewall"/>
+		</property>
+	</bean>
+
+	<!-- Logger for SAML messages and events -->
+	<bean id="samlLogger" class="org.springframework.security.saml.log.SAMLDefaultLogger"/>
+
+	<!-- Central storage of cryptographic keys -->
+	<bean id="keyManager" class="org.springframework.security.saml.key.EmptyKeyManager"/>
+
+	<!-- Entry point to initialize authentication, default values taken from properties file -->
+	<bean id="samlEntryPoint" class="com.workmarket.domains.authentication.saml.metadata.WMSAMLEntryPoint">
+		<property name="defaultProfileOptions">
+			<bean class="org.springframework.security.saml.websso.WebSSOProfileOptions">
+				<property name="includeScoping" value="false"/>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="metadataGenerator" class="org.springframework.security.saml.metadata.MetadataGenerator" />
+
+	<!-- Filter automatically generates default SP metadata -->
+	<bean id="metadataGeneratorFilter" class="org.springframework.security.saml.metadata.MetadataGeneratorFilter">
+		<constructor-arg ref="metadataGenerator"/>
+	</bean>
+
+	<!-- IDP Metadata configuration - metadata is managed in sso microservice so nothing to do here -->
+	<bean id="metadata" class="com.workmarket.domains.authentication.saml.metadata.WMMetadataManager" />
+
+	<bean id="samlAuthenticationProvider" class="com.workmarket.domains.authentication.providers.SSOAuthenticationProvider">
+		<property name="userDetails">
+			<bean class="com.workmarket.service.business.integration.sso.SSOUserDetailsService"/>
+		</property>
+		<property name="forcePrincipalAsString" value="false" />
+	</bean>
+
+	<!-- Provider of default SAML Context -->
+	<bean id="contextProvider" class="com.workmarket.domains.authentication.saml.metadata.WMSAMLContextProviderImpl"/>
+
+	<!-- Processing filter for WebSSO profile messages -->
+	<bean id="samlWebSSOProcessingFilter" class="org.springframework.security.saml.SAMLProcessingFilter">
+		<property name="authenticationManager" ref="samlAuthenticationManager"/>
+		<property name="authenticationSuccessHandler">
+			<bean class="com.workmarket.domains.authentication.handlers.SSOLoginSuccessHandler">
+				<property name="defaultTargetUrl" value="/home"/>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Class loading incoming SAML messages from httpRequest stream -->
+	<bean id="samlProcessor" class="com.workmarket.domains.authentication.saml.metadata.WMSAMLProcessorImpl">
+		<constructor-arg>
+			<list>
+				<ref bean="redirectBinding"/>
+				<ref bean="postBinding"/>
+				<ref bean="artifactBinding"/>
+				<ref bean="soapBinding"/>
+				<ref bean="paosBinding"/>
+			</list>
+		</constructor-arg>
+	</bean>
+
+	<!-- SAML 2.0 WebSSO Assertion Consumer -->
+	<bean id="webSSOprofileConsumer" class="com.workmarket.domains.authentication.saml.metadata.WMWebSSOProfileConsumerImpl"/>
+
+	<!-- SAML 2.0 Holder-of-Key WebSSO Assertion Consumer -->
+	<bean id="hokWebSSOprofileConsumer" class="org.springframework.security.saml.websso.WebSSOProfileConsumerHoKImpl"/>
+
+	<!-- SAML 2.0 Web SSO profile -->
+	<bean id="webSSOprofile" class="org.springframework.security.saml.websso.WebSSOProfileImpl"/>
+
+	<!-- SAML 2.0 Holder-of-Key Web SSO profile -->
+	<bean id="hokWebSSOProfile" class="org.springframework.security.saml.websso.WebSSOProfileConsumerHoKImpl"/>
+
+	<!-- SAML 2.0 ECP profile -->
+	<bean id="ecpprofile" class="org.springframework.security.saml.websso.WebSSOProfileECPImpl"/>
+
+	<!-- SAML 2.0 Logout Profile -->
+	<bean id="logoutprofile" class="org.springframework.security.saml.websso.SingleLogoutProfileImpl"/>
+
+	<!-- Bindings, encoders and decoders used for creating and parsing messages -->
+	<bean id="postBinding" class="org.springframework.security.saml.processor.HTTPPostBinding">
+		<constructor-arg ref="parserPool"/>
+		<constructor-arg ref="velocityEngine"/>
+	</bean>
+
+	<bean id="redirectBinding" class="org.springframework.security.saml.processor.HTTPRedirectDeflateBinding">
+		<constructor-arg ref="parserPool"/>
+	</bean>
+
+	<bean id="artifactBinding" class="org.springframework.security.saml.processor.HTTPArtifactBinding">
+		<constructor-arg ref="parserPool"/>
+		<constructor-arg ref="velocityEngine"/>
+		<constructor-arg>
+			<bean class="org.springframework.security.saml.websso.ArtifactResolutionProfileImpl">
+				<constructor-arg>
+					<bean class="org.apache.commons.httpclient.HttpClient">
+						<constructor-arg>
+							<bean class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager"/>
+						</constructor-arg>
+					</bean>
+				</constructor-arg>
+				<property name="processor">
+					<bean id="soapProcessor" class="org.springframework.security.saml.processor.SAMLProcessorImpl">
+						<constructor-arg ref="soapBinding"/>
+					</bean>
+				</property>
+			</bean>
+		</constructor-arg>
+	</bean>
+
+	<bean id="soapBinding" class="org.springframework.security.saml.processor.HTTPSOAP11Binding">
+		<constructor-arg ref="parserPool"/>
+	</bean>
+
+	<bean id="paosBinding" class="org.springframework.security.saml.processor.HTTPPAOS11Binding">
+		<constructor-arg ref="parserPool"/>
+	</bean>
+
+	<!-- Initialization of OpenSAML library-->
+	<bean class="org.springframework.security.saml.SAMLBootstrap"/>
+
+	<!-- Initialization of the velocity engine -->
+	<bean id="velocityEngine" class="org.springframework.security.saml.util.VelocityFactory" factory-method="getEngine"/>
+
+	<!-- XML parser pool needed for OpenSAML parsing -->
+	<bean id="parserPool" class="org.opensaml.xml.parse.StaticBasicParserPool" scope="singleton" init-method="initialize"/>
+	<bean id="parserPoolHolder" class="org.springframework.security.saml.parser.ParserPoolHolder" scope="singleton"/>
+
+</beans>

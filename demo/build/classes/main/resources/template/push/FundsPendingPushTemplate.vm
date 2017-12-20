@@ -1,0 +1,4 @@
+{
+"message": "${template.resource.fullName} initiated ACH deposit of ${number.currency($template.transaction.amount)}",
+"action": "${baseurl}/payments/ledger"
+}

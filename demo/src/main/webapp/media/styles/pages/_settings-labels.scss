@@ -1,0 +1,153 @@
+.page-settings-labels {
+	//-- Legacy --
+	// Remove when we are globally using the new UI
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-form-textarea;
+	@include new-typography;
+	//-- END Legacy --
+
+	// these next two css selectors are a hack until we move old colorbox modals to the new ones
+	// this is only scoped to this page - but could be utilized on other pages
+
+	#cboxLoadedContent {
+		width: initial !important;
+		overflow: initial !important;
+	}
+	#cboxContent {
+		height: initial !important;
+	}
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+		li { padding-bottom: 0.3em; }
+	}
+
+
+	.content {
+		@include span(9 omega);
+		margin-bottom: 2em;
+		border-radius: 4px;
+		.-primary { margin-top: -0.3em; }
+	}
+
+	.wm-modal {
+		[type="checkbox"] { margin-bottom: 0; }
+		label { margin-bottom: 0.5em; }
+		.wm-select { margin-bottom: 1em; }
+	}
+
+	/* MMW labels dashboard */
+	#labels_dashboard .colorpicker {
+		display: inline-block;
+		height: 15px;
+		width: 15px;
+		font-size: 1px;
+		border: 1px solid #000;
+		float: left;
+
+		&:hover {
+			background-image: url('images/down-arrow.png');
+			background-repeat: no-repeat;
+			background-position: center center;
+		}
+	}
+
+	#labels_dashboard .add-btn {
+		margin: -5px 0 0 15px;
+	}
+
+	#color_picker_popup {
+		position: absolute;
+		width: 104px;
+		background-color: #fff;
+		border: 1px solid #666;
+		-moz-box-shadow: 1px 1px 2px #999;
+		-webkit-box-shadow: 1px 1px 2px #999;
+		box-shadow: 1px 1px 2px #999;
+	}
+
+	.labels_selected_display_type {
+		font-weight: bold;
+		color: #111111;
+	}
+
+	.slider-container {
+		margin-bottom: 1em;
+
+		.ui-slider-horizontal {
+			height: 0.2em;
+			border: 1px solid $off-white;
+		}
+
+		.labels-container {
+			margin-bottom: 1em;
+		}
+
+		.slider_label {
+			display: inline-block;
+			color: gray;
+			width: 21.5%;
+			&.last{
+				width: 0 !important;
+			}
+
+			&.active {
+				color: black;
+				font-weight: bold;
+			}
+
+		}
+	}
+
+	#labelScopeRange {
+		width: 99%;
+		margin-left: 4px;
+
+		.ui-slider.ui-widget-content {
+			border: 1px solid #bbb !important;
+		}
+
+		.ui-slider-handle {
+			border: 1px solid #bbb !important;
+			border-radius: 4px 4px 4px 4px;
+			width: 13px;
+			height: 13px;
+			top:-6px;
+		}
+
+		.ui-slider-handle.ui-state-active {
+			background: #5c9ccc !important;
+		}
+
+		.ui-slider-range {
+			background: #ccc !important;
+		}
+	}
+
+	 // for the jquery colorpicker plugin
+	.jColorSelect {
+		border:1px solid #d9dcdd;
+	}
+	.jColorSelect div{
+		background:url(scripts/jquery/syronex-colorpicker/syronex-colorpicker.gif) no-repeat;
+		float:left;
+		width:13px;
+		height:13px;
+		cursor:pointer;
+		border:1px solid #666666;
+		margin:1px;
+	}
+
+	.jColorSelect .checkwht {
+		cursor:default;
+		background-position:-13px 0;
+	}
+	.jColorSelect .checkblk {
+		cursor:default;
+		background-position:-26px 0;
+	}
+
+}

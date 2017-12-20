@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		You have no active WorkMarket assignments. Good bye.
+	</Say>
+</Response>

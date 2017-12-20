@@ -1,0 +1,200 @@
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables features
+ */
+
+.dataTables {
+	&_wrapper {
+		clear: both;
+		padding-top: 10px;
+		margin-bottom: 1.4em;
+		zoom: 1; /* Feeling sorry for IE */
+
+		/* Contain the floated pagination elements */
+		&::after {
+			content: ".";
+			display: block;
+			height: 0;
+			clear: both;
+			visibility: hidden;
+		}
+
+		.dataTables_processing {
+			display: none !important;
+		}
+
+		input{
+			font-size: 11px;
+			padding: 3px !important;
+		}
+		select {
+			font-size: 11px;
+			padding: 3px !important;
+			width: auto;
+		}
+	}
+
+	&_processing {
+		display: none;
+	}
+	&_length {
+		float: left;
+		margin-bottom: 10px;
+		width: 308px;
+		line-height: 20px;
+		font-size: 12px;
+		padding: 0;
+	}
+	&_filter {
+		float: right;
+		text-align: right;
+		margin-bottom: 10px;
+		width: 360px;
+		font-size: 12px;
+
+		label {
+			width: auto;
+			float: none;
+		}
+	}
+	&_info {
+		float: left;
+		white-space: nowrap;
+		font-size: 12px;
+		padding: 5px 0 0 0;
+	}
+	&_paginate {
+		float: right;
+		text-align: right;
+		white-space: nowrap;
+		font-size: 12px;
+		padding: 5px 0 0 10px;
+	}
+	&_scroll { clear: both; }
+	&_scrollBody { margin-top: -1px; }
+	&_empty {
+		text-align: center;
+		background: white !important;
+	}
+}
+
+
+/* Pagination nested */
+.paginate_disabled_previous,
+.paginate_enabled_previous,
+.paginate_disabled_next,
+.paginate_enabled_next {
+	height: 19px;
+	width: 19px;
+	margin-left: 3px;
+	float: left;
+}
+.paginate_disabled_previous { background-image: url('scripts/datatables/images/back_disabled.jpg'); }
+.paginate_enabled_previous { background-image: url('scripts/datatables/images/back_enabled.jpg'); }
+.paginate_disabled_next { background-image: url('scripts/datatables/images/forward_disabled.jpg'); }
+.paginate_enabled_next { background-image: url('scripts/datatables/images/forward_enabled.jpg'); }
+
+
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+ * DataTables display
+ */
+
+/* rdh edited the margin property 10/27/2010 */
+table.display {
+	clear: both;
+	width: 100%;
+	margin-bottom: 5px;
+
+	/* Note Firefox 3.5 and before have a bug with border-collapse
+	 * ( https://bugzilla.mozilla.org/show%5Fbug.cgi?id=155955 )
+	 * border-spacing: 0; is one possible option. Conditional-css.com is
+	 * useful for this kind of thing
+	 *
+	 * Further note IE 6/7 has problems when calculating widths with border width.
+	 * It subtracts one px relative to the other browsers from the first column, and
+	 * adds one to the end...
+	 *
+	 * If you want that effect I'd suggest setting a border-top/left on th/td's and
+	 * then filling in the gaps with other borders.
+	 */
+
+	thead th {
+		padding: 5px 10px;
+		font-weight: bold;
+		cursor: pointer;
+		background: #e6e6e6;
+	}
+	td {
+		padding: 5px 10px;
+		cursor: default;
+	}
+	tfoot input {
+		margin: 0.5em 0;
+		width: 100%;
+		color: #444;
+	}
+
+	.odd {
+		font-size: 12px;
+		background-color: #ffffff;
+	}
+	.even {
+		font-size: 12px;
+		background-color: #EEEEEE;
+
+		&.row_selected td { background-color: #6599D2; }
+	}
+	tbody .even:hover,
+	tbody .odd:hover {
+		background-color: #d4e5ff;
+		cursor: pointer;
+
+		td.sorting_1 {
+			background-color: #d4e5ff;
+			cursor: pointer;
+		}
+	}
+
+	/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+	 * DataTables sorting
+	 */
+	.sorting {
+		background-color: #e5e5e5;
+
+		&:hover { background-color: #efefef; }
+
+		&_asc {
+			background-color: #e5e5e5 !important;
+			text-shadow: 1px 1px 1px white !important;
+
+			&_disabled { background-color: #e6e6e6; }
+		}
+		&_desc {
+			background-color: #e5e5e5 !important;
+			text-shadow: 1px 1px 1px white !important;
+			background-color: #e6e6e6;
+
+			&_disabled { background-color: #e6e6e6; }
+		}
+	}
+}
+
+.paging_full_numbers {
+	font-size: 12px;
+	color: #999;
+
+	.paginate_button,
+	.paginate_active { cursor: pointer; }
+	.paginate_button {
+		margin-right: 8px;
+		color: #999;
+		&:hover { color: #333; }
+	}
+	.paginate_active {
+		color: #333;
+		margin-right: 8px;
+		font-weight: bold;
+		border: 1px solid #dddddd;
+		padding: 0 3px;
+		background: #f5f5f5;
+	}
+}

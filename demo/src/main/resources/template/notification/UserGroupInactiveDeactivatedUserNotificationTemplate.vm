@@ -1,0 +1,1 @@
+<a href="/groups">The talent pool ${template.userGroupName} has been deactivated because no assignments were routed to it within the past six months. To re-activate it, click here, find it in the list of talent pools and click to activate.</a>

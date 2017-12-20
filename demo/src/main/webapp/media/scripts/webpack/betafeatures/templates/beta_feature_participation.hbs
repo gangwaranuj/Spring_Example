@@ -1,0 +1,12 @@
+<div class="beta-feature-participation">
+	<h2>Beta feature participants</h2>
+	<label class="heading" for="company_participation_select">Companies</label>
+	<select id="company_ids" name="company_participation_select" tabindex="-1" class="wm-select" placeholder="Type company ID or name" multiple="multiple">
+		{{#each companies }}
+			<option value="{{companyId}}" selected='selected'>{{companyName}}</option>
+		{{/each}}
+		{{#each soleProprietors}}
+			<option value="{{companyId}}" selected='selected'>{{companyName}}</option>
+		{{/each}}
+	</select>
+</div>

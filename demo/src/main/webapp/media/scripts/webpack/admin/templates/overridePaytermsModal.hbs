@@ -1,0 +1,19 @@
+<form id="override_payterms_form" action="/admin/manage/company/override_payterms/{{this.companyId}}" method="POST">
+
+	<p>You are enabling payment terms for this company without their bank account information.
+		The override allows for an initial $1,000 on payment terms which can be increased once enabled.
+		A note is required&mdash;provide info on why you are overriding.</p>
+
+	<fieldset>
+		<div class="clearfix">
+			<label>Note</label>
+			<div class="input">
+				<textarea name="note" rows="5" cols="30"></textarea>
+			</div>
+		</div>
+	</fieldset>
+	<div class="wm-action-container">
+		<a class="button cancel">Cancel</a>
+		<button type="submit" class="button">Submit</button>
+	</div>
+</form>

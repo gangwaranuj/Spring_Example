@@ -1,0 +1,27 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+	#if(${template.reportName})
+		${template.reportName}
+	#else
+		Custom Report Available
+	#end
+</h1>
+
+<div style="width: 720px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 20px 0px">
+		Hello,<br/>
+		<br/>
+		Your requested custom report #if(${template.reportName}) ${template.reportName} #end is available for you to review. The csv can be downloaded at this  <a href="${template.downloadUri}" target="_blank">url</a>.<br/>
+
+
+	</p>
+
+	<p>
+		<br/>
+		For more information on custom reports, <a href="https://workmarket.zendesk.com/hc/en-us/articles/210052687-How-can-I-build-reports-to-track-my-company-s-activity" target="_blank">see our help article.</a><br/>
+	</p>
+
+</div>
+</td>
+</tr>
+#parse("template/email/partials/do-not-reply.vm")

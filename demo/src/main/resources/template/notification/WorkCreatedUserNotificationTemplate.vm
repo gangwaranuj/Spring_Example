@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Assignment has been created: ${template.workTitle}</a>

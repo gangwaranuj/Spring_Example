@@ -1,0 +1,9 @@
+<a href="/assignments/details/${template.work.workNumber}">Assignment Updated:
+#if($template.pricingUpdated) price #end
+#if($template.scheduleUpdated) schedule #end
+#if($template.locationUpdated) location #end
+#if($template.infoUpdated) info #end
+#if($template.contactUpdated) contacts #end
+#if($template.otherUpdated) and other information #end
+changed.
+${template.workTitle} (${template.work.workNumber})</a>

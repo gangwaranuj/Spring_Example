@@ -1,0 +1,18 @@
+<div class="wm-fullscreen--overlay">
+	<div class="wm-fullscreen--container">
+		<div class="wm-fullscreen--icon">i</div>
+		<div class="wm-fullscreen--message">
+			{{message}}
+		</div>
+		<div class="wm-fullscreen--cta">
+			{{callToAction}}
+		</div>
+		<div class="wm-fullscreen--buttons">
+			{{#each buttons}}
+				<div class="wm-fullscreen--button {{classList}} {{#if close}}fullscreen-close{{/if}} {{#if this.primary}}primary{{/if}}">
+					{{this.text}}
+				</div>
+			{{/each}}
+		</div>
+	</div>
+</div>

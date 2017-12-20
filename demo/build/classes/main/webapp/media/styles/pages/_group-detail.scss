@@ -1,0 +1,121 @@
+.page-group-detail {
+	@include scaffolding;
+	@include new-unordered-lists;
+	@include new-form-inputs;
+	@include new-form-textarea;
+
+	.left-nav ~ #outer-container { //remove this when making it responsive
+		padding-left: 2em;
+		padding-right: 2em;
+	}
+
+	.main.container {              //remove this when making it responsive
+		min-width: 730px;
+		padding: 0;
+	}
+
+	.count-overview {
+		text-align: center;
+		color: $grey;
+		margin-bottom: 1em;
+		height: 1em;
+	}
+
+	.sidebar {
+		@include span(3);
+		margin-left: 0;
+	}
+	.overview-content {
+		@include span(9);
+		margin-left: 0;
+	}
+	.content {
+		@include span(9 omega);
+	}
+	.sidebar-actions {
+		@include span(3 omega);
+		li { padding-bottom: 0.3em; }
+	}
+
+	.results-spinner {
+		padding: 25% 0 25% 47%;
+	}
+
+	//TODO: remove when colorbox goes
+	#confirmation_dialog {
+		width: 15em;
+	}
+
+	#block_client_dialog_container {
+		width: 23em;
+	}
+
+	#create_quickform {
+		width: 29em;
+	}
+
+	#insurance {
+		.wm-slider--title, .wm-slider--text {
+			font-size: 0.8em;
+		}
+		.wm-checkbox {
+			float: left;
+			width: auto;
+		}
+	}
+
+	.expiration-datepicker {
+		width: auto;
+		margin-bottom: 0;
+		margin-left: 18px;
+	}
+
+	.missingreqs-quick-action {
+		div {
+			background-color: $red;
+			border-color: $red;
+			box-shadow: 0 2px 0 -1px rgba($red, 0.4);
+		}
+	}
+
+	.categories {
+		i {
+			display: inline-block;
+			color: $red;
+		}
+	}
+
+	.-bulk-action { display: inline-block; }
+
+	@media (max-width: 930px) {
+		.profile-card--view-profile {
+			left: -10%;
+		}
+	}
+
+	ul.requirements {
+		li {
+			padding-bottom: 0.3em;
+			p {
+				display: inline;
+			}
+			.button {
+				float: right;
+				font-size: 0.7em;
+				margin-top: 0.1em;
+			}
+			&.yes {
+				color: $green;
+			}
+			&.no {
+				color: $red;
+			}
+			&.expired {
+				color: $orange;
+			}
+			&.default {
+				color: $charcoal-grey;
+			}
+		}
+	}
+}

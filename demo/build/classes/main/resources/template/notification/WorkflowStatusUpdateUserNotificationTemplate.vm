@@ -1,0 +1,1 @@
+<a data-ajax="false" href="${baseurl}/assignments/details/${template.work.workNumber}">Team WorkFlow on the assignment: ${template.workTitle} was updated</a>

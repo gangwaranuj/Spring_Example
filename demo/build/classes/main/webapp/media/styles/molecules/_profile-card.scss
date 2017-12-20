@@ -1,0 +1,350 @@
+////////////////////////////
+// Profile Card Variables //
+////////////////////////////
+
+$profile-card-padding: 1em;
+$profile-card-photo-width: 6em;
+
+$profile-card-checkbox-font-size: 1em;
+$profile-card-checkbox-scale: 1em / $profile-card-checkbox-font-size;
+
+$profile-card-shade-font-size: 1.2em;
+$profile-card-shade-scale: 1em / $profile-card-shade-font-size;
+
+$profile-card-drawer-font-size: 1em;
+$profile-card-drawer-scale: 1em / $profile-card-drawer-font-size;
+
+$profile-card-details-column-width: 8;
+$profile-card-score-card-column-width: 4;
+
+$profile-card-shade-index: 0;
+$profile-card-checkbox-index: $profile-card-shade-index + 1;
+$profile-card-checkbox-skin-index: $profile-card-checkbox-index + 1;
+$profile-card-avatar-index: $profile-card-checkbox-skin-index;
+$profile-card-drawer-index: $profile-card-avatar-index + 1;
+
+/////////////////////////
+// Profile Card Mixins //
+/////////////////////////
+
+@function profile-card-heading-height($scale: 1) {
+	$header-font-size: 1.2;
+	$header-line-height: 1.2;
+	$header-padding-height: 0.5em;
+	$header-height: ($header-padding-height + $header-line-height) * $header-font-size;
+	@return floor(($header-height + $profile-card-padding) * $scale);
+}
+
+@mixin profile-card-heading-height($scale: 1) {
+	position: absolute;
+	left: 0;
+	height: calc(100% - #{profile-card-heading-height($scale)});
+	top: profile-card-heading-height($scale);
+}
+
+%profile-card-details {
+	@include span($profile-card-details-column-width / 2);
+
+	li {
+		@include ellipsis;
+	}
+}
+
+%profile-card-details-footer {
+	@extend %profile-card-details;
+
+	label {
+		@include span(6);
+		@include ellipsis;
+	}
+	span {
+		@include span(6 omega);
+		@include ellipsis;
+		color: $grey;
+	}
+}
+
+/////////////////////////
+// Profile Card Styles //
+/////////////////////////
+
+.profile-card {
+	@include new-typography;
+
+	@include clearfix;
+	border-radius: $base-border-radius;
+	position: relative;
+	border: $default-border;
+	font-size: 0.8em;
+	padding: $profile-card-padding;
+	padding-top: 2em;
+	line-height: 1.2;
+	margin-bottom: 0.8em;
+
+	&:nth-child(even) {
+		background-color: mix($off-white, $white);
+	}
+
+	&--user-type-banner {
+		position: absolute;
+		top: -0.1em;
+		left: -0.1em;
+		width: 7.8em;
+		text-align: center;
+		padding: 0.2em 0;
+		border-radius: 4px 0 5px 0;
+		color: $white;
+		letter-spacing: 1px;
+		font-weight: 600;
+
+		&.-vendor {
+			background: #F7671D;
+		}
+		&.-worker {
+			background: $orange;
+		}
+	}
+
+	&--photo {
+		width: $profile-card-photo-width;
+		float: left;
+		margin-right: gutter();
+
+		// Avatars with associated user numbers behave like links to open a profile
+		// modal
+		&[data-user-number] {
+			.wm-avatar {
+				cursor: pointer;
+			}
+		}
+
+		.wm-avatar {
+			font-size: 5em;
+			margin: 0 auto;
+			box-shadow: 0 2px 4px 0 $grey;
+			position: relative;
+			z-index: $profile-card-avatar-index;
+		}
+		.wm-checkbox {
+			position: absolute;
+			width: 1rem;
+			bottom: $profile-card-padding * $profile-card-checkbox-scale / 1.5;
+			left: 1rem;
+			z-index: $profile-card-checkbox-index;
+			margin: 0;
+		}
+		.status {
+			text-align: center;
+			margin-top: 0.3em;
+		}
+		.wm-status-label {
+			border-radius: $base-border-radius;
+			background-color: $light-grey;
+			border: 1px solid $white;
+			color: $white;
+			display: inline-block;
+			padding: 0.3em .5em;
+			position: relative;
+			text-transform: uppercase;
+			z-index: 1;
+
+			&.declined { background: $red; }
+			&.unassigned { background: $red; }
+			&.invited { background-color: $orange; }
+			&.member { background-color: $green; }
+			&.new { background-color: $green; }
+			&.best { background-color: $green; }
+			&.applied { background-color: $green; }
+			&.pending { background-color: $orange; }
+			&.danger {
+				background: $red;
+				display: inline-flex;
+			}
+			a {
+				padding-left: 0.3em;
+				color: $white;
+				font-weight: bold;
+			}
+		}
+	}
+
+	&--details {
+		@include clearfix;
+		float: left;
+		width: calc(100% - #{gutter()} - #{$profile-card-photo-width});
+	}
+
+	&--header {
+		@include span($profile-card-details-column-width);
+		@include heading-title;
+
+		small {
+			font-size: 1em;
+		}
+	}
+
+	&--name[href] {
+		color: $blue;
+		cursor: pointer;
+	}
+
+	&--badge {
+		border-radius: $base-border-radius;
+		background-color: $blue;
+		padding: 0 0.4em;
+		color: $white;
+		cursor: help;
+	}
+
+	&--address {
+		@extend %profile-card-details;
+
+		.profile-card:not(.-condensed) & {
+			margin-bottom: 0.5em;
+		}
+		li { margin-bottom: 0.3em; }
+	}
+
+	&--secondary {
+		@extend %profile-card-details;
+
+		li { margin-bottom: 0.3em; }
+		i {  display: inline-block; }
+
+		.passed {
+			color: $green;
+		}
+		.failed {
+			color: $red;
+		}
+	}
+
+	&--tests {
+		@include span($profile-card-details-column-width);
+
+		.profile-card:not(.-condensed) & {
+			clear: left;
+		}
+
+	}
+
+	&--dates {
+		@extend %profile-card-details-footer;
+		padding: 0 0.5em;
+
+		.profile-card.-condensed & {
+			@include span($profile-card-score-card-column-width omega);
+		}
+	}
+
+	&--score-card {
+		@include span($profile-card-score-card-column-width omega);
+	}
+
+	&--shade {
+		font-size: $profile-card-shade-font-size;
+		opacity: 0;
+		background-color: rgba(#dbdbdb, 0.86);
+		text-align: center;
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		height: 3em;
+		width: 100%;
+		transition: opacity $base-transition-duration $base-transition-easing;
+
+		.profile-card:hover &,
+		.profile-card.-open & {
+			opacity: 1;
+		}
+	}
+
+	&--view-profile {
+		@include button-base;
+		@include center;
+
+		.profile-card.-condensed & {
+			@include transform(translateY(50%));
+		}
+	}
+
+	&--route-assignment {
+		@include button-base;
+		@include center;
+		right: 15px;
+		left: auto;
+		transform: translateY(-50%);
+	}
+
+	&--actions {
+		@include remove-from-network-button;
+		@include transform(translateY(-50%));
+		position: absolute;
+		right: $profile-card-padding * $profile-card-shade-scale;
+		// 0.5em is for bottom margin on the profile actions
+		top: calc(50% + 0.25em);
+
+		.button {
+			display: inline-block;
+			font-size: 0.75em;
+			margin-bottom: 0.5em;
+		}
+	}
+
+	&--drawer {
+		@include container;
+		@include transform(translateY(0));
+		position: absolute;
+		bottom: 0;
+		left: -1px;
+		width: calc(100% + 2px);
+		font-size: $profile-card-drawer-font-size;
+		z-index: $profile-card-drawer-index;
+		background-color: $off-white;
+		padding-left: 1em;
+		padding-right: 1em;
+
+		&.-active {
+			@include transform(translateY(100%));
+			padding-bottom: 1em;
+		}
+		& > * {
+			margin-top: $profile-card-padding;
+			display: none;
+		}
+		.button {
+			@include omega;
+
+			&:first-of-type {
+				clear: both;
+			}
+			& + .button {
+				margin-right: 0.5em;
+			}
+		}
+	}
+
+	&--test,
+	&--group {
+		small {
+			display: block;
+			margin-bottom: 1em;
+		}
+		label {
+			float: left;
+		}
+		.selectize-control.wm-select {
+			float: right;
+			margin: -0.5em 0 0 0.5em;
+			width: 20em;
+		}
+	}
+
+	&--dispatcher-details {
+		margin-left: 10px;
+	}
+
+	&--address { margin: 0 0 0.5em 0.8em; }
+	&--eligibility { margin: 0 0.8em; clear: left; }
+	&--eligibility-item { margin: 0 0.3em; }
+}

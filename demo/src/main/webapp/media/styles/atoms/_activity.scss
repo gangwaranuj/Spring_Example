@@ -1,0 +1,65 @@
+$activity: (
+	color: $grey
+);
+
+%activity-text {
+	color: map-get($activity, color);
+	font-style: italic;
+}
+
+.activity {
+	overflow: hidden;
+	border-bottom: 1px solid $light-grey;
+	clear: both;
+	margin-bottom: 1em;
+
+	&--badge {
+		font-size: 0.9em;
+		text-transform: uppercase;
+		padding: 0 0.5em;
+		font-weight: bold;
+		float: left;
+		border-radius: $base-border-radius;
+		border: 1px solid;
+
+		&.-work-status-change {
+			border-color: $green;
+			color: $green;
+		}
+		&.-work-sub-status-change {
+			background-color: $light-grey;
+			border-color: $light-grey;
+			color: $white;
+		}
+		&.-alert {
+			border-color: $red;
+			color: $red;
+		}
+	}
+
+	&--icon {
+		float: left;
+		font-size: 1.8em;
+		fill:  $light-grey;
+		color: $light-grey;
+
+		&.wm-icon-payments-filled {
+			color: $blue;
+		}
+		&.-reject {
+			color: $red;
+		}
+	}
+
+	&--time {
+		@extend %activity-text;
+		float: right;
+	}
+
+	&--description {
+		@extend %activity-text;
+		margin: 0 1rem 1em 1rem;
+		padding-top: 0.5em;
+		clear: both;
+	}
+}

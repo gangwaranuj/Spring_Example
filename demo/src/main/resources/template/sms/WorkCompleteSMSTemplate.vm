@@ -1,0 +1,3 @@
+Assignment Complete:
+${template.workTitle} -
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

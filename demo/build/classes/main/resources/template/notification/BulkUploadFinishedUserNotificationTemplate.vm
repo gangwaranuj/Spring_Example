@@ -1,0 +1,1 @@
+<a class="view-upload" data-worknumbers="${template.workNumbers}">Your bulk upload has finished. ${template.failedRowsMessage}Click here to view the ${template.workNumbers.size()} uploaded assignments.</a>

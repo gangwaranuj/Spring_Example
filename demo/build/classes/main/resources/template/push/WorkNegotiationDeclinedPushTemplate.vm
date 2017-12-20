@@ -1,0 +1,4 @@
+{
+"message": "Application declined: ${template.negotiation.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

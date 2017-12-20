@@ -1,0 +1,49 @@
+<div style="padding: 20px 20px 20px 20px;">
+	<img style="height:40px;" src="${baseurl}/media/images/orange-logo-admin-page.png">
+</div>
+
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">EARNINGS REPORT AVAILABLE</h1>
+
+<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+	<p style="margin: 0px 0px 20px 0px">
+		Dear ${toUser.firstName},<br/>
+		<br/>
+		Thank you for using the WorkMarket Platform for the past year. As part of our service to you, we have provided you with your Earnings Report for calendar year ${template.taxReport.taxYear}. Our main goal for $math.add(${template.taxReport.taxYear}, 1) is to help you earn even more money. The best way to earn more business is to:<br/>
+	<ul>
+		<li><a href="${baseurl}/profile-edit/insurance" target="_blank">Add your insurance coverages</a></li>
+		<li><a href="${baseurl}/profile-edit/certifications" target="_blank">Add your certificates</a></li>
+		<li><a href="${baseurl}/screening" target="_blank">Complete, or update your background check and drug test</a></li>
+	</ul>
+	<br/>
+	Your Earnings Report is now available online. Please go to your <a target="_blank" href="${baseurl}/mmw/taxes">Settings Page</a> to view it.<br/>
+	</p>
+
+	<p style="margin: 20px 0px">
+	<table cellspacing="0" cellpadding="0" border="0">
+		<tbody>
+		<tr>
+			<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/mmw/taxes" target="_blank">View Your Documents</a>
+
+			</td>
+		</tr>
+		</tbody>
+	</table>
+	</p>
+	To learn more about the Earnings Report, visit <a href="https://workmarket.zendesk.com/hc/en-us/articles/215505167-How-do-I-enter-edit-my-tax-information" target="_blank">here</a>.
+	<p>
+		Good luck in $math.add(${template.taxReport.taxYear}, 1) and thank you for being an important part of the WorkMarket success story. Please let us know what we can do to make your WorkMarket experience even better. Email me anytime!<br/>
+
+		<br/>
+		Thank you, <br/>
+		Jeff Wald <br/>
+		Co-Founder & President  <br/>
+    <a href="mailto:jwald@workmarket.com">jwald@workmarket.com</a>
+
+	</p>
+</div>
+</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

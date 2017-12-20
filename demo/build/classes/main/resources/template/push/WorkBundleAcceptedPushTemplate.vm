@@ -1,0 +1,4 @@
+{
+"message": "${template.resource.fullName} accepted bundle: ${template.workTitle}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

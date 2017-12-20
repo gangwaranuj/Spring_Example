@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DeliverableOnTimeRequirement /> Rendering consistency should render the same way every time with all props 1`] = `
+<WMFormRow
+  data-component-identifier="requirements_formRow"
+  id="requirements-deliverableOnTime"
+>
+  <div
+    style={
+      Object {
+        "display": "flex",
+        "flexDirection": "column",
+      }
+    }
+  >
+    <div>
+      Minimum Deliverable On Time Percentage
+    </div>
+    <div
+      style={
+        Object {
+          "alignSelf": "flex-end",
+        }
+      }
+    >
+      0
+       %
+    </div>
+    <div
+      style={
+        Object {
+          "margin": "-1em 0",
+        }
+      }
+    >
+      <WMSlider
+        data-component-identifier="requirements_slider"
+        max={100}
+        min={0}
+        name="minDeliverableOnTimePercentage"
+        onChange={[Function]}
+        step={1}
+        value={0}
+      />
+    </div>
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row-reverse",
+        }
+      }
+    >
+      <WMRaisedButton
+        data-component-identifier="requirements_buttons"
+        disabled={true}
+        label="Add this requirement"
+        onClick={[Function]}
+        secondary={true}
+        style={
+          Object {
+            "margin": "1em 0 0 1em",
+          }
+        }
+      />
+    </div>
+  </div>
+</WMFormRow>
+`;

@@ -1,0 +1,36 @@
+$sidebar-card-padding: 1em;
+$sidebar-card-button-spacing: 2px;
+
+.sidebar-card {
+	border-radius: 4px 4px 3px 3px;
+	border: $default-border;
+	padding: $sidebar-card-padding;
+	background-color: $alternate-background-color;
+	margin-bottom: 1em;
+	color: rgba($dark-grey, 0.86);
+
+	&--title {
+		@include heading-title;
+		margin-bottom: 1em;
+		color: rgba($dark-grey, 0.86);
+
+		&::before {
+			float: left;
+			margin-right: 0.2em;
+		}
+	}
+	&--button {
+		@include button-base;
+		border-radius: $base-border-radius - 1;
+		box-shadow: none;
+		width: calc(100% + #{$sidebar-card-padding * 2} - #{$sidebar-card-button-spacing * 2});
+		margin: calc(#{$sidebar-card-button-spacing} - #{$sidebar-card-padding});
+		margin-top: $sidebar-card-padding;
+		font-weight: bold;
+	}
+	.wm-checkbox {
+		margin-bottom: 0.5em;
+		font-size: 0.9em;
+	}
+	.wm-slider--text { color: $orange; }
+}

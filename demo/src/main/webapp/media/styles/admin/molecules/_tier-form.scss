@@ -1,0 +1,44 @@
+.tier-form {
+	.input-prepend {
+		float: left;
+		margin-right: 5px;
+	}
+	.transaction-fee-ranges-title {
+		font-size: 0.85em;
+		overflow: hidden;
+		margin-bottom: 1em;
+
+		.item {
+			float: left;
+			margin-right: 1.3em;
+		}
+	}
+}
+
+#subscription_tier_form {
+	&.subscription_tier_width{
+		width: 50em;
+	}
+
+	.tier-actions {
+		float: left;
+	}
+}
+
+#transactional_form {
+	position:relative;
+
+	.add-tier-btn {
+		position: absolute;
+		bottom: 28px;
+		right: 15px;
+	}
+	.tier-actions {
+		position: absolute;
+		display: inline-block;
+	}
+	.transaction-fee-ranges-title {
+		overflow: hidden;
+		margin-bottom: 1em;
+	}
+}

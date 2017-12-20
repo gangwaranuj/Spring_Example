@@ -1,0 +1,20 @@
+@function element-padding($params: (), $multiplier: 1) {
+	$total-height: if(map-has-key($params, element-size), map-get($params, element-size), $base-element-height);
+	$text-height: if(map-has-key($params, font-size), em(map-get($params, font-size)), 1em);
+
+	@if (unit($total-height) != unit($text-height)) {
+		@error "The element size #{$total-height} and font size #{$text-height} need to be compatible units.";
+	}
+
+	$font-size-multiplier: $text-height / 1em;
+	$spacing-height: ($total-height - $text-height) / 2;
+	$padding-height: 0;
+
+	@if (map-has-key($params, border-width)) {
+		$border-height: map-get($params, border-width);
+		$border-height: if(unit($border-height) == 'px', $border-height, px($border-height));
+		@return calc(#{$spacing-height * $multiplier / $font-size-multiplier} - #{$border-height});
+	}
+
+	@return $spacing-height * $multiplier / $font-size-multiplier;
+}

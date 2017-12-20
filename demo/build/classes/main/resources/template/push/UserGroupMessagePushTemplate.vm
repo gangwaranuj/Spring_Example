@@ -1,0 +1,4 @@
+{
+"message": "${template.userGroup.company.effectiveName} sent you a message",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

@@ -1,0 +1,21 @@
+<div class="location-address">
+	{{#if isLocaleEnabled}}
+		<div class="formats-alert">
+			<i class="material-icons">check_circle</i>
+			<div>
+				Default formats (distance, time, currency, etc.) are set according to the country entered in the address field below. This can be changed at anytime in 'Settings'.
+			</div>
+		</div>
+	{{/if}}
+	<label class="onboarding-label" for="address">Address <span>*</span></label>
+	<input type="text" name="address" value="{{this.address}}" data-onboarding />
+</div>
+<div class="map-assignments">
+	<div class="map"></div>
+	<small class="caption">There are <strong class="number-of-assignments" name="numberOfNearbyAssignments" data-onboarding>{{this.numberOfNearbyAssignments}}</strong> assignments available near you.</small>
+</div>
+<div class="wm-modal--footer">
+	<button class="button -back" data-slide="prev" data-track="Location/Back">Back</button>
+	<button class="button -continue tooltipped-w" aria-label="" disabled="disabled" data-slide="next" data-track="Location/Continue">Continue</button>
+	{{> ../../funcs/templates/spinner}}
+</div>

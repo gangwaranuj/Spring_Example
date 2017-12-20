@@ -1,0 +1,102 @@
+.assignment-routing {
+	width: 100%;
+	background-color: $white;
+
+	.wm-radio--skin, .wm-checkbox--skin {
+		font-size: 18px;
+		margin-top: 0.2em;
+	}
+
+	span.tm {
+		color: $orange;
+		font-size: 8px;
+		position: relative;
+		top: -8px;
+
+	}
+
+	.routing-option {
+		padding: 2em 2em 1em 2em;
+		.wm-radio--text, .wm-checkbox--text {
+			font-size: 18px;
+			line-height: 24px;
+		}
+		.subtext {
+			font-size: 1em;
+			margin-left: 2.4em;
+		}
+	}
+
+	&--header {
+		color: $dark-grey;
+		width: 100%;
+		padding: 1em;
+		border-bottom: 1px solid $light-grey;
+		margin-bottom: 1em;
+		.title {
+			font-size: 1.8em;
+			float: left;
+		}
+	}
+
+	&--beta-tools {
+		float: right;
+		padding-right: 2em;
+		padding-top: 0.5em;
+	}
+
+	.section-heading {
+		font-size: 20px;
+		padding-left: 1em;
+	}
+
+	&--actions {
+		padding: 2em;
+	}
+
+	.wm-accordion {
+		border: 1px solid $light-grey;
+		border-bottom: 0;
+		border-radius: 3px;
+		margin: 1em 2em;
+		&--heading {
+			padding: 1em 2em;
+			background: $off-white;
+			border-bottom: 1px solid $light-grey;
+		}
+		&--content {
+			overflow: hidden;
+			max-height: 0;
+			opacity: 0;
+			transition: max-height 0.5s, opacity 0.65s;
+			&:last-of-type {
+				border-bottom: 0;
+			}
+			&.open {
+				max-height: 600px;
+				border-bottom: 1px solid $light-grey;
+				opacity: 1;
+				overflow: visible;
+			}
+			.inner {
+				padding: 1em 2em;
+			}
+			.subtext {
+				margin-left: 1.5em;
+			}
+			.heading {
+				font-weight: 800;
+			}
+			input {
+				margin-bottom: 1em;
+				&.inline {
+					margin: 0 .5em 0 .5em;
+					width:2em;
+				}
+			}
+			.wm-checkbox {
+				margin-bottom: 2em;
+			}
+		}
+	}
+}

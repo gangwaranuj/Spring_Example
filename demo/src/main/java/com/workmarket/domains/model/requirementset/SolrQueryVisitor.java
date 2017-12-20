@@ -1,0 +1,54 @@
+package com.workmarket.domains.model.requirementset;
+
+import com.workmarket.domains.model.requirementset.abandon.AbandonRequirement;
+import com.workmarket.domains.model.requirementset.agreement.AgreementRequirement;
+import com.workmarket.domains.model.requirementset.backgroundcheck.BackgroundCheckRequirement;
+import com.workmarket.domains.model.requirementset.cancelled.CancelledRequirement;
+import com.workmarket.domains.model.requirementset.certification.CertificationRequirement;
+import com.workmarket.domains.model.requirementset.companytype.CompanyTypeRequirement;
+import com.workmarket.domains.model.requirementset.companywork.CompanyWorkRequirement;
+import com.workmarket.domains.model.requirementset.country.CountryRequirement;
+import com.workmarket.domains.model.requirementset.deliverableontime.DeliverableOnTimeRequirement;
+import com.workmarket.domains.model.requirementset.document.DocumentRequirement;
+import com.workmarket.domains.model.requirementset.drugtest.DrugTestRequirement;
+import com.workmarket.domains.model.requirementset.esignature.EsignatureRequirement;
+import com.workmarket.domains.model.requirementset.groupmembership.GroupMembershipRequirement;
+import com.workmarket.domains.model.requirementset.industry.IndustryRequirement;
+import com.workmarket.domains.model.requirementset.insurance.InsuranceRequirement;
+import com.workmarket.domains.model.requirementset.license.LicenseRequirement;
+import com.workmarket.domains.model.requirementset.ontime.OntimeRequirement;
+import com.workmarket.domains.model.requirementset.paid.PaidRequirement;
+import com.workmarket.domains.model.requirementset.profilepicture.ProfilePictureRequirement;
+import com.workmarket.domains.model.requirementset.profilevideo.ProfileVideoRequirement;
+import com.workmarket.domains.model.requirementset.rating.RatingRequirement;
+import com.workmarket.domains.model.requirementset.resourcetype.ResourceTypeRequirement;
+import com.workmarket.domains.model.requirementset.test.TestRequirement;
+import com.workmarket.domains.model.requirementset.traveldistance.TravelDistanceRequirement;
+import org.apache.solr.client.solrj.SolrQuery;
+
+public interface SolrQueryVisitor {
+	void visit(SolrQuery query, AbandonRequirement requirement);
+	void visit(SolrQuery query, AgreementRequirement requirement);
+	void visit(SolrQuery query, BackgroundCheckRequirement requirement);
+	void visit(SolrQuery query, CancelledRequirement requirement);
+	void visit(SolrQuery query, CertificationRequirement requirement);
+	void visit(SolrQuery query, CompanyTypeRequirement requirement);
+	void visit(SolrQuery query, CompanyWorkRequirement requirement);
+	void visit(SolrQuery query, CountryRequirement requirement);
+	void visit(SolrQuery query, DrugTestRequirement requirement);
+	void visit(SolrQuery query, GroupMembershipRequirement requirement);
+	void visit(SolrQuery query, IndustryRequirement requirement);
+	void visit(SolrQuery query, InsuranceRequirement requirement);
+	void visit(SolrQuery query, LicenseRequirement requirement);
+	void visit(SolrQuery query, OntimeRequirement requirement);
+	void visit(SolrQuery query, DeliverableOnTimeRequirement requirement);
+	void visit(SolrQuery query, PaidRequirement requirement);
+	void visit(SolrQuery query, ProfilePictureRequirement requirement);
+	void visit(SolrQuery query, RatingRequirement requirement);
+	void visit(SolrQuery query, ResourceTypeRequirement requirement);
+	void visit(SolrQuery query, TestRequirement requirement);
+	void visit(SolrQuery query, TravelDistanceRequirement requirement);
+	void visit(SolrQuery query, ProfileVideoRequirement requirement);
+	void visit(SolrQuery query, DocumentRequirement documentRequirement);
+	void visit(SolrQuery query, EsignatureRequirement esignatureRequirement);
+}

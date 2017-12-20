@@ -1,0 +1,9 @@
+<a class="error-upload" href="/upload/download/${template.fileUUID}">
+	#if ($template.showError)
+		Please see the following errors and click here to download the file to correct your data: ${template.errorMessages}
+	#elseif (${template.status} == 0)
+		Please click here to download the file for error details and correct your data.
+	#elseif (${template.status} == 1)
+        Some users could not be uploaded due to internal system error. please click here to download the file and re-upload the users.
+	#end
+</a>

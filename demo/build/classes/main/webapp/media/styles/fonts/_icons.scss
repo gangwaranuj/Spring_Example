@@ -1,0 +1,83 @@
+@import "../utils/mixins/misc";
+
+@font-face {
+	font-family: "workmarket";
+	src: url("wm-general.eot");
+	src: url("wm-general.woff") format("woff"),
+		url("wm-general.ttf") format("truetype");
+	font-weight: normal;
+	font-style: normal;
+}
+
+$icons-general: (
+	attachment: '\e063',
+	assignments: '\e131',
+	add-user: '\e007',
+	buildings: '\e090',
+	bell: '\e334',
+	calendar: '\e046',
+	chart: '\e043',
+	checkmark-circle: '\e194',
+	checkmark: '\e207',
+	clock: '\e055',
+	copy: '\e511',
+	delete-user: '\e008',
+	download: '\e364',
+	edit: '\270f',
+	envelope: '\2709',
+	expanded: '\e530',
+	exclamation-sign: '\e197',
+	eye: "\e052",
+	follow-users: '\e545',
+	follow: '\e545',
+	gear: '\e137',
+	globe-circle: '\e341',
+	graph: '\e042',
+	hamburger: '\e517',
+	headset: '\e078',
+	house: '\e021',
+	information-filled: '\e196',
+	left-arrow: '\e225',
+	link: '\e051',
+	list: '\e530',
+	location: '\e243',
+	lock-circle: '\e204',
+	minus-filled: '\e192',
+	minus: '\2212',
+	move: '\e187',
+	note: '\e030',
+	payments: '\e038',
+	page-out: '\e360',
+	pie-chart: '\e043',
+	phone-filled: '\e443',
+	pill: '\e493',
+	plus-filled: '\e191',
+	plus: '\002b',
+	question-filled: '\e195',
+	reports: '\e042',
+	remove-sign: '\e193',
+	right-arrow: '\e224',
+	up-arrow: '\e601',
+	down-arrow: '\e602',
+	search: '\e028',
+	share: '\e309',
+	show-thumbnails: '\e157',
+	speech: '\e310',
+	tag: '\e066',
+	test: '\e088',
+	trash: '\e017',
+	undo: '\e436',
+	unfollow: '\e546',
+	upload: '\e365',
+	user: '\e004',
+	users: '\e044',
+	work: '\e342',
+	x: '\e208',
+	filter: '\e321',
+	map: '\e503',
+	sort-desc: '\e410',
+	sort-asc: '\e409'
+);
+
+
+@include wm-icon-iterator("workmarket", $icons-general);

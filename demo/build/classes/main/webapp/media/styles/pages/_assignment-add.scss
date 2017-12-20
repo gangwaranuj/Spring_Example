@@ -1,0 +1,47 @@
+.page-add-assignment {
+	.parts-body {
+		.control-group.compound-field {
+			.controls:not(:last-child) {
+				margin-bottom: 9px;
+			}
+		}
+		.postal-code {
+			width: 86px;
+		}
+		.parts-table {
+			display: none;
+			margin-bottom: 2em;
+			.item-price {
+				width: 6em;
+			}
+			// Removes HTML5 number input arrows
+			input[type=number]::-webkit-inner-spin-button,
+			input[type=number]::-webkit-outer-spin-button {
+				-webkit-appearance: none;
+				margin: 0;
+			}
+		}
+	}
+
+	.routing-page-header{
+		h4 {
+			overflow: hidden;
+		}
+
+		label {
+			text-align: right;
+		}
+	}
+
+	.routing-bucket {
+		width: 720px;
+		border-radius: 3px;
+		box-shadow: 0 1px 4px $grey;
+	}
+
+	.skills-autocomplete {
+		.selectize-input {
+			border: none
+		}
+	}
+}

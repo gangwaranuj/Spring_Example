@@ -1,0 +1,16 @@
+<section id="fast-funds-success" class="fast-funds--response">
+
+	<p>The invoice for <strong>{{workTitle}}</strong>{{#if companyName}} for <strong>{{companyName}}</strong>{{/if}} has been paid via FastFunds. The amount deposited into your account is detailed below.</p>
+
+	<p>Go <a href="/funds/withdraw">here</a> to withdraw funds from your account.</p>
+
+	{{> _fast-funds-breakdown-table }}
+
+</section>
+
+<section id="fast-funds-error" class="fast-funds--response">
+
+	<p>There was a problem with FastFunds:</p>
+	<div class="fast-funds--error-messages"></div>
+
+</section>

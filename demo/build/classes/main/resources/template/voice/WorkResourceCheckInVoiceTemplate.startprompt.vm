@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Gather action='${baseurl}${callbackUri}'>
+		<Say voice='woman'>
+            <![CDATA[
+			    Hello ${toUser.firstName}. Thank you for calling WorkMarket. Please enter your WorkMarket user ID followed by the #.
+            ]]>
+        </Say>
+	</Gather>
+	<Redirect>${baseurl}${callbackUri}?redirect=start&amp;Digits=TIMEOUT</Redirect>
+</Response>

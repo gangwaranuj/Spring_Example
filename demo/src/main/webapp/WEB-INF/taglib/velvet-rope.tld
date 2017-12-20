@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<taglib
+	xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<tlib-version>1.0</tlib-version>
+	<short-name>vr</short-name>
+	<uri>http://www.workmarket.com/taglib/velvet-rope</uri>
+
+	<!-- EXAMPLE
+		<vr:rope>
+			<vr:venue name="LOBBY" bypass=[true|false]>
+				<h1>You're In the LOBBY</h1>
+			</vr:venue>
+
+			<vr:venue name="DASHBOARD">
+				<h1>You're In the DASHBOARD</h1>
+			</vr:venue>
+
+			<vr:default>
+				<h1>No Dogs Allowed!</h1>
+			</vr:default>
+		</vr:rope>
+	-->
+
+	<tag>
+		<name>rope</name>
+		<tag-class>com.workmarket.velvetrope.RopeTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+
+	<tag>
+		<name>venue</name>
+		<tag-class>com.workmarket.velvetrope.VenueTag</tag-class>
+		<body-content>scriptless</body-content>
+		<attribute>
+			<name>name</name>
+			<required>true</required>
+		</attribute>
+		<attribute>
+			<name>bypass</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+
+	<tag>
+		<name>default</name>
+		<tag-class>com.workmarket.velvetrope.DefaultTag</tag-class>
+		<body-content>scriptless</body-content>
+	</tag>
+
+</taglib>

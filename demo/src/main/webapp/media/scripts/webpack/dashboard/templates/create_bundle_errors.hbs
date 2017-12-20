@@ -1,0 +1,13 @@
+<p>The following errors are preventing bundle creation:</p>
+<br/>
+<ul>
+	{{#each this.nonDraft}}
+		<li><strong>{{this.[0].title}}</strong> is in {{this.[0].status}} status, not Draft status.</li>
+	{{/each}}
+
+	{{#each this.inBundle}}
+		<li><strong>{{this.title}}</strong> is already in a bundle.</li>
+	{{/each}}
+</ul>
+<br/>
+<p>Close this modal, reselect assignments in draft status and not already in a bundle to either create a new bundle or add assignments to an existing bundle.</p>

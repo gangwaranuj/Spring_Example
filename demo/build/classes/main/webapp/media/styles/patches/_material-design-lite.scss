@@ -1,0 +1,69 @@
+.mdl-snackbar {
+	z-index: $alert-index;
+}
+
+.mdl-progress {
+	z-index: 0;
+}
+
+.mdl-checkbox, .mdl-radio, .wm-select {
+	.form--row .input.controls > & {
+		margin-top: 20px;
+	}
+}
+
+.mdl-checkbox {
+	&__label {
+		@include ellipsis;
+	}
+}
+
+.mdl-paper {
+	border-radius: 2px;
+	background-color: $white;
+}
+
+.mdl-button {
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+.mdl-data-table {
+	th {
+		background-color: inherit;
+	}
+}
+
+input[type="text"], textarea {
+	&.mdl-textfield__input {
+		border-radius: 0;
+		box-shadow: none;
+
+		&:focus {
+			border-color: inherit;
+			box-shadow: none;
+		}
+	}
+}
+
+input[type="text"].mdl-textfield__input {
+	margin-bottom: inherit;
+	border: none;
+	border-bottom: 1px solid rgba(0,0,0, 0.12);
+	background: none;
+	transition: none;
+	display: block;
+	padding: 4px 0;
+	color: inherit;
+	line-height: inherit;
+	height: inherit;
+}
+
+.mdl-dialog {
+	width: auto;
+
+	@media only screen and (min-width: $small-screen) {
+		max-width: map-get($modal, width);
+	}
+}

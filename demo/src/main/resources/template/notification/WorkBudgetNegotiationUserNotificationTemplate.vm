@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Budget Increase Request for assignment: ${template.workTitle} has been declined</a>

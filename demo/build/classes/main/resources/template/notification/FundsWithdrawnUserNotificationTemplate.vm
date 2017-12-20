@@ -1,0 +1,1 @@
+<a data-ajax="false" href="/payments/ledger">${number.currency($template.transaction.amount)} was withdrawn from your account</a>

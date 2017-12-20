@@ -1,0 +1,16 @@
+<form>
+	{{#unless this.requirementSet.groupId}}
+		<label for="title">Title:</label>
+		<input id="title" name="name" type="text" class="title" placeholder="New Requirement Set Name" value="{{this.requirementSet.name}}" />
+		<label class="checkbox" style="display: inline">
+			<input name="required" type="checkbox" class="checkbox" value="true"{{#if this.requirementSet.required}} checked="checked"{{/if}} />
+			Required
+		</label>
+	{{/unless}}
+	{{#if this.requirementSet.groupId}}
+		<input id="title" name="name" type="hidden" class="title" placeholder="New Requirement Set Name" value="{{this.requirementSet.name}}" />
+		<input name="required" type="hidden" class="checkbox" value="true"{{#if this.requirementSet.required}} checked="checked"{{/if}} /></label>
+	{{/if}}
+	<a href="#" class="button" data-action="save">Save</a>
+	<a href="#" class="button" data-action="cancel">Cancel</a>
+</form>

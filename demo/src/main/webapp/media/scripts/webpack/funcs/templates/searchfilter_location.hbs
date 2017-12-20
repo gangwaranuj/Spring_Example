@@ -1,0 +1,24 @@
+<input id="address" name="address" class="search--input search--zipcode" type="text" placeholder="City, State or Postal Code">
+
+<div class="help-block">Miles to location:</div>
+<select name="radius" id="radius" class="wm-select">
+	<option value="15">15</option>
+	<option value="30">30</option>
+	<option value="60" selected="selected">60</option>
+	<option value="100">100</option>
+	<option value="200">200</option>
+	<option value="500">500</option>
+	<option value="any">Any</option>
+</select>
+
+<div id="countries-filters">
+	<div class="help-block">Countries:
+		<span class="tooltipped tooltipped-n info" id="cross_border_tooltip" style="display: none;" aria-label="
+			Work Market does not allow workers to cross national borders to perform work,
+			unless that work has established a legal right to work in that country,
+			in order to ensure all parties in a transaction operate in accordance with all laws and regulations.">?</span>
+	</div>
+	<select id="countries" name="countries"></select>
+</div>
+{{> button text="Close" classlist="close-advanced-facet"}}
+{{> button text="Apply" classlist="apply-location -primary"}}

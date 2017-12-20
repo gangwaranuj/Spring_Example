@@ -1,0 +1,28 @@
+body, td, pre {
+  color: #333;
+  font: 13px/18px "Helvetica Neue", helvetica, arial, sans-serif; }
+
+html {
+  height: 100%; }
+
+body {
+  height: 100%;
+  background-color: #FFF;
+  box-sizing: border-box;
+  padding: 3px; }
+
+.wm-highlight {
+  color: #f7961d; }
+
+/* MSIE specific */
+* html body {
+  scrollbar-3dlight-color: #F0F0EE;
+  scrollbar-arrow-color: #676662;
+  scrollbar-base-color: #F0F0EE;
+  scrollbar-darkshadow-color: #DDDDDD;
+  scrollbar-face-color: #E0E0DD;
+  scrollbar-highlight-color: #F0F0EE;
+  scrollbar-shadow-color: #F0F0EE;
+  scrollbar-track-color: #F5F5F5; }
+
+/*# sourceMappingURL=wysiwyg.css.map */

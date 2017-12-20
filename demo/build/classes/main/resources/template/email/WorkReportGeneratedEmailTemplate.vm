@@ -1,0 +1,52 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">
+	#if(${template.reportName})
+		${template.reportName}
+	#else
+		Custom Report Available
+	#end
+</h1>
+
+<div style="width: 720px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+	<p style="margin: 0px 0px 20px 0px">
+		Hello,<br/>
+		<br/>
+		Your requested custom report #if(${template.reportName}) <a target="_blank" href="${baseurl}/reports/custom/results?report_id=${template.reportId}">${template.reportName}</a> #end is available for you to review. Below is a limited view of the report, displaying the first 25 rows and 8 columns.  The entire report is available in the attached CSV #if(${template.reportName})or online <a target="_blank" href="${baseurl}/reports/custom/results?report_id=${template.reportId}">here</a>#end.<br/>
+	</p>
+
+	<p>
+	<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f5f5f5; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 10px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+		<thead>
+		<tr>
+			#foreach( $header in $template.response.reportHeader.reportFields )
+				#if( $velocityCount <= 8 )
+					<th>${header}</th>
+				#end
+			#end
+		</tr>
+		</thead>
+		<tbody>
+			#foreach( $row in $template.response.reportRow )
+				#if( $velocityCount <= 25 )
+				<tr>
+					#foreach( $rawField in $row.reportFields )
+						#if( $velocityCount <= 8 )
+							<td>${rawField}</td>
+						#end
+					#end
+				</tr>
+				#end
+			#end
+		</tbody>
+	</table>
+	</p>
+
+	<p>
+		<br/>
+		For more information on custom reports, <a href="https://workmarket.zendesk.com/hc/en-us/articles/210052687-How-can-I-build-reports-to-track-my-company-s-activity" target="_blank">see our help article.</a><br/>
+	</p>
+
+</div>
+</td>
+</tr>
+#parse("template/email/partials/do-not-reply.vm")

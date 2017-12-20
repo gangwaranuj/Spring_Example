@@ -1,0 +1,55 @@
+package com.workmarket.domains.model.requirementset;
+
+import com.workmarket.domains.model.requirementset.abandon.AbandonRequirement;
+import com.workmarket.domains.model.requirementset.agreement.AgreementRequirement;
+import com.workmarket.domains.model.requirementset.availability.AvailabilityRequirement;
+import com.workmarket.domains.model.requirementset.backgroundcheck.BackgroundCheckRequirement;
+import com.workmarket.domains.model.requirementset.cancelled.CancelledRequirement;
+import com.workmarket.domains.model.requirementset.certification.CertificationRequirement;
+import com.workmarket.domains.model.requirementset.companytype.CompanyTypeRequirement;
+import com.workmarket.domains.model.requirementset.companywork.CompanyWorkRequirement;
+import com.workmarket.domains.model.requirementset.country.CountryRequirement;
+import com.workmarket.domains.model.requirementset.deliverableontime.DeliverableOnTimeRequirement;
+import com.workmarket.domains.model.requirementset.document.DocumentRequirement;
+import com.workmarket.domains.model.requirementset.drugtest.DrugTestRequirement;
+import com.workmarket.domains.model.requirementset.esignature.EsignatureRequirement;
+import com.workmarket.domains.model.requirementset.groupmembership.GroupMembershipRequirement;
+import com.workmarket.domains.model.requirementset.industry.IndustryRequirement;
+import com.workmarket.domains.model.requirementset.insurance.InsuranceRequirement;
+import com.workmarket.domains.model.requirementset.license.LicenseRequirement;
+import com.workmarket.domains.model.requirementset.ontime.OntimeRequirement;
+import com.workmarket.domains.model.requirementset.paid.PaidRequirement;
+import com.workmarket.domains.model.requirementset.profilepicture.ProfilePictureRequirement;
+import com.workmarket.domains.model.requirementset.profilevideo.ProfileVideoRequirement;
+import com.workmarket.domains.model.requirementset.rating.RatingRequirement;
+import com.workmarket.domains.model.requirementset.resourcetype.ResourceTypeRequirement;
+import com.workmarket.domains.model.requirementset.test.TestRequirement;
+import com.workmarket.domains.model.requirementset.traveldistance.TravelDistanceRequirement;
+
+public interface EligibilityVisitor {
+	void visit(Criterion criterion, AgreementRequirement requirement);
+	void visit(Criterion criterion, AvailabilityRequirement requirement);
+	void visit(Criterion criterion, BackgroundCheckRequirement requirement);
+	void visit(Criterion criterion, CertificationRequirement requirement);
+	void visit(Criterion criterion, CompanyTypeRequirement requirement);
+	void visit(Criterion criterion, CountryRequirement requirement);
+	void visit(Criterion criterion, DrugTestRequirement requirement);
+	void visit(Criterion criterion, IndustryRequirement requirement);
+	void visit(Criterion criterion, InsuranceRequirement requirement);
+	void visit(Criterion criterion, LicenseRequirement requirement);
+	void visit(Criterion criterion, RatingRequirement requirement);
+	void visit(Criterion criterion, ResourceTypeRequirement requirement);
+	void visit(Criterion criterion, TestRequirement requirement);
+	void visit(Criterion criterion, TravelDistanceRequirement requirement);
+	void visit(Criterion criterion, ProfileVideoRequirement requirement);
+	void visit(Criterion criterion, OntimeRequirement requirement);
+	void visit(Criterion criterion, DeliverableOnTimeRequirement requirement);
+	void visit(Criterion criterion, AbandonRequirement requirement);
+	void visit(Criterion criterion, CancelledRequirement requirement);
+	void visit(Criterion criterion, ProfilePictureRequirement requirement);
+	void visit(Criterion criterion, GroupMembershipRequirement requirement);
+	void visit(Criterion criterion, PaidRequirement requirement);
+	void visit(Criterion criterion, CompanyWorkRequirement requirement);
+	void visit(Criterion criterion, DocumentRequirement documentRequirement);
+	void visit(Criterion criterion, EsignatureRequirement esignatureRequirement);
+}

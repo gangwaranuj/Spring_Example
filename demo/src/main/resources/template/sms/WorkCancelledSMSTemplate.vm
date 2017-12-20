@@ -1,0 +1,10 @@
+Cancellation:
+${template.workTitle} -
+#if ($showPricing && $template.work.fulfillmentStrategy.amountEarned)
+You earn ${number.currency($template.work.fulfillmentStrategy.amountEarned)} - 
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}
+#else
+Call ${template.work.buyer.firstName} ${template.work.buyer.lastName} 
+at ${template.work.buyer.profile.workPhone} with questions -
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}
+#end

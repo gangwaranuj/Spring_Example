@@ -1,0 +1,143 @@
+%user-profile-popup-arrow {
+	@include transition(color $base-transition-duration $base-transition-easing);
+	color: $grey;
+	font-size: 3em;
+	position: absolute;
+	top: 4em;
+	z-index: 1;
+	padding: 1em;
+
+	&:hover {
+		color: $orange;
+		text-decoration: none;
+	}
+}
+
+.user-profile-popup {
+	font-size: $base-font-size;
+
+	.profile-container {
+		&.drawer-open .tab-content {
+			height: 11em;
+		}
+
+		.tab-content {
+			overflow: auto;
+		}
+	}
+
+	.profile {
+		&--details-tabs {
+			overflow: hidden;
+		}
+		&--footer {
+			clear: both;
+		}
+		&--quick-actions {
+			background-color: $off-white;
+		}
+	}
+
+	.tab-content {
+		height: 22em;
+		position: relative;
+		transition: height .35s ease;
+	}
+
+	.wm-modal {
+		&--slide {
+			min-width: 60em;
+			padding-left: 0;
+			padding-right: 0;
+		}
+		&--header {
+			font-size: 1.2em;
+			text-align: center;
+		}
+		&--title {
+			float: none;
+		}
+		&--close {
+			position: absolute;
+			right: 1em;
+		}
+		&--content {
+			min-height: 25em;
+		}
+	}
+
+	.profile-spinner {
+		bottom: 0;
+		height: 4em;
+		left: 0;
+		margin: auto;
+		position: absolute;
+		right: 0;
+		top: 0;
+	}
+
+	.next-profile {
+		@extend %user-profile-popup-arrow;
+		right: -2.2em;
+	}
+
+	.previous-profile {
+		@extend %user-profile-popup-arrow;
+		left: -2.2em;
+	}
+
+	.wm-spinner {
+		@include center;
+	}
+
+	.wm-tags {
+		margin-bottom: 1em;
+	}
+
+	a.wm-tag {
+		background-color: $green;
+		border-radius: 3px;
+		color: $white;
+		display: inline-block;
+		padding: 0.31em;
+		&:hover {
+			color: $white;
+			background-color: darken($green, 10%);
+		}
+	}
+
+	.user-comments .wm-modal {
+		font-size: 15px;
+
+		&--slide {
+			height: 15em;
+		}
+
+		&--content {
+			padding: 3em 4em 0;
+		}
+
+		.button {
+			float: right;
+		}
+	}
+
+	.user-team {
+		.profile-card--header {
+			@include span($profile-card-details-column-width - 1);
+		}
+
+		.profile-card--score-card {
+			@include span($profile-card-score-card-column-width + 1 omega);
+		}
+
+		.profile-card--tests {
+			@include span($profile-card-details-column-width - 1);
+		}
+	}
+
+	@media (max-width: 916px) {
+		.next-profile { right: 0; }
+		.previous-profile { left: 0; }
+	}
+}

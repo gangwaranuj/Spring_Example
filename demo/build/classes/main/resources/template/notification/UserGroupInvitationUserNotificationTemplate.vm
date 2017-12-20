@@ -1,0 +1,6 @@
+#if($template.vendorInvitation)
+	#set($target = "your company")
+#else
+	#set($target = "you")
+#end
+<a data-ajax="false" href="/groups/${template.userGroup.id}">${template.userGroup.company.effectiveName} invited ${target} to the talent pool: ${template.userGroupName}</a>

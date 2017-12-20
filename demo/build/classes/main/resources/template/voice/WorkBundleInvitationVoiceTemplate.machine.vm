@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<Response>
+	<Say voice='woman'>
+		<![CDATA[
+			Hello ${toUser.firstName},
+			You have a WorkMarket assignment bundle waiting.
+			Title: ${template.work.title}.
+			Date and time: ${template.bundleDate.overview.dates.from}.
+			#if ($showPrice)
+			Payment: ${template.bundleData.overview.budget}.
+			#end
+			Please visit ${baseurl} to accept or decline this assignment.
+			Good bye.
+		]]>
+	</Say>
+</Response>

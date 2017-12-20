@@ -1,0 +1,5 @@
+
+{
+"message": "Assignment ${template.workTitle} Closed. #if($showPricing)Funds added: ${number.currency($template.work.fulfillmentStrategy.amountEarned)}#end",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

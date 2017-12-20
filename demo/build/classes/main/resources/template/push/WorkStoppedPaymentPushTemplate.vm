@@ -1,0 +1,4 @@
+{
+"message": "Assignment Payment Under Review: ${template.work.title}",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

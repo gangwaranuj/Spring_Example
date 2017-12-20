@@ -1,0 +1,141 @@
+.notes-page {
+	.nav {
+		h3 {
+			text-align: left;
+			margin-left: 1em;
+		}
+		.x-button {
+			margin: -2em 0;
+			top: auto;
+			right: auto;
+		}
+	}
+	.notes > .grid > .unit {
+		text-align: right;
+		color: @blue;
+	}
+	.note-card {
+		text-align: left;
+		background: @light-gray;
+		.border-radius(3px);
+		margin: @small-space 0 @medium-space;
+		padding: 1em;
+		p {
+			margin: 0;
+		}
+		&.buyer {
+			color: @dark-gray;
+			background-color: lighten(@green, 45%);
+			&:after {
+				content: "";
+				display: block;
+				height: 0;
+				width: 0;
+				float: left;
+				top: 1em;
+				position: relative;
+				border-right: 1.5em solid transparent;
+				border-top: 1.5em solid lighten(@green, 45%);
+			}
+		}
+		&.seller {
+			background-color: lighten(@blue, 45%);
+			color: @dark-gray;
+			&:after {
+				content: "";
+				display: block;
+				height: 0;
+				width: 0;
+				float: right;
+				top: 1em;
+				position: relative;
+				border-left: 1.5em solid transparent;
+				border-top: 1.5em solid lighten(@blue, 45%);
+			}
+		}
+	}
+	.sender-info {
+		clear: both;
+		padding-top: 1em;
+		&.buyer {
+			text-align: left;
+			color:@green;
+		}
+	}
+	.onbehalfof {
+		&.buyer {
+			float: left;
+		}
+		&.seller {
+			float: right;
+		}
+		margin-bottom: 0em;
+		color: @gray;
+	}
+	.add-note {
+		overflow: hidden;
+		text-align: center;
+		.pencil {
+			height: 1.5em;
+			width: 1.5em;
+			float: left;
+			margin: -.5em 0;
+			* {
+				fill: @medium-gray;
+			}
+		}
+
+		.add-note-link {
+			font-size: @normal-font-size;
+			text-align: center;
+			margin: 2em auto 1em;
+			color: @orange;
+			text-decoration: underline;
+			display: inline-block;
+		}
+	}
+}
+
+.empty-notes-message {
+	text-align: center;
+	margin: 2em @medium-space;
+	.error;
+}
+
+.negotiate-page {
+	#negotiation_note {
+		text-align: left;
+		background: white;
+		.border-radius(3px);
+		margin: @medium-space 0 2em;
+		padding: 15px !important;
+		p {
+			border-bottom: 1px solid aliceblue;
+			color: @gray;
+		}
+	}
+	.back-to-details {
+		margin: 0 auto;
+		display: block;
+		text-align: center;
+		padding: @medium-space;
+		text-decoration: none;
+		color: @dark-gray;
+		vertical-align: middle;
+	}
+}
+
+#add-note-popup {
+	h3 {
+		text-align: left;
+	}
+	input, textarea {
+		margin-bottom: 1em;
+	}
+	input[type='submit'] {
+		.default-button;
+	}
+	.close-button {
+		.cancel-button;
+	}
+}

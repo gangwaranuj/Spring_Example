@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+	<context:property-placeholder
+		location="classpath:/config/config-common.properties,${wm.conf}"
+		ignore-unresolvable="true"
+		ignore-resource-not-found="true" />
+
+	<import resource="classpath:spring/mvc.xml" />
+
+	<import resource="classpath:/sso/sso.xml"/>
+	<import resource="classpath:spring/security.xml"/>
+	<import resource="classpath:spring/smtp.xml"/>
+	<import resource="classpath:spring/encryption.xml"/>
+	<import resource="classpath:spring/component-scan.xml"/>
+
+	<import resource="classpath:spring/services/search.xml" />
+
+	<!-- Reporting context -->
+	<import resource="classpath:spring/work-reporting-application-context.xml"  />
+
+	<import resource="classpath:spring/datasource.xml" />
+	<import resource="classpath:spring/databaseMigrations.xml" />
+	<import resource="classpath:spring/sessionfactory.xml" />
+	<import resource="classpath:spring/transactionmanager.xml" />
+
+	<import resource="classpath:spring/aop.xml" />
+	<import resource="velvetrope.xml" />
+
+	<import resource="classpath:spring/jms.xml"/>
+	<import resource="classpath:spring/jmslisteners.xml"/>
+	<import resource="classpath:spring/jmsembedded.xml"/>
+
+	<import resource="classpath:spring/scheduler.xml"/>
+
+	<import resource="classpath:spring/services/adapters.xml" />
+	<import resource="classpath:spring/services/autotask.xml" />
+	<import resource="classpath:spring/services/deskSso.xml" />
+	<import resource="classpath:spring/services/linkedin.xml" />
+	<import resource="classpath:spring/services/mail.xml" />
+	<import resource="classpath:spring/services/rest.xml" />
+	<import resource="classpath:spring/services/velocity.xml" />
+
+	<import resource="classpath:spring/executor.xml"/>
+	<import resource="classpath:spring/vault.xml"/>
+
+</beans>

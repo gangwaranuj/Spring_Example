@@ -1,0 +1,171 @@
+.user-profile {
+	.user-personal--name {
+		font-size: 2em;
+		padding: .5em 0;
+	}
+
+	.lane-type-badge {
+		background-color: $blue;
+		border: 1px solid;
+		border-radius: $base-border-radius;
+		color: $white;
+		cursor: help;
+		font-size: 0.7em;
+		font-weight: 600;
+		height: auto;
+		margin-left: 0.5em;
+		padding: 0 0.4em;
+		vertical-align: middle;
+	}
+
+	.tab-pane:not(.user-team) {
+		padding: 1.6em 2em 1em 2em;
+
+		&.-active {
+			display: block;
+		}
+
+		h2 {
+			clear: both;
+			margin-left: -1em;
+			margin-top: 1em;
+		}
+
+		p {
+			margin-bottom: .5em;
+		}
+	}
+
+	.user-overview-left {
+		@include span(7);
+
+		.lane-type-badge {
+			border-color: $dark-grey;
+			height: 1.2em;
+			margin: 0 3px 0 0;
+		}
+	}
+	.user-overview-right {
+		@include span(5 omega);
+	}
+
+	.overview-description {
+		clear: both;
+		color: #111111;
+		line-height: 20px;
+		padding-top: 1em;
+	}
+
+	.user-ratings--table, .user-comments--table {
+		border-top: 1px solid $light-grey;
+		th {
+			background: transparent;
+		}
+		td {
+			border: none;
+		}
+	}
+
+	.user-comments--table .actions {
+		text-align: center;
+	}
+
+	.accordion-group {
+		background-color: $white;
+		border: none;
+		margin: 0;
+	}
+
+	.collapse--inner {
+		@include container;
+		background-color: $off-white;
+		padding-top: 1em;
+		padding-left: 1em;
+		padding-right: 1em;
+
+		.button {
+			margin-bottom: 1em;
+		}
+	}
+
+	.test-status-image {
+		height: 1.25em;
+		width: 1.25em;
+	}
+
+	.user-group {
+		display: inline-block;
+		margin: 0.2em;
+		&:hover, &:active {
+			color: lighten($orange, 10%);
+		}
+
+		&:before {
+			float: left;
+			margin-right: 0.19em;
+		}
+	}
+
+	.user-- {
+		&tests-table, &user-working-hours-table, &licenses-table, &education-table, &positions-table, &certifications-table, &insurance-table {
+			td {
+				border: none;
+				font-size: 1.2em;
+			}
+		}
+	}
+
+	.user--working-hours-table {
+		display: inline-block;
+	}
+
+	.user--working-hours-table {
+		strong {
+			color: $green;
+		}
+	}
+
+	a.wm-tag {
+		background-color: $green;
+		border-radius: 3px;
+		color: $white;
+		display: inline-block;
+		padding: 0.31em;
+		margin-bottom: 0.5em;
+		font-weight: 400;
+		
+		&:hover {
+			color: $white;
+			background-color: darken($green, 10%);
+		}
+	}
+
+	.wm-badge {
+		border: 3px solid $light-grey;
+		border-radius: 50%;
+		box-sizing: content-box;
+		display: inline-block;
+		font-size: .8em;
+		font-weight: 600;
+		height: 1.363em;
+		line-height: 1.5em;
+		text-align: center;
+		width: 1.363em;
+
+		&.-active {
+			border: 3px solid $orange;
+		}
+	}
+
+	.no-results-copy {
+		margin-top: 2em;
+	}
+
+	.break-word {
+		word-wrap: break-word;
+	}
+
+	.profile--header {
+		@include clearfix;
+	}
+}

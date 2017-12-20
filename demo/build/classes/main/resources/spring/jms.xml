@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd ">
+
+	<bean name="amqRedeliveryPolicy" class="org.apache.activemq.RedeliveryPolicy"
+		  p:useExponentialBackOff="true"
+		  p:maximumRedeliveries="5"/>
+
+	<bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory"
+		  p:brokerURL="${jms.url}"
+		  p:redeliveryPolicy-ref="amqRedeliveryPolicy"
+		  p:trustAllPackages="true"/>
+
+	<bean id="cachedConnectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory"
+		  p:targetConnectionFactory-ref="amqConnectionFactory"
+		  p:sessionCacheSize="50"/>
+
+	<bean id="emailDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="EMAIL_QUEUE"/>
+	</bean>
+
+	<bean id="workEmailDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="WORK_EMAIL_QUEUE"/>
+	</bean>
+
+	<bean id="eventDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="EVENT_QUEUE"/>
+	</bean>
+
+	<bean id="reindexEventDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="REINDEX_EVENT_QUEUE"/>
+	</bean>
+
+	<bean id="metricEventDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="METRIC_EVENT_QUEUE"/>
+	</bean>
+
+	<bean id="jobDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="JOB_QUEUE"/>
+	</bean>
+
+	<bean id="batchDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="BATCH_QUEUE"/>
+	</bean>
+
+	<bean id="integrationDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="INTEGRATION_QUEUE"/>
+	</bean>
+
+	<bean id="uploadsDestination" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg value="UPLOAD_QUEUE"/>
+	</bean>
+
+	<bean id="emailMessageTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="true"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="emailDestination"/>
+
+	<bean id="eventMessageTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="true"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="eventDestination"/>
+
+	<bean id="batchTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="true"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="batchDestination"/>
+
+	<bean id="integrationMessageTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="false"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="integrationDestination"/>
+
+	<bean id="reindexEventMessageTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="false"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="reindexEventDestination"/>
+
+	<bean id="workEmailMessageTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="false"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="workEmailDestination"/>
+
+	<bean id="uploadTemplate" class="org.springframework.jms.core.JmsTemplate"
+		  p:sessionTransacted="true"
+		  p:connectionFactory-ref="cachedConnectionFactory"
+		  p:defaultDestination-ref="uploadsDestination"/>
+</beans>

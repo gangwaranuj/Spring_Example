@@ -1,0 +1,14 @@
+.page-worker-browse {
+	background-color: $off-white;
+
+	.worker-browse {
+
+		&--find-work-container {
+			box-sizing: border-box;
+			box-shadow: $default-box-shadow;
+			border-radius: $base-border-radius;
+			background-color: $white;
+			padding: 2em;
+		}
+	}
+}

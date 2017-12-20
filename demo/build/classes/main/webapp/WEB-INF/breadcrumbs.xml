@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemap>
+	<page id="clientService" url="/admin/clientsvc/dashboard" title="Client Service">
+		<page id="csrUsersRecent" title="Recent Users" />
+		<page id="csrUsersPending" title="New User Queue" />
+		<page id="csrUsersQueue" title="Profile Update Queue" />
+		<page id="csrUsersPending" title="Suspended Users" />
+		<page id="csrProfile" title="Profile" />
+		<page id="csrCompanies" url="/admin/manage/company/search" title="Companies">
+			<page id="csrCompanyOverview" title="Overview" />
+			<page id="csrCompanyWork" title="Assignments" />
+			<page id="csrCompanyUsers" title="Workers" />
+			<page id="csrCompanyTaxInfo" title="Tax Info" />
+			<page id="csrCompanySales" title="Sales" />
+			<page id="csrCompanyFinances" title="Finances" />
+			<page id="csrCompanyPricing" title="Pricing" />
+		</page>
+
+	</page>
+
+	<page id="admin" url="/admin" title="Admin">
+		<page id="COI" url="/COI-insurance" title="COI Contacts"/>
+		<page id="adminAccounting" url="/admin/accounting" title="Accounting">
+			<page id="adminAccountingAchVerifications" url="/admin/accounting/achverifications" title="Daily ACH Verification Requests"/>
+			<page id="adminAccountingAchWithdrawals" url="/admin/accounting/withdrawals/ach" title="Daily ACH Withdrawal Requests"/>
+			<page id="adminAccountingPayPalWithdrawals" url="/admin/accounting/withdrawals/paypal" title="Daily PayPal Withdrawal Requests"/>
+			<page id="adminAccountingGCCWithdrawals" url="/admin/accounting/withdrawals/gcc" title="Daily GCC Visa Card Withdrawal Requests"/>
+			<page id="adminAccountingAchFunding" url="/admin/accounting/achfunding" title="Daily ACH Funding Transactions"/>
+			<page id="adminAccountingManageFunds" url="/admin/accounting/managefunds" title="Manage Company Funds"/>
+			<page id="adminAccountingSummaries" url="/admin/accounting/summaries" title="Accounting Summaries">
+				<page id="adminAccountingSummary" url="/admin/accounting/summary" title="Summary"/>
+			</page>
+			<page id="adminVORNVORDetailedReport" url="/admin/accounting/vor_nvor_report" title="Detailed VOR/NVOR Report"/>
+			<page id="adminVORNVORTaxStatusUpdate" url="/admin/accounting/vor_nvor_status_update" title="End of Year Tax Service Status Update"/>
+			<page id="adminAccountingWeeklyRevenueReport" url="/admin/accounting/weekly_account_register_report" title="Weekly Revenue Report"/>
+			<page id="adminAccountingLockedAccounts" url="/admin/accounting/locked_accounts" title="Locked Accounts"/>
+			<page id="adminAccountingNacha" url="/admin/accounting/nacha" title="Queue Processing">
+				<page id="adminAccountingNachaSettle" url="/admin/accounting/settle" title="Settle Transactions" />
+			</page>
+			<page id="adminAccountingAddHocInvoices" url="/admin/accounting/adhoc_invoices" title="Issue Ad-hoc Invoices"/>
+			<page id="adminAccountingCreditMemo" url="/admin/accounting/credit_memo" title="Issue Credit Memo"/>
+			<page id="adminAccountingTaxFormIssuanceService" url="/admin/accounting/tax_form" title="Tax Form Issuance Service"/>
+			<page id="adminAccountingWorkMarketInvoices" url="/admin/accounting/workmarket_invoices" title="Outstanding Work Market Invoices"/>
+		</page>
+		<page id="adminEmailManagement" url="/admin/campaigns/index" title="Email Management">
+			<page id="adminCampaigns" url="/admin/campaigns/index" title="Affiliates and Campaigns" />
+		</page>
+		<page id="adminClientSvc" url="/admin/clientsvc/dashboard" title="Client Svc">
+			<page id="adminManageVendorList" url="/admin/manage/vendorlist" title="Vendor List" />
+			<page id="adminManageWireInfo" url="/admin/manage/wireinfo" title="Wire Transfer Info" />
+			<page id="companies" url="/admin/manage/company" title="Companies"/>
+			<page id="locked" title="Locks">
+				<page id="lockedCompanies" url="/admin/locks/companies" title="Locked Companies"/>
+			</page>
+			<page id="adminInsurance" url="/admin/insurance/review" title="Insurance">
+				<page id="adminInsurance_editUserIns" url="/admin/insurance/edit_userinsurance" title="Edit Insurance"/>
+			</page>
+			<page id="adminLicenses" url="/admin/licenses/review" title="Licenses">
+				<page id="adminLicenses_addLic" url="/admin/licenses/add" title="Add a New License"/>
+				<page id="adminLicenses_editUserLic" url="/admin/licenses/edit_userlicense" title="Edit License"/>
+			</page>
+		</page>
+		<page id="adminNotifications" url="/admin/notifications" title="System Notifications">
+			<page id="adminNotificationsCreate" url="/admin/notifications/create" title="Add Notifications" />
+		</page>
+		<page id="adminScreening" url="/admin/screening" title="Screenings">
+			<page id="adminScreeningUsers" url="/admin/screening/index" title="Screened Users" />
+			<page id="adminScreeningDrug" url="/admin/manage/screenings/drug/queue" title="Drug Test">
+				<page id="adminScreeningDrugQueue" url="/admin/manage/screenings/drug/queue" title="Queue" />
+				<page id="adminScreeningDrugRequest" url="/admin/manage/screenings/drug/request" title="Request" />
+			</page>
+			<page id="adminScreeningBackground" url="/admin/manage/screenings/bkgrnd/queue" title="Background Check">
+				<page id="adminScreeningBackgroundQueue" url="/admin/manage/screenings/bkgrnd/queue" title="Queue" />
+				<page id="adminScreeningBackgroundRequest" url="/admin/manage/screenings/bkgrnd/request" title="Request" />
+			</page>
+		</page>
+		<page id="adminTags" url="/admin/tags/review_tools" title="Tags">
+			<page id="adminTagsReviewTools" url="/admin/tags/review_tools" title="Tools" />
+			<page id="adminTagsReviewSkills" url="/admin/tags/review_skills" title="Skills" />
+			<page id="adminTagsReviewProducts" url="/admin/tags/review_products" title="Products" />
+		</page>
+		<page id="adminReporting" url="/admin/reporting" title="Reporting">
+			<page id="adminReportingRoutedDetail" url="/admin/reporting/routed_detail" title="Routed Details" />
+			<page id="adminReportingSummaryBuyers" url="/admin/reporting/unique_buyers" title="Summary Buyers" />
+			<page id="adminReportingFundingTransactions" url="/admin/reporting/funding_transactions" title="Funding Transactions" />
+		</page>
+		<page id="adminConcerns" url="/admin/concerns" title="Concerns" />
+		<page id="adminCertifications" url="/admin/certifications/review" title="Certifications">
+			<page id="adminCertificationsAdd" url="/admin/certifications/add" title="Add Certification" />
+			<page id="adminCertificationsReview" url="/admin/certifications/review" title="Review" />
+			<page id="adminCertificationsEditVendor" url="/admin/certifications/editvendor" title="Edit Certification Vendor" />
+			<page id="adminCertificationsEditCertification" url="/admin/certifications/editcertifications" title="Edit Unverified Certification" />
+			<page id="adminCertificationsEditUserCertification" url="/admin/certifications/edit_usercertification" title="Edit Certification" />
+			<page id="adminCertificationsVendorInstructions" url="/admin/certifications/vendor_instructions" title="Vendor Instructions" />
+		</page>
+		<page id="adminWork" url="/admin/assignments" title="Assignments" />
+		<page id="adminTechnical" title="Technical Info">
+			<page id="adminBuildInfo" url="/admin/buildinfo" title="Build Information"/>
+		</page>
+		<page id="adminSubscriptionApproval" url="/admin/manage/subscriptions/approval" title="Subscription Approval Queue"/>
+		<page id="adminSubscriptionReporting" url="/admin/manage/subscriptions/reporting" title="Subscription Reporting"/>
+	</page>
+</sitemap>

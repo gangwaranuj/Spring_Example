@@ -1,0 +1,15 @@
+<h5>Add Requirements</h5>
+<div class="well-content">
+	<div class="control-group">
+		<label for="requirementTypes" class="control-label">Select the type of requirement to add</label>
+		<div class="controls">
+			<select id="requirementTypes" class="input-block-level" data-toggle="form">
+				<option class="prompt">- Select -</option>
+				{{#each this.requirementTypes}}
+					<option value="{{this.attributes.name}}">{{this.attributes.humanName}}</option>
+				{{/each}}
+			</select>
+		</div>
+		<div data-placeholder="form"></div>
+	</div>
+</div>

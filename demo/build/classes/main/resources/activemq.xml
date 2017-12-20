@@ -1,0 +1,52 @@
+<beans
+		xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+  http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core.xsd">
+
+	<broker xmlns="http://activemq.apache.org/schema/core" brokerName="${activemq.brokerName}" dataDirectory="/tmp/activemq/${activemq.dataDir}"
+			schedulerSupport="true"
+			persistent="false"
+			deleteAllMessagesOnStartup="true"
+			useShutdownHook="true"
+			useJmx="true">
+
+		<destinationPolicy>
+			<policyMap>
+				<policyEntries>
+					<policyEntry queue=">" producerFlowControl="false" memoryLimit="64 mb">
+						<pendingQueuePolicy>
+							<fileQueueCursor/>
+						</pendingQueuePolicy>
+					</policyEntry>
+				</policyEntries>
+			</policyMap>
+		</destinationPolicy>
+
+		<managementContext>
+			<managementContext createConnector="false"/>
+		</managementContext>
+
+		<persistenceAdapter>
+			<kahaDB directory="/tmp/activemq/data/kahadb"/>
+		</persistenceAdapter>
+
+		<systemUsage>
+			<systemUsage>
+				<memoryUsage>
+					<memoryUsage limit="256 MB"/>
+				</memoryUsage>
+				<storeUsage>
+					<storeUsage limit="1 gb"/>
+				</storeUsage>
+			</systemUsage>
+		</systemUsage>
+
+		<transportConnectors>
+			<transportConnector name="openwire" uri="tcp://0.0.0.0:${openwire.port}"/>
+			<transportConnector name="stomp" uri="stomp://0.0.0.0:${stomp.port}"/>
+		</transportConnectors>
+
+	</broker>
+
+</beans>

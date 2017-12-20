@@ -1,0 +1,1 @@
+<a data-ajax="false" href="${baseurl}/${template.uri}">Your documentation package download is ready.</a>

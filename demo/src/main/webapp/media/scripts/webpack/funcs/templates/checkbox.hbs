@@ -1,0 +1,8 @@
+<label
+	class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect wm-checkbox {{classList}}"
+	id="{{id}}"
+	{{#if badge}}data-badge="{{badge}}"{{/if}} {{#[../../helpers/eq] badge 0}}data-badge="{{badge}}"{{/[../../helpers/eq]}}
+>
+  <input type="checkbox" class="mdl-checkbox__input" name="{{name}}" value="{{value}}" {{#if isChecked}}checked{{/if}}>
+  <span class="mdl-checkbox__label" {{#if badge}}data-badge-content{{/if}}>{{text}}</span>
+</label>

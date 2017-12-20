@@ -1,0 +1,9 @@
+{
+"message":  #if($template.pricingUpdated)"Assignment updated: Price change"#end
+			#if($template.scheduleUpdated)"Assignment updated: Schedule change"#end
+			#if($template.locationUpdated)"Assignment updated: Location change: ${template.address} (${template.distanceInMilesToWork} miles)"#end
+			#if($template.infoUpdated)"Assignment updated: Info change"#end
+			#if($template.contactUpdated)"Assignment updated: Contact info change"#end
+			#if($template.otherUpdated)"Assignment updated: Other changes"#end,
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

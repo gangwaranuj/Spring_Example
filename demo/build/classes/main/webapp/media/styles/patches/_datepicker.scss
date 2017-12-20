@@ -1,0 +1,9 @@
+.wm-modal {
+	.hasDatepicker[type="text"] {
+		width: calc(100% - 2em);
+		float: left;
+	}
+	&--slide .ui-datepicker-trigger {
+		width: inherit;
+	}
+}

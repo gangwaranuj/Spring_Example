@@ -1,0 +1,72 @@
+$badge: (
+	element-size: $tiny-element-height,
+	font-size: $small-font-size,
+	border-radius: $base-border-radius - 1
+);
+
+@mixin badge-background-color($color, $content: false) {
+	&::after {
+		background-color: if(type-of($color) == color, $color, map-fetch($assignment-states, $color, color));
+		@if ($content) {
+			content: $content;
+		}
+	}
+}
+
+[data-badge] {
+	@include badge-background-color($light-grey);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&::after {
+		border-radius: map-get($badge, border-radius);
+		content: attr(data-badge);
+		z-index: 1;
+		padding: element-padding($badge) element-padding($badge, 3);
+		color: $white;
+		font-size: em(map-get($badge, font-size));
+		font-weight: bold;
+		float: right;
+		margin-left: 0.5em;
+	}
+
+	&.-selected {
+		@include badge-background-color($orange);
+	}
+	&.-contractor {
+		@include badge-background-color($green, "C");
+	}
+	&.-third-party {
+		@include badge-background-color($blue, "3");
+	}
+	&.-draft {
+		@include badge-background-color(draft);
+	}
+	&.-sent {
+		@include badge-background-color(sent);
+	}
+	&.-assigned {
+		@include badge-background-color(assigned);
+	}
+	&.-in-progress {
+		@include badge-background-color(in-progress);
+	}
+	&.-pending-approval {
+		@include badge-background-color(pending-approval);
+	}
+	&.-invoiced {
+		@include badge-background-color(invoiced);
+	}
+	&.-paid {
+		@include badge-background-color(paid);
+	}
+	&.-cancelled {
+		@include badge-background-color(cancelled);
+	}
+
+	[data-badge-content] {
+		@include ellipsis;
+		flex-grow: 1;
+	}
+}

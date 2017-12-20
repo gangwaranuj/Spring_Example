@@ -1,0 +1,4 @@
+{
+"message": "Funds withdrawn from your account to your WorkMarket Visa Card: ${number.currency($template.transaction.amount)}",
+"action": ""
+}

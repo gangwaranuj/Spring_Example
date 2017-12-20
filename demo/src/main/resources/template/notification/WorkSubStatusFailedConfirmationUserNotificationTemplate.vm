@@ -1,0 +1,1 @@
+<a href="/assignments/details/${template.work.workNumber}">Worker failed to confirm assignment: ${template.workTitle}</a>

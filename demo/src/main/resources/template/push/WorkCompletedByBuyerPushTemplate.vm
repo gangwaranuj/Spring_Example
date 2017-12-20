@@ -1,0 +1,5 @@
+{
+"message": "Assignment: ${template.workTitle} has been completed on your behalf",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}
+

@@ -1,0 +1,81 @@
+<div class="assignment-routing">
+	{{#if isBulk}}
+		<div class="section-heading">Publish</div>
+		<div class="public-marketplace routing-option">
+			{{> ../../funcs/templates/radio name="bulk_show_in_feed" isChecked=true value="retain" text="Retain Settings for Each Assignment"}}
+			{{> ../../funcs/templates/radio name="bulk_show_in_feed" value="publish" text="Publish All"}}
+			{{> ../../funcs/templates/radio name="bulk_show_in_feed" value="unpublish" text="Unpublish All"}}
+		</div>
+	{{else}}
+		<div class="assignment-routing--header">
+			<div class="title">Routing</div>
+			<div class="clearfix"></div>
+		</div>
+		{{#unless isBundle}}
+			<div class="section-heading">Publish</div>
+			<div class="public-marketplace routing-option">
+				{{> ../../funcs/templates/checkbox name="show_in_feed" value="true" isChecked=showInFeed text="Post to Marketplace"}}
+				<label for="public_marketplace">Selecting this option will make the assignment visible to any worker or vendor on Work Market.</label>
+			</div>
+		{{/unless}}
+	{{/if}}
+
+	<div class="section-heading">Invite Talent</div>
+	<div class="wm-accordion routing-selector">
+		<div class="wm-accordion--heading routing-option" data-accordion-target="direct_send_options">
+			{{> ../../funcs/templates/radio name="send_type" value="direct_send" text="Send to Specific Talent"}}
+			<label class="subtext" for="send_type">Send assignments to specific Workers, Vendors or Talent Pools.</label>
+		</div>
+		<div class="wm-accordion--content" data-accordion-name="direct_send_options">
+			<div class="inner">
+				{{#unless isTemplate}}
+					<label class="heading" for="talent_select">Talent</label>
+					<select id="routing_resource_ids" class="wm-select" multiple="multiple" name="resourceNumbers" placeholder="Type any part of workers name (minimum of 3 characters)" type="text" value="" tabindex="-1"  />
+					{{> ../../funcs/templates/checkbox name="assign_to_first_resource_talent" value="true" isChecked=assignToFirstResource text="Automatically assign to first individual applicant"}}
+				{{/unless}}
+				<label class="heading" for="routing_groups_ids">Invite To Apply Talent Pools</label>
+				<select id="routing_groups_ids" name="groupIds" tabindex="-1" class="wm-select" placeholder="Type any part of talent pool name" multiple="multiple">
+					{{#each routableGroups}}
+						<option value="{{id}}"{{#[../../helpers/contains] id ../groupIds}} selected="selected"{{/[../../helpers/contains]}}>{{name}}</option>
+					{{/each}}
+				</select>
+				<label class="heading" for="assign_to_first_group_ids">Auto Assign Talent Pools</label>
+				<select id="assign_to_first_group_ids" name="assignToFirstGroupIds" tabindex="-1" class="wm-select" placeholder="Type any part of talent pool name" multiple="multiple">
+					{{#each routableGroups}}
+						<option value="{{id}}"{{#[../../helpers/contains] id ../assignToFirstGroupIds}} selected="selected"{{/[../../helpers/contains]}}>{{name}}</option>
+					{{/each}}
+				</select>
+				{{#unless isTemplate}}
+					<label class="heading" for="talent_select">Vendors</label>
+					<select id="routing_company_ids" class="wm-select" multiple="multiple" name="companyIds" placeholder="Type any part of company's name" type="text" value="" tabindex="-1"  />
+					{{> ../../funcs/templates/checkbox name="assign_to_first_resource_vendor" value="true" isChecked=assignToFirstResource text="Automatically assign to first vendor applicant"}}
+					<div class="estimated-worker-count"></div>
+				{{/unless}}
+			</div>
+		</div>
+
+		{{#unless isTemplate}}
+			<div class="wm-accordion--heading routing-option">
+				{{> ../../funcs/templates/radio name="send_type" class="work-send" value="work_send" text="Auto-Invite"}}
+				<label for="send_type" class="subtext">This option will automatically determine the best workers for your assignment.</label>
+			</div>
+
+			{{#unless isBulk}}
+				<div class="wm-accordion--heading routing-option">
+					{{> ../../funcs/templates/radio name="send_type" class="search-resources" value="search_resources" text="Browse Talent Marketplace"}}
+					<label for="send_type" class="subtext">Search the Talent Marketplace to find the best people for the job.</label>
+				</div>
+			{{/unless}}
+		{{/unless}}
+	</div>
+
+	{{#unless isBulk}}
+		<div class="assignment-routing--actions">
+			{{#unless isTemplate}}
+				{{> ../../funcs/templates/button id="submit-form" text="Save &amp; Route"}}
+			{{/unless}}
+		</div>
+	{{/unless}}
+
+</div>
+

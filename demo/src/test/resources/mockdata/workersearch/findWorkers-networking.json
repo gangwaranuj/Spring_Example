@@ -1,0 +1,101 @@
+{
+  "keyword" : "networking",
+  "data" : {
+    "offset": 0,
+    "limit": 8,
+    "queryTimeMillis": 7,
+    "resultCount": 8,
+    "response": {
+      "workers": [
+        {
+          "id": "8456",
+          "uuid": "9c13903e-811b-4e4f-a704-dbce46ed3f31",
+          "userTypeCode": 0,
+          "score": 13.042978,
+          "snippets": {
+            "licenseNames": [
+              "Cisco <em>Networking</em> Diploma"
+            ]
+          }
+        },
+        {
+          "id": "5743",
+          "uuid": "8076c477-fe44-4688-a09f-d2df2cb058b5",
+          "userTypeCode": 0,
+          "score": 13.042978,
+          "snippets": {
+            "licenseNames": [
+              "Cisco <em>Networking</em> Diploma"
+            ]
+          }
+        },
+        {
+          "id": "17885",
+          "uuid": "6732110d-9c17-4201-8377-1b0f79267e8f",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "<em>networking</em> technician"
+            ]
+          }
+        },
+        {
+          "id": "23773",
+          "uuid": "08d33e3d-468a-4491-8a3e-a506f2d1eef8",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "<em>Networking</em> Field Technician"
+            ]
+          }
+        },
+        {
+          "id": "23327",
+          "uuid": "3ea9dd69-d5cd-42df-83ac-024677a04a76",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "<em>Networking</em>/Computing Consultant - Owner"
+            ]
+          }
+        },
+        {
+          "id": "13480",
+          "uuid": "e73c9885-1c62-4842-9d69-e489f89eb0d8",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "UOP Student- IT/<em>Networking</em>"
+            ]
+          }
+        },
+        {
+          "id": "25774",
+          "uuid": "e04ffdbb-ef80-4ea6-9d94-3da83c7559e8",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "Computers, <em>Networking</em>, Security, Cabling"
+            ]
+          }
+        },
+        {
+          "id": "2184",
+          "uuid": "57cf4c8e-40f6-4360-aa41-3ed8842001da",
+          "userTypeCode": 0,
+          "score": 9.650122,
+          "snippets": {
+            "jobTitle": [
+              "<em>Networking</em> Engineer"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

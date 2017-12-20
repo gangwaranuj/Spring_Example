@@ -1,0 +1,146 @@
+.page-payments {
+	.tile {
+		@include span(3);
+
+		&:last-of-type { @include omega; }
+	}
+
+	.-payment-center {
+		margin-bottom: 3em;
+
+		.tile-content {
+			min-height: 17em;
+
+			&:not(a) {
+				cursor: default;
+			}
+		}
+		.-past-due.tile {
+			.tile-content h2 { color: darken($red, 10%); }
+		}
+		.-current-payables.tile {
+			.tile-content h2 { color: darken($orange, 10%); }
+		}
+		.-cash-balance.tile, .-contractor-earnings.tile {
+			.tile-content h2 { color: darken($charcoal-grey, 10%); }
+		}
+		.-available-spend.tile, .-available-withdraw.tile {
+			.tile-content h2 { color: darken($green, 10%); }
+		}
+		.currency {
+			font-size: 1.2em;
+			color: $charcoal-grey;
+			-webkit-font-smoothing: antialiased;
+		}
+		#gcc_link {
+			background-color: lighten($light-grey, 10%);
+			border-radius: 3px;
+			padding: 0.3em 0.5em;
+			margin-top: 1em;
+			vertical-align: middle;
+			.label { float: left; }
+			a {
+				color: $charcoal-grey;
+				padding-left: 0.3em;
+				display: inline-block;
+			}
+		}
+		.showModalAllocateFunds {
+			display: inline-block;
+			margin: -.2em auto;
+			background-color: lighten($blue, 10%);
+
+			&:hover { background-color: $blue; }
+		}
+		.info {
+			background-image: none;
+			background-repeat: initial;
+			text-indent: initial;
+			width: auto;
+			height: auto;
+			margin: 3em 0 0;
+			display: inline-block;
+			float:right;
+			color: $charcoal-grey;
+			font-style: italic;
+			font-size: 90%;
+		}
+		.-api-limit { margin-top: -1.5em; }
+		h1, h2 {
+			line-height: 20px;
+			text-align: center;
+			font-weight: 400;
+		}
+		small {
+			display: block;
+			text-align: center;
+			margin-bottom: .5em;
+		}
+		hr { border-color: lighten($light-grey, 10%); }
+	}
+	.wm-pagination {
+		float: right;
+	}
+	.wm-tabs a {
+		@include clean-link;
+		&:hover { @include clean-link; }
+	}
+	.table {
+		margin-bottom: $base-element-bottom-spacing;
+	}
+
+	.fast-funds {
+
+		&--summary {
+			max-width: 50%;
+			margin: 0 auto;
+
+			td {
+
+				&:last-of-type {
+					text-align: right;
+				}
+			}
+		}
+
+		&--total {
+			border-top: 1px solid;
+			font-weight: 600;
+		}
+
+		&--fixed-message {
+			text-align: center;
+			color: $white;
+			background-color: $orange;
+			padding: 0.5em;
+			font-weight: 600;
+		}
+
+		&--response {
+			display: none;
+
+			&.-active {
+				display: block;
+			}
+		}
+
+		&--error-messages {
+
+			.wm-alert {
+				margin-bottom: 1em;
+
+				&:last-of-type {
+					margin-bottom: 0;
+				}
+			}
+		}
+
+		&--done {
+
+			.wm-icon-right-arrow,
+			.wm-icon-x {
+				display: none;
+			}
+		}
+	}
+}

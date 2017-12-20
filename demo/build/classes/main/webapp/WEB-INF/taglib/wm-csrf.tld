@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<taglib xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-jsptaglibrary_2_1.xsd"
+		version="2.1">
+	<tlib-version>1.0</tlib-version>
+	<short-name>wm-csrf</short-name>
+	<uri>http://www.workmarket.com/taglib/csrf</uri>
+	<tag>
+		<name>csrfToken</name>
+		<tag-class>com.workmarket.web.tag.CSRFTokenTag</tag-class>
+		<body-content>empty</body-content>
+		<!-- this param should be set to true on AJAX requests -->
+		<attribute>
+			<name>plainToken</name>
+			<required>false</required>
+		</attribute>
+	</tag>
+	<function>
+		<name>csrfTokenParameter</name>
+		<function-class>com.workmarket.web.tag.CSRFTokenTag</function-class>
+		<function-signature>java.lang.String getTokenParameterName()</function-signature>
+	</function>
+</taglib>

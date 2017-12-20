@@ -1,0 +1,51 @@
+.scorecard-warning {
+	color:@red;
+}
+
+.buyer-scorecard-warning-content-metrics{
+	padding-left: 1em;
+}
+
+#buyer-warning-popup .close-button {
+	padding: 0.2em;
+	margin: 1em;
+	font-size: 0.9em;
+	font-weight: bold;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	border: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	outline: none;
+	display: block;
+	line-height: 30px;
+	text-align: center;
+	background: #bababa;
+	color: white;
+	-o-box-shadow: 0 2px 0px 1px #a1a1a1;
+	-ms-box-shadow: 0 2px 0px 1px #a1a1a1;
+	-webkit-box-shadow: 0 2px 0px 1px #a1a1a1;
+	-moz-box-shadow: 0 2px 0px 1px #a1a1a1;
+	box-shadow: 0 2px 0px 1px #a1a1a1;
+	width: 40%;
+	float: left;
+
+	&.good{
+		background-color: @green;
+	}
+	&.bad{
+		background-color: @red;
+	}
+	&.neutral{
+		background-color: @orange;
+	}
+}
+#buyer-warning-popup .close-button:active {
+	-o-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+	-ms-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+	box-shadow: inset 0px 0px 4px rgba(0, 0, 0, 0.5);
+}

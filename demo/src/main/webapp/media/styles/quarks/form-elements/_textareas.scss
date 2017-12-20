@@ -1,0 +1,12 @@
+textarea {
+	resize: vertical;
+}
+
+iframe {
+	width: 100%;
+	border: none;
+}
+
+textarea + .maxlength-feedback {
+	display: block;
+}

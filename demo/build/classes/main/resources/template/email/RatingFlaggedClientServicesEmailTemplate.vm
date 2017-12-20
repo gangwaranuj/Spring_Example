@@ -1,0 +1,41 @@
+<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Assignment Rating Flagged</h1>
+
+		<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+			<p style="margin: 0px 0px 20px 0px">
+			   The following assignment rating was flagged and should be reviewed:<br/>
+			  	<strong>Assignment:</strong> ${template.rating.work.title}<br/>
+				#if( ${template.rating.work.clientCompany} )
+					<strong>Client:</strong> ${template.rating.work.clientCompany.name}<br/>
+				#end
+				<strong>Description:</strong><br/> $!{template.rating.work.description}<br/>
+				<strong>Date and Time:</strong> ${template.date}<br/>
+			</p>
+						
+			<p style="margin: 0px 0px 20px 0px">
+				Rating: 
+					#set($rating = ${template.rating.value}/20 )
+					${rating} stars<br/>
+				#if( ${template.rating.review} )
+					Review:<br/>
+					${template.rating.review}<br/>
+				#end
+				Rated by: <a href="${baseurl}/admin/manage/profiles/index/${template.ratingCreatorUserNumber}">${template.ratingCreatorFullName}</a>
+			</p>
+			<p style="margin: 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/details/${template.rating.work.workNumber}">View Assignment Details</a>
+
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+		</div>
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")

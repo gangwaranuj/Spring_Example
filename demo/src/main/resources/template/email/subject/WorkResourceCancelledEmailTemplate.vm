@@ -1,0 +1,1 @@
+Alert: ${template.workResource.user.firstName} ${template.workResource.user.lastName} cancelled: ${template.workTitle}

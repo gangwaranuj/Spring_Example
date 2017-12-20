@@ -1,0 +1,5 @@
+WRKMRKT Team WorkFlow Update
+${template.work.title} - 
+Old Status: ${template.oldStep.name} | ${template.oldStep.assignee.fullName} - 
+New Status: #if($template.newStep)${template.newStep.name} | ${template.newStep.assignee.fullName}#{else}complete#end  - 
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

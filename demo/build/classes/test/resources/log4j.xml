@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="false">
+
+	<appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+		<param name="Threshold" value="DEBUG"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%-5p  %d{DATE} [%t] | %50.50C:%-5.5L.%-27M | %X %m%n"/>
+		</layout>
+	</appender>
+
+
+	<appender name="AdministratorEmail" class="org.apache.log4j.net.SMTPAppender">
+		<param name="BufferSize" value="512"/>
+		<param name="SMTPHost" value="smtp"/>
+		<param name="From" value="dev@workmarket.com"/>
+		<param name="To" value="dev@workmarket.com"/>
+		<param name="Subject" value="Production Tomcat Application Error"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error"/>
+			<param name="LevelMax" value="fatal"/>
+		</filter>
+	</appender>
+
+	<appender name="AdministratorQueueEmail" class="org.apache.log4j.net.SMTPAppender">
+		<param name="BufferSize" value="512"/>
+		<param name="SMTPHost" value="smtp"/>
+		<param name="From" value="dev@workmarket.com"/>
+		<param name="To" value="dev@workmarket.com"/>
+		<param name="Subject" value="Production Tomcat - Queue Consumers Application Error"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+		<filter class="org.apache.log4j.varia.LevelRangeFilter">
+			<param name="LevelMin" value="error"/>
+			<param name="LevelMax" value="fatal"/>
+		</filter>
+	</appender>
+
+
+	<appender name="accountRegisterReconciliation" class="org.apache.log4j.FileAppender">
+		<param name="File" value="./logs/accountRegisterReconciliation.log"/>
+		<param name="Append" value="false"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%5p[%d](%F:%L):: %X %m%n"/>
+		</layout>
+	</appender>
+
+
+	<appender name="ROLLING_DEBUG" class="org.apache.log4j.RollingFileAppender">
+		<!-- The active file to log to -->
+		<param name="file" value="${logger.debug.filename}"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="MaxBackupIndex" value="30"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<!-- The log message pattern -->
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="ROLLING_ERROR" class="org.apache.log4j.RollingFileAppender">
+		<!-- The active file to log to -->
+		<param name="file" value="${logger.error.filename}"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="MaxBackupIndex" value="30"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<!-- The log message pattern -->
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="jmsErrorLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.jmsError.filename}"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="transactionLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.transactional.filename}"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+	</appender>
+
+	<appender name="transactionLog" class="org.apache.log4j.RollingFileAppender">
+		<param name="file" value="${logger.transactional.filename}"/>
+		<param name="append" value="true"/>
+		<param name="encoding" value="UTF-8"/>
+		<param name="MaxFileSize" value="10MB"/>
+		<layout class="com.workmarket.logging.ContextPatternLayout">
+			<param name="ConversionPattern" value="%d{HH:mm:ss} %p [%t]:%c{3}.%M()%L %X %m%n"/>
+		</layout>
+	</appender>
+
+
+	<logger name="com.workmarket.api" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</logger>
+	<logger name="com.workmarket.service.business" additivity="false">
+		<level value="ERROR"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</logger>
+
+	<logger name="com.workmarket.web.controllers" additivity="false">
+		<level value="FATAL"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</logger>
+
+	<logger name="org.hibernate.engine.StatefulPersistenceContext.ProxyWarnLog">
+		<level value="ERROR"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</logger>
+
+	<logger name="com.workmarket.service.infra.jms" additivity="false">
+		<level value="DEBUG"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</logger>
+
+	<root>
+		<priority value="WARN"/>
+		<appender-ref ref="${logger.error.appender}"/>
+	</root>
+
+
+</log4j:configuration>

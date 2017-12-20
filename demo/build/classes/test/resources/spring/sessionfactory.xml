@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd ">
+
+	<bean id="sessionFactory" name="sessionFactory"
+	      class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean" lazy-init="true">
+		<property name="dataSource">
+			<ref bean="dataSourceWorkmarket" />
+		</property>
+
+		<property name="packagesToScan">
+			<list>
+				<value>com.workmarket.domains.model</value>
+				<value>com.workmarket.domains.forums.model</value>
+				<value>com.workmarket.domains.groups.model</value>
+				<value>com.workmarket.domains.work.model</value>
+				<value>com.workmarket.domains.velvetrope.model</value>
+				<value>com.workmarket.domains.compliance.model</value>
+				<value>com.workmarket.api.internal.model</value>
+			</list>
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.bytecode.use_reflection_optimizer">false</prop>
+				<prop key="hibernate.show_sql">false</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.use_sql_comments">false</prop>
+				<prop key="hibernate.use_outer_join">true</prop>
+				<prop key="hibernate.max_fetch_depth">1</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.statement_cache.size">25</prop>
+				<prop key="hibernate.jdbc.batch_size">25</prop>
+				<prop key="hibernate.jdbc.use_streams_for_binary">
+					true
+				</prop>
+				<prop key="hibernate.search.default.indexBase">
+					/tmp/search/indexes
+				</prop>
+			</props>
+		</property>
+
+		<property name="eventListeners">
+			<map>
+				<entry key="pre-update" value-ref="uuidEventListener"/>
+				<entry key="pre-insert" value-ref="uuidEventListener"/>
+				<entry key="post-update" value-ref="entityEventListener" />
+				<entry key="post-insert" value-ref="entityPostInsertEventListener" />
+			</map>
+		</property>
+
+		<property name="entityInterceptor">
+			<ref bean="auditInterceptor" />
+		</property>
+	</bean>
+
+	<bean id="uuidEventListener" class="com.workmarket.domains.work.model.EnsuresUuid"/>
+	<!-- <bean id="enversEventListener" class="org.hibernate.envers.event.AuditEventListener" /> -->
+	<bean id="entityEventListener" class="com.workmarket.service.infra.hibernate.EntityEventListener" />
+	<bean id="entityPostInsertEventListener" class="com.workmarket.service.infra.hibernate.EntityPostInsertEventListener" />
+	<bean id="auditInterceptor" class="com.workmarket.service.infra.audit.AuditInterceptor" />
+
+
+</beans>

@@ -1,0 +1,24 @@
+<div class="clearfix">
+	<label for="fields[{{this.model.index}}].id" class="{{#if this.model.isRequired}}required{{/if}}">{{this.model.name}}</label>
+
+	{{#if this.model.readOnly}}
+		<div class="text">
+			{{#if this.model.value}}{{this.model.value}}{{/if}}
+		</div>
+	{{else}}
+		<div class="container">
+			<input type="hidden" name="{{this.param.prefix}}fields[{{this.model.index}}].id" value="{{this.model.id}}"/>
+			<div class="bulk-edit-input">
+			    <select name="fields[{{this.model.index}}].value" {{#if this.model.readOnly}}readonly="readonly"{{/if}}>
+                    <option value="">Select</option>
+                    {{#each this.model.options}}
+                        <option value="{{this}}" {{#[../../helpers/eq] this ../../this.model.value}}selected="selected"{{/[../../helpers/eq]}}>{{this}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="bulk-edit-checkbox">
+			    {{> ../../funcs/templates/checkbox value=this.model.id name="bulk_field_update[]"}}
+		    </div>
+		</div>
+	{{/if}}
+</div>

@@ -1,0 +1,8 @@
+Assignment updated:
+#if($template.pricingUpdated)Price change - #end
+#if($template.scheduleUpdated)Schedule change - #end
+#if($template.locationUpdated)Location change: ${template.address} (${template.distanceInMilesToWork} miles) - #end
+#if($template.infoUpdated)Info change - #end
+#if($template.contactUpdated)Contact info change - #end
+#if($template.otherUpdated)Other changes - #end
+${display.alt($template.work.shortUrl, "$baseurl$template.work.relativeURI")}

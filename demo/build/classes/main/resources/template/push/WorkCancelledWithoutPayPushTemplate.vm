@@ -1,0 +1,4 @@
+{
+"message": "${template.workTitle} cancelled - Call ${template.work.buyer.firstName} ${template.work.buyer.lastName} at ${template.work.buyer.profile.workPhone} with questions",
+"action": "${baseurl}/assignments/details/${template.work.workNumber}"
+}

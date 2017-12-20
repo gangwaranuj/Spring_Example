@@ -1,0 +1,4 @@
+{
+"message": "Your profile changes are approved",
+"action": "${baseurl}/profile"
+}

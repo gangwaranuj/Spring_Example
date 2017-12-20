@@ -1,0 +1,14 @@
+$wm-branding-word-spacing: -0.25em;
+$wm-branding-font: $body-font;
+
+.wm-branding {
+	font-family: $wm-branding-font;
+	word-spacing: $wm-branding-word-spacing;
+	color: $dark-grey;
+	font-weight: bold;
+	padding-right: $wm-branding-word-spacing * -1;
+
+	.work {
+		color: $orange;
+	}
+}

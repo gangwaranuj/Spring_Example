@@ -1,0 +1,23 @@
+.previous_subscription {
+	table td:first-child {
+		width: 130px;
+	}
+
+	.previous_subscription_tiers {
+		th, td {
+			text-align: center;
+		}
+
+		th {
+			font-size: 0.75em;
+		}
+
+		td:first-child {
+			width: 30px;
+		}
+	}
+
+	.previous_notes {
+		font-size: 12px;
+	}
+}

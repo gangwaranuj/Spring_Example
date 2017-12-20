@@ -1,0 +1,22 @@
+<div class="wm-modal" data-modal>
+	{{#each this.slides}}
+		<div id="{{this.id}}" class="wm-modal--slide {{#if this.isActive}}-active{{/if}}">
+			<div class="wm-modal--toolbar">
+				<div class="wm-modal--close wm-icon-x" data-modal-close></div>
+				<h1 class="wm-modal--header">
+					<span class="wm-modal--title">{{{this.title}}}</span>
+				</h1>
+			</div>
+			<div class="wm-modal--content" id="bulkTest">
+				<small>The worker will receive a notification informing them of a pending test invitation including any instructions outlined in the tests description.</small>
+				<div>
+					<select class="bulk-test-select" name="bulk-test-select"></select>
+				</div>
+			</div>
+			<div class="wm-modal--footer">
+				<button class="button -primary profile-card--invite-test bulk">Send Invites</button>
+				<button class="button" data-modal-close>Close</button>
+			</div>
+		</div>
+	{{/each}}
+</div>

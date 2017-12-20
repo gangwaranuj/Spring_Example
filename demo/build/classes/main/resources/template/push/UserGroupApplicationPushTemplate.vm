@@ -1,0 +1,4 @@
+{
+"message": "Your application to the following talent pool has been received: ${template.userGroupName}",
+"action": "${baseurl}/groups/${template.userGroup.id}"
+}

@@ -1,0 +1,84 @@
+
+			<h1 style="font-family: Helvetica Neue, Arial, sans-serif; font-weight: 700; font-size: 20px; margin: 0px 0px 10px 0px; color: #fe8707; padding: 0px 20px 10px 20px; border-bottom: 1px solid #eee;">Worker Cancelled</h1>
+
+			<div style="width: 520px; padding: 20px 20px 20px 20px; font-family: Helvetica Neue, Arial, sans-serif; color: #444; font-size: 13px; line-height: 18px;">
+
+			<p style="margin: 0px 0px 20px 0px">
+				Hello ${toUser.firstName},<br/>
+				<br/>
+				${template.workResource.user.firstName} ${template.workResource.user.lastName} cancelled your assignment, <strong>${template.workTitle}</strong> <small>(${template.work.workNumber})</small>.
+			</p>
+
+			<h1 style="font-weight: 700; font-size: 14px; margin: 0px 0px 10px 0px">Worker Details</h1>
+			<p style="margin: 0px 0px 20px 0px">
+				<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f5f5f5; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+				<tbody>
+						<tr>
+						<td width = "30%"><strong>Name</strong></td>
+						<td>${template.workResource.user.firstName} ${template.workResource.user.lastName}</td>
+						</tr>
+						<tr>
+						<td width = "30%"><strong>Email</strong></td>
+						<td>${template.workResource.user.email}</td>
+						</tr>
+						#if( ${template.workResource.user.profile.workPhone} )
+						<tr>
+						<td width = "30%"><strong>Phone</strong></td>
+						<td>${template.workResource.user.profile.workPhone}</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</p>
+
+			<p style="margin: 0px 0px 20px 0px">
+				<table cellspacing="0" cellpadding="0" border="0">
+				<tbody>
+				<tr>
+				<td style="background-color: #fe8707; text-align: center; padding: 2px 7px 4px;">
+
+				<a target="_blank" style="font-weight: bold; font-size: 13px; font-family: Helvetica Neue, Arial, sans-serif; text-decoration: none; color: #ffffff; display: block; padding: 6px 7px 4px;" href="${baseurl}/assignments/details/${template.work.workNumber}">Find a New Worker</a>
+				</td>
+				</tr>
+				</tbody>
+				</table>
+			</p>
+
+			<p style="margin: 0px 0px 20px 0px">
+				<table width="100%" cellspacing="0" cellpadding="5" border="1" style="border:1px solid #f5f5f5; font-family: Helvetica Neue, Arial, sans-serif; color: #000; font-size: 12px; padding:0; text-align:left; border-collapse: collapse; word-wrap:break-word;">
+				<tbody>
+					<tr>
+					<td width = "30%"><strong>Title</strong></td>
+					<td>${template.workTitle}</td>
+					</tr>
+					<tr>
+					<td width = "30%"><strong>Location</strong></td>
+					<td>${template.address}</td>
+					</tr>
+					<tr>
+					<td width = "30%"><strong>Date and Time</strong></td>
+					<td>${template.date}</td>
+					</tr>
+					<tr>
+					<td width = "30%"><strong>Assignment Budget</strong></td>
+					<td>${template.price}</td>
+					</tr>
+					#foreach($field in ${template.customFields})
+						<tr>
+						<td width = "30%"><strong>$field.workCustomField.name</strong></td>
+						<td>$field.value</td>
+						</tr>
+					#end
+					</tbody>
+				</table>
+			</p>
+		</div>
+
+	</td>
+</tr>
+
+#parse("template/email/partials/do-not-reply.vm")
+
+#if (${template.encryptedWorkFollowId})
+	#parse("template/email/partials/unfollow.vm")
+#end

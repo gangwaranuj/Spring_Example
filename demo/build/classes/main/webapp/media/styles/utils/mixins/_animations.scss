@@ -1,0 +1,37 @@
+@mixin transition($values...) {
+	-webkit-transition: $values;
+	-moz-transition: $values;
+	-ms-transition: $values;
+	-o-transition: $values;
+	transition: $values;
+}
+
+@mixin transform($values...) {
+	-webkit-transform: $values;
+	-ms-transform: $values;
+	transform: $values;
+}
+
+@mixin translateZ($value: 0) {
+	@include transform(translateZ($value));
+}
+
+@mixin transform-origin($value) {
+	-webkit-transform-origin: $value;
+	transform-origin: $value;
+}
+
+@mixin animation($value) {
+	-webkit-animation: $value;
+	animation: $value;
+}
+
+@mixin animation-fill-mode($value) {
+	-webkit-animation-fill-mode: $value;
+	animation-fill-mode: $value;
+}
+
+@mixin animation-delay($value) {
+	-webkit-animation-delay: $value;
+	animation-delay: $value;
+}

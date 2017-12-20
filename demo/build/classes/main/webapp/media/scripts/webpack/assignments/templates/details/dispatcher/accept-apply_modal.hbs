@@ -1,0 +1,281 @@
+<form id="apply-form" class="dispatcher_apply-accept_modal">
+	{{#[../../../../helpers/eq] mode 'apply'}}
+		<h4>By Applying, I understand that if my application is accepted:</h4>
+	{{/[../../../../helpers/eq]}}
+
+	{{#[../../../../helpers/eq] mode 'accept'}}
+		<h4>By Accepting, I understand that:</h4>
+	{{/[../../../../helpers/eq]}}
+
+	<ul>
+		<li><strong>{{currentUserCompanyName}}</strong> will be contracting for <strong>{{companyName}}</strong></li>
+		<li><strong>{{currentUserCompanyName}}</strong> agrees to the terms of this assignment</li>
+		<li>Payment is the responsibility of <strong>{{companyName}}</strong></li>
+		{{#if paymentTime.length}}
+			<li><strong>{{currentUserCompanyName}}</strong> will be paid within <strong>{{paymentTime}}</strong> days of approval of my work
+		{{else}}
+			<li><strong>{{currentUserCompanyName}}</strong> will be paid upon approval of my work</li>
+		{{/if}}
+	</ul>
+
+	{{#unless isParentBundle}}
+		<div class="resource-apply-toggle -dispatcher">
+			<strong>
+				<i class="toggler"></i>
+				&nbsp; Optional - Propose Alternate Price and/or Date
+			</strong>
+		</div>
+
+		<div ref="configuration" class="clearfix dn">
+			<input type="hidden" name="pricing" value="{{[../../../../helpers/setPricingStrategyId] work.pricing.type}}"/>
+			<fieldset>
+				<label>
+					{{#if disablePriceNegotiation}}
+						<input type="checkbox" name="price_negotiation" id="price_negotiation" disabled="disabled"/>
+						<font color="gray"><strong>The client has chosen to disable price counteroffers</strong></font>
+					{{else}}
+						<input type="checkbox" name="price_negotiation" id="price_negotiation" value="true"/>
+						Propose a new <strong>price</strong>
+					{{/if}}
+				</label>
+
+				{{#unless disablePriceNegotiation}}
+					<div id="price_negotiation_config" class="pricing_configuration dn">
+
+						<table>
+							{{#[../../../../helpers/eq] work.pricing.type 'INTERNAL'}}
+								<tr>
+									<th></th>
+									<th>Assignment Budget</th>
+									<th>Internal Assignment</th>
+								</tr>
+							{{else}}
+								<tr>
+									<th></th>
+									<th>Current</th>
+									<th>Proposed</th>
+								</tr>
+							{{/[../../../../helpers/eq]}}
+
+
+							{{#[../../../../helpers/eq] work.pricing.type 'FLAT'}}
+								<tr>
+									<td>Assignment Budget</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.flatPrice}}</td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" id="flat_price" name="flat_price"/>
+									</td>
+								</tr>
+							{{/[../../../../helpers/eq]}}
+
+							{{#[../../../../helpers/eq] work.pricing.type 'PER_HOUR'}}
+								<tr>
+									<td>Rate <small class="meta">(per hour)</small></td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.perHourPrice}}</td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" id="per_hour_price" name="per_hour_price" value="{{work.pricing.perHourPrice}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Hours</td>
+									<td>{{work.pricing.maxNumberOfHours}}</td>
+									<td><input type="text" id="max_number_of_hours" name="max_number_of_hours" value="{{work.pricing.maxNumberOfHours}}"/></td>
+								</tr>
+								<tr>
+									<td>Assignment Budget</td>
+									<td></td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" readonly="readonly" name="spend_max"/>
+									</td>
+								</tr>
+							{{/[../../../../helpers/eq]}}
+
+							{{#[../../../../helpers/eq] work.pricing.type 'PER_UNIT'}}
+								<tr>
+									<td>Rate <small class="meta">(per unit)</small></td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.perUnitPrice}}</td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" id="per_unit_price" name="per_unit_price" value="{{work.pricing.perUnitPrice}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Units</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.maxNumberOfUnits}}</td>
+									<td><input type="text" id="max_number_of_units" name="max_number_of_units" value="{{work.pricing.maxNumberOfUnits}}"/><td>
+								</tr>
+								<tr>
+									<td>Assignment Budget</td>
+									<td></td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" readonly="readonly" name="spend_max"/>
+									</td>
+								</tr>
+							{{/[../../../../helpers/eq]}}
+
+							{{#[../../../../helpers/eq] work.pricing.type 'BLENDED_PER_HOUR'}}
+								<tr>
+									<td>Initial Rate</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.initialPerHourPrice}}</td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" id="initial_per_hour_price" name="initial_per_hour_price" value="{{work.pricing.initialPerHourPrice}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Initial Hours</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.initialNumberOfHours}}</td>
+									<td><input type="text" id="initial_number_of_hours" name="initial_number_of_hours" value="{{work.pricing.initialNumberOfHours}}"/></td>
+								</tr>
+								<tr>
+									<td>Secondary Rate</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.additionalPerHourPrice}}</td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" id="additional_per_hour_price" name="additional_per_hour_price" value="{{work.pricing.additionalPerHourPrice}}"/>
+									</td>
+								</tr>
+								<tr>
+									<td>Secondary Hours</td>
+									<td>{{[../../../../helpers/formatCurrency] work.pricing.maxBlendedNumberOfHours}}</td>
+									<td><input type="text" id="max_blended_number_of_hours" name="max_blended_number_of_hours" value="{{work.pricing.maxBlendedNumberOfHours}}"/></td>
+								</tr>
+								<tr>
+									<td>Assignment Budget</td>
+									<td></td>
+									<td>
+										<span class="add-on">$</span>
+										<input type="text" readonly="readonly" name="spend_max"/>
+									</td>
+								</tr>
+							{{/[../../../../helpers/eq]}}
+
+							<tr id="offer-expenses" >
+								<td>Additional Expenses</td>
+								<td></td>
+								<td>
+									<span class="add-on">$</span>
+									<input type="text" id="additional_expenses" name="additional_expenses"/>
+								</td>
+							</tr>
+						</table>
+					</div>
+				{{/unless}}
+			</fieldset>
+
+			<!-- Schedule Negotiation -->
+			<fieldset>
+				<label>
+					<input type="checkbox" name="schedule_negotiation" value="true" id="schedule_negotiation"/>
+					Propose a new <strong>date</strong> or <strong>time</strong>
+				</label>
+
+				<div id="schedule_negotiation_config" class="dn">
+					<table>
+						<tr>
+							<td>Current {{#if work.schedule.range}}window{{else}}time{{/if}}</td>
+							<td>
+								{{#if work.schedule.from}}
+									{{[../../../../helpers/displayWorkSchedule] work.schedule.through work.schedule.from work.schedule.range}}
+								{{else}}
+									Not set.
+								{{/if}}
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div>
+									<label>
+										<input type="radio" id="new_time" name="reschedule_option" value="time" {{#unless work.schedule.range}}checked="checked"{{/unless}} />
+										Propose a new <strong>time</strong>
+									</label>
+								</div>
+							</td>
+							<td>
+								<div>
+									<input type="text" id="from" name="from" placeholder="Select Date" />
+									<input type="text" id="fromtime" name="fromtime" placeholder="Select Time"/>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+								<div>
+									<label>
+										<input type="radio" id="new_window" name="reschedule_option" value="window" {{#if work.schedule.range}}checked="checked"{{/if}} />
+										Propose a new <strong>time window</strong>
+									</label>
+								</div>
+							</td>
+							<td>
+								<div>
+									<span class="to-date{{#unless work.schedule.range}} dn{{/unless}}">to</br>
+										<input type="text" id="to" name="to" placeholder="Select Date"/>
+										<input type="text" id="totime" name="totime" placeholder="Select Time"/>
+									</span>
+								</div>
+							</td>
+						</tr>
+
+					</table>
+				</div>
+			</fieldset>
+
+			<!-- Expiration Configuration -->
+			<fieldset>
+				<label>
+					<input type="checkbox" value="true" name="offer_expiration" id="offer_expiration"/>
+					Set an offer expiration date
+				</label>
+				<div id="offer_expiration_config" class="dn">
+					<div>
+						<label>Expiration Date</label>
+						<div>
+							<input type="text" id="expires_on" name="expires_on" placeholder="Select Date" />
+							<input type="text" id="expires_on_time" name="expires_on_time" placeholder="Select Time"/>
+						</div>
+					</div>
+				</div>
+			</fieldset>
+
+			{{#[../../../../helpers/eq] mode 'accept'}}
+				<fieldset>
+					<div>
+						<label><strong>Include a message with your application</strong> <small class="meta">(recommended)</small></label>
+						<textarea id="note" name="note" class="input-block-level" rows="3"></textarea>
+					</div>
+				</fieldset>
+			{{/[../../../../helpers/eq]}}
+		</div>
+	{{/unless}}
+
+	{{#[../../../../helpers/eq] mode 'apply'}}
+		<fieldset>
+			<div>
+				<label><strong>Include a message with your application</strong> <small class="meta">(recommended)</small></label>
+				<textarea id="note" name="note" class="input-block-level" rows="3"></textarea>
+			</div>
+		</fieldset>
+	{{/[../../../../helpers/eq]}}
+
+	<input type="hidden" name="workerNumber" id="workerNumber" value="{{userNumber}}"/>
+
+	<div ref="actions">
+		{{#[../../../../helpers/eq] mode 'apply'}}
+			<button id="dispatcher-apply" class="button -primary">Apply on Behalf</button>
+		{{/[../../../../helpers/eq]}}
+		{{#[../../../../helpers/eq] mode 'accept'}}
+			<button id="dispatcher-accept" class="button -primary" data-usernumber="{{userNumber}}">Accept on Behalf</button>
+		{{/[../../../../helpers/eq]}}
+	</div>
+
+	<p>
+		<small><a href="javascript:void(0);" class="dispatcher-show-block-client">Block this company from sending you more assignments</a></small>
+	</p>
+</form>

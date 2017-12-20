@@ -1,0 +1,35 @@
+.question-pair {
+	@include clearfix;
+	border-radius: map-get($message, "border-radius");
+	border: $default-border;
+	padding: 1em;
+	margin-bottom: 1em;
+
+	&:nth-of-type(odd) {
+		background-color: map-get($message, "content-background-color");
+
+		.message--content {
+			background-color: $white;
+
+			&::before { @include triangle(up, $white, 0.5em); }
+		}
+		.message--response {
+			background-color: $white;
+			border-color: map-get($message, "content-background-color");
+		}
+	}
+
+	&--answer-button {
+		margin: 1em 0 0;
+
+		.message.-expanded + & { display: none; }
+	}
+
+	h4 {
+		text-align: center;
+		color: $orange;
+		margin: 0 0 0.5em;
+	}
+	// Questions with an answer don't get any more responses
+	.-has-response .message--content:hover .message--new-response { display: none; }
+}

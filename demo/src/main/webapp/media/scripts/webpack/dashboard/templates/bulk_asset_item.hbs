@@ -1,0 +1,8 @@
+<div>
+	{{#if this.mimeType}}
+		<a href="/asset/downloadDefault/{{this.uuid}}">{{#if this.file_name}}{{this.file_name}}{{else}}{{this.name}}{{/if}}</a>
+		<a class="remove muted no-decor"><i class="icon-large wm-icon-trash"></i>remove</a>
+		<br/>
+		<small>{{this.description}}</small>
+	{{/if}}
+</div>

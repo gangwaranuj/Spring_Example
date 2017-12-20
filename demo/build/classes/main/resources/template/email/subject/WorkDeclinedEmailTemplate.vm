@@ -1,0 +1,1 @@
+${template.resource.firstName} ${template.resource.lastName} declined your assignment: ${template.workTitle}

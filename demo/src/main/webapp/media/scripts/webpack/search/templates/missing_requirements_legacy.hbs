@@ -1,0 +1,148 @@
+<ul class="categories">
+	{{#if this.data.countries}}
+		<li class="outer">
+			<ul>
+				{{#each data.countries}}
+					<li class="inner"><i class="wm-icon-x"></i> Location is: <strong>{{this}}</strong></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.proximities}}
+		<li class="outer">
+			<ul>
+				{{#each this.data.proximities}}
+					<li class="inner">Willing to travel to {{#if this.radius}} and within <strong>{{this.radius}} miles</strong> of {{/if}}<strong>{{this.address}}</strong></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.availability}}
+		<li class="outer">
+			<ul>
+				{{#each this.data.availability}}
+					<li class="inner">Available <strong>{{this.day}} {{this.timeframe}}</strong></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.rating}}
+		<li class="outer">
+			<ul>
+				<li class="inner">Minimum satisfaction rate of <strong>{{this.data.rating}}%</strong></li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.rate}}
+		<li class="outer">
+			<ul>
+				<li class="inner">Hourly rate between {{this.rate.min}} and {{this.rate.max}}</li>
+			</ul>
+		</li>
+	{{/if}}
+
+
+	{{#if this.data.lane}}
+		<li class="outer">
+			<ul>
+				<li class="inner">{{this.data.lane.displayText}}</li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.video}}
+		<li class="outer">
+			<ul>
+				<li class="inner">Video: At least one video on your profile is required</li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.companyType}}
+		<li class="outer">
+			<ul>
+				<li class="inner">Company is <strong>{{this.data.companyType}}</strong></li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.backgroundCheck}}
+		<li class="outer">
+			<ul>
+				<li class="inner"><i class="wm-icon-x"></i> Passed a background check</li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.drugTest}}
+		<li class="outer">
+			<ul>
+				<li class="inner">Passed a drug test</li>
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.industries}}
+		<li class="outer">
+			<ul>
+				{{#each this.data.industries}}
+					<li class="inner">Industry is: <strong>{{this}}</strong></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.licenses}}
+		<li class="outer">
+			<ul>
+				{{#each this.data.licenses}}
+					<li class="inner">Licensed: <strong>{{this.name}} ({{this.state}})</strong></li>
+				{{/each}}
+			</ul>
+		</li>
+	{{/if}}
+
+	{{#if this.data.insurances}}
+	<li class="outer">
+		<ul>
+			{{#each this.data.insurances}}
+				<li class="inner">Insurance: <strong>{{this.name}}</strong>{{#if this.isMinCoverageRequired}}Minimum Coverage: {{this.requiredCoverage}} Your Coverage: {{this.currentCoverage}}{{/if}}</li>
+			{{/each}}
+		</ul>
+	</li>
+	{{/if}}
+
+	{{#if this.data.certifications}}
+	<li class="outer">
+		<ul>
+			{{#each this.data.certifications}}
+				<li class="inner">Certified: {{this}}</li>
+			{{/each}}
+		</ul>
+	</li>
+	{{/if}}
+
+	{{#if this.data.documents}}
+	<li class="outer">
+		<ul>
+			{{#each this.data.documents}}
+				<li class="inner">Document: <strong>{{this.name}}</strong></li>
+			{{/each}}
+		</ul>
+	</li>
+	{{/if}}
+
+	{{#if this.data.assessments}}
+	<li class="outer">
+		<ul>
+			{{#each this.data.assessments}}
+				<li class="inner">Passed: <strong>{{this.name}}</strong> ({{this.status}})</li>
+			{{/each}}
+		</ul>
+	</li>
+	{{/if}}
+</ul>

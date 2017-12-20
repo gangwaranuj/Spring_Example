@@ -1,0 +1,5 @@
+#if ($template.work.manageMyWorkMarket.assignToFirstResource)
+Your counteroffer was approved and you are assigned: ${template.workTitle}
+#else
+Your application was accepted and you are assigned: ${template.workTitle}
+#end

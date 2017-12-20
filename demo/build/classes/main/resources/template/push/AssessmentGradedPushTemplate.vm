@@ -1,0 +1,4 @@
+{
+"message": "Your grade is ready for the test: ${template.attempt.assessmentUserAssociation.assessment.name}",
+"action": "${baseurl}/lms/view/details/${template.attempt.assessmentUserAssociation.assessment.id}"
+}

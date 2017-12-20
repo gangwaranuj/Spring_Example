@@ -1,0 +1,20 @@
+package com.workmarket.domains.model.analytics;
+
+/**
+ * Author: rocio
+ */
+public enum ResourceScoreField {
+
+	SATISFACTION_OVER_ALL,
+	QUALITY,
+	PROFESSIONALISM,
+	COMMUNICATION,
+	COMPLETED_WORK,
+	ON_TIME_PERCENTAGE,
+	CANCELLED_WORK,
+	CANCELLED_WORK_IN_LESS_THAN_24_HOURS,
+	LATE_WORK,
+	ABANDONED_WORK,
+	DELIVERABLE_ON_TIME_PERCENTAGE
+
+}
